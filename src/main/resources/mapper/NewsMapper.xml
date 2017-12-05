@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shunan.committeewb.dao.NewsMapper">
+
+	<sql id="queryNews">
+		SELECT * FROM news 
+	</sql>
+	
+	<!-- 查询首页需要展示的重点专注、文件通知、团青快讯等 -->
+	<select id="queryHomeNews" resultType="com.shunan.committeewb.po.News">
+		<include refid="queryNews"/>
+		<where>
+			newsTypeID=#{newsTypeID} 
+		</where>
+		ORDER BY publishTime DESC 
+		LIMIT #{limit}
+	</select>
+</mapper>

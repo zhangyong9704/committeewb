@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shunan.committeewb.dao.NavMapper">
+
+	<!-- 查询导航栏信息 -->
+	<select id="queryAllNavs" resultType="com.shunan.committeewb.po.Nav">
+		SELECT * FROM nav
+	</select>
+</mapper>
