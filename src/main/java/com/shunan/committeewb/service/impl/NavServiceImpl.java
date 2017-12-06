@@ -23,4 +23,28 @@ public class NavServiceImpl implements NavService {
 		return navMapper.queryAllNavs();
 	}
 
+	/**
+	 * 更新导航栏信息
+	 */
+	@Override
+	public void updateNav(Nav nav) throws Exception {
+		navMapper.updateNav(nav);
+	}
+
+	/**
+	 * 添加导航栏信息
+	 */
+	@Override
+	public void insertNav(Nav nav) throws Exception {
+		navMapper.insertNav(nav);
+	}
+
+	/**
+	 * 删除导航栏信息
+	 */
+	@Override
+	public void deleteNav(int id) throws Exception {
+		navMapper.deleteNav(id);
+	}
+
 }

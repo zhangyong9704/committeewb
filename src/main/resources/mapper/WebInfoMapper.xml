@@ -6,4 +6,17 @@
 	<select id="queryWebInfo" resultType="com.shunan.committeewb.po.WebInfo">
 		SELECT * FROM webInfo LIMIT 0,1
 	</select>
+	
+	<!-- 根据网站id查询网站信息 -->
+	<select id="queryWebInfoByID" parameterType="int" resultType="com.shunan.committeewb.po.WebInfo">
+		SELECT * FROM webInfo WHERE id=#{id}
+	</select>
+	
+	<!-- 修改网站信息 -->
+	<update id="updateWebInfo" parameterType="webInfo">
+		UPDATE webinfo
+		SET logoUrl=#{logoUrl},titleUrl=#{titleUrl},backgroundUrl=#{backgroundUrl},
+			field1=#{field1},field2=#{field2},field3=#{field3},field4=#{field4},field5=#{field5}
+		WHERE id=#{id}
+	</update>
 </mapper>

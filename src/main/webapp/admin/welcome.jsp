@@ -20,6 +20,6 @@
   <body>
     welcome  ${user.account },${user.realName }<br>
     <a href="${pageContext.request.contextPath }/logout">退出</a> <br><br>
-    <a href="${pageContext.request.contextPath }/home">网站首页</a>
+    <a href="${pageContext.request.contextPath }/home">网站首页</a><br>
   </body>
 </html>

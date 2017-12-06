@@ -33,7 +33,8 @@
 				/logout = logout
 				/admin/error/404.jsp = anon
 				/admin/error/500.jsp = anon
-				/** = authc
+				/** = anon
+				<!-- /** = authc -->
 			</value>
 		</property>
 	</bean>

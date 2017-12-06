@@ -15,6 +15,8 @@ public class News {
 	private String content;//新闻内容
 	private Date publishTime;//发布时间
 	private String author;//作者
+	private int status;//发布状态:0已发布,1草稿
+	private Date showTime;//显示时间
 	public News() {
 		super();
 	}
@@ -60,9 +62,22 @@ public class News {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public Date getShowTime() {
+		return showTime;
+	}
+	public void setShowTime(Date showTime) {
+		this.showTime = showTime;
+	}
 	@Override
 	public String toString() {
 		return "News [id=" + id + ", title=" + title + ", newsTypeID=" + newsTypeID + ", picUrl=" + picUrl
-				+ ", content=" + content + ", publishTime=" + publishTime + ", author=" + author + "]";
+				+ ", content=" + content + ", publishTime=" + publishTime + ", author=" + author + ", status=" + status
+				+ ", showTime=" + showTime + "]";
 	}
 }

@@ -6,4 +6,22 @@
 	<select id="queryAllNavs" resultType="com.shunan.committeewb.po.Nav">
 		SELECT * FROM nav
 	</select>
+	
+	<!-- 修改导航栏信息 -->
+	<update id="updateNav" parameterType="nav">
+		update nav
+		set name=#{name},jumpLink=#{jumpLink}
+		where id=#{id}
+	</update>
+	
+	<!-- 插入导航栏 -->
+	<insert id="insertNav" parameterType="nav">
+		INSERT INTO nav(name,jumpLink)
+		VALUES(#{name},#{jumpLink})
+	</insert>
+	
+	<!-- 删除导航栏信息 -->
+	<delete id="deleteNav" parameterType="int">
+		DELETE FROM nav WHERE id=#{id}
+	</delete>
 </mapper>

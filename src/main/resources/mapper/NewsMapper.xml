@@ -10,7 +10,7 @@
 	<select id="queryHomeNews" resultType="com.shunan.committeewb.po.News">
 		<include refid="queryNews"/>
 		<where>
-			newsTypeID=#{newsTypeID} 
+			newsTypeID=#{newsTypeID} AND STATUS=0 AND NOW()>showTime 
 		</where>
 		ORDER BY publishTime DESC 
 		LIMIT #{limit}
