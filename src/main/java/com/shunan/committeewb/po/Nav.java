@@ -8,6 +8,7 @@ public class Nav {
 	private int id;
 	private String name;//标题名称
 	private String jumpLink;//跳转链接
+	private int sort;//显示顺序
 	public Nav() {
 		super();
 	}
@@ -29,8 +30,14 @@ public class Nav {
 	public void setJumpLink(String jumpLink) {
 		this.jumpLink = jumpLink;
 	}
+	public int getSort() {
+		return sort;
+	}
+	public void setSort(int sort) {
+		this.sort = sort;
+	}
 	@Override
 	public String toString() {
-		return "Nav [id=" + id + ", name=" + name + ", jumpLink=" + jumpLink + "]";
+		return "Nav [id=" + id + ", name=" + name + ", jumpLink=" + jumpLink + ", sort=" + sort + "]";
 	}
 }

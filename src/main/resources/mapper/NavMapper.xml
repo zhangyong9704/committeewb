@@ -4,21 +4,26 @@
 
 	<!-- 查询导航栏信息 -->
 	<select id="queryAllNavs" resultType="com.shunan.committeewb.po.Nav">
-		SELECT * FROM nav
+		SELECT * FROM nav ORDER BY sort ASC
 	</select>
 	
 	<!-- 修改导航栏信息 -->
 	<update id="updateNav" parameterType="nav">
 		update nav
-		set name=#{name},jumpLink=#{jumpLink}
+		set name=#{name},jumpLink=#{jumpLink},sort=#{sort}
 		where id=#{id}
 	</update>
 	
 	<!-- 插入导航栏 -->
 	<insert id="insertNav" parameterType="nav">
-		INSERT INTO nav(name,jumpLink)
-		VALUES(#{name},#{jumpLink})
+		INSERT INTO nav(name,jumpLink,sort)
+		VALUES(#{name},#{jumpLink},#{sort})
 	</insert>
+	
+	<!-- 根据id查询导航栏信息 -->
+	<select id="queryNavByID" parameterType="int" resultType="com.shunan.committeewb.po.Nav">
+		SELECT * FROM nav WHERE id=#{id}
+	</select>
 	
 	<!-- 删除导航栏信息 -->
 	<delete id="deleteNav" parameterType="int">

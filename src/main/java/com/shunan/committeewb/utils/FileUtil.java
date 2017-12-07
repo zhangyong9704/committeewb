@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.UUID;
 import javax.imageio.ImageIO;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.shunan.committeewb.po.Banner;
 import com.shunan.committeewb.po.Result;
 import com.shunan.committeewb.po.WebInfo;
 
@@ -77,6 +79,7 @@ public class FileUtil<T> {
 				if(CreateFileUtil.createFile(filePath+newFileName)){
 					//将内存中的文件写入硬盘
 					picFile.transferTo(file);
+					//网站信息设置 上传文件
 					if(t instanceof WebInfo){
 						WebInfo webInfo = (WebInfo) t;
 						switch (type) {
@@ -93,6 +96,11 @@ public class FileUtil<T> {
 						default:
 							break;
 						}
+					}
+					//Banner图 or 友情链接 上传文件
+					if(t instanceof Banner){
+						Banner banner = (Banner) t;
+						banner.setPicUrl(dbUploadFileName);
 					}
 				}
 			}

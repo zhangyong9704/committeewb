@@ -30,7 +30,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	http://20.14.3.19:8080/committeewb/webInfo/updateWebInfo<br/>
   	修改网站设置信息<br/>
   	参数:id(必要)、logoFile(网站logo,可选项)、titleFile(网站标题,可选项)、backgroundFile(网站背景图,可选项)、
-  		field1、field2、field3、field4、field5
+  		field1、field2、field3、field4、field5<br/>
+  	上传图片要求：<br/>
+  	网站logo：1200*375  &nbsp;&nbsp;&nbsp; 首页title：1920*600 &nbsp;&nbsp;&nbsp; 首页背景图：1200*375
   	
   	
   	<h4>导航栏：</h4>
@@ -38,16 +40,50 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     查询所有的导航栏
     <hr>
     http://20.14.3.19:8080/committeewb/nav/updateNav<br/>
-    修改导航栏信息(参数:id(必要)、name、jumpLink)
+    修改导航栏信息(参数:id(必要)、name、jumpLink、sort(显示顺序))
     <hr/>
     http://20.14.3.19:8080/committeewb/nav/insertNav<br/>
-    添加导航信息(参数:name、jumpLink)
+    添加导航信息(参数:name、jumpLink、sort(显示顺序))
    	<hr/>
    	http://20.14.3.19:8080/committeewb/nav/deleteNav<br/>
    	删除导航信息(参数:id(必要))
    	
-   	<h4>banner图：</h4>
    	
-   	<h4>友情链接：</h4>
+   	<h4>banner图：<span style="color:red;">写完让我自己测试,目前我只测试了查询</span></h4>
+   	http://20.14.3.19:8080/committeewb/banner/queryAllBanners<br/>
+   	查询所有的banner图(参数：type=0)
+   	<hr/>
+   	http://20.14.3.19:8080/committeewb/banner/insertBanner<br/>
+   	添加banner图<br/>
+   	参数：name、picFile(上传的文件)、jumpLink、type=0<br/>
+   	上传图片要求：1190*370
+   	<hr/>
+   	http://20.14.3.19:8080/committeewb/banner/updateBanner<br/>
+   	修改banner图<br/>
+   	参数：id、name、picFile(上传的文件)、jumpLink<br/>
+   	上传图片要求：1190*370
+   	<hr/>
+   	http://20.14.3.19:8080/committeewb/banner/deleteBanner<br/>
+   	删除banner图<br/>
+   	参数：id
+   	
+   	
+   	<h4>友情链接：<span style="color:red;">写完让我自己测试,目前我只测试了查询</span></h4>
+   	http://20.14.3.19:8080/committeewb/banner/queryAllBanners<br/>
+   	查询所有的友情链接(参数：type=1)
+   	<hr/>
+   	http://20.14.3.19:8080/committeewb/banner/insertBanner<br/>
+   	添加友情链接<br/>
+   	参数：name、picFile(上传的文件)、jumpLink、type=1<br/>
+   	上传图片要求：110*30
+   	<hr/>
+   	http://20.14.3.19:8080/committeewb/banner/updateBanner<br/>
+   	修改友情链接<br/>
+   	参数：id、name、picFile(上传的文件)、jumpLink<br/>
+   	上传图片要求：110*30
+   	<hr/>
+   	http://20.14.3.19:8080/committeewb/banner/deleteBanner<br/>
+   	删除友情链接<br/>
+   	参数：id
   </body>
 </html>

@@ -47,4 +47,9 @@ public class NavServiceImpl implements NavService {
 		navMapper.deleteNav(id);
 	}
 
+	@Override
+	public Nav queryNavByID(int id) throws Exception {
+		return navMapper.queryNavByID(id);
+	}
+
 }

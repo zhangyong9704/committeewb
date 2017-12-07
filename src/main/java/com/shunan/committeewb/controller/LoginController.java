@@ -71,8 +71,10 @@ public class LoginController {
 		WebInfo webInfo = webInfoService.queryWebInfo();
 		//导航栏
 		List<Nav> navList = navService.queryAllNavs();
-		//头部大banner图，底部小banner图
-		List<Banner> bannerList = bannerService.queryAllBanners();
+		//头部大banner图
+		List<Banner> bannerList = bannerService.queryAllBanners(0);
+		//底部友情链接
+		List<Banner> linksList = bannerService.queryAllBanners(1);
 		//轮播图
 		List<RollImg> rollImgList = rollImgService.queryHomeRollImg();
 		//重点专注、公告栏、文件通知、团青快讯、蜀南青语、专题活动
@@ -85,6 +87,7 @@ public class LoginController {
 		model.addAttribute("webInfo", webInfo);
 		model.addAttribute("navList", navList);
 		model.addAttribute("bannerList", bannerList);
+		model.addAttribute("linksList", linksList);
 		model.addAttribute("rollImgList", rollImgList);
 		model.addAttribute("zdzzList", zdzzList);
 		model.addAttribute("ggList", ggList);

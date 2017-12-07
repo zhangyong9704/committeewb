@@ -27,6 +27,14 @@ public interface NavMapper {
 	public void insertNav(Nav nav) throws Exception;
 	
 	/**
+	 * 根据id查询导航栏信息
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public Nav queryNavByID(int id) throws Exception;
+	
+	/**
 	 * 删除导航栏信息
 	 * @param id
 	 * @throws Exception

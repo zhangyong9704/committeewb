@@ -49,6 +49,14 @@
     </c:forEach>
     <br/><br/>
     
+    <h4>友情链接：</h4>
+    <c:forEach items="${linksList }" var="link">
+    	标题：${link.name } </br>
+    	图片：<img src="${pageContext.request.contextPath }/upload/${link.picUrl}"/> </br>
+    	跳转链接：${link.jumpLink } <br/>
+    	<hr/>
+    </c:forEach>
+    
     <h4>图片新闻：</h4>
     <table border="1px">
     <tr>

@@ -96,6 +96,12 @@ public class NavController {
 	public Result<String> deleteNav(int id) throws Exception{
 		Result<String> result = null;
 		List<String> list = new ArrayList<String>();
+		
+		Nav nav2 = navService.queryNavByID(id);
+		if(nav2 == null){
+			return new Result<String>(100, "数据不存在,删除失败！", list);
+		}
+		
 		try {
 			navService.deleteNav(id);
 			result = new Result<String>(200, "删除导航栏成功！", list);
