@@ -2,6 +2,7 @@ package com.shunan.committeewb.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,8 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.shunan.committeewb.po.Banner;
 import com.shunan.committeewb.po.Result;
 import com.shunan.committeewb.service.BannerService;
-import com.shunan.committeewb.utils.CommonUtils;
-import com.shunan.committeewb.utils.FileUtil;
 
 /**
  * Banner
@@ -56,7 +55,7 @@ public class BannerController {
 	@ResponseBody
 	public Result<String> insertBanner(MultipartFile picFile,Banner banner) throws Exception{
 		//校验上传的文件是否符合要求
-		if(banner.getType() == 0){
+/*		if(banner.getType() == 0){
 			//上传banner图
 			if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
 				Result<String> picResult = FileUtil.checkFile(picFile, 
@@ -74,7 +73,7 @@ public class BannerController {
 					return picResult;
 				}
 			}
-		}
+		}*/
 		
 		//添加
 		Result<String> result = null;
@@ -100,7 +99,7 @@ public class BannerController {
 	@ResponseBody
 	public Result<String> updateBanner(MultipartFile picFile,Banner banner) throws Exception{
 		//校验上传的文件是否符合要求
-		if(banner.getType() == 0){
+/*		if(banner.getType() == 0){
 			//上传banner图
 			if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
 				Result<String> picResult = FileUtil.checkFile(picFile, 
@@ -118,7 +117,7 @@ public class BannerController {
 					return picResult;
 				}
 			}
-		}
+		}*/
 		
 		//修改
 		Result<String> result = null;

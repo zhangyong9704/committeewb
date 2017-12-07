@@ -12,8 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.shunan.committeewb.po.Result;
 import com.shunan.committeewb.po.WebInfo;
 import com.shunan.committeewb.service.WebInfoService;
-import com.shunan.committeewb.utils.CommonUtils;
-import com.shunan.committeewb.utils.FileUtil;
 
 /**
  * 网站设置
@@ -62,7 +60,7 @@ public class WebInfoController {
 	public Result<String> updateWebInfo(MultipartFile logoFile,
 			MultipartFile titleFile,MultipartFile backgroundFile,WebInfo webInfo) throws Exception{
 		//校验上传的文件是否符合要求
-		if(logoFile!=null && logoFile.getOriginalFilename()!=null && (!logoFile.getOriginalFilename().equals(""))){
+/*		if(logoFile!=null && logoFile.getOriginalFilename()!=null && (!logoFile.getOriginalFilename().equals(""))){
 			Result<String> picResult = FileUtil.checkFile(logoFile, 
 					CommonUtils.HOME_LOGO_WIDTH, CommonUtils.HOME_LOGO_HEIGHT, CommonUtils.FILE_MAXSIZE);
 			if(picResult.getCode()!=200){
@@ -82,7 +80,7 @@ public class WebInfoController {
 			if(picResult.getCode()!=200){
 				return picResult;
 			}
-		}
+		}*/
 		
 		//修改网站信息
 		Result<String> result = null;
