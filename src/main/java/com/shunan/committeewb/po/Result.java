@@ -2,6 +2,12 @@ package com.shunan.committeewb.po;
 
 import java.util.List;
 
+/**
+ * 返回前端页面的json数据的数据结构
+ * @author 李琳茹
+ *
+ * @param <T>
+ */
 public class Result<T>{
 	private int code;     //状态码     200
 	private String msg;   //描述信息   success

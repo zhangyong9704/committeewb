@@ -17,6 +17,8 @@ public class News {
 	private String author;//作者
 	private int status;//发布状态:0已发布,1草稿
 	private Date showTime;//显示时间
+	private long count;//浏览量
+	private int isHavePic;//是否是图文新闻:0纯文字,1图文
 	public News() {
 		super();
 	}
@@ -74,10 +76,22 @@ public class News {
 	public void setShowTime(Date showTime) {
 		this.showTime = showTime;
 	}
+	public long getCount() {
+		return count;
+	}
+	public void setCount(long count) {
+		this.count = count;
+	}
+	public int getIsHavePic() {
+		return isHavePic;
+	}
+	public void setIsHavePic(int isHavePic) {
+		this.isHavePic = isHavePic;
+	}
 	@Override
 	public String toString() {
 		return "News [id=" + id + ", title=" + title + ", newsTypeID=" + newsTypeID + ", picUrl=" + picUrl
 				+ ", content=" + content + ", publishTime=" + publishTime + ", author=" + author + ", status=" + status
-				+ ", showTime=" + showTime + "]";
+				+ ", showTime=" + showTime + ", count=" + count + "]";
 	}
 }

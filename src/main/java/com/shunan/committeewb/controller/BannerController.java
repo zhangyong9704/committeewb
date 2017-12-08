@@ -31,11 +31,16 @@ public class BannerController {
 	 */
 	@RequestMapping("/queryAllBanners")
 	@ResponseBody
-	public Result<Banner> queryAllBanners(int type) throws Exception{
+	public Result<Banner> queryAllBanners(String type) throws Exception{
 		Result<Banner> result = null;
 		List<Banner> list = new ArrayList<Banner>();
+		
+		if(type==null){
+			return new Result<Banner>(100, "参数不合法！", list);
+		}
+		
 		try {
-			list = bannerService.queryAllBanners(type);
+			list = bannerService.queryAllBanners(Integer.parseInt(type));
 			result = new Result<Banner>(200, "查询成功！", list);
 		} catch (Exception e) {
 			result = new Result<Banner>(100, "查询失败！", list);

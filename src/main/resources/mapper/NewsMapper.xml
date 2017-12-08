@@ -6,6 +6,46 @@
 		SELECT * FROM news 
 	</sql>
 	
+	<sql id="queryTotal">
+		SELECT COUNT(*) 
+		FROM news
+	</sql>
+	
+	<!-- 查询news时的where条件 -->
+	<sql id="query_news_where">
+		<if test="typeIDs!=null and typeIDs!=''">
+			and newsTypeID IN (#{typeIDs})
+		</if>
+		<if test="chooseStatus!=null">
+			<if test="chooseStatus==1">
+				and status=0 and showTime&lt;now()
+			</if>
+			<if test="chooseStatus==2">
+				and status=0 and showTime&gt;now()
+			</if>
+			<if test="chooseStatus==3">
+				and status=1 
+			</if>
+		</if>
+	</sql>
+	
+	<!-- 显示顺序 -->
+	<sql id="showOrder">
+		<if test="sort!=null">
+			<if test="sort==0">
+				order by publishTime asc 
+			</if>
+			<if test="sort==1">
+				order by publishTime desc 
+			</if>
+		</if>
+	</sql>
+	
+	<!-- 分页时的limit条件 -->
+	<sql id="pageLimit">
+		LIMIT #{begin},#{pageSize}
+	</sql>
+	
 	<!-- 查询首页需要展示的重点专注、文件通知、团青快讯等 -->
 	<select id="queryHomeNews" resultType="com.shunan.committeewb.po.News">
 		<include refid="queryNews"/>
@@ -14,5 +54,23 @@
 		</where>
 		ORDER BY publishTime DESC 
 		LIMIT #{limit}
+	</select>
+	
+	<!-- 分页查询所有的新闻 or 重点专注、文件通知等-->
+	<select id="queryPageNews" resultType="com.shunan.committeewb.po.News">
+		<include refid="queryNews"/>
+		<where>
+			<include refid="query_news_where"/>
+		</where>
+		<include refid="showOrder"/>
+		<include refid="pageLimit"/>
+	</select>
+	
+	<!-- 查询一共多少条新闻 -->
+	<select id="queryNewsTotal" resultType="long">
+		<include refid="queryTotal"/>
+		<where>
+			<include refid="query_news_where"/>
+		</where>
 	</select>
 </mapper>

@@ -12,5 +12,24 @@ public interface NewsMapper {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<News> queryHomeNews(@Param("newsTypeID") int newsTypeID,@Param("limit") int limit) throws Exception;
+	public List<News> queryHomeNews(@Param("newsTypeID") int newsTypeID,
+			@Param("limit") int limit) throws Exception;
+	
+	/**
+	 * 分页查询所有的新闻
+	 * @param begin
+	 * @param pageSize
+	 * @return
+	 * @throws Exception
+	 */
+	public List<News> queryPageNews(@Param("typeIDs") String typeIDs,@Param("chooseStatus") int chooseStatus,
+			@Param("begin") int begin,@Param("pageSize") int pageSize,@Param("sort") int sort) throws Exception;
+	
+	/**
+	 * 查询一共多少条新闻
+	 * @return
+	 * @throws Exception
+	 */
+	public Long queryNewsTotal(@Param("typeIDs") String typeIDs,
+			@Param("chooseStatus") int chooseStatus) throws Exception;
 }

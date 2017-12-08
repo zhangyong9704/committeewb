@@ -49,7 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	删除导航信息(参数:id(必要))
    	
    	
-   	<h4>banner图：<span style="color:red;">写完让我自己测试,目前我只测试了查询</span></h4>
+   	<h4>banner图：</h4>
    	http://20.14.3.19:8080/committeewb/banner/queryAllBanners<br/>
    	查询所有的banner图(参数：type=0)
    	<hr/>
@@ -68,7 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	参数：id
    	
    	
-   	<h4>友情链接：<span style="color:red;">写完让我自己测试,目前我只测试了查询</span></h4>
+   	<h4>友情链接：</h4>
    	http://20.14.3.19:8080/committeewb/banner/queryAllBanners<br/>
    	查询所有的友情链接(参数：type=1)
    	<hr/>
@@ -85,5 +85,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	http://20.14.3.19:8080/committeewb/banner/deleteBanner<br/>
    	删除友情链接<br/>
    	参数：id
+   	
+   	<h4>新闻类别：</h4>
+   	http://20.14.3.19:8080/committeewb/newsType/queryAllNewsType<br/>
+   	查询所有的新闻类别
+   	
+   	<h4>新闻：</h4>
+   	http://20.14.3.19:8080/committeewb/news/queryPageNews<br/>
+   	查询所有的新闻  or 重点专注、文件通知等<br/>
+   	参数：typeID(新闻类别，CheckBox的name值，前端可选>=0个的新闻类别进行查询)、
+   			chooseStatus(选择查看的新闻的状态：0所有状态的新闻、1已发布、2定时发布、3草稿)、<br/>
+   	&nbsp;&nbsp;&nbsp;currentPage(当前页)、pageSize(每页显示的记录数)、sort(显示顺序：0升序,1降序)
   </body>
 </html>
