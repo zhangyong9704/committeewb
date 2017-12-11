@@ -11,16 +11,16 @@ import java.util.List;
 public class Result<T>{
 	private int code;     //状态码     200
 	private String msg;   //描述信息   success
-	private List<T> data; //数据       返回的数据 or 空数组
+	private List<T> rows; //数据       返回的数据 or 空数组
 	
 	public Result() {
 		super();
 	}
-	public Result(int code, String msg, List<T> data) {
+	public Result(int code, String msg, List<T> rows) {
 		super();
 		this.code = code;
 		this.msg = msg;
-		this.data = data;
+		this.rows = rows;
 	}
 
 	public int getCode() {
@@ -35,10 +35,10 @@ public class Result<T>{
 	public void setMsg(String msg) {
 		this.msg = msg;
 	}
-	public List<T> getData() {
-		return data;
+	public List<T> getRows() {
+		return rows;
 	}
-	public void setData(List<T> data) {
-		this.data = data;
+	public void setRows(List<T> rows) {
+		this.rows = rows;
 	}
 }

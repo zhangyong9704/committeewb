@@ -9,4 +9,16 @@
 		where news.id=rollimg.newsID and rollimg.isShow=1
 		order by sort asc
 	</select>
+	
+	<!-- 删除轮播图 -->
+	<delete id="deleteRollImg">
+		DELETE FROM rollimg 
+		<where>
+			<if test="newsIDList!=null and newsIDList.size()>0">
+				<foreach collection="newsIDList" open=" and newsID IN (" close=")" item="newsID" separator=",">
+					#{newsID}
+				</foreach>
+			</if>
+		</where>
+	</delete>
 </mapper>

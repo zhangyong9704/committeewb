@@ -14,18 +14,6 @@ public interface NewsService {
 	public List<News> queryHomeNews(int newsTypeID,int limit) throws Exception;
 
 	/**
-	 * 分页查询所有的新闻 or 重点专注、公告通知等等
-	 * @param typeID
-	 * @param chooseStatus 
-	 * @param currentPage
-	 * @param pageSize
-	 * @return
-	 * @throws Exception
-	 */
-	public List<News> queryPageNews(String typeIDs, int chooseStatus, 
-			int currentPage, int pageSize, int sort) throws Exception;
-
-	/**
 	 * 查询一共多少条新闻 or 重点专注、公告通知等等
 	 * @param typeID
 	 * @param chooseStatus 
@@ -33,4 +21,24 @@ public interface NewsService {
 	 * @throws Exception
 	 */
 	public long queryNewsTotal(String typeIDs, int chooseStatus) throws Exception;
+
+	/**
+	 * 分页查询新闻 or 重点专注、公告通知等等
+	 * @param typeID
+	 * @param chooseStatus
+	 * @param offset
+	 * @param limit
+	 * @param sort
+	 * @return
+	 * @throws Exception
+	 */
+	public List<News> queryPageNews(String typeIDs, Integer chooseStatus, 
+			Integer offset, Integer limit, String order) throws Exception;
+
+	/**
+	 * 删除新闻
+	 * @param typeIDs
+	 * @throws Exception
+	 */
+	public void deleteNews(String ids) throws Exception;
 }

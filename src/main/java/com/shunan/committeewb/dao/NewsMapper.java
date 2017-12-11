@@ -22,14 +22,28 @@ public interface NewsMapper {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<News> queryPageNews(@Param("typeIDs") String typeIDs,@Param("chooseStatus") int chooseStatus,
-			@Param("begin") int begin,@Param("pageSize") int pageSize,@Param("sort") int sort) throws Exception;
+	public List<News> queryPageNews(@Param("typeIDList") List<Integer> typeIDList,@Param("chooseStatus") int chooseStatus,
+			@Param("offset") int offset,@Param("limit") int limit,@Param("order") String order) throws Exception;
 	
 	/**
 	 * 查询一共多少条新闻
 	 * @return
 	 * @throws Exception
 	 */
-	public Long queryNewsTotal(@Param("typeIDs") String typeIDs,
+	public Long queryNewsTotal(@Param("typeIDList") List<Integer> typeIDList,
 			@Param("chooseStatus") int chooseStatus) throws Exception;
+	
+	/**
+	 * 删除新闻
+	 * @param idList
+	 * @throws Exception
+	 */
+	public void deleteNews(@Param("idList") List<Integer> idList) throws Exception;
+	
+	/**
+	 * 插入新闻
+	 * @param news
+	 * @throws Exception
+	 */
+	public void insertNews(News news) throws Exception;
 }

@@ -1,6 +1,7 @@
 package com.shunan.committeewb.dao;
 
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 import com.shunan.committeewb.po.RollImg;
 
 public interface RollImgMapper {
@@ -10,4 +11,11 @@ public interface RollImgMapper {
 	 * @throws Exception
 	 */
 	public List<RollImg> queryHomeRollImg() throws Exception;
+	
+	/**
+	 * 删除轮播图
+	 * @param newsIDList
+	 * @throws Exception
+	 */
+	public void deleteRollImg(@Param("newsIDList") List<Integer> newsIDList) throws Exception;
 }

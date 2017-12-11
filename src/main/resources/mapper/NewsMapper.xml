@@ -3,7 +3,7 @@
 <mapper namespace="com.shunan.committeewb.dao.NewsMapper">
 
 	<sql id="queryNews">
-		SELECT * FROM news 
+		SELECT * FROM news
 	</sql>
 	
 	<sql id="queryTotal">
@@ -11,11 +11,8 @@
 		FROM news
 	</sql>
 	
-	<!-- 查询news时的where条件 -->
-	<sql id="query_news_where">
-		<if test="typeIDs!=null and typeIDs!=''">
-			and newsTypeID IN (#{typeIDs})
-		</if>
+	<!-- 查询news时where中的status的条件 -->
+	<sql id="query_news_where_status">
 		<if test="chooseStatus!=null">
 			<if test="chooseStatus==1">
 				and status=0 and showTime&lt;now()
@@ -24,26 +21,33 @@
 				and status=0 and showTime&gt;now()
 			</if>
 			<if test="chooseStatus==3">
-				and status=1 
+				and status=1
 			</if>
 		</if>
 	</sql>
 	
 	<!-- 显示顺序 -->
 	<sql id="showOrder">
-		<if test="sort!=null">
-			<if test="sort==0">
-				order by publishTime asc 
-			</if>
-			<if test="sort==1">
-				order by publishTime desc 
-			</if>
+		<if test="order=='asc'">
+			order by publishTime asc
+		</if>
+		<if test="order=='desc'">
+			order by publishTime desc
 		</if>
 	</sql>
 	
 	<!-- 分页时的limit条件 -->
 	<sql id="pageLimit">
-		LIMIT #{begin},#{pageSize}
+		LIMIT #{offset},#{limit}
+	</sql>
+	
+	<!-- 查询和删除news时where中newsTypeID的条件 -->
+	<sql id="where_newsTypeID_in">
+		<if test="typeIDList!=null and typeIDList.size()>0">
+			<foreach collection="typeIDList" open=" and newsTypeID IN (" close=")" item="typeID" separator=",">
+				#{typeID}
+			</foreach>
+		</if>
 	</sql>
 	
 	<!-- 查询首页需要展示的重点专注、文件通知、团青快讯等 -->
@@ -60,7 +64,8 @@
 	<select id="queryPageNews" resultType="com.shunan.committeewb.po.News">
 		<include refid="queryNews"/>
 		<where>
-			<include refid="query_news_where"/>
+			<include refid="where_newsTypeID_in"/>
+			<include refid="query_news_where_status"/>
 		</where>
 		<include refid="showOrder"/>
 		<include refid="pageLimit"/>
@@ -70,7 +75,52 @@
 	<select id="queryNewsTotal" resultType="long">
 		<include refid="queryTotal"/>
 		<where>
-			<include refid="query_news_where"/>
+			<include refid="where_newsTypeID_in"/>
+			<include refid="query_news_where_status"/>
 		</where>
 	</select>
+	
+	<!-- 删除新闻 -->
+	<delete id="deleteNews">
+		DELETE FROM news 
+		<where>
+			<if test="idList!=null and idList.size()>0">
+				<foreach collection="idList" open=" and id IN (" close=")" item="id" separator=",">
+					#{id}
+				</foreach>
+			</if>
+		</where>
+	</delete>
+	
+	<!-- 插入新闻 -->
+	<insert id="insertNews" parameterType="news">
+		insert into news(author,status,publishTime
+		<if test="title!=null and title!=''">
+			,title
+		</if>
+		<if test="newsTypeID!=null">
+			,newsTypeID
+		</if>
+		<if test="picUrl!=null and picUrl!=''">
+			,picUrl
+		</if>
+		<if test="content!=null and content!=''">
+			,content
+		</if>
+		) 
+		values(#{author},1,#{publishTime}
+		<if test="title!=null and title!=''">
+			,#{title}
+		</if>
+		<if test="newsTypeID!=null">
+			,#{newsTypeID}
+		</if>
+		<if test="picUrl!=null and picUrl!=''">
+			,#{picUrl}
+		</if>
+		<if test="content!=null and content!=''">
+			,#{content}
+		</if>
+		)
+	</insert>
 </mapper>

@@ -93,8 +93,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	<h4>新闻：</h4>
    	http://20.14.3.19:8080/committeewb/news/queryPageNews<br/>
    	查询所有的新闻  or 重点专注、文件通知等<br/>
-   	参数：typeID(新闻类别，CheckBox的name值，前端可选>=0个的新闻类别进行查询)、
+   	参数：typeIDs(新闻类别，CheckBox的name值，前端可选>=0个的新闻类别进行查询)、
    			chooseStatus(选择查看的新闻的状态：0所有状态的新闻、1已发布、2定时发布、3草稿)、<br/>
-   	&nbsp;&nbsp;&nbsp;currentPage(当前页)、pageSize(每页显示的记录数)、sort(显示顺序：0升序,1降序)
+   	&nbsp;&nbsp;&nbsp;offset(偏移量)、limit(每页显示的记录数)、order(显示顺序)
+   	<hr/>
+   	http://20.14.3.19:8080/committeewb/news/deleteNews<br/>
+   	删除新闻<br/>
+   	参数：ids(新闻ID，CheckBox的name值)
+   	<hr/>
   </body>
 </html>

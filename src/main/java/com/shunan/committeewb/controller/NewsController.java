@@ -34,23 +34,49 @@ public class NewsController {
 	 */
 	@RequestMapping("/queryPageNews")
 	@ResponseBody
-	public Result<News> queryPageNews(String typeID,String chooseStatus,
-			String currentPage,String pageSize,String sort) throws Exception{
+	public Result<News> queryPageNews(String typeIDs,Integer chooseStatus,
+			Integer offset,Integer limit,String order) throws Exception{
 		Result<News> result = null;
 		List<News> list = new ArrayList<News>();
 		long count = 0;
 		
-		if(typeID==null || chooseStatus==null || currentPage==null || pageSize==null || sort==null){
+		if(chooseStatus == null){
 			return new Result<News>(100, "参数不合法！", list);
 		}
 		
 		try {
-			list = newsService.queryPageNews(typeID,Integer.parseInt(chooseStatus),
-					Integer.parseInt(currentPage),Integer.parseInt(pageSize),Integer.parseInt(sort));
-			count = newsService.queryNewsTotal(typeID,Integer.parseInt(chooseStatus));
+			list = newsService.queryPageNews(typeIDs,chooseStatus,offset,limit,order);
+			count = newsService.queryNewsTotal(typeIDs,chooseStatus);
 			result = new PageResult<News>(200, "查询成功！", list, count);
 		} catch (Exception e) {
 			result = new PageResult<News>(100, "查询失败！", list, count);
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * 删除新闻
+	 * @param typeIDs
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/deleteNews")
+	@ResponseBody
+	public Result<String> deleteNews(String ids) throws Exception{
+		Result<String> result = null;
+		List<String> list = new ArrayList<String>();
+		
+		if(ids==null || ids.equals("")){
+			return new Result<String>(100, "请先选择要删除的新闻！", list);
+		}
+		
+		try {
+			newsService.deleteNews(ids);
+			result = new Result<String>(200, "删除新闻成功！", list);
+		} catch (Exception e) {
+			result = new Result<String>(100, "删除新闻失败！", list);
 			e.printStackTrace();
 		}
 		
