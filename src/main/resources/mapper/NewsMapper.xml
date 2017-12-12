@@ -29,10 +29,10 @@
 	<!-- 显示顺序 -->
 	<sql id="showOrder">
 		<if test="order=='asc'">
-			order by publishTime asc
+			order by createTime asc
 		</if>
 		<if test="order=='desc'">
-			order by publishTime desc
+			order by createTime desc
 		</if>
 	</sql>
 	
@@ -56,7 +56,7 @@
 		<where>
 			newsTypeID=#{newsTypeID} AND STATUS=0 AND NOW()>showTime 
 		</where>
-		ORDER BY publishTime DESC 
+		ORDER BY createTime DESC 
 		LIMIT #{limit}
 	</select>
 	
@@ -93,8 +93,8 @@
 	</delete>
 	
 	<!-- 插入新闻 -->
-	<insert id="insertNews" parameterType="news">
-		insert into news(author,status,publishTime
+	<insert id="insertNews" parameterType="news" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into news(author,status,createTime
 		<if test="title!=null and title!=''">
 			,title
 		</if>
@@ -108,7 +108,7 @@
 			,content
 		</if>
 		) 
-		values(#{author},1,#{publishTime}
+		values(#{author},1,#{createTime}
 		<if test="title!=null and title!=''">
 			,#{title}
 		</if>
@@ -123,4 +123,33 @@
 		</if>
 		)
 	</insert>
+	
+	<!-- 修改新闻 -->
+	<update id="updateNews" parameterType="news">
+		update news
+		set author=#{author}
+		<if test="title!=null and title!=''">
+			,title=#{title}
+		</if>
+		<if test="newsTypeID!=null">
+			,newsTypeID=#{newsTypeID}
+		</if>
+		<if test="picUrl!=null and picUrl!=''">
+			,picUrl=#{picUrl}
+		</if>
+		<if test="content!=null and content!=''">
+			,content=#{content}
+		</if>
+	</update>
+	
+	<!-- 发布新闻 -->
+	<update id="publishNews" parameterType="news">
+		update news
+		set author=#{author},showTime=#{showTime},status=0,isHavePic=#{isHavePic}
+	</update>
+	
+	<!-- 根据id查询新闻信息 -->
+	<select id="queryNewsByID" parameterType="int" resultType="news">
+		select * from news where id=#{id}
+	</select>
 </mapper>

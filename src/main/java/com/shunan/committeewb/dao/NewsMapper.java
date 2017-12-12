@@ -46,4 +46,26 @@ public interface NewsMapper {
 	 * @throws Exception
 	 */
 	public void insertNews(News news) throws Exception;
+	
+	/**
+	 * 修改新闻
+	 * @param news
+	 * @throws Exception
+	 */
+	public void updateNews(News news) throws Exception;
+	
+	/**
+	 * 发布新闻
+	 * @param news
+	 * @throws Exception
+	 */
+	public void publishNews(News news) throws Exception;
+	
+	/**
+	 * 根据id查询新闻信息
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public News queryNewsByID(int id) throws Exception;
 }

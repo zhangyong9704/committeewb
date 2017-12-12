@@ -13,7 +13,7 @@ public class News {
 	private int newsTypeID;//新闻类型ID
 	private String picUrl;//宣传图片地址
 	private String content;//新闻内容
-	private Date publishTime;//发布时间
+	private Date createTime;//创建时间
 	private String author;//作者
 	private int status;//发布状态:0已发布,1草稿
 	private Date showTime;//显示时间
@@ -52,11 +52,11 @@ public class News {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Date getPublishTime() {
-		return publishTime;
+	public Date getCreateTime() {
+		return createTime;
 	}
-	public void setPublishTime(Date publishTime) {
-		this.publishTime = publishTime;
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 	public String getAuthor() {
 		return author;
@@ -91,7 +91,7 @@ public class News {
 	@Override
 	public String toString() {
 		return "News [id=" + id + ", title=" + title + ", newsTypeID=" + newsTypeID + ", picUrl=" + picUrl
-				+ ", content=" + content + ", publishTime=" + publishTime + ", author=" + author + ", status=" + status
-				+ ", showTime=" + showTime + ", count=" + count + "]";
+				+ ", content=" + content + ", createTime=" + createTime + ", author=" + author + ", status=" + status
+				+ ", showTime=" + showTime + ", count=" + count + ", isHavePic=" + isHavePic + "]";
 	}
 }

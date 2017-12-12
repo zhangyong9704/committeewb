@@ -20,6 +20,10 @@ public class CommonUtils {
 	public static final int NEWS_ZTHD = 6;
 	public static final int NEWS_ZTHD_LIMIT = 4;
 	
+	//上传文件类型  图片 or 附件
+	public static final int IMG_FILE = 0;
+	public static final int ATTACHMENT_FILE = 1;
+	
 	//图片上传类型，根据该类型判断是哪个模块上传的文件
 	//网站信息设置
 	public static final int WEBINFO_LOGO = 0;
@@ -27,6 +31,8 @@ public class CommonUtils {
 	public static final int WEBINFO_BACKGROUND = 2;
 	//Banner图
 	public static final int HOME_BANNER = 3;
+	//新闻
+	public static final int NEWS = 4;
 	
 	//图片文件大小
 	//上传的图片的大小
@@ -48,7 +54,6 @@ public class CommonUtils {
 	public static final int HOME_BANNER_HEIGHT = 370; 
 	public static final int LINK_WIDTH = 110; //友情链接
 	public static final int LINK_HEIGHT = 30; 
-	
-	
-	
+	public static final int NEWS_WIDTH = 1190; //新闻
+	public static final int NEWS_HEIGHT = 370; 
 }

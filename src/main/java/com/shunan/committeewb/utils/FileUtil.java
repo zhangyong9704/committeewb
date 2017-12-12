@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.shunan.committeewb.po.Banner;
+import com.shunan.committeewb.po.News;
 import com.shunan.committeewb.po.Result;
 import com.shunan.committeewb.po.WebInfo;
 
@@ -63,7 +64,7 @@ public class FileUtil<T> {
 	public static <T> T uploadFile(MultipartFile picFile,T t,int type) throws Exception{
 		if(picFile!=null){
 			//图片上传成功后，存放图片的位置
-			String filePath = FileUtil.getUploadFilePath();
+			String filePath = FileUtil.getUploadFilePath()+"image"+"/";
 			//获取当前年月
 			String yearMonth = FileUtil.getYearMonth();
 			//上传原文件名称
@@ -75,7 +76,7 @@ public class FileUtil<T> {
 				//新文件
 				File file=new File(filePath+newFileName);
 				//数据库中保存的上传的文件的名字
-				String dbUploadFileName = yearMonth+"/"+newFileName;
+				String dbUploadFileName = yearMonth+"/image/"+newFileName;
 				if(CreateFileUtil.createFile(filePath+newFileName)){
 					//将内存中的文件写入硬盘
 					picFile.transferTo(file);
@@ -101,6 +102,11 @@ public class FileUtil<T> {
 					if(t instanceof Banner){
 						Banner banner = (Banner) t;
 						banner.setPicUrl(dbUploadFileName);
+					}
+					//新闻
+					if(t instanceof News){
+						News news = (News) t;
+						news.setPicUrl(dbUploadFileName);
 					}
 				}
 			}

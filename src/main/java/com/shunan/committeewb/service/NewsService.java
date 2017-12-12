@@ -1,6 +1,9 @@
 package com.shunan.committeewb.service;
 
 import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import com.shunan.committeewb.po.News;
 
 public interface NewsService {
@@ -41,4 +44,33 @@ public interface NewsService {
 	 * @throws Exception
 	 */
 	public void deleteNews(String ids) throws Exception;
+
+	/**
+	 * 添加新闻
+	 * @param news
+	 * @param picFile
+	 * @param attachmentFiles
+	 * @return
+	 * @throws Exception
+	 */
+	public int insertNews(News news, MultipartFile picFile, 
+			MultipartFile[] attachmentFiles) throws Exception;
+	
+	/**
+	 * 根据id查询新闻信息
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public News queryNewsByID(int id) throws Exception;
+
+	/**
+	 * 编辑新闻
+	 * @param news
+	 * @param picFile
+	 * @param attachmentFiles
+	 * @throws Exception
+	 */
+	public void updateNews(News news, MultipartFile picFile, 
+			MultipartFile[] attachmentFiles) throws Exception;
 }

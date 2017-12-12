@@ -7,11 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.shunan.committeewb.po.News;
 import com.shunan.committeewb.po.PageResult;
 import com.shunan.committeewb.po.Result;
 import com.shunan.committeewb.service.NewsService;
+import com.shunan.committeewb.utils.CommonUtils;
+import com.shunan.committeewb.utils.FileUtil;
 
 /**
  * 新闻
@@ -80,6 +83,46 @@ public class NewsController {
 			e.printStackTrace();
 		}
 		
+		return result;
+	}
+	
+	@RequestMapping("/insertNews")
+	@ResponseBody
+	public Result<? extends Object> insertNews(News news,MultipartFile picFile,
+			MultipartFile attachmentFiles[]) throws Exception{
+		
+		if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
+			Result<String> picResult = FileUtil.checkFile(picFile, 
+					CommonUtils.NEWS_WIDTH, CommonUtils.NEWS_HEIGHT, CommonUtils.FILE_MAXSIZE);
+			if(picResult.getCode()!=200){
+				return picResult;
+			}
+		}
+		
+		Result<News> result = null;
+		List<News> list = new ArrayList<News>();
+		
+		if(news.getId()==0){
+			//添加新闻
+			try {
+				int newsID = newsService.insertNews(news,picFile,attachmentFiles);
+				News returnNews = newsService.queryNewsByID(newsID);
+				list.add(returnNews);
+				result = new Result<News>(200, "添加新闻成功！", list);
+			} catch (Exception e) {
+				result = new Result<News>(100, "添加新闻失败！", list);
+				e.printStackTrace();
+			}
+		}else{
+			//编辑新闻
+			try {
+				newsService.updateNews(news,picFile,attachmentFiles);
+				result = new Result<News>(200, "修改新闻成功！", list);
+			} catch (Exception e) {
+				result = new Result<News>(100, "修改新闻失败！", list);
+				e.printStackTrace();
+			}
+		}
 		return result;
 	}
 

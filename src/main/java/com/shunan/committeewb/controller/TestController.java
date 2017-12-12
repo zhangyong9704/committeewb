@@ -1,14 +1,20 @@
 package com.shunan.committeewb.controller;
 
 import java.io.File;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import com.shunan.committeewb.dao.FilesMapper;
+import com.shunan.committeewb.po.Files;
 import com.shunan.committeewb.utils.CreateFileUtil;
 import com.shunan.committeewb.utils.FileUtil;
 
 @Controller
 public class TestController {
+	
+	@Autowired
+	private FilesMapper filesMapper;
 	
 	@RequestMapping("/uploadMultiFile")
 	public String uploadMultiFile(MultipartFile[] files) throws Exception{
@@ -29,6 +35,16 @@ public class TestController {
 				}
 			}
 		}
+		return "home";
+	}
+	
+	@RequestMapping("/insertFiles")
+	public String insertFiles() throws Exception{
+		Files files = new Files();
+		files.setName("新建文档.txt");
+		files.setUrl("http://www.baidu.com");
+		filesMapper.insertFiles(files);
+		System.out.println("-->"+files.getId());
 		return "home";
 	}
 }

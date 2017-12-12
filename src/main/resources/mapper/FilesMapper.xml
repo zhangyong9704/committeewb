@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shunan.committeewb.dao.FilesMapper">
+	
+	<!-- 添加附件 -->
+	<insert id="insertFiles" parameterType="files" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		INSERT INTO files(name,url) VALUES(#{name},#{url})
+	</insert>
+	
+	<!-- 添加新闻附件 -->
+	<insert id="insertNewsfile" parameterType="newsfile">
+		INSERT INTO newsfile(newsID,fileID) VALUES(#{newsID},#{fileID})
+	</insert>
+</mapper>
