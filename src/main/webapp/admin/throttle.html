@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var throttle = function (fn, delay) {
+				console.log("throttle");
+			    var timer = null;
+			    return function () {
+			        clearTimeout(timer);
+			        timer = setTimeout(function() {
+			            fn();
+			        }, delay);
+			    }
+			};
+			window.onresize = function(){
+				console.log(123);
+			}
+			/*window.onresize = throttle(function(){
+				console.log(123);
+			}, 2000);*/
+		</script>
+	</body>
+</html>

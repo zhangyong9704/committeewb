@@ -1,10 +1,8 @@
 package com.shunan.committeewb.service.impl;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,12 +12,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.shunan.committeewb.dao.FilesMapper;
 import com.shunan.committeewb.dao.NewsMapper;
 import com.shunan.committeewb.dao.RollImgMapper;
-import com.shunan.committeewb.po.Files;
 import com.shunan.committeewb.po.News;
-import com.shunan.committeewb.po.NewsFile;
 import com.shunan.committeewb.service.NewsService;
 import com.shunan.committeewb.utils.CommonUtils;
-import com.shunan.committeewb.utils.CreateFileUtil;
 import com.shunan.committeewb.utils.FileUtil;
 
 @Service
@@ -30,9 +25,6 @@ public class NewsServiceImpl implements NewsService {
 	
 	@Autowired
 	private RollImgMapper rollImgMapper;
-	
-	@Autowired
-	private FilesMapper filesMapper;
 
 	/**
 	 * 查询首页需要展示的重点专注、文件通知、团青快讯等
@@ -109,8 +101,7 @@ public class NewsServiceImpl implements NewsService {
 	 * 添加新闻
 	 */
 	@Override
-	public int insertNews(News news, MultipartFile picFile, 
-			MultipartFile[] attachmentFiles) throws Exception {
+	public int insertNews(News news, MultipartFile picFile) throws Exception {
 		if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
 			FileUtil.uploadFile(picFile, news, CommonUtils.NEWS);
 		}
@@ -118,7 +109,7 @@ public class NewsServiceImpl implements NewsService {
 		news.setCreateTime(new Date());
 		newsMapper.insertNews(news);
 		
-		if(attachmentFiles!=null){
+/*		if(attachmentFiles!=null){
 			for(MultipartFile attachmentFile:attachmentFiles){
 				if(attachmentFile!=null && attachmentFile.getOriginalFilename()!=null && (!attachmentFile.getOriginalFilename().equals(""))){
 					String filePath = FileUtil.getUploadFilePath()+"attachment"+"/";
@@ -149,7 +140,7 @@ public class NewsServiceImpl implements NewsService {
 					}
 				}
 			}
-		}
+		}*/
 		
 		return news.getId();
 	}
@@ -163,7 +154,7 @@ public class NewsServiceImpl implements NewsService {
 	 * 编辑新闻
 	 */
 	@Override
-	public void updateNews(News news, MultipartFile picFile, MultipartFile[] attachmentFiles) throws Exception {
+	public void updateNews(News news, MultipartFile picFile) throws Exception {
 		
 	}
 }

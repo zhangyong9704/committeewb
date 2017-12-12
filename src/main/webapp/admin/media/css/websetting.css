@@ -1,0 +1,46 @@
+.myalert {
+	position: fixed;
+	left: 43%;
+	z-index: 1;
+	width: 20%;
+}
+.uploadForm {
+	display: inline-block;
+	margin: 0;
+}
+
+.uploadForm .myinput {
+	position: relative;
+	width: 40px;
+}
+
+.uploadForm .myinput #uploadfileinput{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	
+}
+
+.uploadForm .modifybtn{
+	display: block;
+	width: 100%;
+	height: 100%;
+	background: #017EBC;
+	border: 1px solid #eee;
+	border-radius: 5px;
+}
+/*以下注释是newslist.html的样式*/
+.mydatachoice-wrapper {
+	background-color: #EEEEEE;
+	padding: 0 8px;
+}
+.mydatachoice-wrapper .title{
+	display: inline-block;
+	color: #666;
+	font-size: 15px;
+	margin-right: 15px;
+	vertical-align: bottom;
+}

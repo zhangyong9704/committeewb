@@ -88,8 +88,7 @@ public class NewsController {
 	
 	@RequestMapping("/insertNews")
 	@ResponseBody
-	public Result<? extends Object> insertNews(News news,MultipartFile picFile,
-			MultipartFile attachmentFiles[]) throws Exception{
+	public Result<? extends Object> insertNews(News news,MultipartFile picFile) throws Exception{
 		
 		if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
 			Result<String> picResult = FileUtil.checkFile(picFile, 
@@ -105,7 +104,7 @@ public class NewsController {
 		if(news.getId()==0){
 			//添加新闻
 			try {
-				int newsID = newsService.insertNews(news,picFile,attachmentFiles);
+				int newsID = newsService.insertNews(news,picFile);
 				News returnNews = newsService.queryNewsByID(newsID);
 				list.add(returnNews);
 				result = new Result<News>(200, "添加新闻成功！", list);
@@ -116,7 +115,7 @@ public class NewsController {
 		}else{
 			//编辑新闻
 			try {
-				newsService.updateNews(news,picFile,attachmentFiles);
+				newsService.updateNews(news,picFile);
 				result = new Result<News>(200, "修改新闻成功！", list);
 			} catch (Exception e) {
 				result = new Result<News>(100, "修改新闻失败！", list);

@@ -49,12 +49,10 @@ public interface NewsService {
 	 * 添加新闻
 	 * @param news
 	 * @param picFile
-	 * @param attachmentFiles
 	 * @return
 	 * @throws Exception
 	 */
-	public int insertNews(News news, MultipartFile picFile, 
-			MultipartFile[] attachmentFiles) throws Exception;
+	public int insertNews(News news, MultipartFile picFile) throws Exception;
 	
 	/**
 	 * 根据id查询新闻信息
@@ -68,9 +66,7 @@ public interface NewsService {
 	 * 编辑新闻
 	 * @param news
 	 * @param picFile
-	 * @param attachmentFiles
 	 * @throws Exception
 	 */
-	public void updateNews(News news, MultipartFile picFile, 
-			MultipartFile[] attachmentFiles) throws Exception;
+	public void updateNews(News news, MultipartFile picFile) throws Exception;
 }

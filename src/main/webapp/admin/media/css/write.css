@@ -1,0 +1,120 @@
+body {
+	/*text-align: center;*/
+}
+.header {
+	position: relative;
+	margin-top: 5px;
+	height: 50px;
+	border-bottom: 1px solid #DBDBDB;
+	text-align: center;
+}
+
+.header .logo {
+	display: inline-block;
+	position: absolute;
+	left: 0;
+	font-size: 25px;
+	font-weight: 300;
+	color: #8B8B8B;
+	line-height: 46px;
+	margin-left: 10px;
+}
+.header .title-wrapper {
+	margin: 0 auto;
+	line-height: 50px;
+}
+
+.header .title-wrapper .title {
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.header .title-wrapper .titleinfo {
+	color: #DBDBDB;
+	margin-left: 10px;
+}
+
+.header .publish-wapper{
+	display: inline-block;
+	line-height: 50px;
+	margin-right: 10px;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.header .publish-wapper .my-btn {
+	display: inline-block;
+}
+
+.edit-wrapper {
+	margin: 47px auto 0;
+	width: 660px;
+	height: 200px;
+}
+
+.edit-wrapper .writeCover-wrapper {
+	background: #F7F8F9;
+	line-height: 192px;
+	color: gray;
+	height: 192px;
+	min-height: 192px;
+	text-align: center;
+}
+
+.edit-wrapper .writeCover-wrapper .writeCover-previewWrapper{
+	height: 100%;
+	position: relative;
+}
+.writeCover-previewWrapper .writeCover-uploadIcon {
+	font-size: 42px;
+	color: rgba(0, 0, 0, .2 );
+}
+
+.writeCover-uploadInput {
+	position: absolute;
+	display: block;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	cursor: pointer;
+	z-index: 2;
+	opacity: 0;
+}
+
+.edit-wrapper .writeTitle-wrapper {
+	margin: 16px 0;
+	border: 0;
+	padding: 0;
+	height: auto;
+	widows: 100%;
+	position: relative;
+	background: red;
+}
+
+#textarea { 
+    display: block;
+    margin:0 auto;
+    overflow: hidden;
+    
+}
+textarea {
+    outline: 0 none;
+}
+
+.writeTitle-wrapper .Input {
+	height: 44px;
+	min-height: 44px;
+	display: block;
+	width: 100%;
+	border: 0;
+	font-size: 32px;
+	line-height: 1.4;
+	font-weight: 600;
+	outline: none;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+}
+.writeContent-wrapper {
+}

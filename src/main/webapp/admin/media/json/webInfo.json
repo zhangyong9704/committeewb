@@ -1,0 +1,16 @@
+{
+	"code": 200,
+	"msg": "success",
+	"result":[
+		{
+			"logoUrl": "https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png",
+			"titleUrl": "https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png",
+			"backgroundUrl":"https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png",
+			"filed1": "feicui.png",
+			"filed2": "feicui.png",
+			"filed3": "feicui.png",
+			"filed4": "feicui.png",
+			"filed5": "feicui.png"
+		}
+	]
+}
