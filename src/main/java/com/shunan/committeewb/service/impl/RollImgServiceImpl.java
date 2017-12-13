@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.shunan.committeewb.dao.RollImgMapper;
 import com.shunan.committeewb.po.RollImg;
+import com.shunan.committeewb.po.RollImgList;
 import com.shunan.committeewb.service.RollImgService;
 
 @Service
@@ -21,5 +22,10 @@ public class RollImgServiceImpl implements RollImgService{
 	@Override
 	public List<RollImg> queryHomeRollImg() throws Exception {
 		return rollImgMapper.queryHomeRollImg();
+	}
+
+	@Override
+	public List<RollImgList> queryAllRollImg() throws Exception {
+		return rollImgMapper.queryAllRollImg();
 	}
 }

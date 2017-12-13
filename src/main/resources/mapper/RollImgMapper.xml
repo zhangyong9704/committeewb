@@ -27,5 +27,20 @@
 		INSERT INTO rollimg(newsID) VALUES(#{newsID})
 	</insert>
 	
+	<!-- 轮播图列表 -->
+	<resultMap type="rollImgList" id="rollImgList">
+		<id property="newsID" column="newsID"/>
+		<result property="title" column="title"/>
+		<result property="picUrl" column="picUrl"/>
+		<result property="count" column="count"/>
+		<result property="sort" column="sort"/>
+		<result property="isShow" column="isShow"/>
+	</resultMap>
+	
 	<!-- 查询所有的轮播图 -->
+	<select id="queryAllRollImg" resultMap="rollImgList">
+		SELECT rollimg.newsID,news.title,news.picUrl,news.count,rollimg.sort,rollimg.isShow
+		FROM news,rollimg
+		WHERE news.id=rollimg.newsID
+	</select>
 </mapper>

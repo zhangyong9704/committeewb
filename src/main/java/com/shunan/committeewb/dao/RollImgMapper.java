@@ -3,6 +3,7 @@ package com.shunan.committeewb.dao;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import com.shunan.committeewb.po.RollImg;
+import com.shunan.committeewb.po.RollImgList;
 
 public interface RollImgMapper {
 	/**
@@ -25,4 +26,12 @@ public interface RollImgMapper {
 	 * @throws Exception
 	 */
 	public void insertRollImg(RollImg rollImg) throws Exception;
+	
+	/**
+	 * 查询所有的轮播图
+	 * @param rollImgList
+	 * @return
+	 * @throws Exception
+	 */
+	public List<RollImgList> queryAllRollImg() throws Exception;
 }
