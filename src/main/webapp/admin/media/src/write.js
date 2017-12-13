@@ -1,12 +1,18 @@
 var Write = (function(){
 	return {
-		textarea: null,
-		ue: null,
-		timer: null,
+		baseurl: "",
+		textarea: null, // 文本框对象
+		ue: null, // 富文本对象
+		timer: null, // 节流器中的定时器
 		init: function(){
+			this.baseurl = CommonUtils.baseUrl;
 			this.initTextArea();
 			this.initUE();
 			this.initEvent();
+			this.initData();
+		},
+		initData: function(){
+			this.ajaxEdit({});
 		},
 		// 初始化textArea使其能够随着输入文本的多少换行
 		initTextArea: function(){
@@ -85,17 +91,17 @@ var Write = (function(){
 		initUE: function(){
 			this.ue = UE.getEditor('editor',{
 	    	toolbars: [[
-	        'fullscreen', 'source', '|', 'undo', 'redo', '|',
-	        'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
+	        /*'fullscreen',*/ 'source', '|', 'undo', 'redo', '|',
+	        'bold', 'italic', 'underline', 'fontborder', 'strikethrough', /*'superscript', 'subscript',*/ 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
 	        'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
-	        'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+	        'customstyle', 'paragraph', /*'fontfamily',*/ 'fontsize', '|',
 	        'directionalityltr', 'directionalityrtl', 'indent', '|',
 	        'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
-	        'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
-	        'simpleupload', 'insertimage', 'emotion', 'scrawl', 'music', 'attachment', 'map', 'insertframe', 'insertcode', 'webapp', 'pagebreak', 'template', 'background', '|',
-	        'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',
-	        'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
-	        'print', 'preview', 'searchreplace', 'drafts', 'help'
+	        'link', 'unlink', /*'anchor',*/ '|', /*'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',*/
+	        'simpleupload', 'insertimage', 'emotion', /*'scrawl', 'music',*/ 'attachment', /*'map', 'insertframe',*/ 'insertcode', /*'template',*/ '|',
+	        'horizontal', 'date', 'time', 'spechars', /*'snapscreen', 'wordimage',*/ '|',
+	        /*'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', '|',*/
+	        'print', 'preview', 'searchreplace', 'drafts'/*, 'help'*/
 	    	]],
 	    });
 		},
@@ -122,13 +128,75 @@ var Write = (function(){
 			        }, delay);
 			    }
 			};
-			self.ue.addListener("contentChange",throttle(function(){
-				console.log('内容改变:'+self.ue.getContent());
-			}, 1000));
-			
+			// 屏蔽textarea的回车换行事件
+			self.textarea.keydown(function(e){
+				if(e.keyCode!=13) return;
+				e.preventDefault();
+				var value = $(this).val();
+                $(this).val(value);
+			});
+			// textarea的属性改变事件
 			self.textarea.bind('input propertychange', throttle(function(){
-				console.log('内容改变textarea:'+self.textarea.val());
+				// 获取标题文本内容
+				var textareaVal = self.textarea.val();
+				// 1.判断标题内容的长度，至多允许100个字符
+				var length = textareaVal.length;
+				if(length>100){
+					$(".titleinfo")
+						.html("标题超过  "+(length-100)+"  个字，无法保存")
+						.removeClass("titlegray")
+						.addClass("titlered");
+					return;
+				}
+				$(".titleinfo")
+					.html("草稿自动保存")
+					.removeClass("titlered")
+					.addClass("titlegray");
+				// 2.提交后台交互保存数据
+				// 第一次提交数据，地址为 /news/draft/-1
+				var articleId = $("#articleId").html();
+				self.ajaxEdit({title: textareaVal});
 			}, 1000));
+			// 富文本框的内容改变事件
+			self.ue.addListener("contentChange",throttle(function(){
+				var contentVal = self.ue.getContent();
+				self.ajaxEdit({content: contentVal});
+			}, 2000));
+		},
+		ajaxEdit: function(dataObj){
+			var self = this;
+			// 获取对象中的属性个数
+			var objPropertyCount = Object.getOwnPropertyNames(dataObj).length;
+			var articleId = $("#articleId").html();
+			if(articleId == -1 && objPropertyCount == 0){
+				return;
+			}
+			$.ajax({
+				type: "post",
+				url: self.baseurl+"/news/draft/"+articleId,
+				async: true,
+				data: dataObj,
+				success: function(res){
+					if(res.code===200){
+						if(articleId == -1){
+							$("#articleId").html(res.rows[0].id);
+							window.history.replaceState({}, '', "edit/"+res.rows[0].id);
+						}else if(objPropertyCount==0){
+							console.log("初始化数据");
+							console.log(res);
+							self.textarea.val(res.rows[0].title);
+							self.ue.addListener("ready", function () {
+					            self.ue.setContent(res.rows[0].content);
+					        }); 
+						}
+					}else{
+						alert(res.msg);
+					}
+				},
+				error: function(){
+					alert("未知错误2");
+				}
+			});
 		}
 	}
 })()

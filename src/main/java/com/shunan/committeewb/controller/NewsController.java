@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -149,11 +150,22 @@ public class NewsController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/edit/{id}")
-	public String edit(@PathVariable("id") Integer id) throws Exception{
+	public String edit(@PathVariable("id") Integer id,Model model) throws Exception{
 		News news = newsService.queryNewsByID(id);
 		if(news == null){
 			return "error/404";
 		}
+		model.addAttribute("id", id);
+		return "write";
+	}
+	
+	/**
+	 * to写新闻 页面
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/write")
+	public String write() throws Exception{
 		return "write";
 	}
 	

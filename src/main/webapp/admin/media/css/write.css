@@ -1,3 +1,7 @@
+* {
+	margin: 0;
+	padding: 0;
+}
 body {
 	/*text-align: center;*/
 }
@@ -6,7 +10,7 @@ body {
 	margin-top: 5px;
 	height: 50px;
 	border-bottom: 1px solid #DBDBDB;
-	text-align: center;
+	/*text-align: center;*/
 }
 
 .header .logo {
@@ -17,10 +21,11 @@ body {
 	font-weight: 300;
 	color: #8B8B8B;
 	line-height: 46px;
-	margin-left: 10px;
+	margin-left: 30px;
 }
 .header .title-wrapper {
 	margin: 0 auto;
+	width: 660px;
 	line-height: 50px;
 }
 
@@ -30,8 +35,15 @@ body {
 }
 
 .header .title-wrapper .titleinfo {
-	color: #DBDBDB;
 	margin-left: 10px;
+}
+
+.header .title-wrapper .titlegray {
+	color: #DBDBDB;
+}
+
+.header .title-wrapper .titlered {
+	color: #FF0000;
 }
 
 .header .publish-wapper{
@@ -44,7 +56,22 @@ body {
 }
 
 .header .publish-wapper .my-btn {
-	display: inline-block;
+	border: 1px solid #eee;
+	border-radius: 6px;
+	line-height: 32px;
+	padding: 0 15px;
+	color: #ccc;
+	margin-top: 7px;
+	margin-right: 55px;
+}
+.header .box{
+	position: absolute;
+	top:50px;
+	right: 0;
+	width: 200px;
+	height: 100px;
+	border: 1px solid red;
+	display: none;
 }
 
 .edit-wrapper {
@@ -66,6 +93,17 @@ body {
 	height: 100%;
 	position: relative;
 }
+.edit-wrapper .writeCover-wrapper .addtext{
+	position: absolute;
+    top: 106px;
+    left: 295px;
+    line-height: 30px;
+	display: none;
+}
+.edit-wrapper .writeCover-wrapper .writeCover-previewWrapper:hover .addtext{
+	display:block;
+}
+
 .writeCover-previewWrapper .writeCover-uploadIcon {
 	font-size: 42px;
 	color: rgba(0, 0, 0, .2 );

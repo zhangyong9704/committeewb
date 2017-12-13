@@ -166,13 +166,13 @@ var NewsList = (function(){
 						return "<span class='badge badge-warning'>"+row.count+"</span>";
 					}
 				},{
-					field : 'publishTime',
+					field : 'createTime',
 					align : 'center',
 					valign : 'middle',
 					title : "创建时间",
 					width: 150,
 					formatter: function(value, row, e){
-						return CommonUtils.timeStampToDate(row.publishTime);
+						return CommonUtils.timeStampToDate(row.createTime);
 					}
 				},{
 					field : 'showTime',

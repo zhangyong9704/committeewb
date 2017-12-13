@@ -16,24 +16,28 @@
 	</head>
 	<body>
 		<div class="header">
+			<span id="articleId" style="display: none;"><c:if test="${id!=null }">${id }</c:if><c:if test="${id==null }">-1</c:if></span>
 			<div class="logo">
 				翡翠
 			</div>
 			<div class="title-wrapper">
 				<span class="title">写文章</span>
-				<span class="titleinfo">草稿自动保存</span>
+				<span class="titleinfo titlegray">草稿自动保存</span>
 			</div>
-			<div class="publish-wapper">
-				<span class="btn my-btn">发布<i class="icon-chevron-down"></i></span>
-				<span class="dropmenu">。。。</span>
+			<div class="publish-wapper" >
+				<div class="btn my-btn">发布<i class="icon-chevron-down"></i></div>
+				
 			</div>
+			<div class="box">salfjadfj</div>
 		</div>
 		<div class="edit-wrapper">
 			<div class="writeCover-wrapper">
 				<div class="writeCover-previewWrapper">
 					<i class="writeCover-uploadIcon icon-picture"></i>
-					<input title="添加题图" type="file" class="writeCover-uploadInput" name="upload_file" accept=".jpeg,.jpg,.png">
+					<input type="file" class="writeCover-uploadInput" name="upload_file" accept=".jpeg,.jpg,.png">
+					<div class="addtext">添加题图</div>
 				</div>
+				
 			</div>
 			<div class="writeTitle-wrapper">
 				<textarea id="textarea" rows="1" class="Input" placeholder="请输入标题" style="height: 44px;"></textarea>
@@ -43,16 +47,23 @@
 				</script>
 			</div>
 		</div>
- 	    <script src="${pageContext.request.contextPath }/admin/media/js/jquery-1.10.1.min.js"></script>
+ 	    <!--<script src="media/js/jquery-1.10.1.min.js"></script>-->
+ 	    <script src="${pageContext.request.contextPath }/admin/media/js/third-party/jquery.min.js"></script>
     	<script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath }/admin/media/js/ueditor.config.js"></script>
 	    <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath }/admin/media/js/ueditor.all.js"> </script>
 	    <!--<script type="text/javascript" charset="utf-8" src="ueditor.parse.js"> </script>-->
 	    <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath }/admin/media/js/lang/zh-cn/zh-cn.js"></script>
+   		<script src="${pageContext.request.contextPath }/admin/media/src/commonUtils.js"></script>
    		<script src="${pageContext.request.contextPath }/admin/media/src/write.js"></script>
    	
     	<!-- 实例化编辑器 -->
     	<script type="text/javascript">
     		Write.init();
+    		//$('.box').hide()
+    		$('.publish-wapper').click(function(){
+    			$('.box').show()
+    		})
+    		
 	    </script>
 	</body>
 </html>
