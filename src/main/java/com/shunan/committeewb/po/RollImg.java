@@ -11,6 +11,10 @@ public class RollImg {
 	public RollImg() {
 		super();
 	}
+	public RollImg(int newsID) {
+		super();
+		this.newsID = newsID;
+	}
 	public int getNewsID() {
 		return newsID;
 	}

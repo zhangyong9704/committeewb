@@ -18,4 +18,11 @@ public interface RollImgMapper {
 	 * @throws Exception
 	 */
 	public void deleteRollImg(@Param("newsIDList") List<Integer> newsIDList) throws Exception;
+	
+	/**
+	 * 添加轮播图
+	 * @param rollImg
+	 * @throws Exception
+	 */
+	public void insertRollImg(RollImg rollImg) throws Exception;
 }

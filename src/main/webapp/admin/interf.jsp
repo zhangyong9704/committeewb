@@ -101,5 +101,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	删除新闻<br/>
    	参数：ids(新闻ID，CheckBox的name值)
    	<hr/>
+   	http://20.14.3.19:8080/committeewb/news/draft<br/>
+   	添加新闻 <br/>
+   	参数：id(第一次向后台发送请求时，id=-1;以后再发送请求时，id=News的id)、修改的字段（新闻宣传图片picFile）
+   	<hr/>
+   	http://20.14.3.19:8080/committeewb/news/edit<br/>
+   	编辑新闻时，用户直接copy url并打开一个新的页面，返回前端该页面 <br/>
+   	参数：id(新闻的id)
+   	<hr/>
+   	http://20.14.3.19:8080/committeewb/news/publishNews<br/>
+   	发布新闻<br/>
+   	参数：newsTypeID(新闻类别id)、showTime(显示时间,可为null)、isRollImg(是否加入轮播图库：0否,1是)
+   	<hr/>
   </body>
 </html>

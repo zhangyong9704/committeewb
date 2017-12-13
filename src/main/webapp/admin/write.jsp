@@ -1,3 +1,6 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -8,8 +11,8 @@
 	    <meta content="" name="author"/>
 	    <!--<link href="media/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 	    <link href="media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>-->
-	    <link href="media/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-	    <link rel="stylesheet" type="text/css" href="media/css/write.css"/>
+	    <link href="${pageContext.request.contextPath }/admin/media/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/admin/media/css/write.css"/>
 	</head>
 	<body>
 		<div class="header">
@@ -40,12 +43,12 @@
 				</script>
 			</div>
 		</div>
- 	    <script src="media/js/jquery-1.10.1.min.js"></script>
-    	<script type="text/javascript" charset="utf-8" src="media/js/ueditor.config.js"></script>
-	    <script type="text/javascript" charset="utf-8" src="media/js/ueditor.all.js"> </script>
+ 	    <script src="${pageContext.request.contextPath }/admin/media/js/jquery-1.10.1.min.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath }/admin/media/js/ueditor.config.js"></script>
+	    <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath }/admin/media/js/ueditor.all.js"> </script>
 	    <!--<script type="text/javascript" charset="utf-8" src="ueditor.parse.js"> </script>-->
-	    <script type="text/javascript" charset="utf-8" src="media/js/lang/zh-cn/zh-cn.js"></script>
-   		<script src="media/src/write.js"></script>
+	    <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath }/admin/media/js/lang/zh-cn/zh-cn.js"></script>
+   		<script src="${pageContext.request.contextPath }/admin/media/src/write.js"></script>
    	
     	<!-- 实例化编辑器 -->
     	<script type="text/javascript">

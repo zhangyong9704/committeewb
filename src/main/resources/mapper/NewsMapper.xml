@@ -128,24 +128,26 @@
 	<update id="updateNews" parameterType="news">
 		update news
 		set author=#{author}
-		<if test="title!=null and title!=''">
+		<if test="title!=null">
 			,title=#{title}
 		</if>
 		<if test="newsTypeID!=null">
 			,newsTypeID=#{newsTypeID}
 		</if>
-		<if test="picUrl!=null and picUrl!=''">
+		<if test="picUrl!=null">
 			,picUrl=#{picUrl}
 		</if>
-		<if test="content!=null and content!=''">
-			,content=#{content}
+		<if test="content!=null">
+			,content=#{content} 
 		</if>
+		where id=#{id}
 	</update>
 	
 	<!-- 发布新闻 -->
 	<update id="publishNews" parameterType="news">
 		update news
-		set author=#{author},showTime=#{showTime},status=0,isHavePic=#{isHavePic}
+		set newsTypeID=#{newsTypeID},showTime=#{showTime},status=0,isHavePic=#{isHavePic} 
+		where id=#{id}
 	</update>
 	
 	<!-- 根据id查询新闻信息 -->

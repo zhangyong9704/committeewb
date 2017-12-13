@@ -21,4 +21,11 @@
 			</if>
 		</where>
 	</delete>
+	
+	<!-- 添加轮播图 -->
+	<insert id="insertRollImg" parameterType="rollImg">
+		INSERT INTO rollimg(newsID) VALUES(#{newsID})
+	</insert>
+	
+	<!-- 查询所有的轮播图 -->
 </mapper>

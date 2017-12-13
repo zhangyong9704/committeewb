@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.shunan.committeewb.dao.FilesMapper;
 import com.shunan.committeewb.dao.NewsMapper;
 import com.shunan.committeewb.dao.RollImgMapper;
 import com.shunan.committeewb.po.News;
+import com.shunan.committeewb.po.RollImg;
 import com.shunan.committeewb.service.NewsService;
 import com.shunan.committeewb.utils.CommonUtils;
 import com.shunan.committeewb.utils.FileUtil;
@@ -155,6 +155,29 @@ public class NewsServiceImpl implements NewsService {
 	 */
 	@Override
 	public void updateNews(News news, MultipartFile picFile) throws Exception {
+		if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
+			FileUtil.uploadFile(picFile, news, CommonUtils.NEWS);
+		}
+		newsMapper.updateNews(news);
+	}
+
+	/**
+	 * 发布新闻
+	 */
+	@Override
+	public void publishNews(News news,Integer isRollImg) throws Exception {
+		//发布新闻
+		if(news.getShowTime()==null){
+			news.setShowTime(new Date());
+		}
+		if(news.getContent().contains("<img src=")){
+			news.setIsHavePic(1); //图文
+		}
+		newsMapper.publishNews(news);
 		
+		//将新闻加入轮播图库
+		if(isRollImg == 1){
+			rollImgMapper.insertRollImg(new RollImg(news.getId()));
+		}
 	}
 }

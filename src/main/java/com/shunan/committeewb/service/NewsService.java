@@ -69,4 +69,12 @@ public interface NewsService {
 	 * @throws Exception
 	 */
 	public void updateNews(News news, MultipartFile picFile) throws Exception;
+
+	/**
+	 * 发布新闻
+	 * @param news
+	 * @param isRollImg 
+	 * @throws Exception
+	 */
+	public void publishNews(News news, Integer isRollImg) throws Exception;
 }
