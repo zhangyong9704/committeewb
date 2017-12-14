@@ -13,6 +13,16 @@ var CommonUtils = (function(){
 			var minute=time.getMinutes();     
 			var second=time.getSeconds();     
 			return year+"-"+this.add0(month)+"-"+this.add0(date)+" "+this.add0(hour)+":"+this.add0(minute)+":"+this.add0(second);  
+		},
+		throttle: function (fn, delay) {
+			console.log("throttle");
+		    var timer = null;
+		    return function () {
+		        clearTimeout(timer);
+		        timer = setTimeout(function() {
+		            fn();
+		        }, delay);
+		    }
 		}
 	}
 })()

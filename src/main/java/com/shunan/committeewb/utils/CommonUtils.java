@@ -1,5 +1,8 @@
 package com.shunan.committeewb.utils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CommonUtils {
 	//重点专注
 	public static final int NEWS_ZDZZ = 1;
@@ -56,4 +59,23 @@ public class CommonUtils {
 	public static final int LINK_HEIGHT = 30; 
 	public static final int NEWS_WIDTH = 1190; //新闻
 	public static final int NEWS_HEIGHT = 370; 
+	
+	/**
+	 * 将String转换为List
+	 * @param str
+	 * @return
+	 * @throws Exception
+	 */
+	public static List<Integer> transferStringToIntList(String str) throws Exception{
+		String[] strArr = str.trim().split(",");
+		List<Integer> list = new ArrayList<Integer>();
+		if(strArr.length>0){
+			for(String s:strArr){
+				if(!s.equals("")){
+					list.add(Integer.parseInt(s));
+				}
+			}
+		}
+		return list;
+	}
 }

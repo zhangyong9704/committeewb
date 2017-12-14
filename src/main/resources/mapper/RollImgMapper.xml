@@ -43,4 +43,12 @@
 		FROM news,rollimg
 		WHERE news.id=rollimg.newsID
 	</select>
+	
+	<!-- 修改轮播图 -->
+	<update id="updateRollImg" parameterType="rollImg">
+		UPDATE rollimg 
+		SET sort=#{sort},isShow=#{isShow}
+		WHERE newsID=#{newsID}
+	</update>
+
 </mapper>

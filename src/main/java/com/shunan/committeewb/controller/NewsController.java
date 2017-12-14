@@ -102,7 +102,8 @@ public class NewsController {
 		List<News> list = new ArrayList<News>();
 		
 		//没有请求体时：用户直接copy url并打开一个新的页面，新页面请求数据，返回json数据
-		if(news.getTitle()==null && news.getPicUrl()==null && news.getContent()==null){
+		if(news.getTitle()==null && news.getPicUrl()==null && news.getContent()==null &&
+				(picFile==null || picFile.getOriginalFilename()==null || picFile.getOriginalFilename().equals(""))){
 			try {
 				News returnNews = newsService.queryNewsByID(news.getId());
 				if(returnNews != null){
@@ -134,6 +135,8 @@ public class NewsController {
 			//编辑新闻
 			try {
 				newsService.updateNews(news,picFile);
+				News returnNews = newsService.queryNewsByID(news.getId());
+				list.add(returnNews);
 				result = new Result<News>(200, "修改新闻成功！", list);
 			} catch (Exception e) {
 				result = new Result<News>(100, "修改新闻失败！", list);
@@ -160,7 +163,7 @@ public class NewsController {
 	}
 	
 	/**
-	 * to写新闻 页面
+	 * to写文章 页面
 	 * @return
 	 * @throws Exception
 	 */

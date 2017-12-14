@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shunan.committeewb.po.Result;
+import com.shunan.committeewb.po.RollImg;
 import com.shunan.committeewb.po.RollImgList;
 import com.shunan.committeewb.service.RollImgService;
 
@@ -39,6 +40,56 @@ public class RollImgController {
 			result = new Result<RollImgList>(200, "查询轮播图成功！", list);
 		} catch (Exception e) {
 			result = new Result<RollImgList>(100, "查询轮播图失败！", list);
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * 删除轮播图
+	 * @param newsIDs
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/deleteRollImg")
+	@ResponseBody
+	public Result<String> deleteRollImg(String newsIDs) throws Exception{
+		Result<String> result = null;
+		List<String> list = new ArrayList<String>();
+		
+		if(newsIDs==null || newsIDs.equals("")){
+			return new Result<String>(100, "请先选择要删除的轮播图！", list);
+		}
+		
+		try {
+			rollImgService.deleteRollImg(newsIDs);
+			result = new Result<String>(200, "删除轮播图成功！", list);
+		} catch (Exception e) {
+			result = new Result<String>(100, "删除轮播图失败！", list);
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * 修改轮播图
+	 * @param rollImg
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/updateRollImg")
+	@ResponseBody
+	public Result<String> updateRollImg(RollImg rollImg) throws Exception{
+		Result<String> result = null;
+		List<String> list = new ArrayList<String>();
+		
+		try {
+			rollImgService.updateRollImg(rollImg);
+			result = new Result<String>(200, "修改轮播图成功！", list);
+		} catch (Exception e) {
+			result = new Result<String>(100, "修改轮播图失败！", list);
 			e.printStackTrace();
 		}
 		

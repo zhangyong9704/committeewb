@@ -9,6 +9,7 @@ import com.shunan.committeewb.dao.RollImgMapper;
 import com.shunan.committeewb.po.RollImg;
 import com.shunan.committeewb.po.RollImgList;
 import com.shunan.committeewb.service.RollImgService;
+import com.shunan.committeewb.utils.CommonUtils;
 
 @Service
 @Transactional
@@ -27,5 +28,22 @@ public class RollImgServiceImpl implements RollImgService{
 	@Override
 	public List<RollImgList> queryAllRollImg() throws Exception {
 		return rollImgMapper.queryAllRollImg();
+	}
+
+	/**
+	 * 删除轮播图
+	 */
+	@Override
+	public void deleteRollImg(String newsIDs) throws Exception {
+		List<Integer> newsIDList = CommonUtils.transferStringToIntList(newsIDs);
+		rollImgMapper.deleteRollImg(newsIDList);
+	}
+
+	/**
+	 * 修改轮播图
+	 */
+	@Override
+	public void updateRollImg(RollImg rollImg) throws Exception {
+		rollImgMapper.updateRollImg(rollImg);
 	}
 }

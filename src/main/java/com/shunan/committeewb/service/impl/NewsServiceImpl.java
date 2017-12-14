@@ -40,7 +40,7 @@ public class NewsServiceImpl implements NewsService {
 	@Override
 	public long queryNewsTotal(String typeIDs, int chooseStatus) throws Exception {
 		long count = 0;
-		List<Integer> typeIDList = transferStringToIntArr(typeIDs);
+		List<Integer> typeIDList = CommonUtils.transferStringToIntList(typeIDs);
 		count = newsMapper.queryNewsTotal(typeIDList, chooseStatus);
 		return count;
 	}
@@ -61,7 +61,7 @@ public class NewsServiceImpl implements NewsService {
 			order = "asc";
 		}
 		
-		List<Integer> typeIDList = transferStringToIntArr(typeIDs);
+		List<Integer> typeIDList = CommonUtils.transferStringToIntList(typeIDs);
 		
 		List<News> newsList = new ArrayList<News>();
 		newsList = newsMapper.queryPageNews(typeIDList, chooseStatus, offset, limit, order);
@@ -73,30 +73,11 @@ public class NewsServiceImpl implements NewsService {
 	 */
 	@Override
 	public void deleteNews(String ids) throws Exception {
-		List<Integer> idList = transferStringToIntArr(ids);
+		List<Integer> idList = CommonUtils.transferStringToIntList(ids);
 		rollImgMapper.deleteRollImg(idList);
 		newsMapper.deleteNews(idList);
 	}
 	
-	/**
-	 * 将String转换为List
-	 * @param str
-	 * @return
-	 * @throws Exception
-	 */
-	private List<Integer> transferStringToIntArr(String str) throws Exception{
-		String[] strArr = str.trim().split(",");
-		List<Integer> list = new ArrayList<Integer>();
-		if(strArr.length>0){
-			for(String s:strArr){
-				if(!s.equals("")){
-					list.add(Integer.parseInt(s));
-				}
-			}
-		}
-		return list;
-	}
-
 	/**
 	 * 添加新闻
 	 */

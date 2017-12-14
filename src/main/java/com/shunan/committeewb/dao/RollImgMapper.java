@@ -34,4 +34,11 @@ public interface RollImgMapper {
 	 * @throws Exception
 	 */
 	public List<RollImgList> queryAllRollImg() throws Exception;
+	
+	/**
+	 * 修改轮播图
+	 * @param rollImg
+	 * @throws Exception
+	 */
+	public void updateRollImg(RollImg rollImg) throws Exception;
 }

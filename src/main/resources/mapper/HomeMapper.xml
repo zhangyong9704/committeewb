@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shunan.committeewb.dao.HomeMapper">
+	
+	<!-- 查询规章制度、工作标准、通讯录、风采录 -->
+	<select id="queryHome" parameterType="int" resultType="home">
+		SELECT * FROM home WHERE id=#{id}
+	</select>
+	
+	<!-- 修改 规章制度、工作标准、通讯录、风采录 -->
+	<update id="updateHome" parameterType="home">
+		UPDATE home
+		SET publishTime=#{publishTime}
+		<if test="title!=null and title!=''">
+			,title=#{title}
+		</if>
+		<if test="source!=null and source!=''">
+			,source=#{source}
+		</if>
+		<if test="content!=null and content!=''">
+			,content=#{content}
+		</if>
+		WHERE id=#{id}
+	</update>
+</mapper>

@@ -101,11 +101,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	删除新闻<br/>
    	参数：ids(新闻ID，CheckBox的name值)
    	<hr/>
-   	http://20.14.3.19:8080/committeewb/news/draft<br/>
+   	http://20.14.3.19:8080/committeewb/news/write<br/>
+   	to写文章页面 <br/>
+   	<hr/>
+   	http://20.14.3.19:8080/committeewb/news/draft(id:RESTful风格)<br/>
    	添加新闻 <br/>
    	参数：id(第一次向后台发送请求时，id=-1;以后再发送请求时，id=News的id)、修改的字段（新闻宣传图片picFile）
    	<hr/>
-   	http://20.14.3.19:8080/committeewb/news/edit<br/>
+   	http://20.14.3.19:8080/committeewb/news/edit(RESTful风格)<br/>
    	编辑新闻时，用户直接copy url并打开一个新的页面，返回前端该页面 <br/>
    	参数：id(新闻的id)
    	<hr/>
@@ -117,6 +120,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	<h4>轮播图：</h4>
    	http://20.14.3.19:8080/committeewb/rollImg/queryAllRollImg<br/>
    	查询所有的轮播图<br/>
+   	<hr/>
+   	http://20.14.3.19:8080/committeewb/rollImg/deleteRollImg<br/>
+   	删除轮播图<br/>
+   	参数：newsIDs(新闻ID，CheckBox的name值)
+   	<hr/>
+   	http://20.14.3.19:8080/committeewb/rollImg/updateRollImg<br/>
+   	修改轮播图<br/>
+   	参数：newsID(必要,新闻ID)、sort(必要,显示顺序)、isShow(必要,是否在首页展示:0不展示,1展示)
+   	<hr/>
+   	
+   	<h4>规章制度、工作标准、通讯录、风采录：</h4>
+   	http://20.14.3.19:8080/committeewb/home/queryHome(RESTful风格)<br/>
+   	查询规章制度、工作标准、通讯录、风采录<br/>
+   	参数：id(规章制度-->风采录，依次为1、2、3、4)
+   	<hr/>
+   	http://20.14.3.19:8080/committeewb/home/updateHome(id:RESTful风格)<br/>
+   	修改规章制度、工作标准、通讯录、风采录<br/>
+   	参数：id(规章制度-->风采录，依次为1、2、3、4)、修改的字段
+   	<hr/>
+   	http://20.14.3.19:8080/committeewb/home/write<br/>
+   	to写规章制度等页面 (homeWrite.jsp) <br/>
+   	<hr/>
+   	http://20.14.3.19:8080/committeewb/home/edit(RESTful风格)<br/>
+   	编辑规章制度时，用户直接copy url并打开一个新的页面，返回前端该页面 <br/>
+   	参数：id(规章制度等的id)(规章制度-->风采录，依次为1、2、3、4)
    	<hr/>
   </body>
 </html>

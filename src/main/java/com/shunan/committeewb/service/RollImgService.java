@@ -19,4 +19,18 @@ public interface RollImgService {
 	 * @throws Exception
 	 */
 	public List<RollImgList> queryAllRollImg() throws Exception;
+
+	/**
+	 * 删除轮播图
+	 * @param newsIDs
+	 * @throws Exception
+	 */
+	public void deleteRollImg(String newsIDs) throws Exception;
+
+	/**
+	 * 修改轮播图
+	 * @param rollImg
+	 * @throws Exception
+	 */
+	public void updateRollImg(RollImg rollImg) throws Exception;
 }
