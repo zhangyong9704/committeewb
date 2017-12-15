@@ -86,15 +86,48 @@ public class NewsController {
 		return result;
 	}
 	
+	/**
+	 * 写文章
+	 * @param news
+	 * @param picFile
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("/draft/{id}")
 	@ResponseBody
 	public Result<? extends Object> insertNews(News news,MultipartFile picFile) throws Exception{
 		
 /*		if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
-			Result<String> picResult = FileUtil.checkFile(picFile, 
-					CommonUtils.NEWS_WIDTH, CommonUtils.NEWS_HEIGHT, CommonUtils.FILE_MAXSIZE);
-			if(picResult.getCode()!=200){
-				return picResult;
+			News news2 = newsService.queryNewsByID(news.getId());
+			Result<String> picResult = null;
+			switch (news2.getNewsTypeID()) {
+			case 1:
+			case 3:
+			case 4:
+			case 5:
+				picResult = FileUtil.checkFile(picFile, 
+						CommonUtils.ROLLIMG_WIDTH, CommonUtils.ROLLIMG_HEIGHT, CommonUtils.FILE_MAXSIZE);
+				if(picResult.getCode()!=200){
+					return picResult;
+				}
+				break;
+			case 2:
+				picResult = FileUtil.checkFile(picFile, 
+						CommonUtils.GG_WIDTH, CommonUtils.GG_HEIGHT, CommonUtils.FILE_MAXSIZE);
+				if(picResult.getCode()!=200){
+					return picResult;
+				}
+				break;
+			case 6:
+				picResult = FileUtil.checkFile(picFile, 
+						CommonUtils.ZTHD_WIDTH, CommonUtils.ZTHD_HEIGHT, CommonUtils.FILE_MAXSIZE);
+				if(picResult.getCode()!=200){
+					return picResult;
+				}
+				break;
+
+			default:
+				break;
 			}
 		}*/
 		
@@ -102,7 +135,7 @@ public class NewsController {
 		List<News> list = new ArrayList<News>();
 		
 		//没有请求体时：用户直接copy url并打开一个新的页面，新页面请求数据，返回json数据
-		if(news.getTitle()==null && news.getPicUrl()==null && news.getContent()==null &&
+		if(news.getTitle()==null && news.getPicUrl()==null && news.getContent()==null && news.getNewsTypeID()==0 &&
 				(picFile==null || picFile.getOriginalFilename()==null || picFile.getOriginalFilename().equals(""))){
 			try {
 				News returnNews = newsService.queryNewsByID(news.getId());

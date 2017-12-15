@@ -53,16 +53,16 @@ public class LoginController {
 				request.setAttribute("msg", "验证码不正确！");
 			}
 		}
-
+		System.out.println("exceptionClassName="+exceptionClassName);
 		return "login";
 	}
 	
-	@RequestMapping("/welcome")
-	public String welcome(HttpServletRequest request) throws Exception{
+	@RequestMapping("/index")
+	public String index(HttpServletRequest request) throws Exception{
 		Subject subject = SecurityUtils.getSubject();
 		User user = (User) subject.getPrincipal();
 		request.getSession().setAttribute("user", user);
-		return "welcome";
+		return "index";
 	}
 	
 	@RequestMapping("/home")

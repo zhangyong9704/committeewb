@@ -19,7 +19,7 @@
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
 		<property name="loginUrl" value="/login" />
-		<property name="successUrl" value="/welcome"/>
+		<property name="successUrl" value="/index"/>
 		<property name="unauthorizedUrl" value="/admin/error/refuse.jsp" />
 		<!-- 自定义filter配置 -->
 		<property name="filters">
@@ -29,10 +29,14 @@
 		</property>
 		<property name="filterChainDefinitions">
 			<value>
+				/admin/components/** = anon
+				/admin/error/** = anon
+				/admin/jsp/** = anon
+				/admin/media/** =anon
+				
+				/admin/login.jsp = anon
 				/admin/validatecode.jsp = anon
 				/logout = logout
-				/admin/error/404.jsp = anon
-				/admin/error/500.jsp = anon
 				/** = anon
 				<!-- /** = authc -->
 			</value>

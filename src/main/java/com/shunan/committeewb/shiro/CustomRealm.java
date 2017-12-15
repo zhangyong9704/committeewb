@@ -37,6 +37,7 @@ public class CustomRealm extends AuthorizingRealm{
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		String account = (String) token.getPrincipal();
+		System.out.println("account="+account);
 		User user = null;
 		try {
 			user = userService.queryUserByAccount(account);

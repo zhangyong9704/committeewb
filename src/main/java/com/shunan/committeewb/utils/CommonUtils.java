@@ -57,8 +57,12 @@ public class CommonUtils {
 	public static final int HOME_BANNER_HEIGHT = 370; 
 	public static final int LINK_WIDTH = 110; //友情链接
 	public static final int LINK_HEIGHT = 30; 
-	public static final int NEWS_WIDTH = 1190; //新闻
-	public static final int NEWS_HEIGHT = 370; 
+	public static final int ROLLIMG_WIDTH = 1190; //轮播图
+	public static final int ROLLIMG_HEIGHT = 370; 
+	public static final int GG_WIDTH = 1190; //公告栏
+	public static final int GG_HEIGHT = 370; 
+	public static final int ZTHD_WIDTH = 1190; //专题活动
+	public static final int ZTHD_HEIGHT = 370; 
 	
 	/**
 	 * 将String转换为List

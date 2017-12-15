@@ -23,6 +23,11 @@ public class CustomFormAuthenticationFilter extends FormAuthenticationFilter{
 		
 		//取出页面的验证码,输入的验证和session中的验证进行对比 
 		String randomCode = httpServletRequest.getParameter("randomCode");
+		System.out.println("session中validateCode="+validateCode+",用户输入randomCode="+randomCode);
+		
+		String username = httpServletRequest.getParameter("username");
+		System.out.println("用户输入username="+username);
+		
 		if(randomCode!=null && validateCode!=null && !randomCode.equalsIgnoreCase(validateCode)){
 			httpServletRequest.setAttribute("shiroLoginFailure", "randomCodeError");
 			//拒绝访问，不再校验账号和密码 

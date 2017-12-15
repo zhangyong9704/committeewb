@@ -98,7 +98,7 @@
 		<if test="title!=null and title!=''">
 			,title
 		</if>
-		<if test="newsTypeID!=null">
+		<if test="newsTypeID!=0">
 			,newsTypeID
 		</if>
 		<if test="picUrl!=null and picUrl!=''">
@@ -112,7 +112,7 @@
 		<if test="title!=null and title!=''">
 			,#{title}
 		</if>
-		<if test="newsTypeID!=null">
+		<if test="newsTypeID!=0">
 			,#{newsTypeID}
 		</if>
 		<if test="picUrl!=null and picUrl!=''">
@@ -131,7 +131,7 @@
 		<if test="title!=null">
 			,title=#{title}
 		</if>
-		<if test="newsTypeID!=null">
+		<if test="newsTypeID!=0">
 			,newsTypeID=#{newsTypeID}
 		</if>
 		<if test="picUrl!=null">
@@ -146,7 +146,7 @@
 	<!-- 发布新闻 -->
 	<update id="publishNews" parameterType="news">
 		update news
-		set newsTypeID=#{newsTypeID},showTime=#{showTime},status=0,isHavePic=#{isHavePic} 
+		set showTime=#{showTime},status=0,isHavePic=#{isHavePic} 
 		where id=#{id}
 	</update>
 	

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +15,7 @@ import com.shunan.committeewb.dao.NewsMapper;
 import com.shunan.committeewb.dao.RollImgMapper;
 import com.shunan.committeewb.po.News;
 import com.shunan.committeewb.po.RollImg;
+import com.shunan.committeewb.po.User;
 import com.shunan.committeewb.service.NewsService;
 import com.shunan.committeewb.utils.CommonUtils;
 import com.shunan.committeewb.utils.FileUtil;
@@ -86,6 +89,9 @@ public class NewsServiceImpl implements NewsService {
 		if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
 			FileUtil.uploadFile(picFile, news, CommonUtils.NEWS);
 		}
+/*		Subject subject = SecurityUtils.getSubject();
+		User user = (User) subject.getPrincipal();
+		news.setAuthor(user.getAccount());*/
 		news.setAuthor("admin"); //后续需要改成正在使用该系统的账号
 		news.setCreateTime(new Date());
 		newsMapper.insertNews(news);
@@ -151,7 +157,8 @@ public class NewsServiceImpl implements NewsService {
 		if(news.getShowTime()==null){
 			news.setShowTime(new Date());
 		}
-		if(news.getContent().contains("<img src=")){
+		News news2 = newsMapper.queryNewsByID(news.getId());
+		if(news2.getContent().contains("<img src=")){
 			news.setIsHavePic(1); //图文
 		}
 		newsMapper.publishNews(news);
