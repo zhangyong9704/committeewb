@@ -33,4 +33,12 @@ public interface RollImgService {
 	 * @throws Exception
 	 */
 	public void updateRollImg(RollImg rollImg) throws Exception;
+
+	/**
+	 * 根据newsID查询rollImg
+	 * @param newsID
+	 * @return
+	 * @throws Exception
+	 */
+	public RollImg queryRollImgByNewsID(Integer newsID) throws Exception;
 }

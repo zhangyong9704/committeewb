@@ -50,5 +50,9 @@
 		SET sort=#{sort},isShow=#{isShow}
 		WHERE newsID=#{newsID}
 	</update>
-
+	
+	<!-- 根据newsID查询轮播图 -->
+	<select id="queryRollImgByNewsID" parameterType="int" resultType="rollImg">
+		SELECT * FROM rollimg WHERE newsID=#{newsID}
+	</select>
 </mapper>

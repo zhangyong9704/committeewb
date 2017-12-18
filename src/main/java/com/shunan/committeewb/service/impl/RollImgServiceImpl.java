@@ -46,4 +46,12 @@ public class RollImgServiceImpl implements RollImgService{
 	public void updateRollImg(RollImg rollImg) throws Exception {
 		rollImgMapper.updateRollImg(rollImg);
 	}
+
+	/**
+	 * 根据newsID查询rollImg
+	 */
+	@Override
+	public RollImg queryRollImgByNewsID(Integer newsID) throws Exception {
+		return rollImgMapper.queryRollImgByNewsID(newsID);
+	}
 }

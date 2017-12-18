@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -90,6 +91,32 @@ public class RollImgController {
 			result = new Result<String>(200, "修改轮播图成功！", list);
 		} catch (Exception e) {
 			result = new Result<String>(100, "修改轮播图失败！", list);
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * 根据newsID查询rollImg
+	 * @param newsID
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/queryRollImgByNewsID/{newsID}")
+	@ResponseBody
+	public Result<RollImg> queryRollImgByNewsID(@PathVariable("newsID") Integer newsID) throws Exception{
+		Result<RollImg> result = null;
+		List<RollImg> list = new ArrayList<RollImg>();
+		
+		try {
+			RollImg rollImg = rollImgService.queryRollImgByNewsID(newsID);
+			if(rollImg != null){
+				list.add(rollImg);
+			}
+			result = new Result<RollImg>(200, "查询成功！", list);
+		} catch (Exception e) {
+			result = new Result<RollImg>(100, "查询失败！", list);
 			e.printStackTrace();
 		}
 		

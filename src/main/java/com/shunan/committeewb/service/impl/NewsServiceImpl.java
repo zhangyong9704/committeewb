@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +13,6 @@ import com.shunan.committeewb.dao.NewsMapper;
 import com.shunan.committeewb.dao.RollImgMapper;
 import com.shunan.committeewb.po.News;
 import com.shunan.committeewb.po.RollImg;
-import com.shunan.committeewb.po.User;
 import com.shunan.committeewb.service.NewsService;
 import com.shunan.committeewb.utils.CommonUtils;
 import com.shunan.committeewb.utils.FileUtil;
@@ -146,6 +143,17 @@ public class NewsServiceImpl implements NewsService {
 			FileUtil.uploadFile(picFile, news, CommonUtils.NEWS);
 		}
 		newsMapper.updateNews(news);
+		
+		//修改新闻时，若将新闻类型修改为了"生活大家谈"、"专题活动"、"青春剪影"，且该新闻存在轮播图表中，则删除之
+		int newsTypeID = news.getNewsTypeID();
+		if(newsTypeID==8 || newsTypeID==6 || newsTypeID==7){
+			RollImg rollImg = rollImgMapper.queryRollImgByNewsID(news.getId());
+			if(rollImg!=null){
+				List<Integer> newsIDList = new ArrayList<Integer>();
+				newsIDList.add(news.getId());
+				rollImgMapper.deleteRollImg(newsIDList);
+			}
+		}
 	}
 
 	/**
@@ -158,12 +166,22 @@ public class NewsServiceImpl implements NewsService {
 			news.setShowTime(new Date());
 		}
 		News news2 = newsMapper.queryNewsByID(news.getId());
-		if(news2.getContent().contains("<img src=")){
-			news.setIsHavePic(1); //图文
+		if(news2.getContent()!=null){
+			if(news2.getContent().contains("<img src=")){
+				news.setIsHavePic(1); //图文
+			}
 		}
 		newsMapper.publishNews(news);
 		
-		//将新闻加入轮播图库
+		//若轮播图库中存在该新闻，则删除之
+		RollImg rollImg = rollImgMapper.queryRollImgByNewsID(news.getId());
+		if(rollImg != null){
+			List<Integer> newsIDList = new ArrayList<Integer>();
+			newsIDList.add(rollImg.getNewsID());
+			rollImgMapper.deleteRollImg(newsIDList);
+		}
+		
+		//判断是否将新闻加入轮播图库
 		if(isRollImg == 1){
 			rollImgMapper.insertRollImg(new RollImg(news.getId()));
 		}

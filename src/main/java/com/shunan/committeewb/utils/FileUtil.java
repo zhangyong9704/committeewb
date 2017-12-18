@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.shunan.committeewb.po.Banner;
+import com.shunan.committeewb.po.LifeChat;
 import com.shunan.committeewb.po.News;
 import com.shunan.committeewb.po.Result;
 import com.shunan.committeewb.po.WebInfo;
@@ -99,14 +100,19 @@ public class FileUtil<T> {
 						}
 					}
 					//Banner图 or 友情链接 上传文件
-					if(t instanceof Banner){
+					if(t instanceof Banner && type==CommonUtils.HOME_BANNER){
 						Banner banner = (Banner) t;
 						banner.setPicUrl(dbUploadFileName);
 					}
 					//新闻
-					if(t instanceof News){
+					if(t instanceof News && type==CommonUtils.NEWS){
 						News news = (News) t;
 						news.setPicUrl(dbUploadFileName);
+					}
+					//生活大家谈
+					if(t instanceof LifeChat && type==CommonUtils.SHDJT){
+						LifeChat lifeChat = (LifeChat) t;
+						lifeChat.setPicUrl(dbUploadFileName);
 					}
 				}
 			}

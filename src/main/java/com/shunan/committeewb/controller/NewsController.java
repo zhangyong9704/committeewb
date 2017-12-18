@@ -15,6 +15,8 @@ import com.shunan.committeewb.po.News;
 import com.shunan.committeewb.po.PageResult;
 import com.shunan.committeewb.po.Result;
 import com.shunan.committeewb.service.NewsService;
+import com.shunan.committeewb.utils.CommonUtils;
+import com.shunan.committeewb.utils.FileUtil;
 
 /**
  * 新闻
@@ -102,6 +104,7 @@ public class NewsController {
 			Result<String> picResult = null;
 			switch (news2.getNewsTypeID()) {
 			case 1:
+			case 2:
 			case 3:
 			case 4:
 			case 5:
@@ -111,16 +114,18 @@ public class NewsController {
 					return picResult;
 				}
 				break;
-			case 2:
-				picResult = FileUtil.checkFile(picFile, 
-						CommonUtils.GG_WIDTH, CommonUtils.GG_HEIGHT, CommonUtils.FILE_MAXSIZE);
-				if(picResult.getCode()!=200){
-					return picResult;
-				}
+			case 8:
 				break;
 			case 6:
 				picResult = FileUtil.checkFile(picFile, 
 						CommonUtils.ZTHD_WIDTH, CommonUtils.ZTHD_HEIGHT, CommonUtils.FILE_MAXSIZE);
+				if(picResult.getCode()!=200){
+					return picResult;
+				}
+				break;
+			case 7:
+				picResult = FileUtil.checkFile(picFile, 
+						CommonUtils.QCJY_WIDTH, CommonUtils.QCJY_HEIGHT, CommonUtils.FILE_MAXSIZE);
 				if(picResult.getCode()!=200){
 					return picResult;
 				}

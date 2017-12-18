@@ -22,6 +22,9 @@ public class CommonUtils {
 	//专题活动
 	public static final int NEWS_ZTHD = 6;
 	public static final int NEWS_ZTHD_LIMIT = 4;
+	//青春剪影
+	public static final int NEWS_QCJY = 7;
+	public static final int NEWS_QCJY_LIMIT = 5;
 	
 	//上传文件类型  图片 or 附件
 	public static final int IMG_FILE = 0;
@@ -36,6 +39,8 @@ public class CommonUtils {
 	public static final int HOME_BANNER = 3;
 	//新闻
 	public static final int NEWS = 4;
+	//生活大家谈
+	public static final int SHDJT = 5;
 	
 	//图片文件大小
 	//上传的图片的大小
@@ -59,10 +64,12 @@ public class CommonUtils {
 	public static final int LINK_HEIGHT = 30; 
 	public static final int ROLLIMG_WIDTH = 1190; //轮播图
 	public static final int ROLLIMG_HEIGHT = 370; 
-	public static final int GG_WIDTH = 1190; //公告栏
-	public static final int GG_HEIGHT = 370; 
+	public static final int SHDJT_WIDTH = 1190; //生活大家谈
+	public static final int SHDJT_HEIGHT = 370; 
 	public static final int ZTHD_WIDTH = 1190; //专题活动
 	public static final int ZTHD_HEIGHT = 370; 
+	public static final int QCJY_WIDTH = 1190; //青春剪影
+	public static final int QCJY_HEIGHT = 370; 
 	
 	/**
 	 * 将String转换为List

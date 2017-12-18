@@ -41,4 +41,12 @@ public interface RollImgMapper {
 	 * @throws Exception
 	 */
 	public void updateRollImg(RollImg rollImg) throws Exception;
+	
+	/**
+	 * 根据newsID查询轮播图 
+	 * @param newsID
+	 * @return
+	 * @throws Exception
+	 */
+	public RollImg queryRollImgByNewsID(int newsID) throws Exception;
 }
