@@ -232,5 +232,31 @@ public class NewsController {
 		
 		return result;
 	}
+	
+	/**
+	 * 前端 查询新闻,访问量+1
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/queryNews/{id}")
+	@ResponseBody
+	public Result<News> queryNews(@PathVariable("id") Integer id) throws Exception{
+		Result<News> result = null;
+		List<News> list = new ArrayList<News>();
+		
+		try {
+			News news = newsService.queryNews(id);
+			if(news!=null){
+				list.add(news);
+			}
+			result = new Result<News>(200, "查询新闻成功！", list);
+		} catch (Exception e) {
+			result = new Result<News>(100, "查询新闻失败！", list);
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 
 }

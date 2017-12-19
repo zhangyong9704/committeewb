@@ -154,4 +154,11 @@
 	<select id="queryNewsByID" parameterType="int" resultType="news">
 		select * from news where id=#{id}
 	</select>
+	
+	<!-- 增加新闻的访问量 -->
+	<update id="updateNewsCount" parameterType="int">
+		UPDATE news
+		SET COUNT=COUNT+1
+		WHERE id=#{id}
+	</update>
 </mapper>

@@ -186,4 +186,13 @@ public class NewsServiceImpl implements NewsService {
 			rollImgMapper.insertRollImg(new RollImg(news.getId()));
 		}
 	}
+
+	/**
+	 * 前端 查询新闻,访问量+1
+	 */
+	@Override
+	public News queryNews(Integer id) throws Exception {
+		newsMapper.updateNewsCount(id);
+		return newsMapper.queryNewsByID(id);
+	}
 }

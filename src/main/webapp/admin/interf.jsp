@@ -116,6 +116,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	发布新闻<br/>
    	参数：newsTypeID(新闻类别id)、showTime(显示时间,可为null)、isRollImg(是否加入轮播图库：0否,1是)
    	<hr/>
+   	http://20.14.3.28:8080/committeewb/news/queryNews(Restful风格)<br/>
+   	前端 查询新闻,同时新闻访问量+1<br/>
+   	参数：id(新闻id)
+   	<hr/>
    	
    	<h4>轮播图：</h4>
    	http://20.14.3.28:8080/committeewb/rollImg/queryAllRollImg<br/>

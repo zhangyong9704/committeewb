@@ -77,4 +77,12 @@ public interface NewsService {
 	 * @throws Exception
 	 */
 	public void publishNews(News news, Integer isRollImg) throws Exception;
+
+	/**
+	 * 前端 查询新闻,访问量+1
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public News queryNews(Integer id) throws Exception;
 }

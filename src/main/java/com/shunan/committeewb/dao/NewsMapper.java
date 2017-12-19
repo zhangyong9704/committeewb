@@ -68,4 +68,11 @@ public interface NewsMapper {
 	 * @throws Exception
 	 */
 	public News queryNewsByID(int id) throws Exception;
+	
+	/**
+	 * 增加新闻的访问量
+	 * @param id
+	 * @throws Exception
+	 */
+	public void updateNewsCount(int id) throws Exception;
 }

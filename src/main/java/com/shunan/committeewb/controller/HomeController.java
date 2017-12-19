@@ -57,6 +57,7 @@ public class HomeController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/updateHome/{id}")
+	@ResponseBody
 	public Result<Home> updateHome(Home home) throws Exception{
 		Result<Home> result = null;
 		List<Home> list = new ArrayList<Home>();
@@ -103,6 +104,7 @@ public class HomeController {
 			return "error/404";
 		}
 		model.addAttribute("id", id);
+		model.addAttribute("type", home.getType());
 		return "homeWrite";
 	}
 	
