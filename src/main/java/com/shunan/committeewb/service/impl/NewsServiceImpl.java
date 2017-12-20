@@ -195,4 +195,32 @@ public class NewsServiceImpl implements NewsService {
 		newsMapper.updateNewsCount(id);
 		return newsMapper.queryNewsByID(id);
 	}
+
+	/**
+	 * 新闻列表
+	 */
+	@Override
+	public List<News> newsList(String newsTypeID, int offset, int pageSize) throws Exception {
+		List<News> newsList = new ArrayList<News>();
+		if(newsTypeID.equals("0")){
+			//图片新闻
+		}else{
+			newsList  =this.queryPageNews(newsTypeID, 1, offset, pageSize, "asc");
+		}
+		return newsList;
+	}
+
+	/**
+	 * 新闻列表中新闻总条数
+	 */
+	@Override
+	public long newsListTotal(String newsTypeID) throws Exception {
+		long rowCount = 0;
+		if(newsTypeID.equals("0")){
+			//图片新闻
+		}else{
+			rowCount = this.queryNewsTotal(newsTypeID, 1);
+		}
+		return rowCount;
+	}
 }

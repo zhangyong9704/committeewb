@@ -78,8 +78,31 @@ public interface NewsService {
 	 */
 	public void publishNews(News news, Integer isRollImg) throws Exception;
 
+	/*****************
+	 * 网站前端页面
+	 *****************
+	 */
+	
 	/**
-	 * 前端 查询新闻,访问量+1
+	 * 新闻列表
+	 * @param newsTypeID 新闻类型ID，图片新闻传0
+	 * @param offset
+	 * @param pageSize
+	 * @return
+	 * @throws Exception
+	 */
+	public List<News> newsList(String newsTypeID, int offset, int pageSize) throws Exception;
+	
+	/**
+	 * 新闻列表中新闻总条数
+	 * @param newsTypeID 新闻类型ID，图片新闻传0
+	 * @return
+	 * @throws Exception
+	 */
+	public long newsListTotal(String newsTypeID) throws Exception;
+	
+	/**
+	 * 查询新闻,访问量+1
 	 * @param id
 	 * @return
 	 * @throws Exception

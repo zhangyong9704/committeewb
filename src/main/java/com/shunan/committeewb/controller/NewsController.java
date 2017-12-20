@@ -3,6 +3,8 @@ package com.shunan.committeewb.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,8 +17,6 @@ import com.shunan.committeewb.po.News;
 import com.shunan.committeewb.po.PageResult;
 import com.shunan.committeewb.po.Result;
 import com.shunan.committeewb.service.NewsService;
-import com.shunan.committeewb.utils.CommonUtils;
-import com.shunan.committeewb.utils.FileUtil;
 
 /**
  * 新闻
@@ -233,30 +233,51 @@ public class NewsController {
 		return result;
 	}
 	
+	/****************
+	 * 网站前端页面
+	 ****************
+	 */
+	
 	/**
-	 * 前端 查询新闻,访问量+1
+	 * 查询新闻,访问量+1
 	 * @param id
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/queryNews/{id}")
-	@ResponseBody
-	public Result<News> queryNews(@PathVariable("id") Integer id) throws Exception{
-		Result<News> result = null;
-		List<News> list = new ArrayList<News>();
+	@RequestMapping("/{id}/queryNews")
+	public String queryNews(@PathVariable("id") Integer id,Model model) throws Exception{
+		News news = newsService.queryNews(id);
+		model.addAttribute("news", news);
+		return "forward:/front/newsDetail.jsp";
+	}
+	
+	/**
+	 * 新闻列表
+	 * @param request
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("newsList")
+	public String newsList(HttpServletRequest request,Model model) throws Exception{
+		int currentPage = 1;
+		int pageSize = 20;
 		
-		try {
-			News news = newsService.queryNews(id);
-			if(news!=null){
-				list.add(news);
-			}
-			result = new Result<News>(200, "查询新闻成功！", list);
-		} catch (Exception e) {
-			result = new Result<News>(100, "查询新闻失败！", list);
-			e.printStackTrace();
+		String newsTypeID = request.getParameter("newsTypeID");
+		if(request.getParameter("currentPage")!=null && (!request.getParameter("currentPage").equals(""))){
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
+		int offset = (currentPage-1)*pageSize;
 		
-		return result;
+		List<News> newsList = newsService.newsList(newsTypeID, offset, pageSize);
+		long rowCount = newsService.newsListTotal(newsTypeID);
+		int pageCount = (int) ((rowCount-1)/pageSize + 1);
+		
+		model.addAttribute("newsList", newsList);
+		model.addAttribute("pageCount", pageCount);
+		model.addAttribute("rowCount", rowCount);
+		
+		return "forward:/front/newsList.jsp";
 	}
 
 }

@@ -23,6 +23,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+  	<h1>后台管理系统接口</h1>
+  	 <h4>登录</h4>
+     http://20.14.3.28:8080/committeewb/login<br/>
+     登录<br/>
+     参数：username、password、randomCode（验证码）<br/>
+     验证码图片来源：${pageContext.request.contextPath }/admin/validatecode.jsp
+     <hr/>
+     
   	<h4>网站设置：</h4>
   	http://20.14.3.28:8080/committeewb/webInfo/queryWebInfo<br/>
   	查询网站设置信息
@@ -95,7 +103,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	查询所有的新闻  or 重点专注、文件通知等<br/>
    	参数：typeIDs(新闻类别，CheckBox的name值，前端可选>=0个的新闻类别进行查询)、
    			chooseStatus(选择查看的新闻的状态：0所有状态的新闻、1已发布、2定时发布、3草稿)、<br/>
-   	&nbsp;&nbsp;&nbsp;offset(偏移量)、limit(每页显示的记录数)、order(显示顺序)
+   	&nbsp;&nbsp;&nbsp;offset(偏移量)、limit(每页显示的记录数)、order(显示顺序：asc、desc)
    	<hr/>
    	http://20.14.3.28:8080/committeewb/news/deleteNews<br/>
    	删除新闻<br/>
@@ -115,10 +123,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	http://20.14.3.28:8080/committeewb/news/publishNews<br/>
    	发布新闻<br/>
    	参数：newsTypeID(新闻类别id)、showTime(显示时间,可为null)、isRollImg(是否加入轮播图库：0否,1是)
-   	<hr/>
-   	http://20.14.3.28:8080/committeewb/news/queryNews(Restful风格)<br/>
-   	前端 查询新闻,同时新闻访问量+1<br/>
-   	参数：id(新闻id)
    	<hr/>
    	
    	<h4>轮播图：</h4>
@@ -162,6 +166,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	http://20.14.3.28:8080/committeewb/lifeChat/updateLifeChat<br/>
    	修改 生活大家谈<br/>
    	参数：id、name、picFile(上传的图片在表单中的name值)
+   	<hr/>
+   	
+   	<h1>网站前端接口</h1>
+   	http://20.14.3.28:8080/committeewb/home<br/>
+   	网站前端首页
+   	<hr/>
+   	http://20.14.3.28:8080/committeewb/news/newsList<br/>
+   	新闻列表<br/>
+   	参数：currentPage（当前页，从1开始）、newsTypeID（新闻类型ID）
+   	<hr/>
+   	http://20.14.3.28:8080/committeewb/news/33/queryNews(Restful风格)<br/>
+   	查询新闻，同时新闻访问量+1  （查询id=33的新闻的详细信息）<br/>
+   	参数：id(新闻id)
    	<hr/>
    	
   </body>
