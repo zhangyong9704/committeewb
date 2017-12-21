@@ -25,6 +25,7 @@
         <div class="container-fluid">
             <a class="brand" href="${pageContext.request.contextPath }/admin/index.jsp">
                 <!-- <img src="" alt="蜀南"/> -->
+                <div style="margin-left: 20px;">蜀南</div>
             </a>
             <!-- BEGIN RESPONSIVE MENU TOGGLER -->
             <a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
@@ -73,7 +74,7 @@
                 </a>
             </li>
             <li class="">
-                <a href="${pageContext.request.contextPath }/admin/websetting.html">
+                <a href="${pageContext.request.contextPath }/admin/websetting.jsp">
                     <i class="icon-cogs"></i>
                     <span class="title">网站基础信息</span>
                     <span class="selected"></span>
@@ -91,15 +92,15 @@
                             	写文章</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath }/admin/newslist.html">
+                        <a href="${pageContext.request.contextPath }/admin/newslist.jsp">
                             	文章管理</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath }/admin/picturenews.html">
+                        <a href="${pageContext.request.contextPath }/admin/picturenews.jsp">
                             	图片新闻</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath }/admin/lifechat.html">
+                        <a href="${pageContext.request.contextPath }/admin/lifechat.jsp">
                             	生活大家谈</a>
                     </li>
                 </ul>

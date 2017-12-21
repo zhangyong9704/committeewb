@@ -1,10 +1,7 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<!--[if IE 8]>
-<html lang="en" class="ie8 no-js"> <![endif]-->
-<!--[if IE 9]>
-<html lang="en" class="ie9 no-js"> <![endif]-->
-<!--[if !IE]><!-->
-<html lang="en" class="no-js"> <!--<![endif]-->
+<html>
 
 <head>
     <meta charset="utf-8"/>
@@ -12,15 +9,15 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <meta content="" name="description"/>
     <meta content="" name="author"/>
-    <link href="media/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    <link href="media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
-    <link href="media/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-    <link href="media/css/style.css" rel="stylesheet" type="text/css"/>
-    <link href="media/css/style-responsive.css" rel="stylesheet" type="text/css"/>
-    <link href="media/css/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+    <link href="${pageContext.request.contextPath }/admin/media/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="${pageContext.request.contextPath }/admin/media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+    <link href="${pageContext.request.contextPath }/admin/media/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="${pageContext.request.contextPath }/admin/media/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="${pageContext.request.contextPath }/admin/media/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+    <link href="${pageContext.request.contextPath }/admin/media/css/default.css" rel="stylesheet" type="text/css" id="style_color"/>
     <!-- bootstrap-table -->
-    <link href="media/css/bootstrap-table.min.css" rel="stylesheet" type="text/css" />
-    <link href="media/css/bootstrap-editable.css" rel="stylesheet" type="text/css" />
+    <link href="${pageContext.request.contextPath }/admin/media/css/bootstrap-table.min.css" rel="stylesheet" type="text/css" />
+    <link href="${pageContext.request.contextPath }/admin/media/css/bootstrap-editable.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
     	.uploadForm {
 			display: inline-block;
@@ -57,12 +54,12 @@
     <!-- BEGIN TOP NAVIGATION BAR -->
     <div class="navbar-inner">
         <div class="container-fluid">
-            <a class="brand" href="index.html">
-                 <img src="" alt="蜀南"/>
+            <a class="brand" href="${pageContext.request.contextPath }/admin/index.jsp">
+                <div style="margin-left: 20px;">蜀南</div>
             </a>
             <!-- BEGIN RESPONSIVE MENU TOGGLER -->
             <a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
-                <img src="media/image/menu-toggler.png" alt=""/>
+                <img src="${pageContext.request.contextPath }/admin/media/image/menu-toggler.png" alt=""/>
             </a>
             <!-- END RESPONSIVE MENU TOGGLER -->
             <!-- BEGIN TOP NAVIGATION MENU -->
@@ -70,12 +67,12 @@
                 <!-- BEGIN USER LOGIN DROPDOWN -->
                 <li class="dropdown user">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img alt="" src="media/image/avatar.png" style="width: 29px;"/>
+                        <img alt="" src="${pageContext.request.contextPath }/admin/media/image/avatar.png" style="width: 29px;"/>
                         <span class="username">管理员</span>
                         <i class="icon-angle-down"></i>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="login.html"><i class="icon-key"></i> 登出</a></li>
+                        <li><a href="${pageContext.request.contextPath }/logout"><i class="icon-key"></i> 登出</a></li>
                     </ul>
                 </li>
                 <!-- END USER LOGIN DROPDOWN -->
@@ -100,14 +97,14 @@
             </li>
             <br/>
             <li class="start">
-                <a href="index.html">
+                <a href="${pageContext.request.contextPath }/admin/index.jsp">
                     <i class="icon-home"></i>
                     <span class="title">首页</span>
                     <span class="selected"></span>
                 </a>
             </li>
             <li class="">
-                <a href="websetting.html">
+                <a href="${pageContext.request.contextPath }/admin/websetting.jsp">
                     <i class="icon-cogs"></i>
                     <span class="title">网站基础信息</span>
                     <span class="selected"></span>
@@ -121,46 +118,46 @@
                 </a>
                 <ul class="sub-menu">
                 	<li>
-                        <a href="/committeewb/news/write" target="_blank">
+                        <a href="${pageContext.request.contextPath }/news/write" target="_blank">
                             	写文章</a>
                     </li>
                     <li>
-                        <a href="newslist.html">
+                        <a href="${pageContext.request.contextPath }/admin/newslist.jsp">
                             	文章管理</a>
                     </li>
                     <li>
-                        <a href="picturenews.html">
+                        <a href="${pageContext.request.contextPath }/admin/picturenews.jsp">
                             	图片新闻</a>
                     </li>
                     <li class="active">
-                        <a href="lifechat.html">
+                        <a href="${pageContext.request.contextPath }/admin/lifechat.jsp">
                             	生活大家谈</a>
                     </li>
                 </ul>
             </li>
             <li class="">
-                <a href="/committeewb/home/edit/1" target="_blank">
+                <a href="${pageContext.request.contextPath }/home/edit/1" target="_blank">
                     <i class="icon-flag"></i>
                     <span class="title">规章制度</span>
                     <span class="selected"></span>
                 </a>
             </li>
             <li class="">
-                <a href="/committeewb/home/edit/2" target="_blank">
+                <a href="${pageContext.request.contextPath }/home/edit/2" target="_blank">
                     <i class="icon-certificate"></i>
                     <span class="title">工作标准</span>
                     <span class="selected"></span>
                 </a>
             </li>
             <li class="">
-                <a href="/committeewb/home/edit/3" target="_blank">
+                <a href="${pageContext.request.contextPath }/home/edit/3" target="_blank">
                     <i class="icon-user"></i>
                     <span class="title">通讯录</span>
                     <span class="selected"></span>
                 </a>
             </li>
             <li class="">
-                <a href="/committeewb/home/edit/4" target="_blank">
+                <a href="${pageContext.request.contextPath }/home/edit/4" target="_blank">
                     <i class="icon-th-large"></i>
                     <span class="title">风采录</span>
                     <span class="selected"></span>
@@ -231,10 +228,10 @@
                     <ul class="breadcrumb">
                         <li>
                             <i class="icon-home"></i>
-                            <a href="lifechat.html">新闻管理</a>
+                            <a href="${pageContext.request.contextPath }/admin/lifechat.jsp">新闻管理</a>
                             <i class="icon-angle-right"></i>
                         </li>
-                        <li><a href="lifechat.html">生活大家谈</a></li>
+                        <li><a href="${pageContext.request.contextPath }/admin/lifechat.jsp">生活大家谈</a></li>
                     </ul>
                     <!-- END PAGE TITLE & BREADCRUMB-->
                 </div>
@@ -265,26 +262,26 @@
 
 <!-- BEGIN CORE PLUGINS -->
 
-<script src="media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
-<script src="media/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
-<script src="media/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
-<script src="media/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="media/js/bootstrap-table.min.js"></script>
-<script src="media/js/bootstrap-table-zh-CN.min.js"></script>
-<script src="media/js/bootstrap-editable.min.js" type="text/javascript"></script>
-<script src="media/js/bootstrap-table-editable.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath }/admin/media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath }/admin/media/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath }/admin/media/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath }/admin/media/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath }/admin/media/js/bootstrap-table.min.js"></script>
+<script src="${pageContext.request.contextPath }/admin/media/js/bootstrap-table-zh-CN.min.js"></script>
+<script src="${pageContext.request.contextPath }/admin/media/js/bootstrap-editable.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath }/admin/media/js/bootstrap-table-editable.js" type="text/javascript"></script>
 <!--[if lt IE 9]>
-<script src="media/js/excanvas.min.js"></script>
-<script src="media/js/respond.min.js"></script>
+<script src="${pageContext.request.contextPath }/admin/media/js/excanvas.min.js"></script>
+<script src="${pageContext.request.contextPath }/admin/media/js/respond.min.js"></script>
 <![endif]-->
 
-<script src="media/js/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath }/admin/media/js/jquery.slimscroll.min.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="media/src/app.js" type="text/javascript"></script>
-<script src="media/src/commonUtils.js" type="text/javascript"></script>
-<script src="media/src/lifechat.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath }/admin/media/src/app.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath }/admin/media/src/commonUtils.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath }/admin/media/src/lifechat.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 
 <!-- BEGIN JAVASCRIPTS -->

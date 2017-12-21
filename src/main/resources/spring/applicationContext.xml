@@ -23,5 +23,4 @@
     
     <!-- 加载其他的配置 -->
     <import resource="classpath:spring/applicationContext-dao.xml"/>
-    <import resource="classpath:spring/applicationContext-shiro.xml"/>
 </beans>

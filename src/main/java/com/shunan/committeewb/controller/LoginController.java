@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.shunan.committeewb.po.Banner;
 import com.shunan.committeewb.po.Nav;
 import com.shunan.committeewb.po.News;
@@ -31,6 +32,7 @@ import com.shunan.committeewb.service.BannerService;
 import com.shunan.committeewb.service.NavService;
 import com.shunan.committeewb.service.NewsService;
 import com.shunan.committeewb.service.RollImgService;
+import com.shunan.committeewb.service.UserService;
 import com.shunan.committeewb.service.WebInfoService;
 import com.shunan.committeewb.utils.CommonUtils;
 
@@ -46,9 +48,45 @@ public class LoginController {
 	private RollImgService rollImgService;
 	@Autowired
 	private NewsService newsService;
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping("/login")
-	public String login(HttpServletRequest request) throws Exception{
+	public String login(User user,HttpServletRequest request,String randomCode) throws Exception{
+		User u = userService.queryUserByInfo(user);
+		
+		String validateCode = request.getSession().getAttribute("validateCode").toString();
+		if(!(validateCode.toString().equalsIgnoreCase(randomCode))){
+			request.setAttribute("msg", "验证码不正确！");
+			return "redirect:/admin/login.jsp";
+		}
+		
+		if(u != null){
+			request.getSession().setAttribute("user", u);
+			request.getSession().setMaxInactiveInterval(60*60*2);
+			return "redirect:/admin/index.jsp";
+		}else{
+			request.setAttribute("msg", "用户名/密码不正确！");
+			return "redirect:/admin/login.jsp";
+		}
+	}
+	
+	/**
+	 * 用户退出
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/logout")
+	public String logout(HttpServletRequest request) throws Exception{
+
+		request.getSession().removeAttribute("user");
+		request.getSession().setMaxInactiveInterval(0);
+		return "redirect:/admin/login.jsp";
+	}
+	
+	@RequestMapping("/login2")
+	public String login2(HttpServletRequest request) throws Exception{
 		
 		//如果登陆失败从request中获取认证异常信息，shiroLoginFailure就是shiro异常类的全限定名
 		String exceptionClassName = (String) request.getAttribute("shiroLoginFailure");

@@ -3,7 +3,13 @@
 <mapper namespace="com.shunan.committeewb.dao.UserMapper">
 
 	<!-- 根据用户账号查询用户信息 -->
-	<select id="queryUserByAccount" parameterType="string" resultType="com.shunan.committeewb.po.User">
+	<select id="queryUserByAccount" parameterType="string" resultType="user">
 		select * from user where account=#{account}
 	</select>
+	
+	<!-- 根据用户名密码查询用户信息 -->
+	<select id="queryUserByInfo" parameterType="user" resultType="user">
+		SELECT * FROM user WHERE account=#{account} AND password=#{password}
+	</select>
+	
 </mapper>

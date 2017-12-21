@@ -21,4 +21,10 @@ public class UserServiceImpl implements UserService{
 	public User queryUserByAccount(String account) throws Exception {
 		return userMapper.queryUserByAccount(account);
 	}
+
+	//根据用户名密码查询用户信息
+	@Override
+	public User queryUserByInfo(User user) throws Exception {
+		return userMapper.queryUserByInfo(user);
+	}
 }
