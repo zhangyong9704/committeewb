@@ -13,6 +13,7 @@ import com.shunan.committeewb.dao.NewsMapper;
 import com.shunan.committeewb.dao.RollImgMapper;
 import com.shunan.committeewb.po.News;
 import com.shunan.committeewb.po.RollImg;
+import com.shunan.committeewb.po.RollImgList;
 import com.shunan.committeewb.service.NewsService;
 import com.shunan.committeewb.utils.CommonUtils;
 import com.shunan.committeewb.utils.FileUtil;
@@ -200,14 +201,15 @@ public class NewsServiceImpl implements NewsService {
 	 * 新闻列表
 	 */
 	@Override
-	public List<News> newsList(String newsTypeID, int offset, int pageSize) throws Exception {
-		List<News> newsList = new ArrayList<News>();
+	public List<? extends Object> newsList(String newsTypeID, int offset, int pageSize) throws Exception {
 		if(newsTypeID.equals("0")){
 			//图片新闻
+			List<RollImgList> rollImgList = rollImgMapper.queryPageRollImg(offset, pageSize);
+			return rollImgList;
 		}else{
-			newsList  =this.queryPageNews(newsTypeID, 1, offset, pageSize, "asc");
+			List<News> newsList  =this.queryPageNews(newsTypeID, 1, offset, pageSize, "asc");
+			return newsList;
 		}
-		return newsList;
 	}
 
 	/**
@@ -218,6 +220,7 @@ public class NewsServiceImpl implements NewsService {
 		long rowCount = 0;
 		if(newsTypeID.equals("0")){
 			//图片新闻
+			rowCount = rollImgMapper.queryRollImgTotal();
 		}else{
 			rowCount = this.queryNewsTotal(newsTypeID, 1);
 		}

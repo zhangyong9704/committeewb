@@ -46,14 +46,7 @@ var Login = function () {
 	            submitHandler: function (form) {
 	                //window.location.href = "index.html";
 	                // 获取登录的用户名和密码以及验证码
-	                var input = $(form).find("input");
-	                var username = input[0];
-	                console.log($(username).val());
-	                var password = input[1];
-	                console.log($(password).val());
-	                var randomCode = input[2];
-	                console.log($(randomCode).val());
-	                window.location.href="${pageContext.request.contextPath }/login";
+	            	form.submit();
 	            }
 	        });
 

@@ -27,5 +27,28 @@
     <br/>
     内容：
     ${news.content }
+    <hr/>
+    
+    <h4>网站基本信息：</h4>
+    logo:<img src="${pageContext.request.contextPath }/upload/${webInfo.logoUrl }" style="width:100px;height:100px;"/><br/>
+   	logo旁边的标题:<img src="${pageContext.request.contextPath }/upload/${webInfo.titleUrl }" style="width:100px;height:100px;"/><br/>
+   	网站背景图:<img src="${pageContext.request.contextPath }/upload/${webInfo.backgroundUrl }" style="width:100px;height:100px;"/><br/>
+   	底部字段:${webInfo.field1 },${webInfo.field2 },${webInfo.field3 },${webInfo.field4 },${webInfo.field5 }<br/><br/>
+    
+    <h4>导航栏信息：</h4>
+    <table border="1px">
+    <tr>
+    	<th>标题名称</th>
+    	<th>跳转链接</th>
+    </tr>
+    <c:forEach items="${navList }" var="nav">
+    <tr>
+    	<td>${nav.name }</td>
+    	<td>${nav.jumpLink }</td>
+    </tr>
+   	</c:forEach>
+    </table>
+    <br/><br/>
+    
   </body>
 </html>

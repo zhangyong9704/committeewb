@@ -6,7 +6,7 @@ package com.shunan.committeewb.po;
  *
  */
 public class RollImgList {
-	private int newsID;//新闻ID
+	private int id;//新闻ID
 	private String title;//标题
 	private String picUrl;//宣传图片地址
 	private long count;//浏览量
@@ -15,11 +15,12 @@ public class RollImgList {
 	public RollImgList() {
 		super();
 	}
-	public int getNewsID() {
-		return newsID;
+	public int getId() {
+		return id;
 	}
-	public void setNewsID(int newsID) {
-		this.newsID = newsID;
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getTitle() {
 		return title;
@@ -50,10 +51,5 @@ public class RollImgList {
 	}
 	public void setIsShow(int isShow) {
 		this.isShow = isShow;
-	}
-	@Override
-	public String toString() {
-		return "RollImgList [newsID=" + newsID + ", title=" + title + ", picUrl=" + picUrl + ", count=" + count
-				+ ", sort=" + sort + ", isShow=" + isShow + "]";
 	}
 }

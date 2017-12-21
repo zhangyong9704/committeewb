@@ -449,7 +449,7 @@ var WebSetting = function () {
 					width: 200,
 					formatter : function(value, row, index) {
 						return ["<img style='width:100px;' src="+ self.baseurl+"/upload/"+ value + " />"
-							,"&nbsp;&nbsp;<form class='uploadForm' id=friendform"+row.id+" enctype='multipart/form-data'><div class='myinput'><i class='modifybtn'>修改</i><input name='picFile' type='file' id='uploadfileinput' /></div></form>"
+							,"&nbsp;&nbsp;<form class='uploadForm' id=friendform"+row.id+" enctype='multipart/form-data'><div class='myinput'><i class='modifybtn'>修改</i><input name='picFile' type='file' id='uploadfileinput'  accept='image/jpeg,image/png,image/gif' /></div></form>"
 						].join("");
 					},
 					events : {

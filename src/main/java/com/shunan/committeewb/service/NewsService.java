@@ -91,7 +91,7 @@ public interface NewsService {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<News> newsList(String newsTypeID, int offset, int pageSize) throws Exception;
+	public List<? extends Object> newsList(String newsTypeID, int offset, int pageSize) throws Exception;
 	
 	/**
 	 * 新闻列表中新闻总条数

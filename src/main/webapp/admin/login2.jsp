@@ -37,7 +37,7 @@
     	password:<input type="password" name="password" placeholder="请输入您的密码"/>
     	<br/>
     	<input id="randomCode" name="randomCode" size="8" /> 
-    	<img id="randomcode_img" src="${pageContext.request.contextPath }/admin/validatecode.jsp" alt=""
+    	<img id="randomcode_img" src="${pageContext.request.contextPath }/code" alt=""
 								width="56" height="20" align='absMiddle' /> 
 		<br/>
     	<input type="reset" value="重置"/> &nbsp;&nbsp;<input type="submit" value="登录"/>

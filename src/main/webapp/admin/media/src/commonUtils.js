@@ -1,13 +1,13 @@
 var CommonUtils = (function(){
 	return {
-		baseUrl: "http://20.14.3.19:8080/committeewb",
+		baseUrl: "/committeewb",
 		add0: function(m){
 			return m<10 ? '0'+m : m;
 		},
 		timeStampToDate: function(timeStamp){
 			var time = new Date(timeStamp);
 			var year=time.getFullYear();     
-			var month=time.getMonth()+1;     
+			var month=time.getMonth()+1; 
 			var date=time.getDate();     
 			var hour=time.getHours();     
 			var minute=time.getMinutes();     

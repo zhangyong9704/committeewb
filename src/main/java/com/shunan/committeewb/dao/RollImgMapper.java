@@ -49,4 +49,21 @@ public interface RollImgMapper {
 	 * @throws Exception
 	 */
 	public RollImg queryRollImgByNewsID(int newsID) throws Exception;
+	
+	/**
+	 * 分页查询轮播图
+	 * @param offset
+	 * @param pageSize
+	 * @return
+	 * @throws Exception
+	 */
+	public List<RollImgList> queryPageRollImg(
+			@Param("offset") int offset,@Param("pageSize") int pageSize) throws Exception;
+	
+	/**
+	 * 查询一共有多少条轮播图
+	 * @return
+	 * @throws Exception
+	 */
+	public long queryRollImgTotal() throws Exception;
 }

@@ -32,7 +32,7 @@
         	//刷新验证码：重新给图片的src赋值，后边加时间，防止缓存 
     		$("#randomcode_img").click(function(){
     			$(this).attr('src',
-                	'${pageContext.request.contextPath }/admin/validatecode.jsp?time=' + new Date().getTime());
+                	'${pageContext.request.contextPath }/code?time=' + new Date().getTime());
     		});
     	});
 	</script>
@@ -98,7 +98,7 @@
 						<i class="icon-file-text"></i>
 						<input style="width: 185px;" class="m-wrap placeholder-no-fix" type="text" placeholder="验证码" name="randomCode" id="randomCode"/>
 <!-- 						<img style="width: 60px; height: 34px;" src="media/image/7.jpg" /> -->
-				    	<img id="randomcode_img" src="${pageContext.request.contextPath }/admin/validatecode.jsp" alt=""
+				    	<img id="randomcode_img" src="${pageContext.request.contextPath }/code" alt=""
 						style="width: 60px; height: 34px;" align='absMiddle' /> 
 					</div>
 				</div>

@@ -22,28 +22,41 @@
     共${pageCount }页，共${rowCount }条数据
     <br/>
     
+    <h4>标题：</h4>
+    <c:forEach items="${newsList }" var="news">
+    	<a href="${pageContext.request.contextPath }/news/${news.id }/queryNews">${news.title }</a>>
+    	<br/>
+    </c:forEach>
+    
+    <h4>网站基本信息：</h4>
+    logo:<img src="${pageContext.request.contextPath }/upload/${webInfo.logoUrl }" style="width:100px;height:100px;"/><br/>
+   	logo旁边的标题:<img src="${pageContext.request.contextPath }/upload/${webInfo.titleUrl }" style="width:100px;height:100px;"/><br/>
+   	网站背景图:<img src="${pageContext.request.contextPath }/upload/${webInfo.backgroundUrl }" style="width:100px;height:100px;"/><br/>
+   	底部字段:${webInfo.field1 },${webInfo.field2 },${webInfo.field3 },${webInfo.field4 },${webInfo.field5 }<br/><br/>
+    
+    <h4>导航栏信息：</h4>
     <table border="1px">
     <tr>
-    	<th>标题</th>
-    	<th>宣传图片</th>
-    	<th>内容</th>
-    	<th>发布时间</th>
-    	<th>作者</th>
+    	<th>标题名称</th>
+    	<th>跳转链接</th>
     </tr>
-    <c:forEach items="${newsList }" var="news">
-   	<tr>
-   		<td>${news.title }</td>
-   		<td>
-   			<img src="${pageContext.request.contextPath }/upload/${news.picUrl}" style="width:100px;height:100px;"/>
-   		</td>
-   		<td>${news.content }</td>
-   		<td>
-   			<fmt:formatDate value="${news.showTime }" pattern="yyyy-MM-dd"/>
-   		</td>
-   		<td>${news.author }</td>
-   	</tr>
-    </c:forEach>
+    <c:forEach items="${navList }" var="nav">
+    <tr>
+    	<td>${nav.name }</td>
+    	<td>${nav.jumpLink }</td>
+    </tr>
+   	</c:forEach>
     </table>
+    <br/><br/>
+    
+    <h4>banner图：</h4>
+    <c:forEach items="${bannerList }" var="banner">
+    	标题：${banner.name } </br>
+    	图片：<img src="${pageContext.request.contextPath }/upload/${banner.picUrl}" style="width:100px;height:100px;"/> </br>
+    	跳转链接：${banner.jumpLink } <br/>
+    	<hr/>
+    </c:forEach>
+    <br/><br/>
     
   </body>
 </html>

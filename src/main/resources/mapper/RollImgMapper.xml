@@ -27,9 +27,15 @@
 		INSERT INTO rollimg(newsID) VALUES(#{newsID})
 	</insert>
 	
+	<sql id="rollImgList_sql">
+		SELECT news.id,news.title,news.picUrl,news.count,rollimg.sort,rollimg.isShow
+		FROM news,rollimg
+		WHERE news.id=rollimg.newsID
+	</sql>
+	
 	<!-- 轮播图列表 -->
 	<resultMap type="rollImgList" id="rollImgList">
-		<id property="newsID" column="newsID"/>
+		<id property="id" column="id"/>
 		<result property="title" column="title"/>
 		<result property="picUrl" column="picUrl"/>
 		<result property="count" column="count"/>
@@ -39,9 +45,7 @@
 	
 	<!-- 查询所有的轮播图 -->
 	<select id="queryAllRollImg" resultMap="rollImgList">
-		SELECT rollimg.newsID,news.title,news.picUrl,news.count,rollimg.sort,rollimg.isShow
-		FROM news,rollimg
-		WHERE news.id=rollimg.newsID
+		<include refid="rollImgList_sql"/>
 	</select>
 	
 	<!-- 修改轮播图 -->
@@ -54,5 +58,17 @@
 	<!-- 根据newsID查询轮播图 -->
 	<select id="queryRollImgByNewsID" parameterType="int" resultType="rollImg">
 		SELECT * FROM rollimg WHERE newsID=#{newsID}
+	</select>
+	
+	<!-- 分页查询轮播图 -->
+	<select id="queryPageRollImg" resultMap="rollImgList">
+		<include refid="rollImgList_sql"/> 
+		LIMIT #{offset},#{pageSize}
+	</select>
+	
+	<!-- 查询轮播图一共有多少条 -->
+	<select id="queryRollImgTotal" resultType="long">
+		SELECT COUNT(*)
+		FROM rollimg
 	</select>
 </mapper>

@@ -13,10 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.shunan.committeewb.po.Banner;
+import com.shunan.committeewb.po.Nav;
 import com.shunan.committeewb.po.News;
 import com.shunan.committeewb.po.PageResult;
 import com.shunan.committeewb.po.Result;
+import com.shunan.committeewb.po.WebInfo;
+import com.shunan.committeewb.service.BannerService;
+import com.shunan.committeewb.service.NavService;
 import com.shunan.committeewb.service.NewsService;
+import com.shunan.committeewb.service.WebInfoService;
 
 /**
  * 新闻
@@ -28,6 +34,12 @@ import com.shunan.committeewb.service.NewsService;
 public class NewsController {
 	@Autowired
 	private NewsService newsService;
+	@Autowired
+	private WebInfoService webInfoService;
+	@Autowired
+	private NavService navService;
+	@Autowired
+	private BannerService bannerService;
 	
 	/**
 	 * 分页查询新闻 or 重点专注、公告通知等
@@ -248,6 +260,12 @@ public class NewsController {
 	public String queryNews(@PathVariable("id") Integer id,Model model) throws Exception{
 		News news = newsService.queryNews(id);
 		model.addAttribute("news", news);
+		
+		WebInfo webInfo = webInfoService.queryWebInfo(); //网站基本信息
+		List<Nav> navList = navService.queryAllNavs(); //导航栏
+		model.addAttribute("webInfo", webInfo);
+		model.addAttribute("navList", navList);
+		
 		return "forward:/front/newsDetail.jsp";
 	}
 	
@@ -269,13 +287,20 @@ public class NewsController {
 		}
 		int offset = (currentPage-1)*pageSize;
 		
-		List<News> newsList = newsService.newsList(newsTypeID, offset, pageSize);
+		List<? extends Object> newsList = newsService.newsList(newsTypeID, offset, pageSize);
 		long rowCount = newsService.newsListTotal(newsTypeID);
 		int pageCount = (int) ((rowCount-1)/pageSize + 1);
 		
 		model.addAttribute("newsList", newsList);
 		model.addAttribute("pageCount", pageCount);
 		model.addAttribute("rowCount", rowCount);
+		
+		WebInfo webInfo = webInfoService.queryWebInfo(); //网站基本信息
+		List<Nav> navList = navService.queryAllNavs(); //导航栏
+		List<Banner> bannerList = bannerService.queryAllBanners(0); //头部大banner图
+		model.addAttribute("webInfo", webInfo);
+		model.addAttribute("navList", navList);
+		model.addAttribute("bannerList", bannerList);
 		
 		return "forward:/front/newsList.jsp";
 	}
