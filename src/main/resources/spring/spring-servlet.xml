@@ -81,14 +81,6 @@
 		<!-- 登录拦截器配置 -->
 		<mvc:interceptor>
 			<!-- 先匹配所有路径，然后排除不需要检查的路径 -->
-		 	<mvc:mapping path="/admin/index.jsp"/>
-		  	<mvc:mapping path="/admin/interf.jsp"/>
-		   	<mvc:mapping path="/admin/lifechat.jsp"/>
-		    <mvc:mapping path="/admin/newslist.jsp"/>
-		    <mvc:mapping path="/admin/picturenews.jsp"/>
-		    <mvc:mapping path="/admin/websetting.jsp"/>
-		    <mvc:mapping path="/admin/write.jsp"/>
-		    <mvc:mapping path="/admin/homeWrite.jsp"/>
             <mvc:mapping path="/**"/>
             <!-- 与登录相关的请求 -->
             <mvc:exclude-mapping path="/code"/>
@@ -103,7 +95,13 @@
             <mvc:exclude-mapping path="/front/**" />
             <mvc:exclude-mapping path="/upload/**" />
             <mvc:exclude-mapping path="/ueditor/**" />
-            <!-- 用户是否已经登录的检查bean -->
+            <!-- 放行前端获取数据的接口 -->
+            <mvc:exclude-mapping path="/home" />
+            <mvc:exclude-mapping path="/news/newsList" />
+            <mvc:exclude-mapping path="/news/{id}/query" />
+            <mvc:exclude-mapping path="/news/{newsTypeID}/{id}/{type}/query" />
+            <mvc:exclude-mapping path="/home/{id}/query" />
+            <!-- 配置拦截器 -->
             <bean class="com.shunan.committeewb.interceptor.LoginInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>

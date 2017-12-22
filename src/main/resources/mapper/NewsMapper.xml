@@ -161,4 +161,29 @@
 		SET COUNT=COUNT+1
 		WHERE id=#{id}
 	</update>
+	
+	<sql id="queryNews_detail">
+		<if test="type==10">
+			order by id asc
+		</if>
+		<if test="type==11">
+			order by id desc
+		</if>
+		<if test="type==12">
+			and id&lt; #{id}
+			order by id desc
+		</if>
+		<if test="type==13">
+			and id&gt; #{id}
+			order by id asc
+		</if>
+	</sql>
+	
+	<!-- 新闻详情中的 上一篇、下一篇、首篇、尾篇 -->
+	<select id="queryNewsDetail" resultType="news">
+		<include refid="queryNews"/>
+		where newsTypeID=#{newsTypeID} AND STATUS=0 AND NOW()>showTime 
+		<include refid="queryNews_detail"/>
+		limit 0,1
+	</select>
 </mapper>

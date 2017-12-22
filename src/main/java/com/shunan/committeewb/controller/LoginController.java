@@ -141,7 +141,7 @@ public class LoginController {
 		model.addAttribute("zthdList", zthdList);
 		model.addAttribute("qcjyList", qcjyList);
 		
-		return "forward:/front/home.jsp";
+		return "forward:/front/index2.jsp";
 	}
 	
 	/**

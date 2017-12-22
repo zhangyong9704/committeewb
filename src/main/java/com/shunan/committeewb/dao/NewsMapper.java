@@ -75,4 +75,15 @@ public interface NewsMapper {
 	 * @throws Exception
 	 */
 	public void updateNewsCount(int id) throws Exception;
+	
+	/**
+	 * 新闻详情中的 上一篇、下一篇、首篇、尾篇 
+	 * @param newsTypeID
+	 * @param id
+	 * @param type
+	 * @return
+	 * @throws Exception
+	 */
+	public News queryNewsDetail(@Param("newsTypeID") int newsTypeID,
+			@Param("id") int id,@Param("type") int type) throws Exception;
 }

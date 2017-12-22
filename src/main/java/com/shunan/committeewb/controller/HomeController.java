@@ -1,6 +1,8 @@
 package com.shunan.committeewb.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shunan.committeewb.po.Home;
+import com.shunan.committeewb.po.Nav;
 import com.shunan.committeewb.po.Result;
 import com.shunan.committeewb.service.HomeService;
+import com.shunan.committeewb.service.NavService;
+import com.shunan.committeewb.utils.CommonUtils;
 
 /**
  * 规章制度、工作标准、通讯录、风采录
@@ -25,6 +30,8 @@ public class HomeController {
 	
 	@Autowired
 	private HomeService homeService;
+	@Autowired
+	private NavService navService;
 	
 	/**
 	 * 查询 规章制度、工作标准、通讯录、风采录
@@ -116,6 +123,33 @@ public class HomeController {
 	@RequestMapping("/write")
 	public String write() throws Exception{
 		return "homeWrite";
+	}
+	
+	/*****************
+	 *网站前端页面
+	 *****************
+	 */
+	/**
+	 * 查询规章制度、工作标准、通讯录、风采录
+	 * @param id
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("{id}/query")
+	public String query(@PathVariable("id") Integer id,Model model) throws Exception{
+		Home home = homeService.queryHome(id);
+		model.addAttribute("home", home);
+		
+		List<Nav> navList = navService.queryAllNavs(); //导航栏
+		model.addAttribute("navList", navList);
+		
+		String date = CommonUtils.dateFormate(new Date()); //日期
+		String day = CommonUtils.getWeek(Calendar.getInstance());
+		model.addAttribute("date", date);
+		model.addAttribute("day", day);
+		
+		return "forward:/front/home.jsp";
 	}
 
 }

@@ -11,4 +11,12 @@ public interface NewsTypeMapper {
 	 * @throws Exception
 	 */
 	public List<NewsType> queryAllNewsType() throws Exception;
+	
+	/**
+	 * 根据id查询新闻类别
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public NewsType queryNewsTypeByID(int id) throws Exception;
 }

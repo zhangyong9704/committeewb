@@ -7,7 +7,7 @@
 	</sql>
 	
 	<!-- 查询所有的头部大banner图 or 友情链接-->
-	<select id="queryAllBanners" parameterType="int" resultType="com.shunan.committeewb.po.Banner">
+	<select id="queryAllBanners" parameterType="int" resultType="banner">
 		<include refid="queryBanner"/>
 		<where>
 			type=#{type}
@@ -28,7 +28,7 @@
 	</update>
 	
 	<!-- 根据id查询banner or 友情链接-->
-	<select id="queryBannerByID" parameterType="int" resultType="com.shunan.committeewb.po.Banner">
+	<select id="queryBannerByID" parameterType="int" resultType="banner">
 		SELECT * FROM banner WHERE id=#{id}
 	</select>
 	

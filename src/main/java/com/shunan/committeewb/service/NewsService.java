@@ -108,4 +108,22 @@ public interface NewsService {
 	 * @throws Exception
 	 */
 	public News queryNews(Integer id) throws Exception;
+
+	/**
+	 * 新闻列表中的当前位置
+	 * @param newsTypeID
+	 * @return
+	 * @throws Exception
+	 */
+	public String newsListPosition(String newsTypeID) throws Exception;
+
+	/**
+	 * 上一篇、下一篇、首篇、尾篇
+	 * @param newsTypeID
+	 * @param id
+	 * @param type
+	 * @return
+	 * @throws Exception
+	 */
+	public News queryNews(Integer newsTypeID, Integer id, int type) throws Exception;
 }

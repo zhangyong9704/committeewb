@@ -1,0 +1,77 @@
+.concent{
+    padding: 0;
+    background: white;
+}
+.actirl{
+    width: 80%;
+    margin: 0 auto;
+    height: 900px;
+}
+.title{
+    width: 70%;
+    text-align: center;
+    color: #CC0000;
+    line-height: 30px;
+}
+.left{
+    float: left;
+    width: 70%;
+    border-top:2px dotted #A46770;
+}
+.left p{
+    line-height: 30px;
+    margin-bottom: 10px;
+}
+.left,.right{
+    padding-top: 30px;
+}
+.right {
+    background-color: #F6F6F6;
+    float: right;
+    padding: 0;
+    width: 29%;
+    height: 615px;
+    border-top: 2px solid #A46770;
+}
+.right .r1{
+    height:515px;
+}
+.right .r2{
+    height: 100px;
+    text-align: center;
+    line-height: 50px;
+    border-top: 2px dotted #A46770;
+}
+.right .r2 a{
+    text-decoration: none;
+    color: black;
+}
+.right .r1 ul{
+    padding-left: 10px;
+}
+.right .r1 li{
+    list-style: none;
+    line-height: 30px;
+}
+.right .r1 li a{
+    text-decoration: none;
+}
+.right .r1 li h3{
+    margin-top: 30px;
+    color: black;
+}
+.right .r1 li p{
+    color: black;
+}
+.right .r1 li span{
+    color: #666;
+}
+.fenye{
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+}
+.fenye a{
+    text-decoration: none;
+    color: black;
+}

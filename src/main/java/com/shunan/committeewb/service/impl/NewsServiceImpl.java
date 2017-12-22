@@ -10,8 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.shunan.committeewb.dao.NewsMapper;
+import com.shunan.committeewb.dao.NewsTypeMapper;
 import com.shunan.committeewb.dao.RollImgMapper;
 import com.shunan.committeewb.po.News;
+import com.shunan.committeewb.po.NewsType;
 import com.shunan.committeewb.po.RollImg;
 import com.shunan.committeewb.po.RollImgList;
 import com.shunan.committeewb.service.NewsService;
@@ -23,9 +25,10 @@ import com.shunan.committeewb.utils.FileUtil;
 public class NewsServiceImpl implements NewsService {
 	@Autowired
 	private NewsMapper newsMapper;
-	
 	@Autowired
 	private RollImgMapper rollImgMapper;
+	@Autowired
+	private NewsTypeMapper newsTypeMapper;
 
 	/**
 	 * 查询首页需要展示的重点专注、文件通知、团青快讯等
@@ -225,5 +228,37 @@ public class NewsServiceImpl implements NewsService {
 			rowCount = this.queryNewsTotal(newsTypeID, 1);
 		}
 		return rowCount;
+	}
+
+	/**
+	 * 新闻列表中的当前位置
+	 */
+	@Override
+	public String newsListPosition(String newsTypeID) throws Exception {
+		String newsTypeName = "";
+		int typeID = Integer.parseInt(newsTypeID);
+		if(typeID == 0){
+			newsTypeName = "图片新闻";
+		}else{
+			NewsType newsType = newsTypeMapper.queryNewsTypeByID(typeID);
+			newsTypeName = newsType.getName();
+		}
+		return newsTypeName;
+	}
+
+	/**
+	 *  上一篇、下一篇、首篇、尾篇
+	 */
+	@Override
+	public News queryNews(Integer newsTypeID, Integer id, int type) throws Exception {
+		News news = new News();
+		if(newsTypeID==0){
+			//图片新闻
+			news = rollImgMapper.queryRollImgDetail(id, type);
+		}else{
+			news = newsMapper.queryNewsDetail(newsTypeID, id, type);
+		}
+
+		return news;
 	}
 }

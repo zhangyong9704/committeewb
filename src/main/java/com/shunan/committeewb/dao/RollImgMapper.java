@@ -2,6 +2,8 @@ package com.shunan.committeewb.dao;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import com.shunan.committeewb.po.News;
 import com.shunan.committeewb.po.RollImg;
 import com.shunan.committeewb.po.RollImgList;
 
@@ -66,4 +68,14 @@ public interface RollImgMapper {
 	 * @throws Exception
 	 */
 	public long queryRollImgTotal() throws Exception;
+	
+	/**
+	 * 图片新闻详情中的 上一篇、下一篇、首篇、尾篇
+	 * @param id
+	 * @param type
+	 * @return
+	 * @throws Exception
+	 */
+	public News queryRollImgDetail(@Param("id") int id,
+			@Param("type") int type) throws Exception;
 }

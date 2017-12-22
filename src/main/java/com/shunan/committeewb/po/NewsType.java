@@ -10,6 +10,11 @@ public class NewsType {
 	public NewsType() {
 		super();
 	}
+	public NewsType(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
 	public int getId() {
 		return id;
 	}

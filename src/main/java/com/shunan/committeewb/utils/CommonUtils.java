@@ -1,6 +1,9 @@
 package com.shunan.committeewb.utils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class CommonUtils {
@@ -89,4 +92,55 @@ public class CommonUtils {
 		}
 		return list;
 	}
+	
+	/**
+	 * 格式化日期
+	 * @param date
+	 * @return
+	 * @throws Exception
+	 */
+	public static String dateFormate(Date date) throws Exception{
+		SimpleDateFormat df = new SimpleDateFormat("yyyy年MM月dd日");
+		String time = df.format(date);
+		return time;
+	}
+	
+	/**
+	 * 获取日期是周几
+	 * @param date
+	 * @return
+	 * @throws Exception
+	 */
+	public static String getWeek(Calendar date) throws Exception{
+		int weekday = date.get(Calendar.DAY_OF_WEEK);
+		String day = "星期";
+		switch (weekday) {
+		case 1:
+			day = day + "日";
+			break;
+		case 2:
+			day =  day + "一";
+			break;
+		case 3:
+			day = day + "二";
+			break;
+		case 4:
+			day = day + "三";
+			break;
+		case 5:
+			day = day + "四";
+			break;
+		case 6:
+			day = day + "五";
+			break;
+		case 7:
+			day = day + "六";
+			break;
+
+		default:
+			break;
+		}
+		return day;
+	}
+	
 }

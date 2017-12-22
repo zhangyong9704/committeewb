@@ -14,6 +14,12 @@
 	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/admin/media/css/write.css"/>
 	</head>
 	<body>
+		<%
+			Object user = request.getSession().getAttribute("user");
+			if(user == null){
+				response.sendRedirect("/committeewb/admin/login.jsp");
+			}
+		%>
 		<div class="header">
 			<span id="articleId" style="display: none;"><c:if test="${id!=null }">${id }</c:if><c:if test="${id==null }">-1</c:if></span>
 			<div class="logo">

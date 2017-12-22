@@ -3,7 +3,12 @@
 <mapper namespace="com.shunan.committeewb.dao.NewsTypeMapper">
 
 	<!-- 查询所有的新闻类别 -->
-	<select id="queryAllNewsType" resultType="com.shunan.committeewb.po.NewsType">
+	<select id="queryAllNewsType" resultType="newsType">
 		SELECT * FROM newstype
+	</select>
+	
+	<!-- 根据ID查询新闻类别 -->
+	<select id="queryNewsTypeByID" parameterType="int" resultType="newsType">
+		SELECT * FROM newsType WHERE id=#{id}
 	</select>
 </mapper>

@@ -30,7 +30,6 @@
 	<sql id="rollImgList_sql">
 		SELECT news.id,news.title,news.picUrl,news.count,rollimg.sort,rollimg.isShow
 		FROM news,rollimg
-		WHERE news.id=rollimg.newsID
 	</sql>
 	
 	<!-- 轮播图列表 -->
@@ -46,6 +45,9 @@
 	<!-- 查询所有的轮播图 -->
 	<select id="queryAllRollImg" resultMap="rollImgList">
 		<include refid="rollImgList_sql"/>
+		<where>
+			news.id=rollimg.newsID
+		</where>
 	</select>
 	
 	<!-- 修改轮播图 -->
@@ -63,12 +65,41 @@
 	<!-- 分页查询轮播图 -->
 	<select id="queryPageRollImg" resultMap="rollImgList">
 		<include refid="rollImgList_sql"/> 
+		<where>
+			news.id=rollimg.newsID and isShow=1
+		</where>
 		LIMIT #{offset},#{pageSize}
 	</select>
 	
 	<!-- 查询轮播图一共有多少条 -->
 	<select id="queryRollImgTotal" resultType="long">
 		SELECT COUNT(*)
-		FROM rollimg
+		FROM rollimg 
+		where isShow=1
+	</select>
+	
+	<sql id="queryRollImg_detail">
+		<if test="type==10">
+			order by newsID asc
+		</if>
+		<if test="type==11">
+			order by newsID desc
+		</if>
+		<if test="type==12">
+			and newsID&lt; #{id}
+			order by newsID desc
+		</if>
+		<if test="type==13">
+			and newsID&gt; #{id}
+			order by newsID asc
+		</if>
+	</sql>
+	
+	<!-- 图片新闻详情中的 上一篇、下一篇、首篇、尾篇 -->
+	<select id="queryRollImgDetail" resultType="news">
+		SELECT * FROM rollimg
+		where isShow=1 
+		<include refid="queryRollImg_detail"/>
+		limit 0,1
 	</select>
 </mapper>

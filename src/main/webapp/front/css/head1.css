@@ -1,0 +1,51 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+.row>div{
+    padding-right: 0px;
+    padding-left: 0px;
+}
+.head img{
+    width: 100%;
+}
+.nav div{
+      width: 73%;
+    margin: 0 auto;
+}
+.nav > div > ul {
+    padding: 0;
+    width: 100%;
+    margin-left: -7px;
+    margin-top: -6px;
+}
+.nav >div> ul>li{
+    list-style: none;
+    float: left;
+    width:11.1% ;
+    padding:0;
+ }
+.nav>div>ul>li>a{
+    width: 100%;
+    display:block;
+    color: white;
+    font-size:1rem;
+    text-decoration: none;
+    line-height: 3.3rem;
+    text-align: center;
+}
+#stars_box{
+    height: 300px;
+    width: 60%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100001;
+}
+#stars_box{
+    height: 150px;
+    overflow: hidden;
+}

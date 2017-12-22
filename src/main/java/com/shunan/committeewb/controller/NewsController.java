@@ -1,6 +1,8 @@
 package com.shunan.committeewb.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,13 +18,14 @@ import org.springframework.web.multipart.MultipartFile;
 import com.shunan.committeewb.po.Banner;
 import com.shunan.committeewb.po.Nav;
 import com.shunan.committeewb.po.News;
+import com.shunan.committeewb.po.NewsType;
 import com.shunan.committeewb.po.PageResult;
 import com.shunan.committeewb.po.Result;
-import com.shunan.committeewb.po.WebInfo;
 import com.shunan.committeewb.service.BannerService;
 import com.shunan.committeewb.service.NavService;
 import com.shunan.committeewb.service.NewsService;
-import com.shunan.committeewb.service.WebInfoService;
+import com.shunan.committeewb.service.NewsTypeService;
+import com.shunan.committeewb.utils.CommonUtils;
 
 /**
  * 新闻
@@ -35,11 +38,11 @@ public class NewsController {
 	@Autowired
 	private NewsService newsService;
 	@Autowired
-	private WebInfoService webInfoService;
-	@Autowired
 	private NavService navService;
 	@Autowired
 	private BannerService bannerService;
+	@Autowired
+	private NewsTypeService newsTypeService;
 	
 	/**
 	 * 分页查询新闻 or 重点专注、公告通知等
@@ -251,25 +254,6 @@ public class NewsController {
 	 */
 	
 	/**
-	 * 查询新闻,访问量+1
-	 * @param id
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping("/{id}/queryNews")
-	public String queryNews(@PathVariable("id") Integer id,Model model) throws Exception{
-		News news = newsService.queryNews(id);
-		model.addAttribute("news", news);
-		
-		WebInfo webInfo = webInfoService.queryWebInfo(); //网站基本信息
-		List<Nav> navList = navService.queryAllNavs(); //导航栏
-		model.addAttribute("webInfo", webInfo);
-		model.addAttribute("navList", navList);
-		
-		return "forward:/front/newsDetail.jsp";
-	}
-	
-	/**
 	 * 新闻列表
 	 * @param request
 	 * @param model
@@ -278,9 +262,9 @@ public class NewsController {
 	 */
 	@RequestMapping("newsList")
 	public String newsList(HttpServletRequest request,Model model) throws Exception{
+		//右侧新闻列表所需数据
 		int currentPage = 1;
-		int pageSize = 20;
-		
+		int pageSize = 3;
 		String newsTypeID = request.getParameter("newsTypeID");
 		if(request.getParameter("currentPage")!=null && (!request.getParameter("currentPage").equals(""))){
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -292,17 +276,82 @@ public class NewsController {
 		int pageCount = (int) ((rowCount-1)/pageSize + 1);
 		
 		model.addAttribute("newsList", newsList);
+		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("pageCount", pageCount);
 		model.addAttribute("rowCount", rowCount);
 		
-		WebInfo webInfo = webInfoService.queryWebInfo(); //网站基本信息
 		List<Nav> navList = navService.queryAllNavs(); //导航栏
 		List<Banner> bannerList = bannerService.queryAllBanners(0); //头部大banner图
-		model.addAttribute("webInfo", webInfo);
 		model.addAttribute("navList", navList);
 		model.addAttribute("bannerList", bannerList);
 		
-		return "forward:/front/newsList.jsp";
+		String date = CommonUtils.dateFormate(new Date()); //日期
+		String day = CommonUtils.getWeek(Calendar.getInstance());
+		model.addAttribute("date", date);
+		model.addAttribute("day", day);
+		
+		String newsTypeName = newsService.newsListPosition(newsTypeID); //当前位置
+		model.addAttribute("newsTypeName", newsTypeName);
+		model.addAttribute("newsTypeID", newsTypeID);
+		
+		List<NewsType> newsTypeList = new ArrayList<NewsType>(); //新闻类别
+		NewsType newsType = new NewsType(0, "图片新闻");
+		newsTypeList.add(newsType);
+		newsTypeList.addAll(newsTypeService.queryAllNewsType());
+		model.addAttribute("newsTypeList", newsTypeList);
+		
+		return "forward:/front/listpage.jsp";
+	}
+	
+	/**
+	 * 查询新闻,访问量+1
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/{newsTypeID}/{id}/query")
+	public String query(@PathVariable("newsTypeID") Integer newsTypeID,
+			@PathVariable("id") Integer id,Model model) throws Exception{
+		News news = newsService.queryNews(id);
+		model.addAttribute("news", news);
+		model.addAttribute("newsTypeID", newsTypeID);
+		
+		List<Nav> navList = navService.queryAllNavs(); //导航栏
+		model.addAttribute("navList", navList);
+		
+		String date = CommonUtils.dateFormate(new Date()); //日期
+		String day = CommonUtils.getWeek(Calendar.getInstance());
+		model.addAttribute("date", date);
+		model.addAttribute("day", day);
+		
+		return "forward:/front/details.jsp";
+	}
+	
+	/**
+	 * 上一篇、下一篇、首篇、尾篇
+	 * @param newsTypeID
+	 * @param id
+	 * @param type
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/{newsTypeID}/{id}/{type}/query")
+	public String query(@PathVariable("newsTypeID") int newsTypeID,
+			@PathVariable("id") int id,@PathVariable("type") int type,Model model) throws Exception{
+		News news = newsService.queryNews(newsTypeID,id,type);
+		model.addAttribute("news", news);
+		model.addAttribute("newsTypeID", newsTypeID);
+		
+		List<Nav> navList = navService.queryAllNavs(); //导航栏
+		model.addAttribute("navList", navList);
+		
+		String date = CommonUtils.dateFormate(new Date()); //日期
+		String day = CommonUtils.getWeek(Calendar.getInstance());
+		model.addAttribute("date", date);
+		model.addAttribute("day", day);
+		
+		return "forward:/front/details.jsp";
 	}
 
 }

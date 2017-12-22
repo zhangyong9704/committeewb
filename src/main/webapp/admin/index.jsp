@@ -19,6 +19,12 @@
     <link href="${pageContext.request.contextPath }/admin/media/css/bootstrap-table.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="page-header-fixed page-sidebar-fixed">
+	<%
+		Object user = request.getSession().getAttribute("user");
+		if(user == null){
+			response.sendRedirect("/committeewb/admin/login.jsp");
+		}
+	 %>
 <div class="header navbar navbar-inverse navbar-fixed-top">
     <!-- BEGIN TOP NAVIGATION BAR -->
     <div class="navbar-inner">
