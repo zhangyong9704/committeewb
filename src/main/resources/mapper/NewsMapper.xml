@@ -163,26 +163,26 @@
 	</update>
 	
 	<sql id="queryNews_detail">
-		<if test="type==10">
+		<if test="type=='first' or type=='next'">
 			order by id asc
 		</if>
-		<if test="type==11">
+		<if test="type=='previous' or type=='last'">
 			order by id desc
-		</if>
-		<if test="type==12">
-			and id&lt; #{id}
-			order by id desc
-		</if>
-		<if test="type==13">
-			and id&gt; #{id}
-			order by id asc
 		</if>
 	</sql>
 	
 	<!-- 新闻详情中的 上一篇、下一篇、首篇、尾篇 -->
 	<select id="queryNewsDetail" resultType="news">
 		<include refid="queryNews"/>
-		where newsTypeID=#{newsTypeID} AND STATUS=0 AND NOW()>showTime 
+		<where>
+			newsTypeID=#{newsTypeID} AND STATUS=0 AND NOW()>showTime 
+			<if test="type=='previous'">
+				and id&lt; #{id}
+			</if>
+			<if test="type=='next'">
+				and id&gt; #{id}
+			</if>
+		</where>
 		<include refid="queryNews_detail"/>
 		limit 0,1
 	</select>

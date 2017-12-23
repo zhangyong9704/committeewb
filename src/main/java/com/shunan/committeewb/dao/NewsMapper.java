@@ -85,5 +85,5 @@ public interface NewsMapper {
 	 * @throws Exception
 	 */
 	public News queryNewsDetail(@Param("newsTypeID") int newsTypeID,
-			@Param("id") int id,@Param("type") int type) throws Exception;
+			@Param("id") int id,@Param("type") String type) throws Exception;
 }

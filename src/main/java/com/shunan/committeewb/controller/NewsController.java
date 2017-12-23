@@ -338,7 +338,7 @@ public class NewsController {
 	 */
 	@RequestMapping("/{newsTypeID}/{id}/{type}/query")
 	public String query(@PathVariable("newsTypeID") int newsTypeID,
-			@PathVariable("id") int id,@PathVariable("type") int type,Model model) throws Exception{
+			@PathVariable("id") int id,@PathVariable("type") String type,Model model) throws Exception{
 		News news = newsService.queryNews(newsTypeID,id,type);
 		model.addAttribute("news", news);
 		model.addAttribute("newsTypeID", newsTypeID);

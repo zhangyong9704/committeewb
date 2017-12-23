@@ -26,7 +26,7 @@
     <![endif]-->
 </head>
 <body>
-	<c:if test="${news == null }">
+	<c:if test="${news == null}">
 		<%
 			response.sendRedirect("/committeewb/news/newsList?newsTypeID=0");
 		 %>
@@ -95,10 +95,10 @@
                 </div> <!--主要内容 -->
                     <!--分页-->
                     <div class="fenye">
-                        <a href="${pageContext.request.contextPath }/news/${newsTypeID }/${news.id }/10/query">首篇</a>
-                        <a href="${pageContext.request.contextPath }/news/${newsTypeID }/${news.id }/11/query">|上一篇</a>
-                        <a href="${pageContext.request.contextPath }/news/${newsTypeID }/${news.id }/12/query">|下一篇</a>
-                        <a href="${pageContext.request.contextPath }/news/${newsTypeID }/${news.id }/13/query">|尾篇</a>
+                        <a href="${pageContext.request.contextPath }/news/${newsTypeID }/${news.id }/first/query">首篇</a>
+                        <a href="${pageContext.request.contextPath }/news/${newsTypeID }/${news.id }/previous/query">|上一篇</a>
+                        <a href="${pageContext.request.contextPath }/news/${newsTypeID }/${news.id }/next/query">|下一篇</a>
+                        <a href="${pageContext.request.contextPath }/news/${newsTypeID }/${news.id }/last/query">|尾篇</a>
                     </div><!--分页-->
             </div>
         </div><!--　主体内容部分-->

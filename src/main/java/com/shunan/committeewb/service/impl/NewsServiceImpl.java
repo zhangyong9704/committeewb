@@ -250,11 +250,14 @@ public class NewsServiceImpl implements NewsService {
 	 *  上一篇、下一篇、首篇、尾篇
 	 */
 	@Override
-	public News queryNews(Integer newsTypeID, Integer id, int type) throws Exception {
-		News news = new News();
+	public News queryNews(Integer newsTypeID, Integer id, String type) throws Exception {
+		News news = null;
 		if(newsTypeID==0){
 			//图片新闻
-			news = rollImgMapper.queryRollImgDetail(id, type);
+			RollImg rollImg = rollImgMapper.queryRollImgDetail(id, type);
+			if(rollImg != null){
+				news = newsMapper.queryNewsByID(rollImg.getNewsID());
+			}
 		}else{
 			news = newsMapper.queryNewsDetail(newsTypeID, id, type);
 		}

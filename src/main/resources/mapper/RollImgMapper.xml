@@ -68,6 +68,7 @@
 		<where>
 			news.id=rollimg.newsID and isShow=1
 		</where>
+		order by newsID asc
 		LIMIT #{offset},#{pageSize}
 	</select>
 	
@@ -79,26 +80,26 @@
 	</select>
 	
 	<sql id="queryRollImg_detail">
-		<if test="type==10">
+		<if test="type=='first' or type=='next'">
 			order by newsID asc
 		</if>
-		<if test="type==11">
+		<if test="type=='previous' or type=='last'">
 			order by newsID desc
-		</if>
-		<if test="type==12">
-			and newsID&lt; #{id}
-			order by newsID desc
-		</if>
-		<if test="type==13">
-			and newsID&gt; #{id}
-			order by newsID asc
 		</if>
 	</sql>
 	
 	<!-- 图片新闻详情中的 上一篇、下一篇、首篇、尾篇 -->
-	<select id="queryRollImgDetail" resultType="news">
+	<select id="queryRollImgDetail" resultType="rollimg">
 		SELECT * FROM rollimg
-		where isShow=1 
+		<where>
+			isShow=1
+			<if test="type=='previous'">
+				and newsID&lt; #{id}
+			</if>
+			<if test="type=='next'">
+				and newsID&gt; #{id}
+			</if>
+		</where>
 		<include refid="queryRollImg_detail"/>
 		limit 0,1
 	</select>

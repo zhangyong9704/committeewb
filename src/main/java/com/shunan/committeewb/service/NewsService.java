@@ -125,5 +125,5 @@ public interface NewsService {
 	 * @return
 	 * @throws Exception
 	 */
-	public News queryNews(Integer newsTypeID, Integer id, int type) throws Exception;
+	public News queryNews(Integer newsTypeID, Integer id, String type) throws Exception;
 }
