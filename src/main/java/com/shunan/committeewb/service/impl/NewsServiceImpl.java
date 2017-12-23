@@ -191,14 +191,10 @@ public class NewsServiceImpl implements NewsService {
 		}
 	}
 
-	/**
-	 * 前端 查询新闻,访问量+1
+	/************
+	 * 网站前端
+	 ************
 	 */
-	@Override
-	public News queryNews(Integer id) throws Exception {
-		newsMapper.updateNewsCount(id);
-		return newsMapper.queryNewsByID(id);
-	}
 
 	/**
 	 * 新闻列表
@@ -247,7 +243,7 @@ public class NewsServiceImpl implements NewsService {
 	}
 
 	/**
-	 *  上一篇、下一篇、首篇、尾篇
+	 *  新闻详情
 	 */
 	@Override
 	public News queryNews(Integer newsTypeID, Integer id, String type) throws Exception {
@@ -261,7 +257,10 @@ public class NewsServiceImpl implements NewsService {
 		}else{
 			news = newsMapper.queryNewsDetail(newsTypeID, id, type);
 		}
-
+		
+		if(news!=null){
+			newsMapper.updateNewsCount(news.getId());
+		}
 		return news;
 	}
 }

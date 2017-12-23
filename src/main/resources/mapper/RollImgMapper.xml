@@ -88,7 +88,7 @@
 		</if>
 	</sql>
 	
-	<!-- 图片新闻详情中的 上一篇、下一篇、首篇、尾篇 -->
+	<!-- 图片新闻详情-->
 	<select id="queryRollImgDetail" resultType="rollimg">
 		SELECT * FROM rollimg
 		<where>
@@ -98,6 +98,9 @@
 			</if>
 			<if test="type=='next'">
 				and newsID&gt; #{id}
+			</if>
+			<if test="type=='eq'">
+				and newsID=#{id}
 			</if>
 		</where>
 		<include refid="queryRollImg_detail"/>

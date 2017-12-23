@@ -100,14 +100,6 @@ public interface NewsService {
 	 * @throws Exception
 	 */
 	public long newsListTotal(String newsTypeID) throws Exception;
-	
-	/**
-	 * 查询新闻,访问量+1
-	 * @param id
-	 * @return
-	 * @throws Exception
-	 */
-	public News queryNews(Integer id) throws Exception;
 
 	/**
 	 * 新闻列表中的当前位置

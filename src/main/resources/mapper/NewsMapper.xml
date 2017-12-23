@@ -171,7 +171,7 @@
 		</if>
 	</sql>
 	
-	<!-- 新闻详情中的 上一篇、下一篇、首篇、尾篇 -->
+	<!-- 新闻详情 -->
 	<select id="queryNewsDetail" resultType="news">
 		<include refid="queryNews"/>
 		<where>
@@ -181,6 +181,9 @@
 			</if>
 			<if test="type=='next'">
 				and id&gt; #{id}
+			</if>
+			<if test="type=='eq'">
+				and id=#{id}
 			</if>
 		</where>
 		<include refid="queryNews_detail"/>

@@ -70,7 +70,7 @@ public interface RollImgMapper {
 	public long queryRollImgTotal() throws Exception;
 	
 	/**
-	 * 图片新闻详情中的 上一篇、下一篇、首篇、尾篇
+	 * 图片新闻详情
 	 * @param id
 	 * @param type
 	 * @return

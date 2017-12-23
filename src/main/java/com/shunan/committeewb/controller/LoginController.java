@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,15 +54,22 @@ public class LoginController {
 	
 	@RequestMapping("/login")
 	public String login(User user,HttpServletRequest request,String randomCode) throws Exception{
-		User u = userService.queryUserByInfo(user);
-		
 		String validateCode = request.getSession().getAttribute("validateCode").toString();
 		if(!(validateCode.toString().equalsIgnoreCase(randomCode))){
 			request.setAttribute("msg", "验证码不正确！");
 			return "redirect:/admin/login.jsp";
 		}
 		
-		if(u != null){
+		User u = userService.queryUserByAccount(user.getAccount());
+		if(u == null){
+			request.setAttribute("msg", "用户名/密码不正确！");
+			return "redirect:/admin/login.jsp";
+		}
+		
+		Md5Hash md5Hash = new Md5Hash(user.getPassword(), u.getSalt(), 10);
+		String rePassword = md5Hash.toString();
+		
+		if(rePassword.equals(u.getPassword())){
 			request.getSession().setAttribute("user", u);
 			request.getSession().setMaxInactiveInterval(60*60*2);
 			return "redirect:/admin/index.jsp";

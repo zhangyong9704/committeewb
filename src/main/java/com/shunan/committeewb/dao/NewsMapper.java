@@ -77,7 +77,7 @@ public interface NewsMapper {
 	public void updateNewsCount(int id) throws Exception;
 	
 	/**
-	 * 新闻详情中的 上一篇、下一篇、首篇、尾篇 
+	 * 新闻详情
 	 * @param newsTypeID
 	 * @param id
 	 * @param type

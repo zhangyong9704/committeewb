@@ -304,31 +304,7 @@ public class NewsController {
 	}
 	
 	/**
-	 * 查询新闻,访问量+1
-	 * @param id
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping("/{newsTypeID}/{id}/query")
-	public String query(@PathVariable("newsTypeID") Integer newsTypeID,
-			@PathVariable("id") Integer id,Model model) throws Exception{
-		News news = newsService.queryNews(id);
-		model.addAttribute("news", news);
-		model.addAttribute("newsTypeID", newsTypeID);
-		
-		List<Nav> navList = navService.queryAllNavs(); //导航栏
-		model.addAttribute("navList", navList);
-		
-		String date = CommonUtils.dateFormate(new Date()); //日期
-		String day = CommonUtils.getWeek(Calendar.getInstance());
-		model.addAttribute("date", date);
-		model.addAttribute("day", day);
-		
-		return "forward:/front/details.jsp";
-	}
-	
-	/**
-	 * 上一篇、下一篇、首篇、尾篇
+	 * 查询新闻详情，访问量+1
 	 * @param newsTypeID
 	 * @param id
 	 * @param type
