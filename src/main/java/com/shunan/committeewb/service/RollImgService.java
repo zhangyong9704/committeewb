@@ -1,6 +1,7 @@
 package com.shunan.committeewb.service;
 
 import java.util.List;
+import com.shunan.committeewb.po.News;
 import com.shunan.committeewb.po.RollImg;
 import com.shunan.committeewb.po.RollImgList;
 
@@ -10,7 +11,7 @@ public interface RollImgService {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<RollImg> queryHomeRollImg() throws Exception;
+	public List<News> queryHomeRollImg() throws Exception;
 	
 	/**
 	 * 查询所有的轮播图

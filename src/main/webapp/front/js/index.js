@@ -1,16 +1,32 @@
 /**
  * Created by Administrator on 2017/12/14.
  */
-// 导航
-$('.nav>div a').mouseover(function () {
-    $('.nav>div a').css("background","#C90102");
-    $(this).css("background","#A00314")
-})
+// //初始化2017-12-22
+// var imgh1=$(".warper").find("img").height();
+// $(".warper").css("height",imgh1);
+// var h1=parseInt($(".swiper-slide").find(".thumbnail").height())+0+"px";
+// $(".swiper-wrapper,.swiper-slide").css("height",h1);
+// $(".swiper-container").css("height",h1);
+// // 导航
+// //2017-12-22
+// var navh1=parseInt($(".nav").find("img").height())-6+"px";
+// var navh=$(".nav").find("img").height();
+// $(".nav").css("height",navh1);
+// $(".nav a").css("height",navh1);
+// $(".nav a").css("lineHeight",navh1);
+// $(".nav div").css("bottom",navh);
+//
+//
+// $('.nav>div a').mouseover(function () {
+//     $('.nav>div a').css("background","#C90102");
+//     $(this).css("background","#A00314")
+// })
+
    //轮播
     var len = $('.warper .sildebar li').length;
     var timer;
     var index = 0;
-    var focusBox = '<ul class="focusBox clearfix"></ul>';
+    var focusBox = '<ul class="focusBox"></ul>';
     $('.warper').append(focusBox);
 
     for(var i=0;i<len;i++){
@@ -21,17 +37,19 @@ $('.nav>div a').mouseover(function () {
         index = $('.warper .focusBox li').index(this);
         showPic(index);
     }).eq(0).trigger('click');
+
     $('.warper').hover(function(){
         clearInterval(timer);
     },function(){
-        timer = setInterval(function(){
+      timer = setInterval(function(){
             showPic(index);
             index++;
             if(index == len){index = 0;}
         },2000);
-    }).trigger('mouseleave');
+    });
     function showPic(index) {
-        $('.sildebar li').eq(index).fadeIn(800).siblings().fadeOut(1000);
+        $('.sildebar li').fadeOut(0);
+        $('.sildebar li').eq(index).fadeIn(500);
         $('.focusBox li').eq(index).css("background", "#F70A1C").siblings().css("background","#320B4E");
         // alert(index)
     }
@@ -93,3 +111,31 @@ for(var i=0;i<500;i++){
     var obj=new Obj();
     obj.drawStar();
 }
+//横向滚动
+var mySwiper = new Swiper ('.swiper-container', {
+//    autoHeight:true,
+    loop : true,
+    slidesPerView : 5,
+    spaceBetween :5,
+    freeMode :true,
+    freeModeMomentum : false,
+    freeModeSticky : false,
+    speed:3000,
+    autoplay :true,
+})
+$('.swiper-container').mouseover(function(){
+    mySwiper.stopAutoplay();
+})
+$('.swiper-slide').mouseover(function(){
+    mySwiper.stopAutoplay();
+    $('.swiper-slide a').css({"color":"#333"})
+    $('.swiper-slide img').css({"border":"4px solid transparent"})
+    $(this).find('img').css({"border":"4px solid #D7AD4B"})
+    $(this).find('a').css({"color":"red"})
+
+})
+$('.swiper-slide').mouseout(function(){
+    mySwiper.startAutoplay();
+    $('.swiper-slide a').css({"color":"#333"})
+    $('.swiper-slide img').css({"border":"4px solid transparent"})
+})

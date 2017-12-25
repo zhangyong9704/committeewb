@@ -37,24 +37,25 @@
         <!--<div class="col-md-12 col-sm-12 col-xs-12 " style="background:url(img/head11.jpg) no-repeat center 60%;background-size: cover;height: 300px;">-->
         <div class="col-md-12 col-sm-12 col-xs-12">
             <img src="${pageContext.request.contextPath }/front/img/head.jpg"><!--1920*345-->
-            <div id="stars_box"></div>
+        <div id="stars_box"></div>
         </div>
     </div><!--head部分-->
     <!--主体部分 -->
     <div class="row main" style="background:url(${pageContext.request.contextPath }/front/img/main1.jpg) no-repeat;background-size:100%">    <!--1920*1245-->
         <!--导航部分-->
-        <div class="col-md-12 col-sm-12 col-xs-12">
+         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="row" style="position: relative;top:-5px;z-index: 100">
-                <div class="col-md-12 col-sm-12 col-xs-12 nav" style="background: url(${pageContext.request.contextPath }/front/img/navbg.png) no-repeat;background-size: 100%"><!--1920*73-->
+                <div class="col-md-12 col-sm-12 col-xs-12 nav"><!--1920*73-->
+                    <img src="${pageContext.request.contextPath }/front/img/navbg.png" style="width: 100%">
                     <div>
-                        <ul>
-                            <c:forEach items="${navList }" var="nav">
-						    	<li><a href="${pageContext.request.contextPath }/${nav.jumpLink }">${nav.name }</a></li>
-						   	</c:forEach>
-						   	<li><a href="#">${date }</a></li>
-                            <li><a href="#">${day }</a></li>
-                            <li><a href="#">天气晴</a></li>
-                        </ul>
+                    <ul>
+                        <c:forEach items="${navList }" var="nav">
+					    	<li><a href="${pageContext.request.contextPath }/${nav.jumpLink }">${nav.name }</a></li>
+					   	</c:forEach>
+					   	<li><a href="#">${date }</a></li>
+                        <li><a href="#">${day }</a></li>
+                        <li><a href="#">天气晴</a></li>
+                    </ul>
                     </div>
                 </div>
             </div>
@@ -117,5 +118,7 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="${pageContext.request.contextPath }/front/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath }/front/js/index.js"></script>
+<script src="${pageContext.request.contextPath }/front/js/nav.js"></script>
+</body>
 </body>
 </html>

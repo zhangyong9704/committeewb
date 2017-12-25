@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.shunan.committeewb.dao.RollImgMapper;
+import com.shunan.committeewb.po.News;
 import com.shunan.committeewb.po.RollImg;
 import com.shunan.committeewb.po.RollImgList;
 import com.shunan.committeewb.service.RollImgService;
@@ -21,7 +22,7 @@ public class RollImgServiceImpl implements RollImgService{
 	 * 查询首页展示的轮播图的信息
 	 */
 	@Override
-	public List<RollImg> queryHomeRollImg() throws Exception {
+	public List<News> queryHomeRollImg() throws Exception {
 		return rollImgMapper.queryHomeRollImg();
 	}
 

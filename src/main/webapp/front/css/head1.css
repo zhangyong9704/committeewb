@@ -10,8 +10,10 @@ body{
     width: 100%;
 }
 .nav div{
-      width: 73%;
+    position: relative;
+    width: 73%;
     margin: 0 auto;
+    /*border:1px solid black;*/
 }
 .nav > div > ul {
     padding: 0;
@@ -24,14 +26,15 @@ body{
     float: left;
     width:11.1% ;
     padding:0;
+    /*border: 1px solid black;*/
  }
 .nav>div>ul>li>a{
+    position: relative;
+    z-index: 1000;
     width: 100%;
     display:block;
     color: white;
-    font-size:1rem;
     text-decoration: none;
-    line-height: 3.3rem;
     text-align: center;
 }
 #stars_box{

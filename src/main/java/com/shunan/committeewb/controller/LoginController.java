@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -13,11 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.crypto.hash.Md5Hash;
-import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,9 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.shunan.committeewb.po.Banner;
 import com.shunan.committeewb.po.Nav;
 import com.shunan.committeewb.po.News;
-import com.shunan.committeewb.po.RollImg;
 import com.shunan.committeewb.po.User;
-import com.shunan.committeewb.po.WebInfo;
 import com.shunan.committeewb.service.BannerService;
 import com.shunan.committeewb.service.NavService;
 import com.shunan.committeewb.service.NewsService;
@@ -110,27 +108,31 @@ public class LoginController {
 		return "login";
 	}
 	
-	@RequestMapping("/index")
+/*	@RequestMapping("/index")
 	public String index(HttpServletRequest request) throws Exception{
 		Subject subject = SecurityUtils.getSubject();
 		User user = (User) subject.getPrincipal();
 		request.getSession().setAttribute("user", user);
 		return "index";
-	}
+	}*/
 	
-	@RequestMapping("/home")
+	@RequestMapping("/index")
 	public String home(Model model) throws Exception{
-		WebInfo webInfo = webInfoService.queryWebInfo(); //网站基本信息
 		List<Nav> navList = navService.queryAllNavs(); //导航栏
+		String date = CommonUtils.dateFormate(new Date());
+		String day = CommonUtils.getWeek(Calendar.getInstance());
+		model.addAttribute("navList", navList);
+		model.addAttribute("date", date);
+		model.addAttribute("day", day);
+		
 		List<Banner> bannerList = bannerService.queryAllBanners(0); //头部大banner图
 		List<Banner> linksList = bannerService.queryAllBanners(1); //底部友情链接
-		model.addAttribute("webInfo", webInfo);
-		model.addAttribute("navList", navList);
 		model.addAttribute("bannerList", bannerList);
 		model.addAttribute("linksList", linksList);
 		
-		//轮播图
-		List<RollImg> rollImgList = rollImgService.queryHomeRollImg();
+		List<News> rollImgList = rollImgService.queryHomeRollImg(); //轮播图
+		model.addAttribute("rollImgList", rollImgList);
+		
 		//重点专注、公告栏、文件通知、团青快讯、蜀南青语、专题活动、青春剪影
 		List<News> zdzzList = newsService.queryHomeNews(CommonUtils.NEWS_ZDZZ, CommonUtils.NEWS_ZDZZ_LIMIT);
 		List<News> ggList = newsService.queryHomeNews(CommonUtils.NEWS_GG, CommonUtils.NEWS_GG_LIMIT);
@@ -139,8 +141,6 @@ public class LoginController {
 		List<News> snqyList = newsService.queryHomeNews(CommonUtils.NEWS_SNQY, CommonUtils.NEWS_SNQY_LIMIT);
 		List<News> zthdList = newsService.queryHomeNews(CommonUtils.NEWS_ZTHD, CommonUtils.NEWS_ZTHD_LIMIT);
 		List<News> qcjyList = newsService.queryHomeNews(CommonUtils.NEWS_QCJY, CommonUtils.NEWS_QCJY_LIMIT);
-		
-		model.addAttribute("rollImgList", rollImgList);
 		model.addAttribute("zdzzList", zdzzList);
 		model.addAttribute("ggList", ggList);
 		model.addAttribute("wjtzList", wjtzList);
@@ -149,7 +149,7 @@ public class LoginController {
 		model.addAttribute("zthdList", zthdList);
 		model.addAttribute("qcjyList", qcjyList);
 		
-		return "forward:/front/index2.jsp";
+		return "forward:/front/index.jsp";
 	}
 	
 	/**

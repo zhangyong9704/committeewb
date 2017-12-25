@@ -3,7 +3,7 @@
 <mapper namespace="com.shunan.committeewb.dao.RollImgMapper">
 	
 	<!-- 查询首页展示的轮播图的信息 -->
-	<select id="queryHomeRollImg" resultType="com.shunan.committeewb.po.News">
+	<select id="queryHomeRollImg" resultType="news">
 		select news.*
 		from news,rollimg
 		where news.id=rollimg.newsID and rollimg.isShow=1

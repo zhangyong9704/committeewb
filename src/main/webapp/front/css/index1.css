@@ -60,6 +60,8 @@
 }
 .warper ul{
     padding: 0;
+    overflow: hidden;
+    /*height: 100%;*/
 }
 .warper li{
     list-style: none;
@@ -171,8 +173,10 @@
 }
 .secondRow  .lastlist{
     width: 100%;
+    text-align: center;
  }
 .secondRow .down{
+    width: 100%;
     height: 30px;
     text-align: center;
     line-height: 30px;

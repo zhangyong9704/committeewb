@@ -23,18 +23,18 @@
 <div class="container-fluid">
     <!--head部分-->
     <div class="row head">
-        <!--<div class="col-md-12 col-sm-12 col-xs-12 " style="background:url(img/head11.jpg) no-repeat center 60%;background-size: cover;height: 300px;">-->
         <div class="col-md-12 col-sm-12 col-xs-12">
                     <img src="img/head.jpg"> <!--1920*345-->
         <div id="stars_box"></div>
         </div>
     </div><!--head部分-->
    <!--主体部分 -->
-    <div class="row main" style="background:url(img/main1.jpg) no-repeat;background-size:100% ">    <!--1920*1245-->
+    <div class="row main" style="background:url(img/main1.jpg) no-repeat;background-size:100% ">  <!--1920*1245-->
         <!--导航部分-->
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="row" style="position: relative;top:-5px;z-index: 100">
-                <div class="col-md-12 col-sm-12 col-xs-12 nav" style="background: url(img/navbg.png) no-repeat;background-size: 100%"><!--1920*73-->
+                <div class="col-md-12 col-sm-12 col-xs-12 nav"><!--1920*73-->
+                    <img src="img/navbg.png" style="width: 100%">
                     <div>
                     <ul>
                         <li><a href="#">首页</a></li>
@@ -61,17 +61,14 @@
                 </div> <!--banner-->
                 <!--第一行-->
                 <div class="row items">
-                    <!--<div class="col-md-4 col-sm-4 col-xs-4" style="background: url(img/listbg.png) no-repeat"><a href="#">图片新闻</a><a href="#">更多>>></a></div>  &lt;!&ndash;　306*31&ndash;&gt;-->
                     <div class="col-md-4 col-sm-4 col-xs-4 a1"><img src="img/listbg.png"><a href="#">图片新闻</a><a href="#">更多>>></a></div>  <!--　306*31-->
-                    <!--<div class="col-md-4 col-sm-4 col-xs-4" style="background: url(img/listbg.png) no-repeat"><a href="#">专注重点</a><a href="#">更多>>></a></div>-->
                     <div class="col-md-4 col-sm-4 col-xs-4 a1"><img src="img/listbg.png"><a href="#">专注重点</a><a href="#">更多>>></a></div>
-                    <!--<div class="col-md-4 col-sm-4 col-xs-4" style="background: url(img/listbg.png) no-repeat"><a href="#">生活大家谈</a><a href="#">更多>>></a></div>-->
                     <div class="col-md-4 col-sm-4 col-xs-4 a1"><img src="img/listbg.png"><a href="#">生活大家谈</a><a href="#">更多>>></a></div>
                 </div>
                 <div class="row itemsCon">
                    <!--轮播图 -->
                     <div class="col-md-4 col-sm-4 col-xs-4">
-                        <div class="warper">
+                        <div class="warper" style="background:black;">
                                     <ul id="slideName1" class="sildebar clearfix">
                                         <li><a href=""><img src="img/lunbo0.png" alt="图片一"></a></li> <!--380*201 -->
                                         <li><a href=""><img src="img/lunbo0.png" alt="图片二"></a></li>
@@ -97,7 +94,6 @@
                     </div> <!--重点专注-->
                     <!--公告栏-->
                     <div class="col-md-4 col-sm-4 col-xs-4">
-                        <!--<a href="#"><img src="img/rightbanner.png"></a>   &lt;!&ndash;　380*122&ndash;&gt;-->
                         <ul>
                             <li><a href="#">青年发展规划十大领域 总书记这样叮咛</a></li>
                             <li><a href="#">青年发展规划十大领域 总书记这样叮咛</a></li>
@@ -167,7 +163,7 @@
                         <img src="img/listbg.png">   <!--　306*31-->
                         <a href="#">专题活动</a>
                         <a href="#">更多>>></a>
-                        <div class="list lastlist">
+                        <div class="list lastlist" style="position: relative">
                             <div class="img">
                                 <img src="img/samll.png">  <!--287*69-->
                                 <img src="img/samll.png">
@@ -175,7 +171,7 @@
                                 <img src="img/samll.png">
                             </div>
                             <!--向下箭头-->
-                            <div class="down">
+                            <div class="down" style="position: absolute;bottom: 0">
                                 <span class="cli">>>></span>
                             </div>
                         </div>
@@ -254,49 +250,12 @@
     </div><!--container-fluid结束-->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/nav.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
 <script src="js/idangerous.swiper2.7.6.min.js"></script>
-<script src="js/index.js"></script>o
-<script src="js/animate.js"></script>
-<!--<script src="js/snow.js"></script>-->
-<script>
-//    lunbo(6,1000)
-$(function(){
-    var imgh1=$(".warper").find("img").height();
-    $(".warper").css("height",imgh1);
-    var h1=parseInt($(".swiper-slide").find(".thumbnail").height())+30+"px";
-    $(".swiper-wrapper,.swiper-slide").css("height",h1);
-    $(".swiper-container").css("height",h1);
+<script src="js/index.js"></script>
+<!--<script src="js/animate.js"></script>-->
 
-})
-var mySwiper = new Swiper ('.swiper-container', {
-//    autoHeight:true,
-    loop : true,
-    slidesPerView : 5,
-    spaceBetween :5,
-    freeMode :true,
-    freeModeMomentum : false,
-    freeModeSticky : false,
-    speed:3000,
-    autoplay : true,
-})
-$('.swiper-container').mouseover(function(){
-    mySwiper.stopAutoplay();
-})
-$('.swiper-slide').mouseover(function(){
-    mySwiper.stopAutoplay();
-    $('.swiper-slide a').css({"color":"#333"})
-    $('.swiper-slide img').css({"border":"4px solid transparent"})
-    $(this).find('img').css({"border":"4px solid #D7AD4B"})
-    $(this).find('a').css({"color":"red"})
 
-})
-$('.swiper-slide').mouseout(function(){
-    mySwiper.startAutoplay();
-    $('.swiper-slide a').css({"color":"#333"})
-    $('.swiper-slide img').css({"border":"4px solid transparent"})
-})
-</script>
 </body>
 </html>

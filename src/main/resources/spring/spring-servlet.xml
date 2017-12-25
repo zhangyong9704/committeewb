@@ -96,7 +96,7 @@
             <mvc:exclude-mapping path="/upload/**" />
             <mvc:exclude-mapping path="/ueditor/**" />
             <!-- 放行前端获取数据的接口 -->
-            <mvc:exclude-mapping path="/home" />
+            <mvc:exclude-mapping path="/index" />
             <mvc:exclude-mapping path="/news/newsList" />
             <mvc:exclude-mapping path="/news/{newsTypeID}/{id}/query" />
             <mvc:exclude-mapping path="/home/{id}/query" />
