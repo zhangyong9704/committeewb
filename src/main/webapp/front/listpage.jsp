@@ -97,7 +97,7 @@
                       <ul>
                       <c:forEach items="${newsList }" var="news">
                       	<li>
-                      		<a href="${pageContext.request.contextPath }/news/${newsTypeID }/${news.id }/eq/query">${news.title }</a>
+                      		<a href="${pageContext.request.contextPath }/news/${newsTypeID }/${news.id }/query">${news.title }</a>
                       	</li>
                       </c:forEach>
                       </ul>

@@ -98,7 +98,7 @@
             <!-- 放行前端获取数据的接口 -->
             <mvc:exclude-mapping path="/home" />
             <mvc:exclude-mapping path="/news/newsList" />
-            <mvc:exclude-mapping path="/news/{newsTypeID}/{id}/{type}/query" />
+            <mvc:exclude-mapping path="/news/{newsTypeID}/{id}/query" />
             <mvc:exclude-mapping path="/home/{id}/query" />
             <!-- 配置拦截器 -->
             <bean class="com.shunan.committeewb.interceptor.LoginInterceptor"/>

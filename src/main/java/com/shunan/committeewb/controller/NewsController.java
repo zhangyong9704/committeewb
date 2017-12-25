@@ -312,12 +312,21 @@ public class NewsController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/{newsTypeID}/{id}/{type}/query")
+	@RequestMapping("/{newsTypeID}/{id}/query")
 	public String query(@PathVariable("newsTypeID") int newsTypeID,
-			@PathVariable("id") int id,@PathVariable("type") String type,Model model) throws Exception{
-		News news = newsService.queryNews(newsTypeID,id,type);
+			@PathVariable("id") int id,Model model) throws Exception{
+		News news = newsService.queryNews(newsTypeID,id,"eq"); //当前新闻
 		model.addAttribute("news", news);
 		model.addAttribute("newsTypeID", newsTypeID);
+		
+		News firstNews = newsService.queryNews(newsTypeID, id, "first");//首篇、上一篇、下一篇、尾篇
+		News previousNews = newsService.queryNews(newsTypeID, id, "previous"); 
+		News nextNews = newsService.queryNews(newsTypeID, id, "next");
+		News lastNews = newsService.queryNews(newsTypeID, id, "last");
+		model.addAttribute("firstNews", firstNews);
+		model.addAttribute("previousNews", previousNews);
+		model.addAttribute("nextNews", nextNews);
+		model.addAttribute("lastNews", lastNews);
 		
 		List<Nav> navList = navService.queryAllNavs(); //导航栏
 		model.addAttribute("navList", navList);
