@@ -3,9 +3,7 @@
  */
 //初始化2017-12-22
     $(function () {
-
-
-var imgh1=$(".warper").find("img").height();
+var imgh1=parseInt($(".warper").find("img").height())+30+"px";
 $(".warper").css("height",imgh1);
 var h1=parseInt($(".swiper-slide").find(".thumbnail").height())+30+"px";
 $(".swiper-wrapper,.swiper-slide").css("height",h1);
@@ -18,8 +16,6 @@ $(".nav").css("height",navh1);
 $(".nav a").css("height",navh1);
 $(".nav a").css("lineHeight",navh1);
 $(".nav div").css("bottom",navh);
-
-
 $('.nav>div a').mouseover(function () {
     $('.nav>div a').css("background","#C90102");
     $(this).css("background","#A00314")
@@ -33,7 +29,7 @@ window.onresize = function(){
 };
 function setwidth() {
        var leftw=parseInt($(".actirl").width())-690+"px";
-   if(document.body.clientWidth>=1301){
+   if(document.body.clientWidth>=1366){
        $(".actirl .right").css("width",leftw);
        $(".actirl .right").show()
       }else {

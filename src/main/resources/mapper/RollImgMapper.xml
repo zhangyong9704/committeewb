@@ -7,7 +7,8 @@
 		select news.*
 		from news,rollimg
 		where news.id=rollimg.newsID and rollimg.isShow=1
-		order by sort asc
+		order by sort asc 
+		limit 0,5
 	</select>
 	
 	<!-- 删除轮播图 -->

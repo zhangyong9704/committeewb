@@ -50,11 +50,11 @@
 /*轮播图*/
 .warper{
     width: 95%;
+    height: 210px; /*2017-12-25*/
     overflow: hidden;
     position: relative;
     margin-bottom: 0;
 }
-
 .warper img{
     width:100%;
 }
@@ -65,6 +65,10 @@
 }
 .warper li{
     list-style: none;
+}
+.sildebar li a{ /*2017-12-25*/
+    text-decoration: none;
+    color: black;
 }
 .focusBox li{
     list-style: none;
@@ -80,10 +84,9 @@
 }
 .focusBox{
     position: absolute;
-    bottom: 0px;
+    bottom: 30px; /*2017-12-25*/
     right: 3px;
 }
-
 /*重点专注*/
 .itemsCon>div:nth-child(2)>ul{
     padding: 0;

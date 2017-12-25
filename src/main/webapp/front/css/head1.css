@@ -9,25 +9,27 @@ body{
 .head img{
     width: 100%;
 }
+.nav{
+    height:50px; /*2017-12-25*/
+}
 .nav div{
     position: relative;
     width: 73%;
     margin: 0 auto;
-    /*border:1px solid black;*/
+    bottom: 50px;  /*2017-12-25*/
 }
 .nav > div > ul {
     padding: 0;
     width: 100%;
     margin-left: -7px;
     margin-top: -6px;
-}
+   }
 .nav >div> ul>li{
     list-style: none;
     float: left;
     width:11.1% ;
     padding:0;
-    /*border: 1px solid black;*/
- }
+    }
 .nav>div>ul>li>a{
     position: relative;
     z-index: 1000;
@@ -36,6 +38,8 @@ body{
     color: white;
     text-decoration: none;
     text-align: center;
+    line-height: 38px; /*2017-12-25*/
+    height: 38px;    /*2017-12-25*/
 }
 #stars_box{
     height: 300px;

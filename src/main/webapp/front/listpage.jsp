@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -97,25 +97,31 @@
                       <ul>
                       <c:forEach items="${newsList }" var="news">
                       	<li>
-                      		<a href="${pageContext.request.contextPath }/news/${newsTypeID }/${news.id }/query">${news.title }</a>
+                      		<a href="${pageContext.request.contextPath }/news/${newsTypeID }/${news.id }/query">
+                    			<c:if test="${fn:length(news.title)>35 }">
+                       				${fn:substring(news.title, 0, 35) }...
+                       			</c:if>
+                       			<c:if test="${fn:length(news.title)<35 }">
+                       				${news.title }
+                       			</c:if>
+                      		</a>
                       	</li>
                       </c:forEach>
                       </ul>
                   </div> <!--右侧内容-->
                     <!--分页-->
                     <div class="fenye">
-                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=${newsTypeID }&currentPage=1">首页</a>
+                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=${newsTypeID }&currentPage=1">首页&nbsp;&nbsp;</a>
                         <c:if test="${currentPage != 1 }">
-                        	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=${newsTypeID}&currentPage=${currentPage-1 }">上一页</a>
+                        	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=${newsTypeID}&currentPage=${currentPage-1 }">上一页&nbsp;&nbsp;</a>
                         </c:if>
                         <c:if test="${currentPage != pageCount }">
-                        	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=${newsTypeID}&currentPage=${currentPage+1 }">下一页</a>
+                        	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=${newsTypeID}&currentPage=${currentPage+1 }">下一页&nbsp;&nbsp;</a>
                         </c:if>
-                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=${newsTypeID}&currentPage=${pageCount }">尾页</a>
-                        <span>当前第${currentPage }页</span>
-                        <span>共${pageCount }页</span>
+                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=${newsTypeID}&currentPage=${pageCount }">尾页&nbsp;&nbsp;</a>
+                        <span>当前第${currentPage }页&nbsp;&nbsp;</span>
+                        <span>共${pageCount }页&nbsp;&nbsp;</span>
                         <span>共${rowCount }条数据</span>
-                        跳转到第<input size="2">页
                     </div><!--分页-->
                 </div> <!--主要内容 -->
             </div>

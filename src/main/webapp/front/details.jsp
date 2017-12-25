@@ -83,13 +83,9 @@
                                 <li><a href="#"><h3>蜀南石油近期热门</h3></a></li>
                                 <li><a href="#"><p>蜀南石油近期热门</p></a></li>
                                 <li><a href="#"><span>蜀南石油近期热门</span></a></li>
-                                <li><a href="#"><h3>蜀南石油近期热门</h3></a></li>
-                                <li><a href="#"><p>蜀南石油近期热门</p></a></li>
-                                <li><a href="#"><span>蜀南石油近期热门</span></a></li>
                             </ul>
                         </div>
                         <div class="r2">
-                            <span><a href="#"> 更多>>></a></span>
                         </div>
                     </div> <!--右侧内容-->
                     </div>

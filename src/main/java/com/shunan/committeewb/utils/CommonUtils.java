@@ -27,7 +27,7 @@ public class CommonUtils {
 	public static final int NEWS_ZTHD_LIMIT = 4;
 	//青春剪影
 	public static final int NEWS_QCJY = 7;
-	public static final int NEWS_QCJY_LIMIT = 5;
+	public static final int NEWS_QCJY_LIMIT = 10;
 	
 	//上传文件类型  图片 or 附件
 	public static final int IMG_FILE = 0;

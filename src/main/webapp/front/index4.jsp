@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -25,11 +24,16 @@
     <![endif]-->
 </head>
 <body>
+	<c:if test="${navList == null }">
+		<%
+			response.sendRedirect("/committeewb/index");
+		 %>
+	</c:if>
 <div class="container-fluid">
     <!--head部分-->
     <div class="row head">
         <div class="col-md-12 col-sm-12 col-xs-12">
-                    <img src="${pageContext.request.contextPath }/front/img/head.jpg"> <!--1920*345-->
+            <img src="${pageContext.request.contextPath }/front/img/head.jpg"> <!--1920*345-->
         <div id="stars_box"></div>
         </div>
     </div><!--head部分-->
@@ -60,14 +64,14 @@
                 <!--banner-->
                 <div class="row banner">
                 <div class="col-md-12 col-sm-12 col-xs-12 ">
-                	 <c:forEach items="${bannerList }" var="banner">
-                        <img src="${pageContext.request.contextPath }/upload/${banner.picUrl}"/>
-				     </c:forEach>
+                	<c:forEach items="${bannerList }" var="banner">
+                    	<img src="${pageContext.request.contextPath }/upload/${banner.picUrl}"/>
+				    </c:forEach>
                 </div>  <!--　1201*289-->
                 </div> <!--banner-->
                 <!--第一行-->
                 <div class="row items">
-                    <div class="col-md-4 col-sm-4 col-xs-4 a1">
+                   <div class="col-md-4 col-sm-4 col-xs-4 a1">
                     	<img src="${pageContext.request.contextPath }/front/img/listbg.png">
                     	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=0&currentPage=1">图片新闻</a>
                     	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=0&currentPage=1">更多>>></a>
@@ -85,47 +89,51 @@
                 </div>
                 <div class="row itemsCon">
                    <!--轮播图 -->
-                    <div class="col-md-4 col-sm-4 col-xs-4">
-                       <div class="warper"> <!--2017-12-15 -->
-                           <ul id="slideName1" class="sildebar clearfix">
-                               <li><a href=""><img src="${pageContext.request.contextPath }/front/img/lunbo0.png" alt="图片一"></a>
-                                   <a href="#" style="line-height: 2em">青年优先发展战略事关中国梦1</a><!--2017-12-15 -->
-                               </li> <!--380*201 -->
-                               <li><a href=""><img src="${pageContext.request.contextPath }/front/img/lunbo0.png" alt="图片二"></a>
-                                   <a href="#" style="line-height: 2em">青年优先发展战略事关中国梦2</a></li>
-                               <li><a href=""><img src="${pageContext.request.contextPath }/front/img/lunbo0.png" alt="图片三"></a>
-                                   <a href="#" style="line-height: 2em">青年优先发展战略事关中国梦3</a></li>
-                               <li><a href=""><img src="${pageContext.request.contextPath }/front/img/lunbo0.png" alt="图片四"></a>
-                                   <a href="#" style="line-height: 2em">青年优先发展战略事关中国梦4</a></li>
-                               <li><a href=""><img src="${pageContext.request.contextPath }/front/img/lunbo0.png" alt="图片五"></a>
-                                   <a href="#" style="line-height: 2em">青年优先发展战略事关中国梦5</a></li>
-                           </ul>
+                    <div class="col-md-4 col-sm-4 col-xs-4 b1">
+                        <div class="warper"> <!--2017-12-15 -->
+                            <ul id="slideName1" class="sildebar clearfix">
+                            	<c:forEach items="${rollImgList }" var="news">
+	                           		<li>
+	                           			<a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query">
+	                           				<img src="${pageContext.request.contextPath }/upload/${news.picUrl}" alt="${news.title }">
+	                           			</a>
+	                                   <a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query" style="line-height: 2em">
+		                                   	<c:if test="${fn:length(news.title)>23 }">
+		                         				${fn:substring(news.title, 0, 23) }...
+		                         			</c:if>
+		                         			<c:if test="${fn:length(news.title)<23 }">
+		                         				${news.title }
+		                         			</c:if>
+	                                   </a>
+	                               	</li> <!--380*201 -->
+                            	</c:forEach>
+                            </ul>
                         </div>
-                    </div> <!--轮播图 -->
+                       </div> <!--轮播图 -->
                     <!--重点专注-->
                     <div class="col-md-4 col-sm-4 col-xs-4">
                         <ul>
-                         <c:forEach items="${zdzzList }" var="news">
-                         	<li>
-                         		<a href="${pageContext.request.contextPath }/news/1/${news.id }/query">
-                         			<c:if test="${fn:length(news.title)>20 }">
-                         				${fn:substring(news.title, 0, 20) }...
-                         			</c:if>
-                         			<c:if test="${fn:length(news.title)<20 }">
-                         				${news.title }
-                         			</c:if>
-                         		</a>
-                         		<span><fmt:formatDate value="${news.showTime }" pattern="yyyy-MM-dd"/></span>
-                         	</li>
-                         </c:forEach>
+	                         <c:forEach items="${zdzzList }" var="news">
+	                         	<li>
+	                         		<a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query">
+	                         			<c:if test="${fn:length(news.title)>20 }">
+	                         				${fn:substring(news.title, 0, 20) }...
+	                         			</c:if>
+	                         			<c:if test="${fn:length(news.title)<20 }">
+	                         				${news.title }
+	                         			</c:if>
+	                         		</a>
+	                         		<span><fmt:formatDate value="${news.showTime }" pattern="yyyy-MM-dd"/></span>
+	                         	</li>
+	                         </c:forEach>
                         </ul>
                     </div> <!--重点专注-->
                     <!--公告栏-->
                     <div class="col-md-4 col-sm-4 col-xs-4">
                         <ul>
-	                        <c:forEach items="${ggList }" var="news">
+                            <c:forEach items="${ggList }" var="news">
 	                         	<li>
-	                         		<a href="${pageContext.request.contextPath }/news/2/${news.id }/query">
+	                         		<a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query">
 	                         			<c:if test="${fn:length(news.title)>23 }">
 	                         				${fn:substring(news.title, 0, 23) }...
 	                         			</c:if>
@@ -150,9 +158,9 @@
                             <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=3&currentPage=1">更多>>></a>
                         <div class="list">
                             <ul>
-		                        <c:forEach items="${wjtzList }" var="news">
+	                           <c:forEach items="${wjtzList }" var="news">
 		                         	<li>
-		                         		<a href="${pageContext.request.contextPath }/news/2/${news.id }/query">
+		                         		<a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query">
 		                         			<c:if test="${fn:length(news.title)>10 }">
 		                         				${fn:substring(news.title, 0, 10) }...
 		                         			</c:if>
@@ -162,61 +170,72 @@
 		                         		</a>
 		                         		<span><fmt:formatDate value="${news.showTime }" pattern="yyyy-MM-dd"/></span>
 		                         	</li>
-		                         </c:forEach>
+		                        </c:forEach>
                             </ul>
                         </div>
                     </div><!--文件通知-->
                     <!--团青快讯-->
                     <div class="col-md-3  col-sm-3 col-xs-3 a1">
                         <img src="${pageContext.request.contextPath }/front/img/listbg.png">  <!--　306*31-->
-                        <a href="#">团青快讯</a>
-                        <a href="#">更多>>></a>
+                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=4&currentPage=1">团青快讯</a>
+                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=4&currentPage=1">更多>>></a>
                         <div class="list">
                             <ul>
-                                <li><a href="">青年文明号20周年</a><span>2016-08-01</span></li>
-                                <li><a href="">青年文明号20周年</a><span>2016-08-01</span></li>
-                                <li><a href="">青年文明号20周年</a><span>2016-08-01</span></li>
-                                <li><a href="">青年文明号20周年</a><span>2016-08-01</span></li>
-                                <li><a href="">青年文明号20周年</a><span>2016-08-01</span></li>
-                                <li><a href="">青年文明号20周年</a><span>2016-08-01</span></li>
-                                <li><a href="">青年文明号20周年</a><span>2016-08-01</span></li>
-                                <li><a href="">青年文明号20周年</a><span>2016-08-01</span></li>
+                            	<c:forEach items="${tqkxList }" var="news">
+		                         	<li>
+		                         		<a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query">
+		                         			<c:if test="${fn:length(news.title)>10 }">
+		                         				${fn:substring(news.title, 0, 10) }...
+		                         			</c:if>
+		                         			<c:if test="${fn:length(news.title)<10 }">
+		                         				${news.title }
+		                         			</c:if>
+		                         		</a>
+		                         		<span><fmt:formatDate value="${news.showTime }" pattern="yyyy-MM-dd"/></span>
+		                         	</li>
+		                        </c:forEach>
                             </ul>
                         </div>
                     </div><!--团青快讯-->
                     <!--蜀南青语-->
                     <div class="col-md-3  col-sm-3 col-xs-3 a1">
                         <img src="${pageContext.request.contextPath }/front/img/listbg.png">  <!--　306*31-->
-                        <a href="#">蜀南青语</a>
-                        <a href="#">更多>>></a>
+                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=5&currentPage=1">蜀南青语</a>
+                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=5&currentPage=1">更多>>></a>
                         <div class="list">
                             <ul>
-                                <li><a href="">青年文明号20周年</a><span>2016-08-01</span></li>
-                                <li><a href="">青年文明号20周年</a><span>2016-08-01</span></li>
-                                <li><a href="">青年文明号20周年</a><span>2016-08-01</span></li>
-                                <li><a href="">青年文明号20周年</a><span>2016-08-01</span></li>
-                                <li><a href="">青年文明号20周年</a><span>2016-08-01</span></li>
-                                <li><a href="">青年文明号20周年</a><span>2016-08-01</span></li>
-                                <li><a href="">青年文明号20周年</a><span>2016-08-01</span></li>
-                                <li><a href="">青年文明号20周年</a><span>2016-08-01</span></li>
+                                <c:forEach items="${snqyList }" var="news">
+		                         	<li>
+		                         		<a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query">
+		                         			<c:if test="${fn:length(news.title)>10 }">
+		                         				${fn:substring(news.title, 0, 10) }...
+		                         			</c:if>
+		                         			<c:if test="${fn:length(news.title)<10 }">
+		                         				${news.title }
+		                         			</c:if>
+		                         		</a>
+		                         		<span><fmt:formatDate value="${news.showTime }" pattern="yyyy-MM-dd"/></span>
+		                         	</li>
+		                        </c:forEach>
                             </ul>
                         </div>
                     </div><!--蜀南青语-->
                     <!--专题活动-->
                     <div class="col-md-3  col-sm-3 col-xs-3 a1 lasta1">
                         <img src="${pageContext.request.contextPath }/front/img/listbg.png">   <!--　306*31-->
-                        <a href="#">专题活动</a>
-                        <a href="#">更多>>></a>
+                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=6&currentPage=1">专题活动</a>
+                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=6&currentPage=1">更多>>></a>
                         <div class="list lastlist" style="position: relative">
-                            <div class="img">
-                                <img src="${pageContext.request.contextPath }/front/img/samll.png">  <!--287*69-->
-                                <img src="${pageContext.request.contextPath }/front/img/samll.png">
-                                <img src="${pageContext.request.contextPath }/front/img/samll.png">
-                                <img src="${pageContext.request.contextPath }/front/img/samll.png">
+                            <div class="img"> <!--287*69-->
+                            	<c:forEach items="${zthdList }" var="news">
+                            		<a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query">
+                            			<img src="${pageContext.request.contextPath }/upload/${news.picUrl}">  
+                            		</a>
+                            	</c:forEach>
                             </div>
                             <!--向下箭头-->
                             <div class="down" style="position: absolute;bottom: 0">
-                                <span class="cli">>>></span>
+                                <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=6&currentPage=1"><span class="cli">>>></span></a>
                             </div>
                         </div>
                     </div><!--专题活动-->
@@ -226,8 +245,8 @@
                 <div class="row listRow" >
                     <div class="col-md-3 col-sm-3 col-xs-3 a1">
                         <img src="${pageContext.request.contextPath }/front/img/listbg.png">   <!--　306*31-->
-                        <a href="#">青春剪影</a>
-                        <a href="#">更多>>></a>
+                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=7&currentPage=1">青春剪影</a>
+                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=7&currentPage=1">更多>>></a>
                     </div>
                 </div>
                 <div class="row thirdRow" >
@@ -235,46 +254,27 @@
                     <div class="col-md-11 col-sm-11 col-xs-11 a1" style="float: left">
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="thumbnail">
-                                    <a href="#"><img src="${pageContext.request.contextPath }/front/img/a1.jpg" alt="..."></a>
-                                    <div class="caption">
-                                        <p><a href="#">测试测试标题标题</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="thumbnail">
-                                    <a href="#"><img src="${pageContext.request.contextPath }/front/img/a1.jpg" alt="..."></a>
-                                <div class="caption">
-                                    <p><a href="#">测试测试标题标题</a></p>
-                                </div>
-                            </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="thumbnail">
-                                    <a href="#"><img src="${pageContext.request.contextPath }/front/img/a1.jpg" alt="..."></a>
-                                <div class="caption">
-                                    <p><a href="#">测试测试标题标题</a></p>
-                                </div>
-                            </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="thumbnail">
-                                    <a href="#"><img src="${pageContext.request.contextPath }/front/img/a1.jpg" alt="..."></a>
-                                <div class="caption">
-                                    <p><a href="#">测试测试标题标题</a></p>
-                                </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="thumbnail">
-                                    <a href="#"><img src="${pageContext.request.contextPath }/front/img/a1.jpg" alt="..."></a>
-                                <div class="caption">
-                                    <p><a href="#">测试测试标题标题</a></p>
-                                </div>
-                            </div>
-                            </div>
+                        	<c:forEach items="${qcjyList }" var="news">
+	                        	<div class="swiper-slide">
+	                                <div class="thumbnail">
+	                                    <a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query">
+	                                    	<img src="${pageContext.request.contextPath }/upload/${news.picUrl}" alt="...">
+	                                    </a>
+	                                    <div class="caption">
+	                                        <p>
+	                                        	<a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query">
+			                                        <c:if test="${fn:length(news.title)>10 }">
+				                         				${fn:substring(news.title, 0, 10) }...
+				                         			</c:if>
+				                         			<c:if test="${fn:length(news.title)<10 }">
+				                         				${news.title }
+				                         			</c:if>
+	                                        	</a>
+	                                        </p>
+	                                    </div>
+	                                </div>
+	                            </div>
+                        	</c:forEach>
                         </div>
                     </div>
                     </div>
@@ -282,11 +282,18 @@
                 </div><!--青春剪影-->
                 <!--小banner-->
                 <div class="row footer">
-                 <div class="col-md-2 col-sm-2 col-xs-2"><a href="#"><img src="${pageContext.request.contextPath }/front/img/sbanner.png"></a></div>  <!--186*63-->
-                 <div class="col-md-2 col-sm-2 col-xs-2"><a href="#"><img src="${pageContext.request.contextPath }/front/img/sbanner.png"></a></div>
-                 <div class="col-md-2 col-sm-2 col-xs-2"><a href="#"><img src="${pageContext.request.contextPath }/front/img/sbanner.png"></a></div>
-                 <div class="col-md-2 col-sm-2 col-xs-2"><a href="#"><img src="${pageContext.request.contextPath }/front/img/sbanner.png"></a></div>
-                 <div class="col-md-2 col-sm-2 col-xs-2"><a href="#"><img src="${pageContext.request.contextPath }/front/img/sbanner.png"></a></div>
+                <c:forEach items="${linksList }" var="banner">
+                	<div class="col-md-2 col-sm-2 col-xs-2">
+                		<a href="${banner.jumpLink }">
+                			<c:if test="${banner.picUrl != null && banner.picUrl != ''}">
+	                			<img src="${pageContext.request.contextPath }/upload/${banner.picUrl}" alt="${banner.name }">
+	                		</c:if>
+	                		<c:if test="${banner.picUrl == null || banner.picUrl == ''}">
+	                			<a href="${banner.jumpLink }">${banner.name }</a>
+	                		</c:if>
+                		</a>
+                	</div>  <!--186*63-->
+                </c:forEach>
                 </div><!--小banner-->
             </div>
             </div><!--　主体内容部分-->

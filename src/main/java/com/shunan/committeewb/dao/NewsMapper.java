@@ -86,4 +86,11 @@ public interface NewsMapper {
 	 */
 	public News queryNewsDetail(@Param("newsTypeID") int newsTypeID,
 			@Param("id") int id,@Param("type") String type) throws Exception;
+	
+	/**
+	 * 近期热门
+	 * @return
+	 * @throws Exception
+	 */
+	public List<News> queryHotNews() throws Exception;
 }

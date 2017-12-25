@@ -32,13 +32,10 @@ import com.shunan.committeewb.service.NavService;
 import com.shunan.committeewb.service.NewsService;
 import com.shunan.committeewb.service.RollImgService;
 import com.shunan.committeewb.service.UserService;
-import com.shunan.committeewb.service.WebInfoService;
 import com.shunan.committeewb.utils.CommonUtils;
 
 @Controller
 public class LoginController {
-	@Autowired
-	private WebInfoService webInfoService;
 	@Autowired
 	private NavService navService;
 	@Autowired
@@ -149,7 +146,7 @@ public class LoginController {
 		model.addAttribute("zthdList", zthdList);
 		model.addAttribute("qcjyList", qcjyList);
 		
-		return "forward:/front/index.jsp";
+		return "forward:/front/index4.jsp";
 	}
 	
 	/**

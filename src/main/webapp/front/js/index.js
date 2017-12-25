@@ -21,7 +21,6 @@
 //     $('.nav>div a').css("background","#C90102");
 //     $(this).css("background","#A00314")
 // })
-
    //轮播
     var len = $('.warper .sildebar li').length;
     var timer;
@@ -47,11 +46,16 @@
             if(index == len){index = 0;}
         },2000);
     });
+    timer = setInterval(function(){
+    showPic(index);
+    index++;
+    if(index == len){index = 0;}
+},2000);
     function showPic(index) {
         $('.sildebar li').fadeOut(0);
-        $('.sildebar li').eq(index).fadeIn(500);
+        $('.sildebar li').eq(index).fadeIn(500); /*2017-12-25*/
         $('.focusBox li').eq(index).css("background", "#F70A1C").siblings().css("background","#320B4E");
-        // alert(index)
+        // $('.carousellist a').eq(index).show().siblings().hide(); /*2017-12-25*/
     }
 //下拉
  $(".cli").click(function () {;
@@ -59,7 +63,7 @@
          $('.img').append($("<img src='img/samll.png'>"))
      }
      var h=($('.img img').eq(0).height()*4);
-     alert(h)
+     // alert(h)
      $('.img').css("height",h+"px");
      $('.img img').animate({top:"-"+h+"px"},3000,function () {
          $('.img img').css("top",0);
