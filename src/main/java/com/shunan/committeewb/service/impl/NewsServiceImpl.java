@@ -86,14 +86,14 @@ public class NewsServiceImpl implements NewsService {
 	 * 添加新闻
 	 */
 	@Override
-	public int insertNews(News news, MultipartFile picFile) throws Exception {
+	public int insertNews(News news, MultipartFile picFile,String account) throws Exception {
 		if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
 			FileUtil.uploadFile(picFile, news, CommonUtils.NEWS);
 		}
 /*		Subject subject = SecurityUtils.getSubject();
 		User user = (User) subject.getPrincipal();
 		news.setAuthor(user.getAccount());*/
-		news.setAuthor("admin"); //后续需要改成正在使用该系统的账号
+		news.setAuthor(account); 
 		news.setCreateTime(new Date());
 		newsMapper.insertNews(news);
 		
@@ -142,10 +142,11 @@ public class NewsServiceImpl implements NewsService {
 	 * 编辑新闻
 	 */
 	@Override
-	public void updateNews(News news, MultipartFile picFile) throws Exception {
+	public void updateNews(News news, MultipartFile picFile,String account) throws Exception {
 		if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
 			FileUtil.uploadFile(picFile, news, CommonUtils.NEWS);
 		}
+		news.setAuthor(account);
 		newsMapper.updateNews(news);
 		
 		//修改新闻时，若将新闻类型修改为了"生活大家谈"、"专题活动"、"青春剪影"，且该新闻存在轮播图表中，则删除之
@@ -258,9 +259,14 @@ public class NewsServiceImpl implements NewsService {
 			news = newsMapper.queryNewsDetail(newsTypeID, id, type);
 		}
 		
-		if(news!=null){
+		if(news!=null && "eq".equals(type)){
 			newsMapper.updateNewsCount(news.getId());
 		}
 		return news;
+	}
+
+	@Override
+	public List<News> queryHotNews() throws Exception {
+		return newsMapper.queryHotNews();
 	}
 }

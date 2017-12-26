@@ -175,6 +175,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	<hr/>
    	
    	<h1>网站前端接口</h1>
+   	http://20.14.3.28:8080/committeewb/weather<br/>
+   	首页天气接口
+   	<hr/>
    	http://20.14.3.28:8080/committeewb/index<br/>
    	网站前端首页
    	<hr/>

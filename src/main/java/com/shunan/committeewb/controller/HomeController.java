@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shunan.committeewb.po.Home;
 import com.shunan.committeewb.po.Nav;
+import com.shunan.committeewb.po.News;
 import com.shunan.committeewb.po.Result;
 import com.shunan.committeewb.service.HomeService;
 import com.shunan.committeewb.service.NavService;
+import com.shunan.committeewb.service.NewsService;
 import com.shunan.committeewb.utils.CommonUtils;
 
 /**
@@ -32,6 +34,8 @@ public class HomeController {
 	private HomeService homeService;
 	@Autowired
 	private NavService navService;
+	@Autowired
+	private NewsService newsService;
 	
 	/**
 	 * 查询 规章制度、工作标准、通讯录、风采录
@@ -148,6 +152,9 @@ public class HomeController {
 		String day = CommonUtils.getWeek(Calendar.getInstance());
 		model.addAttribute("date", date);
 		model.addAttribute("day", day);
+		
+		List<News> hotNewsList = newsService.queryHotNews(); //近期热门
+		model.addAttribute("hotNewsList", hotNewsList);
 		
 		return "forward:/front/home.jsp";
 	}

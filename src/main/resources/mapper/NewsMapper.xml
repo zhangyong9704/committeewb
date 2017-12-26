@@ -194,7 +194,7 @@
 	<select id="queryHotNews" resultType="news">
 		SELECT * 
 		FROM news
-		WHERE STATUS=0 AND NOW()>showTime AND MONTH(NOW())-MONTH(showTime)<1
+		WHERE STATUS=0 AND NOW()&gt;showTime AND MONTH(NOW())-MONTH(showTime)&lt;1
 		ORDER BY COUNT DESC
 		LIMIT 0,10
 	</select>

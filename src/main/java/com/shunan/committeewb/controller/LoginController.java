@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shunan.committeewb.po.Banner;
 import com.shunan.committeewb.po.Nav;
@@ -33,6 +34,7 @@ import com.shunan.committeewb.service.NewsService;
 import com.shunan.committeewb.service.RollImgService;
 import com.shunan.committeewb.service.UserService;
 import com.shunan.committeewb.utils.CommonUtils;
+import com.shunan.committeewb.utils.HttpClientHelper;
 
 @Controller
 public class LoginController {
@@ -219,5 +221,19 @@ public class LoginController {
         ServletOutputStream sos = response.getOutputStream();
         ImageIO.write(buffImg, "jpeg", sos);
         sos.close();
+	}
+	
+	/**
+	 * 网站首页天气接口
+	 * @return
+	 * @throws Exception
+	 */
+	//@RequestMapping(value="/weather",produces = "application/json;charset=utf-8")
+	@RequestMapping("/weather")
+	@ResponseBody
+	public String weather() throws Exception{
+		String url = "http://www.weather.com.cn/data/cityinfo/101271001.html";
+		String weatherData = HttpClientHelper.sendGet(url, null, "utf-8");
+		return weatherData;
 	}
 }

@@ -21,6 +21,7 @@ import com.shunan.committeewb.po.News;
 import com.shunan.committeewb.po.NewsType;
 import com.shunan.committeewb.po.PageResult;
 import com.shunan.committeewb.po.Result;
+import com.shunan.committeewb.po.User;
 import com.shunan.committeewb.service.BannerService;
 import com.shunan.committeewb.service.NavService;
 import com.shunan.committeewb.service.NewsService;
@@ -112,7 +113,8 @@ public class NewsController {
 	 */
 	@RequestMapping("/draft/{id}")
 	@ResponseBody
-	public Result<? extends Object> insertNews(News news,MultipartFile picFile) throws Exception{
+	public Result<? extends Object> insertNews(News news,
+			MultipartFile picFile,HttpServletRequest request) throws Exception{
 		
 /*		if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
 			News news2 = newsService.queryNewsByID(news.getId());
@@ -172,11 +174,12 @@ public class NewsController {
 			return result;
 		}
 		
+		User user = (User) request.getSession().getAttribute("user");
 		//有请求体时2种情况
 		if(news.getId()==-1){
 			//添加新闻
 			try {
-				int newsID = newsService.insertNews(news,picFile);
+				int newsID = newsService.insertNews(news,picFile,user.getAccount());
 				News returnNews = newsService.queryNewsByID(newsID);
 				list.add(returnNews);
 				result = new Result<News>(200, "添加新闻成功！", list);
@@ -187,7 +190,7 @@ public class NewsController {
 		}else{
 			//编辑新闻
 			try {
-				newsService.updateNews(news,picFile);
+				newsService.updateNews(news,picFile,user.getAccount());
 				News returnNews = newsService.queryNewsByID(news.getId());
 				list.add(returnNews);
 				result = new Result<News>(200, "修改新闻成功！", list);
@@ -336,7 +339,9 @@ public class NewsController {
 		model.addAttribute("date", date);
 		model.addAttribute("day", day);
 		
+		List<News> hotNewsList = newsService.queryHotNews(); //近期热门
+		model.addAttribute("hotNewsList", hotNewsList);
+		
 		return "forward:/front/details.jsp";
 	}
-
 }

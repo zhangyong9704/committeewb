@@ -49,10 +49,11 @@ public interface NewsService {
 	 * 添加新闻
 	 * @param news
 	 * @param picFile
+	 * @param account
 	 * @return
 	 * @throws Exception
 	 */
-	public int insertNews(News news, MultipartFile picFile) throws Exception;
+	public int insertNews(News news, MultipartFile picFile, String account) throws Exception;
 	
 	/**
 	 * 根据id查询新闻信息
@@ -66,9 +67,10 @@ public interface NewsService {
 	 * 编辑新闻
 	 * @param news
 	 * @param picFile
+	 * @param account
 	 * @throws Exception
 	 */
-	public void updateNews(News news, MultipartFile picFile) throws Exception;
+	public void updateNews(News news, MultipartFile picFile,String account) throws Exception;
 
 	/**
 	 * 发布新闻
@@ -118,4 +120,11 @@ public interface NewsService {
 	 * @throws Exception
 	 */
 	public News queryNews(Integer newsTypeID, Integer id, String type) throws Exception;
+	
+	/**
+	 * 近期热门
+	 * @return
+	 * @throws Exception
+	 */
+	public List<News> queryHotNews() throws Exception;
 }

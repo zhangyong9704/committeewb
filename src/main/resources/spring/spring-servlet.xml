@@ -17,20 +17,21 @@
     <!-- 自动扫描的包 -->
     <context:component-scan base-package="com.shunan.committeewb.controller"/>
     <!-- 注解驱动 -->
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven>
+    	<mvc:message-converters>  
+	        <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>  
+	        <bean class="org.springframework.http.converter.StringHttpMessageConverter">  
+	            <property name="supportedMediaTypes">  
+	                <list>  
+	                    <value>text/plain;charset=utf-8</value>  
+	                    <value>text/html;charset=UTF-8</value>  
+	                </list>  
+	            </property>  
+	        </bean>  
+    	</mvc:message-converters>  
+    </mvc:annotation-driven>
     <!-- 处理静态资源 -->
     <mvc:default-servlet-handler/>
-    <!-- 处理器映射器 -->
-    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
-    <!-- 处理器适配器 -->
-    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
-        <!-- 加入 json数据的消息转换器 MappingJacksonHttpMessageConverter依赖Jackson的包 -->
-        <property name="messageConverters">
-            <list>
-                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>
-            </list>
-        </property>
-    </bean>
     <!-- 视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/admin/"/>
@@ -96,6 +97,7 @@
             <mvc:exclude-mapping path="/upload/**" />
             <mvc:exclude-mapping path="/ueditor/**" />
             <!-- 放行前端获取数据的接口 -->
+            <mvc:exclude-mapping path="/weather" />
             <mvc:exclude-mapping path="/index" />
             <mvc:exclude-mapping path="/news/newsList" />
             <mvc:exclude-mapping path="/news/{newsTypeID}/{id}/query" />

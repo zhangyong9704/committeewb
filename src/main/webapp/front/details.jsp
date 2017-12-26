@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -81,8 +82,20 @@
                         <div class="r1">
                             <ul>
                                 <li><a href="#"><h3>蜀南石油近期热门</h3></a></li>
-                                <li><a href="#"><p>蜀南石油近期热门</p></a></li>
-                                <li><a href="#"><span>蜀南石油近期热门</span></a></li>
+                                <c:forEach items="${hotNewsList }" var="news">
+                                <li>
+                                	<a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query">
+                                		<p>
+                                			<c:if test="${fn:length(news.title)>18 }">
+		                         				${fn:substring(news.title, 0, 18) }...
+		                         			</c:if>
+		                         			<c:if test="${fn:length(news.title)<18 }">
+		                         				${news.title }
+		                         			</c:if>
+                                		</p>
+                                	</a>
+                                </li>
+                                </c:forEach>
                             </ul>
                         </div>
                         <div class="r2">
