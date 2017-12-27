@@ -56,7 +56,7 @@ public class NewsController {
 	@RequestMapping("/queryPageNews")
 	@ResponseBody
 	public Result<News> queryPageNews(String typeIDs,Integer chooseStatus,
-			Integer offset,Integer limit,String order) throws Exception{
+			Integer offset,Integer limit,String order,String search) throws Exception{
 		Result<News> result = null;
 		List<News> list = new ArrayList<News>();
 		long count = 0;
@@ -66,8 +66,8 @@ public class NewsController {
 		}
 		
 		try {
-			list = newsService.queryPageNews(typeIDs,chooseStatus,offset,limit,order);
-			count = newsService.queryNewsTotal(typeIDs,chooseStatus);
+			list = newsService.queryPageNews(typeIDs,chooseStatus,offset,limit,order,search);
+			count = newsService.queryNewsTotal(typeIDs,chooseStatus,search);
 			result = new PageResult<News>(200, "查询成功！", list, count);
 		} catch (Exception e) {
 			result = new PageResult<News>(100, "查询失败！", list, count);

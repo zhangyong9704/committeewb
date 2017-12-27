@@ -1,5 +1,6 @@
 package com.shunan.committeewb.service.impl;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,7 +25,7 @@ import com.shunan.committeewb.utils.FileUtil;
 @Transactional
 public class NewsServiceImpl implements NewsService {
 	@Autowired
-	private NewsMapper newsMapper;
+	private NewsMapper newsMapper; 
 	@Autowired
 	private RollImgMapper rollImgMapper;
 	@Autowired
@@ -42,10 +43,10 @@ public class NewsServiceImpl implements NewsService {
 	 * 查询一共多少条新闻 or 重点专注、公告通知等等
 	 */
 	@Override
-	public long queryNewsTotal(String typeIDs, int chooseStatus) throws Exception {
+	public long queryNewsTotal(String typeIDs, int chooseStatus,String search) throws Exception {
 		long count = 0;
 		List<Integer> typeIDList = CommonUtils.transferStringToIntList(typeIDs);
-		count = newsMapper.queryNewsTotal(typeIDList, chooseStatus);
+		count = newsMapper.queryNewsTotal(typeIDList, chooseStatus,search);
 		return count;
 	}
 
@@ -54,7 +55,7 @@ public class NewsServiceImpl implements NewsService {
 	 */
 	@Override
 	public List<News> queryPageNews(String typeIDs, Integer chooseStatus, 
-			Integer offset, Integer limit, String order) throws Exception {
+			Integer offset, Integer limit, String order,String search) throws Exception {
 		if(offset == null){
 			offset = 0;
 		}
@@ -68,7 +69,7 @@ public class NewsServiceImpl implements NewsService {
 		List<Integer> typeIDList = CommonUtils.transferStringToIntList(typeIDs);
 		
 		List<News> newsList = new ArrayList<News>();
-		newsList = newsMapper.queryPageNews(typeIDList, chooseStatus, offset, limit, order);
+		newsList = newsMapper.queryPageNews(typeIDList, chooseStatus, offset, limit, order,search);
 		return newsList;
 	}
 	
@@ -78,6 +79,18 @@ public class NewsServiceImpl implements NewsService {
 	@Override
 	public void deleteNews(String ids) throws Exception {
 		List<Integer> idList = CommonUtils.transferStringToIntList(ids);
+		
+		//删除新闻的宣传图片
+		for(int id:idList){
+			News news = newsMapper.queryNewsByID(id);
+			if(news!=null){
+				File file = new File(FileUtil.getUploadPath()+news.getPicUrl());
+				if(file.exists()){
+					file.delete();
+				}
+			}
+		}
+		
 		rollImgMapper.deleteRollImg(idList);
 		newsMapper.deleteNews(idList);
 	}
@@ -144,6 +157,12 @@ public class NewsServiceImpl implements NewsService {
 	@Override
 	public void updateNews(News news, MultipartFile picFile,String account) throws Exception {
 		if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
+			//删除旧宣传图片并上传新宣传图片
+			News news2 = newsMapper.queryNewsByID(news.getId());
+			File file = new File(FileUtil.getUploadPath()+news2.getPicUrl());
+			if(file.exists()){
+				file.delete();
+			}	
 			FileUtil.uploadFile(picFile, news, CommonUtils.NEWS);
 		}
 		news.setAuthor(account);
@@ -207,7 +226,7 @@ public class NewsServiceImpl implements NewsService {
 			List<RollImgList> rollImgList = rollImgMapper.queryPageRollImg(offset, pageSize);
 			return rollImgList;
 		}else{
-			List<News> newsList  =this.queryPageNews(newsTypeID, 1, offset, pageSize, "asc");
+			List<News> newsList  =this.queryPageNews(newsTypeID, 1, offset, pageSize, "asc","");
 			return newsList;
 		}
 	}
@@ -222,7 +241,7 @@ public class NewsServiceImpl implements NewsService {
 			//图片新闻
 			rowCount = rollImgMapper.queryRollImgTotal();
 		}else{
-			rowCount = this.queryNewsTotal(newsTypeID, 1);
+			rowCount = this.queryNewsTotal(newsTypeID, 1,"");
 		}
 		return rowCount;
 	}

@@ -20,10 +20,11 @@ public interface NewsService {
 	 * 查询一共多少条新闻 or 重点专注、公告通知等等
 	 * @param typeID
 	 * @param chooseStatus 
+	 * @param search
 	 * @return
 	 * @throws Exception
 	 */
-	public long queryNewsTotal(String typeIDs, int chooseStatus) throws Exception;
+	public long queryNewsTotal(String typeIDs, int chooseStatus,String search) throws Exception;
 
 	/**
 	 * 分页查询新闻 or 重点专注、公告通知等等
@@ -32,11 +33,12 @@ public interface NewsService {
 	 * @param offset
 	 * @param limit
 	 * @param sort
+	 * @param search
 	 * @return
 	 * @throws Exception
 	 */
 	public List<News> queryPageNews(String typeIDs, Integer chooseStatus, 
-			Integer offset, Integer limit, String order) throws Exception;
+			Integer offset, Integer limit, String order,String search) throws Exception;
 
 	/**
 	 * 删除新闻

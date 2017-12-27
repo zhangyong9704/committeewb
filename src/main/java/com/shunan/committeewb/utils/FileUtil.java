@@ -40,6 +40,19 @@ public class FileUtil<T> {
 	}
 	
 	/**
+	 * 获取服务器上upload文件夹的路径
+	 * @return
+	 * @throws Exception
+	 */
+	public static String getUploadPath() throws Exception{
+		File baseFile = new File(FileUtil.class.getClassLoader().getResource("/").getPath());
+		File parentFile  = baseFile.getParentFile().getParentFile();
+		String filePath = parentFile.getAbsolutePath()+File.separator+"upload"+File.separator;
+		
+		return filePath;
+	}
+	
+	/**
 	 * 获取当前年月,例如 201707
 	 * @return
 	 * @throws Exception

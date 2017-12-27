@@ -26,6 +26,13 @@
 		</if>
 	</sql>
 	
+	<!-- 查询news时where中的search的条件 -->
+	<sql id="query_news_where_like">
+		<if test="search!=null and search!=''">
+			and title like '%${search}%' or content like '%${search}%'
+		</if>
+	</sql>
+	
 	<!-- 显示顺序 -->
 	<sql id="showOrder">
 		<if test="order=='asc'">
@@ -66,6 +73,7 @@
 		<where>
 			<include refid="where_newsTypeID_in"/>
 			<include refid="query_news_where_status"/>
+			<include refid="query_news_where_like"/>
 		</where>
 		<include refid="showOrder"/>
 		<include refid="pageLimit"/>
@@ -77,6 +85,7 @@
 		<where>
 			<include refid="where_newsTypeID_in"/>
 			<include refid="query_news_where_status"/>
+			<include refid="query_news_where_like"/>
 		</where>
 	</select>
 	

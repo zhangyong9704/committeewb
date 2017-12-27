@@ -1,5 +1,6 @@
 package com.shunan.committeewb.service.impl;
 
+import java.io.File;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,21 +33,32 @@ public class BannerServiceImpl implements BannerService {
 
 	@Override
 	public void updateBanner(MultipartFile picFile, Banner banner) throws Exception {
+		Banner banner2 = bannerMapper.queryBannerByID(banner.getId());
+		
 		if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
+			File file = new File(FileUtil.getUploadPath()+banner2.getPicUrl());
+			if(file.exists()){
+				file.delete();
+			}
 			FileUtil.uploadFile(picFile, banner, CommonUtils.HOME_BANNER);
 		}else{
 			//未修改图片,仍用原图片
-			Banner banner2 = bannerMapper.queryBannerByID(banner.getId());
 			if(banner2.getPicUrl()!=null){
 				banner.setPicUrl(banner2.getPicUrl());
 			}
 		}
 		
 		bannerMapper.updateBanner(banner);
+		banner2 = null;
 	}
 
 	@Override
 	public void deleteBanner(int id) throws Exception {
+		Banner banner2 = bannerMapper.queryBannerByID(id);
+		File file = new File(FileUtil.getUploadPath()+banner2.getPicUrl());
+		if(file.exists()){
+			file.delete();
+		}
 		bannerMapper.deleteBanner(id);
 	}
 

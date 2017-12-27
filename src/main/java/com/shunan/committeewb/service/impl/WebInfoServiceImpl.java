@@ -1,5 +1,7 @@
 package com.shunan.committeewb.service.impl;
 
+import java.io.File;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,34 +47,46 @@ public class WebInfoServiceImpl implements WebInfoService {
 	@Override
 	public void updateWebInfo(MultipartFile logoFile, MultipartFile titleFile, MultipartFile backgroundFile,
 			WebInfo webInfo) throws Exception {
+		WebInfo webInfo2 = webInfoMapper.queryWebInfoByID(webInfo.getId());
+		
 		if(logoFile!=null && logoFile.getOriginalFilename()!=null && (!logoFile.getOriginalFilename().equals(""))){
+			File file = new File(FileUtil.getUploadPath()+webInfo2.getLogoUrl());
+			if(file.exists()){
+				file.delete();
+			}
 			FileUtil.uploadFile(logoFile, webInfo, CommonUtils.WEBINFO_LOGO);
 		}else{
 			//未修改图片,仍用原图片
-			WebInfo webInfo2 = webInfoMapper.queryWebInfoByID(webInfo.getId());
 			if(webInfo2.getLogoUrl()!=null){
 				webInfo.setLogoUrl(webInfo2.getLogoUrl());
 			}
 		}
 		
 		if(titleFile!=null && titleFile.getOriginalFilename()!=null && (!titleFile.getOriginalFilename().equals(""))){
+			File file = new File(FileUtil.getUploadPath()+webInfo2.getTitleUrl());
+			if(file.exists()){
+				file.delete();
+			}
 			FileUtil.uploadFile(titleFile, webInfo, CommonUtils.WEBINFO_TITLE);
 		}else{
-			WebInfo webInfo2 = webInfoMapper.queryWebInfoByID(webInfo.getId());
 			if(webInfo2.getTitleUrl()!=null){
 				webInfo.setTitleUrl(webInfo2.getTitleUrl());
 			}
 		}
 		
 		if(backgroundFile!=null && backgroundFile.getOriginalFilename()!=null && (!backgroundFile.getOriginalFilename().equals(""))){
+			File file = new File(FileUtil.getUploadPath()+webInfo2.getBackgroundUrl());
+			if(file.exists()){
+				file.delete();
+			}
 			FileUtil.uploadFile(backgroundFile, webInfo, CommonUtils.WEBINFO_BACKGROUND);
 		}else{
-			WebInfo webInfo2 = webInfoMapper.queryWebInfoByID(webInfo.getId());
 			if(webInfo2.getBackgroundUrl()!=null){
 				webInfo.setBackgroundUrl(webInfo2.getBackgroundUrl());
 			}
 		}
 		
 		webInfoMapper.updateWebInfo(webInfo);
+		webInfo2 = null;
 	}
 }

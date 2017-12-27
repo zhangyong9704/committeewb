@@ -23,7 +23,7 @@ public interface NewsMapper {
 	 * @throws Exception
 	 */
 	public List<News> queryPageNews(@Param("typeIDList") List<Integer> typeIDList,@Param("chooseStatus") int chooseStatus,
-			@Param("offset") int offset,@Param("limit") int limit,@Param("order") String order) throws Exception;
+			@Param("offset") int offset,@Param("limit") int limit,@Param("order") String order,@Param("search") String search) throws Exception;
 	
 	/**
 	 * 查询一共多少条新闻
@@ -31,7 +31,7 @@ public interface NewsMapper {
 	 * @throws Exception
 	 */
 	public Long queryNewsTotal(@Param("typeIDList") List<Integer> typeIDList,
-			@Param("chooseStatus") int chooseStatus) throws Exception;
+			@Param("chooseStatus") int chooseStatus,@Param("search") String search) throws Exception;
 	
 	/**
 	 * 删除新闻
