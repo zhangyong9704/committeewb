@@ -1,5 +1,5 @@
 {
-    "imageActionName": "uploadimage",
+	"imageActionName": "uploadimage",
     "imageFieldName": "upfile",
     "imageMaxSize": 2048000,
     "imageAllowFiles": [".png", ".jpg", ".jpeg", ".gif", ".bmp"], 
@@ -8,7 +8,6 @@
     "imageInsertAlign": "none",
     "imageUrlPrefix": "/committeewb",
     "imagePathFormat": "/ueditor/{yyyy}{mm}{dd}/image/{time}{rand:6}",
-   
     "fileActionName": "uploadfile",
     "fileFieldName": "upfile",
     "filePathFormat": "/ueditor/{yyyy}{mm}{dd}/attachment/{time}{rand:6}",
@@ -20,5 +19,9 @@
         ".ogg", ".ogv", ".mov", ".wmv", ".mp4", ".webm", ".mp3", ".wav", ".mid",
         ".rar", ".zip", ".tar", ".gz", ".7z", ".bz2", ".cab", ".iso",
         ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx", ".pdf", ".txt", ".md", ".xml"
-    ]
+    ],
+    "isWatermark":true,
+	"watermarkText":"翡翠教育",
+	"watermarkImgPath":"/admin/media/icon.png",
+	"watermarkType": "text"
 }

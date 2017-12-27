@@ -24,7 +24,7 @@ public class CommonUtils {
 	public static final int NEWS_SNQY_LIMIT = 8;
 	//专题活动
 	public static final int NEWS_ZTHD = 6;
-	public static final int NEWS_ZTHD_LIMIT = 4;
+	public static final int NEWS_ZTHD_LIMIT = 10;
 	//青春剪影
 	public static final int NEWS_QCJY = 7;
 	public static final int NEWS_QCJY_LIMIT = 10;
@@ -73,6 +73,8 @@ public class CommonUtils {
 	public static final int ZTHD_HEIGHT = 370; 
 	public static final int QCJY_WIDTH = 1190; //青春剪影
 	public static final int QCJY_HEIGHT = 370; 
+	public static final int WATERMARK_WIDTH = 1190; //水印照片
+	public static final int WATERMARK_HEIGHT = 370; 
 	
 	/**
 	 * 将String转换为List

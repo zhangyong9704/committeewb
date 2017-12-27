@@ -1,12 +1,19 @@
 package com.shunan.committeewb.controller;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +34,7 @@ import com.shunan.committeewb.service.NavService;
 import com.shunan.committeewb.service.NewsService;
 import com.shunan.committeewb.service.NewsTypeService;
 import com.shunan.committeewb.utils.CommonUtils;
+import com.shunan.committeewb.utils.CreateFileUtil;
 
 /**
  * 新闻
@@ -245,6 +253,89 @@ public class NewsController {
 			result = new Result<String>(200, "发布新闻成功！", list);
 		} catch (Exception e) {
 			result = new Result<String>(100, "发布新闻失败！", list);
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * 水印照片
+	 * @param request
+	 * @param picFile
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/watermark")
+	@ResponseBody
+	public Result<String> watermark(HttpServletRequest request,MultipartFile picFile) throws Exception{
+		Result<String> result = null;
+		List<String> list = new ArrayList<String>();
+		
+		File baseFile = new File(Test.class.getClassLoader().getResource("/").getPath());
+		File parentFile  = baseFile.getParentFile().getParentFile();
+		String filePath = parentFile.getAbsolutePath()+File.separator;
+		System.out.println("filePath-->"+filePath);
+		String watermarkImgPath = "";
+		
+		if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
+/*			Result<String> picResult = FileUtil.checkFile(picFile,
+					CommonUtils.WATERMARK_WIDTH, CommonUtils.WATERMARK_HEIGHT, CommonUtils.FILE_MAXSIZE);
+			if(picResult.getCode()!=200){
+				return picResult;
+			}*/
+			//上传的照片大小以及像素均符合要求，则上传该水印照片至服务器
+			String originalFilename = picFile.getOriginalFilename();
+			if(originalFilename.contains(".")){
+				String newFileName=UUID.randomUUID()+originalFilename.substring(originalFilename.lastIndexOf("."));
+				String picFilePath = filePath+"watermark/";
+				System.out.println("picFilePath-->"+picFilePath);
+				File file=new File(picFilePath+newFileName);
+				if(CreateFileUtil.createFile(picFilePath+newFileName)){
+					picFile.transferTo(file);
+					watermarkImgPath = "/watermark/"+newFileName;
+				}
+			}
+		}
+		
+		try {
+			String jsonFilePath = filePath+"admin/jsp/config.json";
+			BufferedReader br = new BufferedReader(new FileReader(jsonFilePath));
+			String str = null,jsonStr = "";
+			
+			while((str=br.readLine())!=null){
+				System.out.println("str===>"+str);
+				jsonStr += str;
+			}
+			br.close();
+			
+			JSONObject jsonObject = new JSONObject(jsonStr);
+			String isWatermark = request.getParameter("isWatermark");
+			String watermarkText = request.getParameter("watermarkText");
+			String watermarkType = request.getParameter("watermarkType");
+			
+			if(isWatermark!=null && (!isWatermark.equals(""))){
+				jsonObject.put("isWatermark", Boolean.parseBoolean(isWatermark));
+			}
+			if(watermarkText!=null && (!watermarkText.equals(""))){
+				jsonObject.put("watermarkText", watermarkText);
+			}
+			if(watermarkImgPath!=null && (!watermarkImgPath.equals(""))){
+				jsonObject.put("watermarkImgPath", watermarkImgPath);
+			}
+			if(watermarkType!=null && (!watermarkType.equals(""))){
+				jsonObject.put("watermarkType", watermarkType);
+			}
+			
+			jsonStr = jsonObject.toString();
+			BufferedWriter bw = new BufferedWriter(new FileWriter(jsonFilePath));
+			bw.write(jsonStr);
+			bw.flush();
+			bw.close();
+			
+			result = new Result<String>(200, "修改配置成功！", list);
+		} catch (Exception e) {
+			result = new Result<String>(100, "修改配置失败！", list);
 			e.printStackTrace();
 		}
 		
