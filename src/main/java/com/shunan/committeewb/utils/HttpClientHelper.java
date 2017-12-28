@@ -129,6 +129,7 @@ public class HttpClientHelper {
 			}
 			con = (HttpURLConnection) url.openConnection();
 			con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+			con.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.89 Safari/537.36");
 			con.connect();
 			resultBuffer = new StringBuffer();
 			br = new BufferedReader(new InputStreamReader(con.getInputStream(), charset));

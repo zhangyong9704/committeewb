@@ -25,10 +25,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shunan.committeewb.po.Banner;
+import com.shunan.committeewb.po.LifeChat;
 import com.shunan.committeewb.po.Nav;
 import com.shunan.committeewb.po.News;
 import com.shunan.committeewb.po.User;
 import com.shunan.committeewb.service.BannerService;
+import com.shunan.committeewb.service.LifeChatService;
 import com.shunan.committeewb.service.NavService;
 import com.shunan.committeewb.service.NewsService;
 import com.shunan.committeewb.service.RollImgService;
@@ -48,6 +50,8 @@ public class LoginController {
 	private NewsService newsService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private LifeChatService lifeChatService;
 	
 	@RequestMapping("/login")
 	public String login(User user,HttpServletRequest request,String randomCode) throws Exception{
@@ -148,6 +152,9 @@ public class LoginController {
 		model.addAttribute("zthdList", zthdList);
 		model.addAttribute("qcjyList", qcjyList);
 		
+		LifeChat lifeChat = lifeChatService.queryLifeChat(); //生活大家谈
+		model.addAttribute("lifeChat", lifeChat);
+		
 		return "forward:/front/index4.jsp";
 	}
 	
@@ -232,7 +239,7 @@ public class LoginController {
 	@RequestMapping("/weather")
 	@ResponseBody
 	public String weather() throws Exception{
-		String url = "http://www.weather.com.cn/data/cityinfo/101271001.html";
+		String url = "http://www.sojson.com/open/api/weather/json.shtml?city=%E6%B3%B8%E5%B7%9E";
 		String weatherData = HttpClientHelper.sendGet(url, null, "utf-8");
 		return weatherData;
 	}

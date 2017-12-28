@@ -9,7 +9,7 @@ import java.util.List;
 public class CommonUtils {
 	//重点专注
 	public static final int NEWS_ZDZZ = 1;
-	public static final int NEWS_ZDZZ_LIMIT = 8;
+	public static final int NEWS_ZDZZ_LIMIT = 7;
 	//公告
 	public static final int NEWS_GG = 2;
 	public static final int NEWS_GG_LIMIT = 3;

@@ -60,24 +60,6 @@
 		<property name="securityManager" ref="securityManager"/>
 	</bean> -->
 	
-	<!-- 将404.jsp、500.jsp等设置为资源文件，避免被springmvc再次拦截 -->
-<!-- 	<mvc:resources mapping="/error/**" location="/admin/error/" />
-	配置SimpleMappingExceptionResolver
-	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-    <property name="exceptionMappings">
-        <map>
-            <entry key="ResourceNotFoundException" value="error/resourceNotFoundError" />
-            <entry key=".DataAccessException" value="error/dataAccessError" />
-        </map>
-    </property>
-    <property name="statusCodes">
-        <map>
-            <entry key="error/resourceNotFoundError" value="404" />
-            <entry key="error/dataAccessError" value="500" />
-        </map>
-    </property>
-	</bean>  -->
-	
 	<mvc:interceptors>
 		<!-- 登录拦截器配置 -->
 		<mvc:interceptor>
@@ -101,8 +83,10 @@
             <mvc:exclude-mapping path="/index" />
             <mvc:exclude-mapping path="/news/newsList" />
             <mvc:exclude-mapping path="/news/{newsTypeID}/{id}/query" />
+            <mvc:exclude-mapping path="/news/queryWatermark" />
             <mvc:exclude-mapping path="/news/watermark" />
             <mvc:exclude-mapping path="/home/{id}/query" />
+             <mvc:exclude-mapping path="/dealJsonFile" />
             <!-- 配置拦截器 -->
             <bean class="com.shunan.committeewb.interceptor.LoginInterceptor"/>
 		</mvc:interceptor>

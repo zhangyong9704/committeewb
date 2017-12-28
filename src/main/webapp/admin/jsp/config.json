@@ -23,5 +23,7 @@
     "isWatermark":true,
 	"watermarkText":"翡翠教育",
 	"watermarkImgPath":"/admin/media/icon.png",
-	"watermarkType": "text"
+	"watermarkType": "text",
+	"watermarkDegree": -45,
+	"watermarkclarity": 0.5
 }

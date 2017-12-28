@@ -3,8 +3,10 @@ package com.shunan.committeewb.controller;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,7 +69,8 @@ public class TestController {
 		String filePath = parentFile.getAbsolutePath()+File.separator;
 		String oldFilePath = filePath+"admin/jsp/config.json";
 		
-		BufferedReader br = new BufferedReader(new FileReader(oldFilePath));
+		InputStreamReader isr = new InputStreamReader(new FileInputStream(new File(oldFilePath)),"UTF-8");
+		BufferedReader br = new BufferedReader(isr);
 		String str = null,jsonStr = "";
 		
 		while((str=br.readLine())!=null){
@@ -91,7 +94,8 @@ public class TestController {
 		
 		jsonStr = jsonObject.toString();
 		
-		BufferedWriter bw = new BufferedWriter(new FileWriter(oldFilePath));
+		OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(new File(oldFilePath)),"UTF-8");
+		BufferedWriter bw = new BufferedWriter(osw);
 		bw.write(jsonStr);
 		bw.flush();
 		bw.close();

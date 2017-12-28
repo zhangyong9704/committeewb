@@ -3,8 +3,10 @@ package com.shunan.committeewb.controller;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -260,7 +262,51 @@ public class NewsController {
 	}
 	
 	/**
-	 * 水印照片
+	 * 查询水印照片配置
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/queryWatermark")
+	@ResponseBody
+	public Result<Object> queryWatermark() throws Exception{
+		Result<Object> result = null;
+		List<Object> list = new ArrayList<Object>();
+		
+		try {
+			File baseFile = new File(Test.class.getClassLoader().getResource("/").getPath());
+			File parentFile  = baseFile.getParentFile().getParentFile();
+			String filePath = parentFile.getAbsolutePath()+File.separator;
+			String jsonFilePath = filePath+"admin/jsp/config.json";
+			
+			InputStreamReader isr = new InputStreamReader(new FileInputStream(new File(jsonFilePath)),"UTF-8");
+			BufferedReader br = new BufferedReader(isr);
+			String str = null,jsonStr = "";
+			while((str=br.readLine())!=null){
+				System.out.println("str===>"+str);
+				jsonStr += str;
+			}
+			br.close();
+			
+			JSONObject jsonObject = new JSONObject(jsonStr);
+			boolean isWatermark = jsonObject.getBoolean("isWatermark");
+			String watermarkText = jsonObject.getString("watermarkText");
+			String watermarkImgPath = jsonObject.getString("watermarkImgPath");
+			String watermarkType = jsonObject.getString("watermarkType");
+			list.add(isWatermark);
+			list.add(watermarkText);
+			list.add(watermarkImgPath);
+			list.add(watermarkType);
+			result = new Result<Object>(200, "查询成功！", list);
+		} catch (Exception e) {
+			result = new Result<Object>(100, "查询失败！", list);
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * 修改水印照片配置
 	 * @param request
 	 * @param picFile
 	 * @return
@@ -300,7 +346,8 @@ public class NewsController {
 		
 		try {
 			String jsonFilePath = filePath+"admin/jsp/config.json";
-			BufferedReader br = new BufferedReader(new FileReader(jsonFilePath));
+			InputStreamReader isr = new InputStreamReader(new FileInputStream(new File(jsonFilePath)),"UTF-8");
+			BufferedReader br = new BufferedReader(isr);
 			String str = null,jsonStr = "";
 			
 			while((str=br.readLine())!=null){
@@ -328,7 +375,8 @@ public class NewsController {
 			}
 			
 			jsonStr = jsonObject.toString();
-			BufferedWriter bw = new BufferedWriter(new FileWriter(jsonFilePath));
+			OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(new File(jsonFilePath)),"UTF-8");
+			BufferedWriter bw = new BufferedWriter(osw);
 			bw.write(jsonStr);
 			bw.flush();
 			bw.close();
