@@ -107,9 +107,12 @@ function ScrollImgLeft(){
     var scroll_begin = document.getElementById("scroll_begin");
     var scroll_end = document.getElementById("scroll_end");
     var scroll_div = document.getElementById("scroll_div");
+    if(!scroll_begin){
+        return;
+    }
     scroll_end.innerHTML=scroll_begin.innerHTML;
     function Marquee(){
-        if(scroll_end.offsetWidth-scroll_div.scrollLeft<=0)
+        if(scroll_end.offsetWidth-scroll_div.scrollLeft<=4)
         {
             scroll_div.scrollLeft-=scroll_begin.offsetWidth;
         }

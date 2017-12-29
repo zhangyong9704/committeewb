@@ -54,6 +54,7 @@ body{
     text-align: center;
     line-height: 38px; /*2017-12-25*/
     height: 38px;    /*2017-12-25*/
+    /*border:1px solid black;*/
 }
 .nav >div> ul>.date1{/*2017-12-26*/
     color: white;

@@ -22,7 +22,7 @@
     <div class="header">
 			<span id="articleId" style="display: none;"><c:if test="${id!=null }">${id }</c:if><c:if test="${id==null }">-1</c:if></span>
 			<div class="logo">
-				蜀南
+				蜀南气矿
 			</div>
 			<div class="title-wrapper">
 				<span class="title"><c:if test="${type!=null}">${type}</c:if><c:if test="${type==null}">编辑</c:if></span>

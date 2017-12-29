@@ -18,6 +18,9 @@ $(".nav a").css("lineHeight",navh1);
 $(".nav li").css("lineHeight",navh1); //2017-12-26
 $(".nav li").css("lineHeight",navh1); //2017-12-26
 $(".nav div").css("bottom",navh);
+// $(".nav >div> ul>.weather").css("height",navh1);
+// $(".nav >div> ul>.weather").css("lineHeight",navh1);
+
 $('.nav>div a').mouseover(function () {
     $('.nav>div a').css("background","#C90102");
     $(this).css("background","#A00314")
@@ -39,10 +42,6 @@ function setwidth() {
          }
 }
 
-//天气预报
-console.log($("#ww"))
-document.getElementById('ww').contentWindow.document.body.style.backgroundColor="#000";
-////星光
 //星光
 var stars_box=document.getElementById('stars_box');  //获取id为star_box的元素
 var Obj=function(){}   //创建一个对象

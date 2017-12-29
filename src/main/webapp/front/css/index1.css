@@ -312,28 +312,34 @@
     overflow: hidden;
     white-space: nowrap;
     background:#ffffff;
-    /*border:1px solid red;*/
 }
 .scroll_div img {
     width:100%;
     border:4px solid transparent;
 }
 .scroll_div ul{
-    margin-left: 0;
     padding: 0;
     width: 100%;
-    border:1px solid red;
+    /*border:1px solid red;*/
 }
 .scroll_div li{
+    padding: 0;
     list-style: none;
-    width:20%;
+    /*margin-left: -5px;*/
+    width:19.7%;
+    /*border:1px solid black;*/
 }
 #scroll_begin, #scroll_end, #scroll_begin ul, #scroll_end ul, #scroll_begin ul li, #scroll_end ul li{
     display:inline-block;
 }/*设置ul和li横排*/
+#scroll_end{
+    margin-left:0;
+}
 .thumbnail{
+    width:100%;
     border: 1px solid transparent;
     margin-top: 10px;
+    /*border:1px solid black;*/
 }
 .thumbnail p{
     text-align: center;

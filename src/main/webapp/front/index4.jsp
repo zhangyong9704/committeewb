@@ -13,7 +13,6 @@
     <title>蜀南气矿团委</title>
     <!-- Bootstrap -->
     <link href="${pageContext.request.contextPath }/front/css/bootstrap.css" rel="stylesheet" media="screen">
-    <link href="${pageContext.request.contextPath }/front/css/idangerous.swiper2.7.6.css" rel="stylesheet" media="screen">
     <link href="${pageContext.request.contextPath }/front/css/head1.css" rel="stylesheet" >
     <link href="${pageContext.request.contextPath }/front/css/index1.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/front/css/iconfont.css" rel="stylesheet">
@@ -49,10 +48,22 @@
                     <div>
                     <ul>
                         <c:forEach items="${navList }" var="nav">
-					    	<li><a href="${pageContext.request.contextPath }/${nav.jumpLink }">${nav.name }</a></li>
+					    	<li>
+					    		<c:if test="${nav.id!=6 }">
+					    			<a href="${pageContext.request.contextPath }/${nav.jumpLink }">${nav.name }</a>
+					    		</c:if>
+					    		<c:if test="${nav.id==6 }">
+					    			<c:if test="${nav.jumpLink==null ||  nav.jumpLink==''}">
+					    				${nav.name }
+					    			</c:if>
+					    			<c:if test="${nav.jumpLink!=null &&  nav.jumpLink!=''}">
+					    				<a href="${nav.jumpLink }">${nav.name }</a>
+					    			</c:if>
+					    		</c:if>
+					    	</li>
 					   	</c:forEach>
 					   	<li class='date1'>${date }&nbsp;&nbsp;${day}</li><li class='weather' id="weather">
-    <iframe id='ww'allowtransparency="true" frameborder="0" width="180"  scrolling="no" src="//tianqi.2345.com/plugin/widget/index.htm?s=3&z=2&t=0&v=0&d=3&bd=0&k=000000&f=ffffff&ltf=ffffff&htf=ffffff&q=1&e=1&a=0&c=57602&w=180&h=36&align=center"></iframe>
+    <iframe  align=center valign=middle id='ww'allowtransparency="true" frameborder="0" width="180"  scrolling="no" src="//tianqi.2345.com/plugin/widget/index.htm?s=3&z=2&t=0&v=0&d=3&bd=0&k=000000&f=ffffff&ltf=ffffff&htf=ffffff&q=1&e=1&a=0&c=57602&w=180&h=30&align=center"></iframe>
                          </li>
                     </ul>
                     </div>
@@ -68,9 +79,14 @@
                 <div class="row banner">
                 <div class="col-md-12 col-sm-12 col-xs-12 ">
                 	<c:forEach items="${bannerList }" var="banner">
-                	<a href="${banner.jumpLink}">
-                		<img src="${pageContext.request.contextPath }/upload/${banner.picUrl}"/>
-                	</a>
+	                	<c:if test="${banner.jumpLink!=null && banner.jumpLink!=''}">
+	                		<a href="${banner.jumpLink}">
+	                			<img src="${pageContext.request.contextPath }/upload/${banner.picUrl}"/>
+	                		</a>
+	                	</c:if>
+	                	<c:if test="${banner.jumpLink==null || banner.jumpLink==''}">
+	                		<img src="${pageContext.request.contextPath }/upload/${banner.picUrl}"/>
+	                	</c:if>
 				    </c:forEach>
                 </div>  <!--　1201*289-->
                 </div> <!--banner-->
@@ -150,7 +166,7 @@
 	                         </c:forEach>
                         </ul>
                         <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=8&currentPage=1">
-                        	<img src="${pageContext.request.contextPath }/front/img/rightbanner.png">
+                        	<img src="${pageContext.request.contextPath }/upload/${lifeChat.picUrl}"> 
                         </a>   <!--　380*122-->
                     </div><!--公告栏-->
                 </div><!--第一行-->
@@ -291,62 +307,15 @@
     </c:forEach>
     </ul>
     </div>
-    <div id="scroll_end" style="width: 100%;margin-left: 20px"></div>
+    <div id="scroll_end" style="width: 100%;"></div>
     </div>
     </div>
-
-
-
-
-
     <div style="width:4.15%; float: left"><img src="${pageContext.request.contextPath }/front/img/right.png" style="width: 100%"></div>
 
-
-
-
     </div>
-
-
 
     <!--青春剪影-->
 
-
-
-
-
-
-                <%--<div class="row thirdRow" >--%>
-                    <%--<div><img src="${pageContext.request.contextPath }/front/img/left.png" style="width: 100%"></div>--%>
-                    <%--<div class="col-md-11 col-sm-11 col-xs-11 a1" style="float: left">--%>
-                    <%--<div class="swiper-container">--%>
-                        <%--<div class="swiper-wrapper">--%>
-                        	<%--<c:forEach items="${qcjyList }" var="news">--%>
-	                        	<%--<div class="swiper-slide">--%>
-	                                <%--<div class="thumbnail">--%>
-	                                    <%--<a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query">--%>
-	                                    	<%--<img src="${pageContext.request.contextPath }/upload/${news.picUrl}" alt="...">--%>
-	                                    <%--</a>--%>
-	                                    <%--</a>--%>
-	                                    <%--<div class="caption">--%>
-	                                        <%--<p>--%>
-	                                        	<%--<a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query">--%>
-			                                        <%--<c:if test="${fn:length(news.title)>10 }">--%>
-				                         				<%--${fn:substring(news.title, 0, 10) }...--%>
-				                         			<%--</c:if>--%>
-				                         			<%--<c:if test="${fn:length(news.title)<10 }">--%>
-				                         				<%--${news.title }--%>
-				                         			<%--</c:if>--%>
-	                                        	<%--</a>--%>
-	                                        <%--</p>--%>
-	                                    <%--</div>--%>
-	                                <%--</div>--%>
-	                            <%--</div>--%>
-                        	<%--</c:forEach>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                    <%--</div>--%>
-                    <%--<div style="width:4.15%; float: left"><img src="${pageContext.request.contextPath }/front/img/right.png" style="width: 100%"></div>--%>
-                <%--</div><!--青春剪影-->--%>
                 <!--小banner-->
                 <div class="row footer">
                 <c:forEach items="${linksList }" var="banner">
@@ -370,7 +339,6 @@
 <script src="${pageContext.request.contextPath }/front/js/jquery-3.2.1.min.js"></script>
 <script src="${pageContext.request.contextPath }/front/js/nav.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="${pageContext.request.contextPath }/front/js/idangerous.swiper2.7.6.js"></script>
 <script src="${pageContext.request.contextPath }/front/js/index.js"></script>
 <!--<script src="js/animate.js"></script>-->
 

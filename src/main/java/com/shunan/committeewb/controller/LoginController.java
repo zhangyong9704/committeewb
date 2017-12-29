@@ -58,13 +58,13 @@ public class LoginController {
 		String validateCode = request.getSession().getAttribute("validateCode").toString();
 		if(!(validateCode.toString().equalsIgnoreCase(randomCode))){
 			request.setAttribute("msg", "验证码不正确！");
-			return "redirect:/admin/login.jsp";
+			return "forward:/admin/login.jsp";
 		}
 		
 		User u = userService.queryUserByAccount(user.getAccount());
 		if(u == null){
 			request.setAttribute("msg", "用户名/密码不正确！");
-			return "redirect:/admin/login.jsp";
+			return "forward:/admin/login.jsp";
 		}
 		
 		Md5Hash md5Hash = new Md5Hash(user.getPassword(), u.getSalt(), 10);
@@ -76,7 +76,7 @@ public class LoginController {
 			return "redirect:/admin/index.jsp";
 		}else{
 			request.setAttribute("msg", "用户名/密码不正确！");
-			return "redirect:/admin/login.jsp";
+			return "forward:/admin/login.jsp";
 		}
 	}
 	

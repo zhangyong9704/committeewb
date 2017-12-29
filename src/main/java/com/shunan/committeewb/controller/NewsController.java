@@ -406,7 +406,7 @@ public class NewsController {
 	public String newsList(HttpServletRequest request,Model model) throws Exception{
 		//右侧新闻列表所需数据
 		int currentPage = 1;
-		int pageSize = 3;
+		int pageSize = 20;
 		String newsTypeID = request.getParameter("newsTypeID");
 		if(request.getParameter("currentPage")!=null && (!request.getParameter("currentPage").equals(""))){
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));

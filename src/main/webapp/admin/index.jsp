@@ -31,7 +31,7 @@
         <div class="container-fluid">
             <a class="brand" href="${pageContext.request.contextPath }/admin/index.jsp">
                 <!-- <img src="" alt="蜀南"/> -->
-                <div style="margin-left: 20px;">蜀南</div>
+                <div style="margin-left: 20px;">蜀南气矿</div>
             </a>
             <!-- BEGIN RESPONSIVE MENU TOGGLER -->
             <a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
@@ -226,7 +226,7 @@
 <!-- BEGIN FOOTER -->
 <div class="footer">
     <div class="footer-inner">
-        2017 &copy; 翡翠集团.
+        Powered by 北京信雅致达信息科技有限公司
     </div>
     <div class="footer-tools">
 			<span class="go-top">
