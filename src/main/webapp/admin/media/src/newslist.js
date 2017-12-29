@@ -82,8 +82,10 @@ var NewsList = (function(){
                 pageList: [self.limit],
                 sidePagination: "server",
                 toolbar: "#toolbar",
+                search: true,
                 responseHandler: responseHandler,
                 queryParams: function(params) {
+                	console.log(params);
                 	// offset: 偏移量 limit: 每页的数目 order: asc desc
                 	// 获取类型和状态的值
                 	var radioval=$('input:radio[name="optionsRadios"]:checked').val();
@@ -105,6 +107,7 @@ var NewsList = (function(){
                 		typeIDs: checkboxval,
                      	offset: params.offset,
                       	limit: params.limit,
+                      	search: params.search,
                       	order: "desc"
                    };
                 },

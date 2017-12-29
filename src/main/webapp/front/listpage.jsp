@@ -16,6 +16,7 @@
     <link href="${pageContext.request.contextPath }/front/css/bootstrap.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/front/css/head1.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/front/css/listpage1.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/front/css/iconfont.css" rel="stylesheet">
       <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -50,9 +51,9 @@
                         <c:forEach items="${navList }" var="nav">
 					    	<li><a href="${pageContext.request.contextPath }/${nav.jumpLink }">${nav.name }</a></li>
 					   	</c:forEach>
-					   	<li><a href="#">${date }</a></li>
-                        <li><a href="#">${day }</a></li>
-                        <li><a href="#">天气晴</a></li>
+    <li class='date1'>${date }&nbsp;&nbsp;${day}</li><li class='weather' id="weather">
+    <iframe id='ww'allowtransparency="true" frameborder="0" width="180" height="36" scrolling="no" src="//tianqi.2345.com/plugin/widget/index.htm?s=3&z=2&t=0&v=0&d=3&bd=0&k=000000&f=ffffff&ltf=ffffff&htf=ffffff&q=1&e=1&a=0&c=57602&w=180&h=36&align=center"></iframe>
+    </li>
                     </ul>
                     </div>
                 </div>
@@ -70,7 +71,7 @@
                     </div>  <!--　1201*289-->
                 </div> <!--banner-->
                 <div class="breadnav">
-                    <span>您的位置：<a href="#">首页</a>>><span>${newsTypeName }</span></span>
+                    <span>您的位置：<a href="#">首页</a><span class="iconfont icon-icon-copy"></span><span>${newsTypeName }</span></span>
                 </div>
                <!--主要内容 -->
                 <div class="col-md-12 concent">

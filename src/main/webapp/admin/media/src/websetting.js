@@ -375,9 +375,7 @@ var WebSetting = function () {
 	                    type: 'text',
 	                    title: '链接',
 	                    mode: 'inline',
-	                    validate: function (v) {
-	                        if (!v) return '不能为空';
-	                    }
+	                    
 	                }
 				}],
 				onEditableSave: function(field, row, oldValue, $el){
@@ -557,6 +555,161 @@ var WebSetting = function () {
 				data : []
 			});
 			this.initFriendLinkTable();
+			// 水印设置
+			$('#waterMarktable').bootstrapTable({
+				dataType : "json",	
+				cache : false, // 不缓存
+				columns : [{
+					field : 'isWatermark',
+					align : 'center',
+					valign : 'middle',
+					title : "水印状态",
+					formatter : function(value, row, index) {
+						var text = "开启";
+						if(value == false){
+							text = "关闭";
+						}
+						return ["<button id='waterBtn' class='btn btn-primary'>"+text+"</button>"].join("");
+					},
+					events: {
+						'click #waterBtn': function(e, value, row){
+							var text = $("#waterBtn").html();
+							var isMark = null;
+							if(text === "关闭"){
+								isMark = true;
+							}else{
+								isMark = false;
+							}
+							$.ajax({
+								type:"post",
+								url:self.baseurl+"/news/watermark",
+								async:true,
+								data: {
+									isWatermark: isMark
+								},
+								success: function(res){
+									if(res.code == 200){
+										self.slideDownAlert(res.msg);
+							        	self.initWaterMarkTable();
+									}
+								},
+								error: function(error){
+									
+								}
+							});
+						}
+					}
+				},{
+					field : 'watermarkType',
+					align : 'center',
+					valign : 'middle',
+					title : "水印类型",
+					editable: {
+						type: "select",
+            			source: [{ value: "text", text: "底部文本" }, { value: "icon", text: "底部图标" }, {value:"alltext",text:"全图文本"}, {value:"allicon",text:"全图图标"}],
+	                    title: '水印类型',
+	                    mode: 'popup',
+	                    validate: function (v) {
+	                        if (!v) return '不能为空';
+	                    }
+	                }
+				},{
+					field : 'watermarkText',
+					align : 'center',
+					valign : 'middle',
+					title : "水印文字",
+					editable: {
+	                    type: 'text',
+	                    title: '水印文字',
+	                    mode: 'popup',
+	                    validate: function (v) {
+	                        if (!v) return '不能为空';
+	                    }
+	                }
+				},{
+					field : 'watermarkImgPath',
+					align : 'center',
+					valign : 'middle',
+					title : "水印图片",
+					formatter : function(value, row, index) {
+						return ["<img style='width:100px;' src="+ self.baseurl+ value + " />"
+							,"&nbsp;&nbsp;<form class='uploadForm' id=friendform"+row.id+" enctype='multipart/form-data'><div class='myinput'><i class='modifybtn'>修改</i><input name='picFile' type='file' id='uploadfileinput'  accept='image/jpeg,image/png,image/gif' /></div></form>"
+						].join("");
+					},
+					events : {
+						'change #uploadfileinput': function(e, value, row){
+							// 组装FormData对象
+							var form = document.getElementById("friendform"+row.id);
+							var formData = new FormData(form);
+							
+							var xhr = new XMLHttpRequest();
+							xhr.open("POST", self.baseurl+"/news/watermark", true);
+							
+							 //注册相关事件回调处理函数
+							xhr.onload = function(e) { 
+							    if(this.status == 200||this.status == 304){
+							        console.log(this.responseText);
+							        var res = window.JSON.parse(this.responseText);
+							        if(res.code === 200){
+							        		self.slideDownAlert(res.msg);
+							        		self.initWaterMarkTable();
+							        }else{
+							        	
+							        }
+							    }
+							};
+							//发送数据
+							xhr.send(formData);
+						}
+					}
+				}],
+				onEditableSave: function(field, row, oldValue, $el){
+					$.ajax({
+	                    type: "post",
+	                    url: self.baseurl+"/news/watermark",
+	                    data: {
+	                    	watermarkType: row.watermarkType,
+	                    	watermarkText: row.watermarkText
+	                    },
+	                    dataType: 'JSON',
+	                    success: function (res, status) {
+	                        if (res.code == 200) {
+	                        	self.slideDownAlert(res.msg);
+							    self.initWaterMarkTable();
+	                        }
+	                        self.slideDownAlert(res.msg);
+	                    },
+	                    error: function () {
+	                       	
+	                    },
+	                    complete: function () {
+	
+	                    }
+	                });
+				},
+				data : []
+			});
+			this.initWaterMarkTable();
+        },
+        initWaterMarkTable: function(){
+        	var self = this;
+        	$.ajax({
+        		type:"get",
+        		url: self.baseurl+"/news/queryWatermark",
+        		async:true,
+        		success: function(res){
+        			var arr = [];
+        			if(res.code === 200){
+        				var data = {};
+        				data.isWatermark = res.rows[0];
+        				data.watermarkText = res.rows[1];
+        				data.watermarkImgPath = res.rows[2];
+        				data.watermarkType = res.rows[3];
+        				arr.push(data);
+        				$('#waterMarktable').bootstrapTable("load", arr);
+        			}
+        		}
+        	});
         },
         initWebInfoTable: function(){
         	var self = this;

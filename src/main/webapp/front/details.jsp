@@ -53,9 +53,9 @@
                         <c:forEach items="${navList }" var="nav">
 					    	<li><a href="${pageContext.request.contextPath }/${nav.jumpLink }">${nav.name }</a></li>
 					   	</c:forEach>
-					   	<li><a href="#">${date }</a></li>
-                        <li><a href="#">${day }</a></li>
-                        <li><a href="#">天气晴</a></li>
+    <li class='date1'>${date }&nbsp;&nbsp;${day}</li><li class='weather' id="weather">
+    <iframe id='ww'allowtransparency="true" frameborder="0" width="180" height="36" scrolling="no" src="//tianqi.2345.com/plugin/widget/index.htm?s=3&z=2&t=0&v=0&d=3&bd=0&k=000000&f=ffffff&ltf=ffffff&htf=ffffff&q=1&e=1&a=0&c=57602&w=180&h=36&align=center"></iframe>
+    </li>
                     </ul>
                     </div>
                 </div>
@@ -66,13 +66,15 @@
             <div class="col-md-8 col-md-offset-2">
                 <!--主要内容 -->
                 <div class="col-md-12 concent">
+
                     <div class="actirl">
-                        <div class="title">
+                    <%--标题--%>
+                     <div class="title">
                             <h2>${news.title }</h2>
                             <p>
                             	发稿时间：<fmt:formatDate value="${news.showTime }" pattern="yyyy-MM-dd HH:mm:ss"/>
                             </p>
-                        </div>
+                        </div><%--标题--%>
                     <!--左侧列表-->
                     <div class="left">
                         ${news.content }
@@ -101,7 +103,7 @@
                         <div class="r2">
                         </div>
                     </div> <!--右侧内容-->
-                    </div>
+                  </div>
                 </div> <!--主要内容 -->
                     <!--分页-->
                     <div class="fenye">

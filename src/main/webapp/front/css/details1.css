@@ -13,7 +13,10 @@
     color: #CC0000;
     line-height: 30px;
 }
-
+ .right a:hover{ /*2017-12-26*/
+     color: #e38d13 !important;
+    text-decoration: underline !important;
+}
 .left{
     /*float: left;*//*2017-12-25*/
     width:660px;  /*2017-12-25*/
@@ -30,7 +33,7 @@
     background-color: #F6F6F6;
     float: right;
     padding: 0;
-    /*width: 29%;*/  /*2017-12-25*/
+    width: 30%;
     height: 615px;
     border-top: 2px solid #A46770;
 }
@@ -61,27 +64,40 @@
     margin-top: 30px;
     color: black;
 }
+.right .r1 li h3,.right .r1 li p,.right .r1 li span{ /*2017-12-26*/
+    width: 80%;
+    overflow: hidden !important;
+    text-overflow:ellipsis !important;
+    white-space: nowrap !important;
+}
+.right .r1 li h3:hover{ /*2017-12-26*/
+    color: #e38d13;
+}
 .right .r1 li p{
     color: black;
+}
+.right .r1 li p:hover{ /*2017-12-26*/
+    color: #e38d13;
 }
 .right .r1 li span{
     color: #666;
 }
-@media screen and (min-width:1301px){
+.right .r1 li span:hover{ /*2017-12-26*/
+    color: #e38d13;
+}
+@media screen and (min-width:1021px){
     .left{
         float: left;
     }
     .right{
         display: block;
         float: right;
-        width: 20%;
-        
     }
     .title{
         margin-left: 0;
     }
 }
-@media screen and (max-width:1300px) {
+@media screen and (max-width:1020px) {
     .left{
         float: none;
         margin: 0 auto;
@@ -101,4 +117,7 @@
 .fenye a{
     text-decoration: none;
     color: black;
+}
+.fenye a:hover{
+    text-decoration: underline;
 }
