@@ -49,7 +49,19 @@
                     <div>
                     <ul>
                         <c:forEach items="${navList }" var="nav">
-					    	<li><a href="${pageContext.request.contextPath }/${nav.jumpLink }">${nav.name }</a></li>
+					    	<li>
+					    		<c:if test="${nav.id!=6 }">
+					    			<a href="${pageContext.request.contextPath }/${nav.jumpLink }">${nav.name }</a>
+					    		</c:if>
+					    		<c:if test="${nav.id==6 }">
+					    			<c:if test="${nav.jumpLink==null ||  nav.jumpLink==''}">
+					    				${nav.name }
+					    			</c:if>
+					    			<c:if test="${nav.jumpLink!=null &&  nav.jumpLink!=''}">
+					    				<a href="${nav.jumpLink }">${nav.name }</a>
+					    			</c:if>
+					    		</c:if>
+					    	</li>
 					   	</c:forEach>
     <li class='date1'>${date }&nbsp;&nbsp;${day}</li><li class='weather' id="weather">
     <iframe id='ww'allowtransparency="true" frameborder="0" width="180" height="36" scrolling="no" src="//tianqi.2345.com/plugin/widget/index.htm?s=3&z=2&t=0&v=0&d=3&bd=0&k=000000&f=ffffff&ltf=ffffff&htf=ffffff&q=1&e=1&a=0&c=57602&w=180&h=36&align=center"></iframe>

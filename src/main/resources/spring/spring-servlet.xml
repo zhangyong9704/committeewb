@@ -30,8 +30,16 @@
 	        </bean>  
     	</mvc:message-converters>  
     </mvc:annotation-driven>
-    <!-- 处理静态资源 -->
-    <mvc:default-servlet-handler/>
+    <!-- 处理静态资源 并 缓存资源一个月 -->
+<!--     <mvc:default-servlet-handler/> -->
+    <mvc:resources location="/admin/components/" mapping="/admin/components/**" cache-period="2592000"/>
+    <mvc:resources location="/admin/error/" mapping="/admin/error/**" cache-period="2592000"/>
+    <mvc:resources location="/admin/jsp/" mapping="/admin/jsp/**" cache-period="2592000"/>
+    <mvc:resources location="/admin/media/" mapping="/admin/media/**" cache-period="2592000"/>
+    <mvc:resources location="/front/css/" mapping="/front/css/**" cache-period="2592000"/>
+    <mvc:resources location="/front/fonts/" mapping="/front/fonts/**" cache-period="2592000"/>
+    <mvc:resources location="/front/img/" mapping="/front/img/**" cache-period="2592000"/>
+    <mvc:resources location="/front/js/" mapping="/front/js/**" cache-period="2592000"/>
     <!-- 视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/admin/"/>

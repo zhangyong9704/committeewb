@@ -55,6 +55,10 @@ public class LoginController {
 	
 	@RequestMapping("/login")
 	public String login(User user,HttpServletRequest request,String randomCode) throws Exception{
+		if(user.getAccount()==null && user.getPassword()==null && randomCode==null){
+			return "forward:/admin/login.jsp";
+		}
+		
 		String validateCode = request.getSession().getAttribute("validateCode").toString();
 		if(!(validateCode.toString().equalsIgnoreCase(randomCode))){
 			request.setAttribute("msg", "验证码不正确！");

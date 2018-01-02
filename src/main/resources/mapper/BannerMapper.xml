@@ -11,7 +11,8 @@
 		<include refid="queryBanner"/>
 		<where>
 			type=#{type}
-		</where>
+		</where> 
+		order by sort asc
 	</select>
 	
 	<!-- 添加banner图 or 友情链接-->
@@ -23,7 +24,7 @@
 	<!-- 修改banner图 or 友情链接 -->
 	<update id="updateBanner" parameterType="banner">
 		update banner
-		set name=#{name},picUrl=#{picUrl},jumpLink=#{jumpLink}
+		set name=#{name},picUrl=#{picUrl},jumpLink=#{jumpLink},sort=#{sort}
 		where id=#{id}
 	</update>
 	

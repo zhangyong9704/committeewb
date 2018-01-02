@@ -11,6 +11,7 @@ public class Banner {
 	private String picUrl;//图片地址
 	private String jumpLink;//跳转链接
 	private int type;//banner类型:0头部大banner图,1底部小图
+	private int sort;//显示顺序
 	public Banner() {
 		super();
 	}
@@ -44,9 +45,10 @@ public class Banner {
 	public void setType(int type) {
 		this.type = type;
 	}
-	@Override
-	public String toString() {
-		return "Banner [id=" + id + ", name=" + name + ", picUrl=" + picUrl + ", jumpLink=" + jumpLink + ", type="
-				+ type + "]";
+	public int getSort() {
+		return sort;
+	}
+	public void setSort(int sort) {
+		this.sort = sort;
 	}
 }
