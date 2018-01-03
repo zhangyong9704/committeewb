@@ -249,6 +249,22 @@ var Write = (function(){
 			$(".box").click(function(e){
 				e.stopPropagation();
 			});
+			// 是否作为题图checkbox
+			$("#isPicNews").change(function(){
+				// 检验是否已经上传题图
+				// 如果是选中状态，必须上传题图
+				if($(this).is(':checked')){
+					var imgsrc = $("#tiTuImg").attr("src");
+					console.log(imgsrc);
+					if(imgsrc != "" && imgsrc != undefined){
+						//$(".nextbtn").attr("disabled", false);
+					}else{
+						alert("请上传题图");
+						$(this).attr("checked", false);
+						//$(".nextbtn").attr("disabled", true);
+					}
+				}
+			});
 			// 发布按钮
 			$(".publish-btn").click(function(e){
 				$(".box").slideDown();
@@ -285,6 +301,7 @@ var Write = (function(){
 					picUrl: ""
 				});
 				// 隐藏图片展示
+				$("#tiTuImg").attr("src", "");
 				$(".img-wrapper").hide();
 				// 显示file表单
 				self.showFileInput();
@@ -408,6 +425,7 @@ var Write = (function(){
 			$(".remove").click(function(){
 				self.showFileInput();
 				$(".writeCover-previewWrapper").show();
+				$("#tiTuImg").attr("src", "");
 				$(".img-wrapper").hide();
 				self.ajaxEdit({
 					picUrl: ""

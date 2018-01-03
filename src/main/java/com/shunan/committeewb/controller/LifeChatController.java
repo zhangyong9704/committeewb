@@ -12,6 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.shunan.committeewb.po.LifeChat;
 import com.shunan.committeewb.po.Result;
 import com.shunan.committeewb.service.LifeChatService;
+import com.shunan.committeewb.utils.CommonUtils;
+import com.shunan.committeewb.utils.FileUtil;
 
 /**
  * 生活大家谈
@@ -63,13 +65,13 @@ public class LifeChatController {
 		Result<String> result = null;
 		List<String> list = new ArrayList<String>();
 		
-/*		if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
+		if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
 			Result<String> picResult = FileUtil.checkFile(picFile, 
 					CommonUtils.SHDJT_WIDTH, CommonUtils.SHDJT_HEIGHT, CommonUtils.FILE_MAXSIZE);
 			if(picResult.getCode()!=200){
 				return picResult;
 			}
-		}*/
+		}
 		
 		try {
 			lifeChatService.updateLifeChat(lifeChat,picFile);

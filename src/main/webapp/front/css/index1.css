@@ -32,13 +32,15 @@
     padding-top: 3px;
     background: white;
     box-shadow: 2px 2px 8px #888888;
-
+	height: 220px;
+}
+.b1{
+    height: 210px;
 }
 .itemsCon img {
     width: 95%;
 }
 .itemsCon div>a{
-    line-height: 2.3em;
     text-decoration: none;
     color: #7f7f7f;
 }
@@ -46,26 +48,40 @@
 /*轮播图*/
 .warper{
     width: 95%;
-    height: 210px; /*2017-12-25*/
+    height: 100%; /*2017-12-25*/
     overflow: hidden;
     position: relative;
     margin-bottom: 0;
 }
-.warper img{
-    width:100%;
+.warper li a:first-child{
+    display: block;
+    width: 100%;
+    height: 191px;
+    text-align: center;
 }
 .warper ul{
     padding: 0;
     overflow: hidden;
+    height: 100%;
 }
 .warper li{
+    width: 100%;
+    height: 100%;
+    position: relative;
     list-style: none;
+    padding: 0;
 }
-.sildebar li a{ /*2017-12-25*/
+.sildebar li a { /*2017-12-25*/
     text-decoration: none;
     color: black;
-
 }
+
+.sildebar li a:last-child{
+    position: absolute;
+    bottom: 0px;
+    line-height: 14px;
+}
+
 .sildebar li>a:last-child{/*2017-12-26*/
     width: 70%;
     display: block
@@ -84,23 +100,48 @@
     color: white;
     cursor: pointer;
 }
+
 .focusBox li:not(:last-child){
     border-right:2px solid white;
 }
 .focusBox{
+    padding: 0;
+    height: 15px;
     position: absolute;
-    bottom: 30px; /*2017-12-25*/
-    right: 3px;
+    right: 5px;
+    top:161px;
 }
 
 /*重点专注*/
 .itemsCon>div:nth-child(2)>ul{
+    position: relative;
+    width: 100%;
+    height: 100%;
     padding: 0;
+    border:1px solid transparent;
 }
 .itemsCon>div:nth-child(2)>ul>li{
     width: 100%;
     list-style: none;
     position: relative;
+}
+.itemsCon>div:nth-child(2)>ul>li:first-child{
+    position: absolute;
+    top:0;
+}
+.itemsCon>div:nth-child(2)>ul>li:last-child{
+    position: absolute;
+    bottom: 0;
+}
+.itemsCon>div:nth-child(2)>ul>li:last-child a{
+    line-height: 14px;
+}
+.itemsCon>div:nth-child(2)>ul>li:nth-child(2){
+    margin-top:32px;
+}
+
+.itemsCon>div:nth-child(2)>ul>li:not(:first-child):not(:last-child){
+     height: 32px;
 }
 .itemsCon>div:nth-child(2)>ul>li>a{
     text-decoration: none;
@@ -120,45 +161,7 @@
     right: 17px;
 }
 
-@media screen and (max-width:1370px) {
-    .itemsCon>div:nth-child(2)>ul>li{
-        height: 30px;
-        line-height: 30px;
-    }
-    .img{
-        height: 215px;
-    }
-    .secondRow .list{
-        height: 265px;
-    }
 
-}
-@media screen and (min-width:1371px){
-    .itemsCon>div:nth-child(2)>ul>li{
-        height: 32px;
-        line-height: 32px;
-    }
-    .img{
-        height: 250px;
-    }
-    .secondRow .list{
-        height: 300px;
-    }
-
-}
-@media screen and (min-width:1610px) and (max-width: 2000px){
-    .itemsCon>div:nth-child(2)>ul>li{
-        height: 32px;
-        line-height: 32px;
-    }
-    .img{
-        height: 300px;
-    }
-    .secondRow .list{
-        height: 350px;
-    }
-
-}
 /*公告栏*/
 .itemsCon>div:nth-child(3) img{
     width: 100%;
@@ -168,7 +171,7 @@
 }
 .itemsCon>div:nth-child(3)>ul>li{
     list-style: none;
-    line-height: 30px;
+    /*line-height: 35px;*/
 }
 .itemsCon>div:nth-child(3)>ul>li a{
     color: black;
@@ -179,6 +182,50 @@
 .itemsCon>div:nth-child(3)>ul>li a:hover{
     text-decoration: underline;
     color: #e38d13;
+}
+.itemsCon>div:nth-child(3){
+    position: relative;
+}
+.itemsCon>div:nth-child(3)>a{
+    position: absolute;
+    bottom: 2px;
+    /*border:1px solid black;*/
+}
+@media screen and (max-width:1370px) {
+    .itemsCon>div:nth-child(3)>ul>li{
+             line-height: 35px;
+    }
+    .img{
+        height: 215px;
+    }
+    .secondRow .list{
+        height: 265px;
+    }
+
+}
+@media screen and (min-width:1371px){
+    .itemsCon>div:nth-child(3)>ul>li{
+             line-height: 30px;
+    }
+    .img{
+        height: 250px;
+    }
+    .secondRow .list{
+        height: 300px;
+    }
+
+}
+@media screen and (min-width:1610px) and (max-width: 2000px){
+    .itemsCon>div:nth-child(3)>ul>li{
+        line-height: 30px;
+    }
+    .img{
+        height: 300px;
+    }
+    .secondRow .list{
+        height: 350px;
+    }
+
 }
 
 /*第二行内容*/

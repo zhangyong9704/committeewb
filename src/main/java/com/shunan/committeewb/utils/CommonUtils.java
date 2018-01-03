@@ -55,26 +55,26 @@ public class CommonUtils {
 	public static final int CODE_IMG_PX = 103; //图片分辨率不符合规范时的状态码
 	
 	//各个模块上传图片时要求的像素比 （宽/高）
-	public static final int HOME_LOGO_WIDTH = 1200; //首页大banner
+	public static final int HOME_LOGO_WIDTH = 1200; //首页logo
 	public static final int HOME_LOGO_HEIGHT = 375;
 	public static final int HOME_TITLE_WIDTH = 1920; //首页title
 	public static final int HOME_TITLE_HEIGHT = 600;
 	public static final int HOME_BACKGROUND_WIDTH = 1200; //首页背景图
 	public static final int HOME_BACKGROUND_HEIGHT = 375;
-	public static final int HOME_BANNER_WIDTH = 1190; //首页banner
-	public static final int HOME_BANNER_HEIGHT = 370; 
-	public static final int LINK_WIDTH = 110; //友情链接
-	public static final int LINK_HEIGHT = 30; 
-	public static final int ROLLIMG_WIDTH = 1190; //轮播图
-	public static final int ROLLIMG_HEIGHT = 370; 
-	public static final int SHDJT_WIDTH = 1190; //生活大家谈
-	public static final int SHDJT_HEIGHT = 370; 
-	public static final int ZTHD_WIDTH = 1190; //专题活动
-	public static final int ZTHD_HEIGHT = 370; 
-	public static final int QCJY_WIDTH = 1190; //青春剪影
-	public static final int QCJY_HEIGHT = 370; 
-	public static final int WATERMARK_WIDTH = 1190; //水印照片
-	public static final int WATERMARK_HEIGHT = 370; 
+	public static final int HOME_BANNER_WIDTH = 1200; //首页banner
+	public static final int HOME_BANNER_HEIGHT = 197; 
+	public static final int LINK_WIDTH = 186; //友情链接
+	public static final int LINK_HEIGHT = 63; 
+	public static final int ROLLIMG_WIDTH = 334; //轮播图
+	public static final int ROLLIMG_HEIGHT = 193; 
+	public static final int SHDJT_WIDTH = 380; //生活大家谈
+	public static final int SHDJT_HEIGHT = 122; 
+	public static final int ZTHD_WIDTH = 287; //专题活动
+	public static final int ZTHD_HEIGHT = 69; 
+	public static final int QCJY_WIDTH = 222; //青春剪影
+	public static final int QCJY_HEIGHT = 148; 
+	public static final int WATERMARK_WIDTH = 100; //水印照片
+	public static final int WATERMARK_HEIGHT = 30; 
 	
 	/**
 	 * 将String转换为List

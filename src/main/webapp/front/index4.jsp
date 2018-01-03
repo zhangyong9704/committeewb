@@ -7,6 +7,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Cache-Control" content="max-age=7200" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
@@ -115,10 +116,11 @@
                             <ul id="slideName1" class="sildebar clearfix">
                             	<c:forEach items="${rollImgList }" var="news">
 	                           		<li>
-	                           			<a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query">
-	                           				<img src="${pageContext.request.contextPath }/upload/${news.picUrl}" alt="${news.title }">
-	                           			</a>
-	                                   <a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query" style="line-height: 2em">
+	                           			<%--<a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query">--%>
+	                           				<%--<img src="${pageContext.request.contextPath }/upload/${news.picUrl}" alt="${news.title }">--%>
+	                           			<%--</a>--%>
+                                    <a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query" style="background:url('${pageContext.request.contextPath }/upload/${news.picUrl}') no-repeat center center;background-size: cover;" title="${news.title }"> </a>
+	                                   <a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query">
 		                                   	<c:if test="${fn:length(news.title)>23 }">
 		                         				${fn:substring(news.title, 0, 23) }...
 		                         			</c:if>
@@ -132,17 +134,12 @@
                         </div>
                        </div> <!--轮播图 -->
                     <!--重点专注-->
-                    <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="col-md-4 col-sm-4 col-xs-4 b1">
                         <ul>
 	                         <c:forEach items="${zdzzList }" var="news">
 	                         	<li>
-	                         		<a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query" target="_blank">
-	                         			<c:if test="${fn:length(news.title)>20 }">
-	                         				${fn:substring(news.title, 0, 20) }...
-	                         			</c:if>
-	                         			<c:if test="${fn:length(news.title)<20 }">
+	                         		<a title="${news.title }" href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query" target="_blank">
 	                         				${news.title }
-	                         			</c:if>
 	                         		</a>
 	                         		<span><fmt:formatDate value="${news.showTime }" pattern="yyyy-MM-dd"/></span>
 	                         	</li>
@@ -150,17 +147,12 @@
                         </ul>
                     </div> <!--重点专注-->
                     <!--公告栏-->
-                    <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="col-md-4 col-sm-4 col-xs-4 b1">
                         <ul>
                             <c:forEach items="${ggList }" var="news">
 	                         	<li>
-	                         		<a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query" target="_blank">
-	                         			<c:if test="${fn:length(news.title)>23 }">
-	                         				${fn:substring(news.title, 0, 23) }...
-	                         			</c:if>
-	                         			<c:if test="${fn:length(news.title)<23 }">
+	                         		<a title="${news.title }" href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query" target="_blank">
 	                         				${news.title }
-	                         			</c:if>
 	                         		</a>
 	                         	</li>
 	                         </c:forEach>
@@ -182,13 +174,8 @@
                             <ul>
 	                           <c:forEach items="${wjtzList }" var="news">
 		                         	<li>
-		                         		<a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query" target="_blank">
-		                         			<c:if test="${fn:length(news.title)>10 }">
-		                         				${fn:substring(news.title, 0, 10) }...
-		                         			</c:if>
-		                         			<c:if test="${fn:length(news.title)<10 }">
+		                         		<a title="${news.title }" href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query" target="_blank">
 		                         				${news.title }
-		                         			</c:if>
 		                         		</a>
 		                         		<span><fmt:formatDate value="${news.showTime }" pattern="yyyy-MM-dd"/></span>
 		                         	</li>
@@ -207,13 +194,8 @@
                             <ul>
                             	<c:forEach items="${tqkxList }" var="news">
 		                         	<li>
-		                         		<a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query" target="_blank">
-		                         			<c:if test="${fn:length(news.title)>10 }">
-		                         				${fn:substring(news.title, 0, 10) }...
-		                         			</c:if>
-		                         			<c:if test="${fn:length(news.title)<10 }">
+		                         		<a title="${news.title }" href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query" target="_blank">
 		                         				${news.title }
-		                         			</c:if>
 		                         		</a>
 		                         		<span><fmt:formatDate value="${news.showTime }" pattern="yyyy-MM-dd"/></span>
 		                         	</li>
@@ -232,13 +214,8 @@
                             <ul>
                                 <c:forEach items="${snqyList }" var="news">
 		                         	<li>
-		                         		<a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query" target="_blank">
-		                         			<c:if test="${fn:length(news.title)>10 }">
-		                         				${fn:substring(news.title, 0, 10) }...
-		                         			</c:if>
-		                         			<c:if test="${fn:length(news.title)<10 }">
+		                         		<a title="${news.title }" href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query" target="_blank">
 		                         				${news.title }
-		                         			</c:if>
 		                         		</a>
 		                         		<span><fmt:formatDate value="${news.showTime }" pattern="yyyy-MM-dd"/></span>
 		                         	</li>
@@ -256,7 +233,7 @@
                         <%--<div class="list lastlist" style="position: relative">--%>
                             <div class="img"> <!--287*69-->
                             	<c:forEach items="${zthdList }" var="news">
-                            		<a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query" target="_blank">
+                            		<a title="${news.title }" href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query" target="_blank">
                             			<img src="${pageContext.request.contextPath }/upload/${news.picUrl}">  
                             		</a>
                             	</c:forEach>
@@ -292,7 +269,7 @@
         </a>
         <div class="caption">
         <p>
-        <a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query" target="_blank">
+        <a title="${news.title }" href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query" target="_blank">
         <c:if test="${fn:length(news.title)>10 }">
             ${fn:substring(news.title, 0, 10) }...
         </c:if>
@@ -322,7 +299,7 @@
                 	<div class="col-md-2 col-md-2 col-md-2">
                 		<a href="${banner.jumpLink }">
                 			<c:if test="${banner.picUrl != null && banner.picUrl != ''}">
-	                			<img src="${pageContext.request.contextPath }/upload/${banner.picUrl}" alt="${banner.name }">
+	                			<img title="${banner.name }" src="${pageContext.request.contextPath }/upload/${banner.picUrl}" alt="${banner.name }">
 	                		</c:if>
 	                		<c:if test="${banner.picUrl == null || banner.picUrl == ''}">
 	                			<a href="${banner.jumpLink }">${banner.name }</a>

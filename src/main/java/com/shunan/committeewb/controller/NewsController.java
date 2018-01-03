@@ -37,6 +37,7 @@ import com.shunan.committeewb.service.NewsService;
 import com.shunan.committeewb.service.NewsTypeService;
 import com.shunan.committeewb.utils.CommonUtils;
 import com.shunan.committeewb.utils.CreateFileUtil;
+import com.shunan.committeewb.utils.FileUtil;
 
 /**
  * 新闻
@@ -126,7 +127,7 @@ public class NewsController {
 	public Result<? extends Object> insertNews(News news,
 			MultipartFile picFile,HttpServletRequest request) throws Exception{
 		
-/*		if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
+		if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
 			News news2 = newsService.queryNewsByID(news.getId());
 			Result<String> picResult = null;
 			switch (news2.getNewsTypeID()) {
@@ -161,7 +162,7 @@ public class NewsController {
 			default:
 				break;
 			}
-		}*/
+		}
 		
 		Result<News> result = null;
 		List<News> list = new ArrayList<News>();
@@ -325,11 +326,11 @@ public class NewsController {
 		String watermarkImgPath = "";
 		
 		if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
-/*			Result<String> picResult = FileUtil.checkFile(picFile,
+			Result<String> picResult = FileUtil.checkFile(picFile,
 					CommonUtils.WATERMARK_WIDTH, CommonUtils.WATERMARK_HEIGHT, CommonUtils.FILE_MAXSIZE);
 			if(picResult.getCode()!=200){
 				return picResult;
-			}*/
+			}
 			//上传的照片大小以及像素均符合要求，则上传该水印照片至服务器
 			String originalFilename = picFile.getOriginalFilename();
 			if(originalFilename.contains(".")){

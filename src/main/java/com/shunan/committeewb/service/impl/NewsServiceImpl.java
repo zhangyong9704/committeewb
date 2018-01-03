@@ -278,8 +278,11 @@ public class NewsServiceImpl implements NewsService {
 			news = newsMapper.queryNewsDetail(newsTypeID, id, type);
 		}
 		
-		if(news!=null && "eq".equals(type)){
-			newsMapper.updateNewsCount(news.getId());
+		//已发布，且当前时间>新闻显示时间
+		if(news!=null && "eq".equals(type) && news.getStatus()==0){
+			if(System.currentTimeMillis()-news.getShowTime().getTime()>0){
+				newsMapper.updateNewsCount(news.getId());
+			}
 		}
 		return news;
 	}

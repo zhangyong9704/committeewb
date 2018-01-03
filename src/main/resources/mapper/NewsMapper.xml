@@ -184,7 +184,7 @@
 	<select id="queryNewsDetail" resultType="news">
 		<include refid="queryNews"/>
 		<where>
-			newsTypeID=#{newsTypeID} AND STATUS=0 AND NOW()>showTime 
+			newsTypeID=#{newsTypeID}  
 			<if test="type=='previous'">
 				and id&lt; #{id}
 			</if>

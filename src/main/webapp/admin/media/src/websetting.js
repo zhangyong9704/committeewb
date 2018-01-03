@@ -226,7 +226,7 @@ var WebSetting = function () {
 				dataType : "json",	
 				cache : false, // 不缓存
 				striped : true, // 隔行加亮
-				toolbar: "#toolbar",
+				/*toolbar: "#toolbar",*/
 				//是否显示分页（*）  
                 pagination: true,   
                  //是否启用排序  
@@ -271,14 +271,14 @@ var WebSetting = function () {
 					field : 'sort',
 					align : 'center',
 					valign : 'middle',
-					title : "位置",
+					title : "排序",
 					editable: {
 	                    type: 'text',
-	                    title: '位置',
+	                    title: '排序',
 	                    mode: 'inline',
 	                    validate: function (v) {
-	                        if (!v) return '位置不能为空';
-	                        if (isNaN(v)) return '位置必须是数字';
+	                        if (!v) return '排序不能为空';
+	                        if (isNaN(v)) return '排序必须是数字';
 	                    }
 	                }
 				},{
@@ -286,6 +286,7 @@ var WebSetting = function () {
 					align : 'center',
 					valign : 'middle',
 					title : "操作",
+					visible: false,
 					formatter : function(value, row, index) {
 						return "<button id='remove' class='btn btn-danger btn-mini'><i class='icon-remove'></i>  删除</button>";
 					},
@@ -363,8 +364,46 @@ var WebSetting = function () {
 					align : 'center',
 					valign : 'middle',
 					title : "图片",
-					formatter : function(value, row, index) {
+					/*formatter : function(value, row, index) {
 						return "<img style='width:100px;' src="+ self.baseurl+"/upload/"+ value + " />"
+					},*/
+					formatter : function(value, row, index) {
+						return ["<img style='width:100px;' src="+ self.baseurl+"/upload/"+ value + " />"
+							,"&nbsp;&nbsp;<form class='uploadForm' id=bannerform enctype='multipart/form-data'><div class='myinput'><i class='modifybtn'>修改</i><input name='picFile' type='file' id='bannnerinput'  accept='image/jpeg,image/png,image/gif' /></div></form>"
+						].join("");
+					},
+					events : {
+						'change #bannnerinput': function(e, value, row){
+							// todo
+							
+							// 组装FormData对象
+							var form = document.getElementById("bannerform");
+							var formData = new FormData(form);
+							formData.append("id", row.id);
+							formData.append("name", row.name);
+							formData.append("jumpLink", row.jumpLink);
+							formData.append("type", 0);
+							
+							var xhr = new XMLHttpRequest();
+							xhr.open("POST", self.baseurl+"/banner/updateBanner", true);
+							
+							 //注册相关事件回调处理函数
+							xhr.onload = function(e) { 
+							    if(this.status == 200||this.status == 304){
+							        console.log(this.responseText);
+							        var res = window.JSON.parse(this.responseText);
+							        if(res.code === 200){
+							        		self.slideDownAlert(res.msg);
+							        		self.initBannnerTable();
+							        }else{
+							        	
+							        }
+							    }
+							};
+							
+							//发送数据
+							xhr.send(formData);
+						}
 					}
 				}, {
 					field : 'jumpLink',
@@ -395,7 +434,7 @@ var WebSetting = function () {
 	                        }
 	                    },
 	                    error: function () {
-	                    		self.slideDownAlert("修改失败!");
+	                    	self.slideDownAlert("修改失败!");
 	                        //alert('修改失败');
 	                    },
 	                    complete: function () {
@@ -434,7 +473,7 @@ var WebSetting = function () {
 					editable: {
 	                    type: 'text',
 	                    title: '名称',
-	                    mode: 'inline',
+	                    mode: 'popup',
 	                    validate: function (v) {
 	                        if (!v) return '不能为空';
 	                    }
@@ -475,9 +514,7 @@ var WebSetting = function () {
 							        }
 							    }
 							};
-							/*xhr.ontimeout = function(e) { ... };
-							xhr.onerror = function(e) { ... };
-							xhr.upload.onprogress = function(e) { ... };*/
+							
 							//发送数据
 							xhr.send(formData);
 						}
@@ -490,9 +527,23 @@ var WebSetting = function () {
 					editable: {
 	                    type: 'text',
 	                    title: '链接',
-	                    mode: 'inline',
+	                    mode: 'popup',
 	                    validate: function (v) {
 	                        if (!v) return '不能为空';
+	                    }
+	                }
+				}, {
+					field : 'sort',
+					align : 'center',
+					valign : 'middle',
+					title : "排序",
+					editable: {
+	                    type: 'text',
+	                    title: '排序',
+	                    mode: 'popup',
+	                    validate: function (v) {
+	                        if (!v) return '排序不能为空';
+	                        if (isNaN(v)) return '排序必须是数字';
 	                    }
 	                }
 				},{
@@ -535,7 +586,8 @@ var WebSetting = function () {
 	                    data: {
 	                    	id: row.id,
 	                    	name: row.name,
-	                    	jumpLink: row.jumpLink
+	                    	jumpLink: row.jumpLink,
+	                    	sort: row.sort
 	                    },
 	                    dataType: 'JSON',
 	                    success: function (res, status) {

@@ -3,8 +3,9 @@
  */
 //初始化2017-12-22
     $(function () {
-var imgh1=parseInt($(".warper").find("img").height())+30+"px";
-$(".warper").css("height",imgh1);
+// var imgh1=parseInt($(".warper").find("img").height())-0+"px";
+// $(".warper").css("height",imgh1);
+// $(".focusBox").css("top",imgh1);
 var h1=parseInt($(".swiper-slide").find(".thumbnail").height())+30+"px";
 $(".swiper-wrapper,.swiper-slide").css("height",h1);
 $(".swiper-container").css("height",h1);
