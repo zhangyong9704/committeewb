@@ -120,7 +120,7 @@
 	                           				<%--<img src="${pageContext.request.contextPath }/upload/${news.picUrl}" alt="${news.title }">--%>
 	                           			<%--</a>--%>
                                     <a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query" style="background:url('${pageContext.request.contextPath }/upload/${news.picUrl}') no-repeat center center;background-size: cover;" title="${news.title }"> </a>
-	                                   <a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query">
+	                                   <a title="${news.title }" target="_blank" href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query">
 		                                   	<c:if test="${fn:length(news.title)>23 }">
 		                         				${fn:substring(news.title, 0, 23) }...
 		                         			</c:if>

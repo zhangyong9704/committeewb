@@ -120,7 +120,8 @@
                     <!--分页-->
                     <div class="fenye">
                     	<c:if test="${firstNews.id != news.id }">
-                    		<a href="${pageContext.request.contextPath }/news/${newsTypeID }/${firstNews.id }/query">首篇&nbsp;|&nbsp;</a>
+                    		<a href="${pageContext.request.contextPath }/news/${newsTypeID }/${firstNews.id }/query">首篇</a>
+							&nbsp;|&nbsp;
                     	</c:if>
                         <c:if test="${previousNews != null}">
                         	<a href="${pageContext.request.contextPath }/news/${newsTypeID }/${previousNews.id }/query">上一篇&nbsp;</a>
@@ -129,7 +130,8 @@
                         	<a href="${pageContext.request.contextPath }/news/${newsTypeID }/${nextNews.id }/query">下一篇</a>
                         </c:if>
                         <c:if test="${lastNews.id != news.id }">
-                        	<a href="${pageContext.request.contextPath }/news/${newsTypeID }/${lastNews.id }/query">&nbsp;|&nbsp;尾篇</a>
+                        	&nbsp;|&nbsp;
+                        	<a href="${pageContext.request.contextPath }/news/${newsTypeID }/${lastNews.id }/query">尾篇</a>
                         </c:if>
                     </div><!--分页-->
             </div>

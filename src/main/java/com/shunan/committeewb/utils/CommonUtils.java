@@ -44,6 +44,8 @@ public class CommonUtils {
 	public static final int NEWS = 4;
 	//生活大家谈
 	public static final int SHDJT = 5;
+	//专题标签
+	public static final int ACTIVITY = 6;
 	
 	//图片文件大小
 	//上传的图片的大小

@@ -120,7 +120,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	<hr/>
    	http://20.14.3.28:8080/committeewb/news/draft(id:RESTful风格)<br/>
    	添加新闻 <br/>
-   	参数：id(第一次向后台发送请求时，id=-1;以后再发送请求时，id=News的id)、修改的字段（新闻宣传图片picFile）
+   	参数：id(第一次向后台发送请求时，id=-1;以后再发送请求时，id=News的id)、修改的字段（新闻宣传图片picFile）、activities(专题标签ID、CheckBox的id值)
    	<hr/>
    	http://20.14.3.28:8080/committeewb/news/edit(RESTful风格)<br/>
    	编辑新闻时，用户直接copy url并打开一个新的页面，返回前端该页面 <br/>
@@ -144,7 +144,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	<hr/>
    	http://20.14.3.28:8080/committeewb/rollImg/deleteRollImg<br/>
    	删除轮播图<br/>
-   	参数：newsIDs(新闻ID，CheckBox的name值)
+   	参数：newsIDs(新闻ID，CheckBox的id值)
    	<hr/>
    	http://20.14.3.28:8080/committeewb/rollImg/updateRollImg<br/>
    	修改轮播图<br/>
@@ -180,6 +180,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	修改 生活大家谈<br/>
    	参数：id、name、picFile(上传的图片在表单中的name值)
    	<hr/>
+   	
+   	<h4>专题标签</h4>
+   	http://20.14.3.28:8080/committeewb/activity/queryAllActivity<br/>
+   	查询 所有的专题标签<br/>
+   	<hr/>
+   	http://20.14.3.28:8080/committeewb/activity/insertActivity<br/>
+   	添加 专题标签<br/>
+   	参数：id、name、picFile(上传的图片在表单中的name值)、sort(显示顺序)
+   	<hr/>
+   	http://20.14.3.28:8080/committeewb/activity/updateActivity<br/>
+   	修改 专题标签<br/>
+   	参数：id、name、picFile(上传的图片在表单中的name值)、sort(显示顺序)
+   	<hr/>
+   	http://20.14.3.28:8080/committeewb/activity/deleteActivity<br/>
+   	删除 专题标签<br/>
+   	参数：ids(专题标签ID，CheckBox的id值)
+   	<hr/>
+   	
    	
    	<h1>网站前端接口</h1>
    	http://20.14.3.28:8080/committeewb/weather<br/>

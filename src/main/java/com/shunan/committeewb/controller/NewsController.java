@@ -124,7 +124,7 @@ public class NewsController {
 	 */
 	@RequestMapping("/draft/{id}")
 	@ResponseBody
-	public Result<? extends Object> insertNews(News news,
+	public Result<? extends Object> insertNews(News news,String activities,
 			MultipartFile picFile,HttpServletRequest request) throws Exception{
 		
 		if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
@@ -143,13 +143,6 @@ public class NewsController {
 				}
 				break;
 			case 8:
-				break;
-			case 6:
-				picResult = FileUtil.checkFile(picFile, 
-						CommonUtils.ZTHD_WIDTH, CommonUtils.ZTHD_HEIGHT, CommonUtils.FILE_MAXSIZE);
-				if(picResult.getCode()!=200){
-					return picResult;
-				}
 				break;
 			case 7:
 				picResult = FileUtil.checkFile(picFile, 
@@ -190,7 +183,7 @@ public class NewsController {
 		if(news.getId()==-1){
 			//添加新闻
 			try {
-				int newsID = newsService.insertNews(news,picFile,user.getAccount());
+				int newsID = newsService.insertNews(news,picFile,user.getAccount(),activities);
 				News returnNews = newsService.queryNewsByID(newsID);
 				list.add(returnNews);
 				result = new Result<News>(200, "添加新闻成功！", list);
@@ -201,7 +194,7 @@ public class NewsController {
 		}else{
 			//编辑新闻
 			try {
-				newsService.updateNews(news,picFile,user.getAccount());
+				newsService.updateNews(news,picFile,user.getAccount(),activities);
 				News returnNews = newsService.queryNewsByID(news.getId());
 				list.add(returnNews);
 				result = new Result<News>(200, "修改新闻成功！", list);

@@ -10,10 +10,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.shunan.committeewb.dao.ActivityMapper;
 import com.shunan.committeewb.dao.NewsMapper;
 import com.shunan.committeewb.dao.NewsTypeMapper;
 import com.shunan.committeewb.dao.RollImgMapper;
 import com.shunan.committeewb.po.News;
+import com.shunan.committeewb.po.NewsActivity;
 import com.shunan.committeewb.po.NewsType;
 import com.shunan.committeewb.po.RollImg;
 import com.shunan.committeewb.po.RollImgList;
@@ -30,6 +32,8 @@ public class NewsServiceImpl implements NewsService {
 	private RollImgMapper rollImgMapper;
 	@Autowired
 	private NewsTypeMapper newsTypeMapper;
+	@Autowired
+	private ActivityMapper activityMapper;
 
 	/**
 	 * 查询首页需要展示的重点专注、文件通知、团青快讯等
@@ -91,6 +95,7 @@ public class NewsServiceImpl implements NewsService {
 			}
 		}
 		
+		activityMapper.deleteNewsActivityByNewsID(idList);
 		rollImgMapper.deleteRollImg(idList);
 		newsMapper.deleteNews(idList);
 	}
@@ -99,7 +104,7 @@ public class NewsServiceImpl implements NewsService {
 	 * 添加新闻
 	 */
 	@Override
-	public int insertNews(News news, MultipartFile picFile,String account) throws Exception {
+	public int insertNews(News news, MultipartFile picFile,String account,String activities) throws Exception {
 		if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
 			FileUtil.uploadFile(picFile, news, CommonUtils.NEWS);
 		}
@@ -109,6 +114,15 @@ public class NewsServiceImpl implements NewsService {
 		news.setAuthor(account); 
 		news.setCreateTime(new Date());
 		newsMapper.insertNews(news);
+		
+		//添加至新闻专题表
+		if(activities!=null && !("".equals(activities))){
+			List<Integer> activityIDList = CommonUtils.transferStringToIntList(activities);
+			for(int activityID:activityIDList){
+				NewsActivity newsActivity = new NewsActivity(news.getId(), activityID);
+				activityMapper.insertNewsActivity(newsActivity);
+			}
+		}
 		
 /*		if(attachmentFiles!=null){
 			for(MultipartFile attachmentFile:attachmentFiles){
@@ -155,7 +169,7 @@ public class NewsServiceImpl implements NewsService {
 	 * 编辑新闻
 	 */
 	@Override
-	public void updateNews(News news, MultipartFile picFile,String account) throws Exception {
+	public void updateNews(News news, MultipartFile picFile,String account,String activities) throws Exception {
 		if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
 			//删除旧宣传图片并上传新宣传图片
 			News news2 = newsMapper.queryNewsByID(news.getId());
@@ -168,14 +182,27 @@ public class NewsServiceImpl implements NewsService {
 		news.setAuthor(account);
 		newsMapper.updateNews(news);
 		
-		//修改新闻时，若将新闻类型修改为了"生活大家谈"、"专题活动"、"青春剪影"，且该新闻存在轮播图表中，则删除之
+		//修改新闻时，若将新闻类型修改为了"生活大家谈"、"青春剪影"，且该新闻存在轮播图表中，则删除之
 		int newsTypeID = news.getNewsTypeID();
-		if(newsTypeID==8 || newsTypeID==6 || newsTypeID==7){
+		if(newsTypeID==8 || newsTypeID==7){
 			RollImg rollImg = rollImgMapper.queryRollImgByNewsID(news.getId());
 			if(rollImg!=null){
 				List<Integer> newsIDList = new ArrayList<Integer>();
 				newsIDList.add(news.getId());
 				rollImgMapper.deleteRollImg(newsIDList);
+			}
+		}
+		
+		//修改新闻的专题标签
+		if(activities!=null && !("".equals(activities))){
+			List<Integer> newsIDList = new ArrayList<Integer>();
+			newsIDList.add(news.getId());
+			activityMapper.deleteNewsActivityByNewsID(newsIDList);
+			
+			List<Integer> activityIDList = CommonUtils.transferStringToIntList(activities);
+			for(int activityID:activityIDList){
+				NewsActivity newsActivity = new NewsActivity(news.getId(), activityID);
+				activityMapper.insertNewsActivity(newsActivity);
 			}
 		}
 	}

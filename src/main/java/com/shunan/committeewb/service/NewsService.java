@@ -52,10 +52,11 @@ public interface NewsService {
 	 * @param news
 	 * @param picFile
 	 * @param account
+	 * @param activities
 	 * @return
 	 * @throws Exception
 	 */
-	public int insertNews(News news, MultipartFile picFile, String account) throws Exception;
+	public int insertNews(News news, MultipartFile picFile, String account,String activities) throws Exception;
 	
 	/**
 	 * 根据id查询新闻信息
@@ -70,9 +71,10 @@ public interface NewsService {
 	 * @param news
 	 * @param picFile
 	 * @param account
+	 * @param activities
 	 * @throws Exception
 	 */
-	public void updateNews(News news, MultipartFile picFile,String account) throws Exception;
+	public void updateNews(News news, MultipartFile picFile,String account,String activities) throws Exception;
 
 	/**
 	 * 发布新闻

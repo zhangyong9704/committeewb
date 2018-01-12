@@ -9,6 +9,7 @@ import java.util.UUID;
 import javax.imageio.ImageIO;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.shunan.committeewb.po.Activity;
 import com.shunan.committeewb.po.Banner;
 import com.shunan.committeewb.po.LifeChat;
 import com.shunan.committeewb.po.News;
@@ -126,6 +127,11 @@ public class FileUtil<T> {
 					if(t instanceof LifeChat && type==CommonUtils.SHDJT){
 						LifeChat lifeChat = (LifeChat) t;
 						lifeChat.setPicUrl(dbUploadFileName);
+					}
+					//专题标签
+					if(t instanceof Activity && type==CommonUtils.ACTIVITY){
+						Activity activity = (Activity) t;
+						activity.setUrl(dbUploadFileName);
 					}
 				}
 			}

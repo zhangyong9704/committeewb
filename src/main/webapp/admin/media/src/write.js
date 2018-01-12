@@ -316,22 +316,22 @@ var Write = (function(){
 					case '5':
 						$("#isPicNews").attr("disabled", false);
 						$("#isPicNewsLable").removeClass("linethrough");
-						$(".noticeInfo").html("图片像素要求16*5");
+						$(".noticeInfo").html("图片像素要求334*193");
 						break;
 					case '6':
 						$("#isPicNews").attr("disabled", true);
 						$("#isPicNewsLable").addClass("linethrough");
-						$(".noticeInfo").html("图片像素宽高比要求10:4");		
+						$(".noticeInfo").html("图片像素宽高要求287*69");		
 						break;
 					case '7':
 						$("#isPicNews").attr("disabled", true);
 						$("#isPicNewsLable").addClass("linethrough");
-						$(".noticeInfo").html("图片像素宽高比要求8:4");		
+						$(".noticeInfo").html("图片像素宽高要求222:148");		
 						break;
 					case '8':
 						$("#isPicNews").attr("disabled", true);
 						$("#isPicNewsLable").addClass("linethrough");
-						$(".noticeInfo").html("图片像素宽高比要求80:40");		
+						$(".noticeInfo").html("图片像素宽高要求186:63");		
 						break;
 					default:
 						break;
@@ -443,22 +443,22 @@ var Write = (function(){
 				case 5:
 					$("#isPicNews").attr("disabled", false);
 					$("#isPicNewsLable").removeClass("linethrough");
-					$(".noticeInfo").html("图片像素要求16*5");
+					$(".noticeInfo").html("图片像素要求334*193");
 					break;
 				case 6:
 					$("#isPicNews").attr("disabled", true);
 					$("#isPicNewsLable").addClass("linethrough");
-					$(".noticeInfo").html("图片像素宽高比要求10:4");		
+					$(".noticeInfo").html("图片像素宽高要求287*69");		
 					break;
 				case 7:
 					$("#isPicNews").attr("disabled", true);
 					$("#isPicNewsLable").addClass("linethrough");
-					$(".noticeInfo").html("图片像素宽高比要求8:4");		
+					$(".noticeInfo").html("图片像素宽高要求222:148");		
 					break;
 				case 8:
 					$("#isPicNews").attr("disabled", true);
 					$("#isPicNewsLable").addClass("linethrough");
-					$(".noticeInfo").html("图片像素宽高比要求80:40");		
+					$(".noticeInfo").html("图片像素宽高要求186:63");		
 					break;
 				default:
 					break;

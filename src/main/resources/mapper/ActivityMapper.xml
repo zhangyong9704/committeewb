@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shunan.committeewb.dao.ActivityMapper">
+	
+	<!-- 查询所有的专题标签-->
+	<select id="queryAllActivity" resultType="activity">
+		SELECT * FROM activity
+	</select>
+	
+	<!-- 添加专题标签-->
+	<insert id="insertActivity" parameterType="activity">
+		INSERT INTO activity(name,url,sort)
+		VALUES(#{name},#{url},#{sort})
+	</insert>
+	
+	<!-- 修改专题标签 -->
+	<update id="updateActivity" parameterType="activity">
+		update banner
+		set name=#{name},url=#{url},sort=#{sort}
+		where id=#{id}
+	</update>
+	
+	<!-- 根据id查询专题标签-->
+	<select id="queryActivityByID" parameterType="int" resultType="activity">
+		SELECT * FROM activity WHERE id=#{id}
+	</select>
+	
+	<!-- 删除activity -->
+	<delete id="deleteActivity">
+		DELETE FROM activity 
+		<where>
+			<if test="idList!=null and idList.size()>0">
+				<foreach collection="idList" open=" id IN (" close=")" item="id" separator=",">
+					#{id}
+				</foreach>
+			</if>
+		</where>
+	</delete>
+	
+	<!-- 添加NewsActivity -->
+	<insert id="insertNewsActivity" parameterType="newsActivity">
+		INSERT INTO newsActivity(newsID,activityID) VALUES(#{newsID},#{activityID})
+	</insert>
+	
+	<!-- 根据activityID删除newsActivity -->
+	<delete id="deleteNewsActivityByActivityID">
+		DELETE FROM newsactivity 
+		<where>
+			<if test="idList!=null and idList.size()>0">
+				<foreach collection="idList" open=" activityID IN (" close=")" item="activityID" separator=",">
+					#{activityID}
+				</foreach>
+			</if>
+		</where>
+	</delete>
+	
+	<!-- 根据NewsID删除newsActivity -->
+	<delete id="deleteNewsActivityByNewsID">
+		DELETE FROM newsactivity 
+		<where>
+			<if test="idList!=null and idList.size()>0">
+				<foreach collection="idList" open=" newsID IN (" close=")" item="newsID" separator=",">
+					#{newsID}
+				</foreach>
+			</if>
+		</where>
+	</delete>
+</mapper>

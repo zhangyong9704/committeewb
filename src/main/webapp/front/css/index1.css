@@ -188,7 +188,7 @@
 }
 .itemsCon>div:nth-child(3)>a{
     position: absolute;
-    bottom: 2px;
+    bottom: 0px;
     /*border:1px solid black;*/
 }
 @media screen and (max-width:1370px) {

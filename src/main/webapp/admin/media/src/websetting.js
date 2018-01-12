@@ -140,7 +140,7 @@ var WebSetting = function () {
 					        console.log(this.responseText);
 					        var res = window.JSON.parse(this.responseText);
 					        if(res.code === 200){
-	                        self.slideDownAlert(res.msg);
+	                        	self.slideDownAlert(res.msg);
 					        	
 					        	document.getElementById("saveAddFriendLink").disabled = false;
 					        	self.initFriendLinkTable();
@@ -363,7 +363,7 @@ var WebSetting = function () {
 					field : 'picUrl',
 					align : 'center',
 					valign : 'middle',
-					title : "图片",
+					title : "图片(像素1200*197)",
 					/*formatter : function(value, row, index) {
 						return "<img style='width:100px;' src="+ self.baseurl+"/upload/"+ value + " />"
 					},*/
@@ -396,7 +396,7 @@ var WebSetting = function () {
 							        		self.slideDownAlert(res.msg);
 							        		self.initBannnerTable();
 							        }else{
-							        	
+							        	self.slideDownAlert(res.msg);
 							        }
 							    }
 							};
@@ -482,7 +482,7 @@ var WebSetting = function () {
 					field : 'picUrl',
 					align : 'center',
 					valign : 'middle',
-					title : "图片",
+					title : "图片(像素186*63)",
 					width: 200,
 					formatter : function(value, row, index) {
 						return ["<img style='width:100px;' src="+ self.baseurl+"/upload/"+ value + " />"
@@ -510,7 +510,7 @@ var WebSetting = function () {
 							        		self.slideDownAlert(res.msg);
 							        		self.initFriendLinkTable();
 							        }else{
-							        	
+							        	self.slideDownAlert(res.msg);
 							        }
 							    }
 							};
@@ -682,7 +682,7 @@ var WebSetting = function () {
 					field : 'watermarkImgPath',
 					align : 'center',
 					valign : 'middle',
-					title : "水印图片",
+					title : "水印图片(像素100*30)",
 					formatter : function(value, row, index) {
 						return ["<img style='width:100px;' src="+ self.baseurl+ value + " />"
 							,"&nbsp;&nbsp;<form class='uploadForm' id=friendform"+row.id+" enctype='multipart/form-data'><div class='myinput'><i class='modifybtn'>修改</i><input name='picFile' type='file' id='uploadfileinput'  accept='image/jpeg,image/png,image/gif' /></div></form>"
@@ -706,7 +706,7 @@ var WebSetting = function () {
 							        		self.slideDownAlert(res.msg);
 							        		self.initWaterMarkTable();
 							        }else{
-							        	
+							        	self.slideDownAlert(res.msg);
 							        }
 							    }
 							};
