@@ -40,4 +40,10 @@ public interface ActivityService {
 	 * @throws Exception
 	 */
 	public void deleteActivity(String ids) throws Exception;
+	/**
+	 * 查询升序排序的前10条专题标签
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Activity> queryLimitActivity() throws Exception;
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.shunan.committeewb.po.News;
+import com.shunan.committeewb.po.PortalNewsVO;
 import com.shunan.committeewb.po.RollImg;
 import com.shunan.committeewb.po.RollImgList;
 
@@ -60,7 +61,7 @@ public interface RollImgMapper {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<RollImgList> queryPageRollImg(
+	public List<PortalNewsVO> queryPageRollImg(
 			@Param("offset") int offset,@Param("pageSize") int pageSize) throws Exception;
 	
 	/**

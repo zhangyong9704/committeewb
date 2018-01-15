@@ -4,12 +4,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.shunan.committeewb.dao.ActivityMapper;
 import com.shunan.committeewb.dao.NewsMapper;
 import com.shunan.committeewb.dao.NewsTypeMapper;
@@ -17,8 +15,8 @@ import com.shunan.committeewb.dao.RollImgMapper;
 import com.shunan.committeewb.po.News;
 import com.shunan.committeewb.po.NewsActivity;
 import com.shunan.committeewb.po.NewsType;
+import com.shunan.committeewb.po.PortalNewsVO;
 import com.shunan.committeewb.po.RollImg;
-import com.shunan.committeewb.po.RollImgList;
 import com.shunan.committeewb.service.NewsService;
 import com.shunan.committeewb.utils.CommonUtils;
 import com.shunan.committeewb.utils.FileUtil;
@@ -247,27 +245,36 @@ public class NewsServiceImpl implements NewsService {
 	 * 新闻列表
 	 */
 	@Override
-	public List<? extends Object> newsList(String newsTypeID, int offset, int pageSize) throws Exception {
+	public List<PortalNewsVO> newsList(String newsTypeID, int offset, int pageSize,String activityID) throws Exception {
+		List<PortalNewsVO> portalNewsVOList = new ArrayList<PortalNewsVO>(); 
+		
 		if(newsTypeID.equals("0")){
 			//图片新闻
-			List<RollImgList> rollImgList = rollImgMapper.queryPageRollImg(offset, pageSize);
-			return rollImgList;
+			portalNewsVOList = rollImgMapper.queryPageRollImg(offset, pageSize);
+		}else if(newsTypeID.equals("6")){
+			//专题活动
+			portalNewsVOList = activityMapper.portalNewsActivityList(Integer.parseInt(activityID), offset, pageSize);
 		}else{
-			List<News> newsList  =this.queryPageNews(newsTypeID, 1, offset, pageSize, "asc","");
-			return newsList;
+			//重点关注、文件通知等
+			portalNewsVOList = newsMapper.portalPageNews(Integer.parseInt(newsTypeID), offset, pageSize);
 		}
+		return portalNewsVOList;
 	}
 
 	/**
 	 * 新闻列表中新闻总条数
 	 */
 	@Override
-	public long newsListTotal(String newsTypeID) throws Exception {
+	public long newsListTotal(String newsTypeID,String activityID) throws Exception {
 		long rowCount = 0;
 		if(newsTypeID.equals("0")){
 			//图片新闻
 			rowCount = rollImgMapper.queryRollImgTotal();
+		}else if(newsTypeID.equals("6")){
+			//专题活动
+			rowCount = activityMapper.portalNewsActivityListTotal(Integer.parseInt(activityID));
 		}else{
+			//重点关注、文件通知等
 			rowCount = this.queryNewsTotal(newsTypeID, 1,"");
 		}
 		return rowCount;
@@ -282,6 +289,9 @@ public class NewsServiceImpl implements NewsService {
 		int typeID = Integer.parseInt(newsTypeID);
 		if(typeID == 0){
 			newsTypeName = "图片新闻";
+		}else if(newsTypeID.equals("6")){
+			//专题活动
+			newsTypeName = "专题活动";
 		}else{
 			NewsType newsType = newsTypeMapper.queryNewsTypeByID(typeID);
 			newsTypeName = newsType.getName();

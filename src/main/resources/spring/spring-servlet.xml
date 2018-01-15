@@ -94,7 +94,7 @@
             <mvc:exclude-mapping path="/news/queryWatermark" />
             <mvc:exclude-mapping path="/news/watermark" />
             <mvc:exclude-mapping path="/home/{id}/query" />
-             <mvc:exclude-mapping path="/dealJsonFile" />
+            <mvc:exclude-mapping path="/dealJsonFile" />
             <!-- 配置拦截器 -->
             <bean class="com.shunan.committeewb.interceptor.LoginInterceptor"/>
 		</mvc:interceptor>

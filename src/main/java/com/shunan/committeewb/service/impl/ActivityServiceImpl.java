@@ -90,4 +90,12 @@ public class ActivityServiceImpl implements ActivityService {
 		activityMapper.deleteActivity(idList);
 		activityMapper.deleteNewsActivityByActivityID(idList);
 	}
+
+	/**
+	 * 查询升序排序的前10条专题标签
+	 */
+	@Override
+	public List<Activity> queryLimitActivity() throws Exception {
+		return activityMapper.queryLimitActivity();
+	}
 }

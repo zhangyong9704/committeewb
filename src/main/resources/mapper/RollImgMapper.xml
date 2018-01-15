@@ -64,11 +64,10 @@
 	</select>
 	
 	<!-- 分页查询轮播图 -->
-	<select id="queryPageRollImg" resultMap="rollImgList">
-		<include refid="rollImgList_sql"/> 
-		<where>
-			news.id=rollimg.newsID and isShow=1
-		</where>
+	<select id="queryPageRollImg" resultType="portalNewsVO">
+		SELECT news.id newsID,news.title newsTitle
+		FROM news,rollimg
+		WHERE news.id=rollimg.newsID AND isShow=1
 		order by newsID asc
 		LIMIT #{offset},#{pageSize}
 	</select>

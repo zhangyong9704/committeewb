@@ -3,6 +3,7 @@ package com.shunan.committeewb.dao;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import com.shunan.committeewb.po.News;
+import com.shunan.committeewb.po.PortalNewsVO;
 
 public interface NewsMapper {
 	/**
@@ -93,4 +94,12 @@ public interface NewsMapper {
 	 * @throws Exception
 	 */
 	public List<News> queryHotNews() throws Exception;
+	
+	/**
+	 * 门户网站 分页查询重点关注、文件通知等
+	 * @return
+	 * @throws Exception
+	 */
+	public List<PortalNewsVO> portalPageNews(@Param("newsTypeID") Integer newsTypeID,
+			@Param("offset") Integer offset,@Param("limit") Integer limit) throws Exception;
 }

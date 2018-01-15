@@ -68,7 +68,7 @@
 	</select>
 	
 	<!-- 分页查询所有的新闻 or 重点专注、文件通知等-->
-	<select id="queryPageNews" resultType="com.shunan.committeewb.po.News">
+	<select id="queryPageNews" resultType="news">
 		<include refid="queryNews"/>
 		<where>
 			<include refid="where_newsTypeID_in"/>
@@ -206,5 +206,15 @@
 		WHERE STATUS=0 AND NOW()&gt;showTime AND MONTH(NOW())-MONTH(showTime)&lt;1
 		ORDER BY COUNT DESC
 		LIMIT 0,10
+	</select>
+	
+	<!-- 门户网站 分页查询所有的新闻 or 重点专注、文件通知等-->
+	<select id="portalPageNews" resultType="portalNewsVO">
+		SELECT news.id newsID,news.title newsTitle
+		FROM news
+		WHERE news.newsTypeID=#{newsTypeID} 
+		    AND news.status=0 AND NOW()>news.showTime
+		 ORDER BY createTime ASC
+		 <include refid="pageLimit"/>
 	</select>
 </mapper>

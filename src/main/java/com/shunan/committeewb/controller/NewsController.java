@@ -29,6 +29,7 @@ import com.shunan.committeewb.po.Nav;
 import com.shunan.committeewb.po.News;
 import com.shunan.committeewb.po.NewsType;
 import com.shunan.committeewb.po.PageResult;
+import com.shunan.committeewb.po.PortalNewsVO;
 import com.shunan.committeewb.po.Result;
 import com.shunan.committeewb.po.User;
 import com.shunan.committeewb.service.BannerService;
@@ -402,13 +403,14 @@ public class NewsController {
 		int currentPage = 1;
 		int pageSize = 20;
 		String newsTypeID = request.getParameter("newsTypeID");
+		String activityID = request.getParameter("activityID");
 		if(request.getParameter("currentPage")!=null && (!request.getParameter("currentPage").equals(""))){
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		int offset = (currentPage-1)*pageSize;
 		
-		List<? extends Object> newsList = newsService.newsList(newsTypeID, offset, pageSize);
-		long rowCount = newsService.newsListTotal(newsTypeID);
+		List<PortalNewsVO> newsList = newsService.newsList(newsTypeID, offset, pageSize,activityID);
+		long rowCount = newsService.newsListTotal(newsTypeID,activityID);
 		int pageCount = (int) ((rowCount-1)/pageSize + 1);
 		
 		model.addAttribute("newsList", newsList);
@@ -434,6 +436,7 @@ public class NewsController {
 		NewsType newsType = new NewsType(0, "图片新闻");
 		newsTypeList.add(newsType);
 		newsTypeList.addAll(newsTypeService.queryAllNewsType());
+		newsTypeList.add(new NewsType(6, "专题活动"));
 		model.addAttribute("newsTypeList", newsTypeList);
 		
 		return "forward:/front/listpage.jsp";

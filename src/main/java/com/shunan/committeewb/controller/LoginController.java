@@ -24,11 +24,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.shunan.committeewb.po.Activity;
 import com.shunan.committeewb.po.Banner;
 import com.shunan.committeewb.po.LifeChat;
 import com.shunan.committeewb.po.Nav;
 import com.shunan.committeewb.po.News;
 import com.shunan.committeewb.po.User;
+import com.shunan.committeewb.service.ActivityService;
 import com.shunan.committeewb.service.BannerService;
 import com.shunan.committeewb.service.LifeChatService;
 import com.shunan.committeewb.service.NavService;
@@ -52,6 +54,8 @@ public class LoginController {
 	private UserService userService;
 	@Autowired
 	private LifeChatService lifeChatService;
+	@Autowired
+	private ActivityService activityService;
 	
 	@RequestMapping("/login")
 	public String login(User user,HttpServletRequest request,String randomCode) throws Exception{
@@ -146,7 +150,7 @@ public class LoginController {
 		List<News> wjtzList = newsService.queryHomeNews(CommonUtils.NEWS_WJTZ, CommonUtils.NEWS_WJTZ_LIMIT);
 		List<News> tqkxList = newsService.queryHomeNews(CommonUtils.NEWS_TQKX, CommonUtils.NEWS_TQKX_LIMIT);
 		List<News> snqyList = newsService.queryHomeNews(CommonUtils.NEWS_SNQY, CommonUtils.NEWS_SNQY_LIMIT);
-		List<News> zthdList = newsService.queryHomeNews(CommonUtils.NEWS_ZTHD, CommonUtils.NEWS_ZTHD_LIMIT);
+		List<Activity> zthdList = activityService.queryLimitActivity();
 		List<News> qcjyList = newsService.queryHomeNews(CommonUtils.NEWS_QCJY, CommonUtils.NEWS_QCJY_LIMIT);
 		model.addAttribute("zdzzList", zdzzList);
 		model.addAttribute("ggList", ggList);

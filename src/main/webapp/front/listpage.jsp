@@ -108,14 +108,15 @@
                     <!--右侧内容-->
                   <div class="right">
                       <ul>
-                      <c:forEach items="${newsList }" var="news">
+                      <c:forEach items="${newsList }" var="portalNewsVO">
                       	<li>
-                      		<a href="${pageContext.request.contextPath }/news/${newsTypeID }/${news.id }/query">
-                    			<c:if test="${fn:length(news.title)>35 }">
-                       				${fn:substring(news.title, 0, 35) }...
+                      		<%-- <a href="${pageContext.request.contextPath }/news/${newsTypeID }/${news.id }/query"> --%>
+                      		<a href="#">
+                    			<c:if test="${fn:length(portalNewsVO.newsTitle)>35 }">
+                       				${fn:substring(portalNewsVO.newsTitle, 0, 35) }...
                        			</c:if>
-                       			<c:if test="${fn:length(news.title)<35 }">
-                       				${news.title }
+                       			<c:if test="${fn:length(portalNewsVO.newsTitle)<35 }">
+                       				${portalNewsVO.newsTitle }
                        			</c:if>
                       		</a>
                       	</li>

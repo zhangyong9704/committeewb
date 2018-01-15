@@ -228,13 +228,13 @@
                     <div class="col-md-3  col-sm-3 col-xs-3 a1 lasta1">
                         <img src="${pageContext.request.contextPath }/front/img/listbg.png">   <!--　306*31-->
                         <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=6&currentPage=1">专题活动</a>
-                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=6&currentPage=1">更多>>></a>
+                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=6&currentPage=1&activityID=-1">更多>>></a>
                         <div class="list lastlist">
                         <%--<div class="list lastlist" style="position: relative">--%>
                             <div class="img"> <!--287*69-->
-                            	<c:forEach items="${zthdList }" var="news">
-                            		<a title="${news.title }" href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query" target="_blank">
-                            			<img src="${pageContext.request.contextPath }/upload/${news.picUrl}">  
+                            	<c:forEach items="${zthdList }" var="activity">
+                            		<a title="${activity.name }" href="${pageContext.request.contextPath }/news/newsList?newsTypeID=6&currentPage=1&activityID=${activityID}" target="_blank">
+                            			<img src="${pageContext.request.contextPath }/upload/${activity.url}">  
                             		</a>
                             	</c:forEach>
                             </div>

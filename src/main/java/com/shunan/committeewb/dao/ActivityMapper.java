@@ -5,7 +5,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.shunan.committeewb.po.Activity;
+import com.shunan.committeewb.po.News;
 import com.shunan.committeewb.po.NewsActivity;
+import com.shunan.committeewb.po.PortalNewsVO;
 
 public interface ActivityMapper {
 	/**
@@ -61,4 +63,37 @@ public interface ActivityMapper {
 	 */
 	public void deleteNewsActivityByNewsID(@Param("idList") List<Integer> idList) throws Exception;
 	
+	/**
+	 * 根据activityID查询新闻列表
+	 * @param activityID
+	 * @return
+	 * @throws Exception
+	 */
+	public List<News> newsActivityList(@Param("activityID") Integer activityID) throws Exception;
+	
+	/**
+	 * 查询升序排序的前10条专题标签
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Activity> queryLimitActivity() throws Exception;
+	
+	/**
+	 * 分页查询专题活动列表
+	 * @param activityID
+	 * @param offset
+	 * @param limit
+	 * @return
+	 * @throws Exception
+	 */
+	public List<PortalNewsVO> portalNewsActivityList(@Param("activityID") Integer activityID,
+			@Param("offset") Integer offset,@Param("limit") Integer limit) throws Exception;
+	
+	/**
+	 * 专题活动列表 总条数
+	 * @param activityID
+	 * @return
+	 * @throws Exception
+	 */
+	public Long portalNewsActivityListTotal(@Param("activityID") Integer activityID) throws Exception;
 }

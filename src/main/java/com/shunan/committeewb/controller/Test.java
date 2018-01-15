@@ -16,6 +16,9 @@ public class Test {
 		Date date2 = new Date(80090);
 		System.out.println(date1.getTime()-date2.getTime());
 		System.out.println(System.currentTimeMillis()-date2.getTime());
+		
+		int a = Integer.parseInt("-1");
+		System.out.println(a);
 	}
 
 }

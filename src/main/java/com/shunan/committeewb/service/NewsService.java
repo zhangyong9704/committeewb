@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.shunan.committeewb.po.News;
+import com.shunan.committeewb.po.PortalNewsVO;
 
 public interface NewsService {
 	/**
@@ -91,21 +92,21 @@ public interface NewsService {
 	
 	/**
 	 * 新闻列表
-	 * @param newsTypeID 新闻类型ID，图片新闻传0
+	 * @param newsTypeID 新闻类型ID，图片新闻传0，专题活动传6
 	 * @param offset
 	 * @param pageSize
 	 * @return
 	 * @throws Exception
 	 */
-	public List<? extends Object> newsList(String newsTypeID, int offset, int pageSize) throws Exception;
+	public List<PortalNewsVO> newsList(String newsTypeID, int offset, int pageSize,String activityID) throws Exception;
 	
 	/**
 	 * 新闻列表中新闻总条数
-	 * @param newsTypeID 新闻类型ID，图片新闻传0
+	 * @param newsTypeID 新闻类型ID，图片新闻传0，专题活动传6
 	 * @return
 	 * @throws Exception
 	 */
-	public long newsListTotal(String newsTypeID) throws Exception;
+	public long newsListTotal(String newsTypeID,String activityID) throws Exception;
 
 	/**
 	 * 新闻列表中的当前位置
