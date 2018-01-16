@@ -303,7 +303,7 @@ public class NewsServiceImpl implements NewsService {
 	 *  新闻详情
 	 */
 	@Override
-	public News queryNews(Integer newsTypeID, Integer id, String type) throws Exception {
+	public News queryNews(Integer activityID,Integer newsTypeID, Integer id, String type) throws Exception {
 		News news = null;
 		if(newsTypeID==0){
 			//图片新闻
@@ -311,7 +311,14 @@ public class NewsServiceImpl implements NewsService {
 			if(rollImg != null){
 				news = newsMapper.queryNewsByID(rollImg.getNewsID());
 			}
+		}else if(newsTypeID==6){
+			//专题活动
+			Integer newsID = activityMapper.queryNewsActivityDetail(activityID,id, type);
+			if(newsID != null){
+				news = newsMapper.queryNewsByID(newsID);
+			}
 		}else{
+			//重点关注、文件通知等等
 			news = newsMapper.queryNewsDetail(newsTypeID, id, type);
 		}
 		

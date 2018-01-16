@@ -212,7 +212,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	<hr/>
    	http://20.14.3.21:8080/committeewb/news/newsList<br/>
    	新闻列表<br/>
-   	参数：currentPage（当前页，从1开始）、newsTypeID（新闻类型ID）
+   	参数：currentPage（当前页，从1开始）、newsTypeID（新闻类型ID）、activityID（专题标签id）
    	<hr/>
    	http://20.14.3.21:8080/committeewb/news/{newsTypeID}/{id}/query(Restful风格)<br/>
    	查询新闻，同时新闻访问量+1  <br/>

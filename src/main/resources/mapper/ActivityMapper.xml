@@ -90,7 +90,7 @@
 				AND activity.id=#{activityID}
 			</if>
 		</where>
-		 ORDER BY createTime ASC
+		 ORDER BY news.id ASC
 		 LIMIT #{offset},#{limit}
 	</select>
 	
@@ -106,5 +106,38 @@
 				AND activity.id=#{activityID}
 			</if>
 		</where>
+	</select>
+	
+	<sql id="queryNewsActivity_detail">
+		<if test="type=='first' or type=='next'">
+			order by news.id asc
+		</if>
+		<if test="type=='previous' or type=='last'">
+			order by news.id desc
+		</if>
+	</sql>
+	
+	<!-- 专题标签 新闻详情 -->
+	<select id="queryNewsActivityDetail" resultType="int">
+		SELECT news.id newsID 
+		FROM news,activity,newsactivity
+		<where>
+			news.id=newsactivity.newsID 
+			AND activity.id=newsactivity.activityID
+			<if test="activityID!=null and activityID!=-1">
+				AND activity.id=#{activityID}
+			</if>
+			<if test="type=='previous'">
+				and news.id&lt; #{newsID}
+			</if>
+			<if test="type=='next'">
+				and news.id&gt; #{newsID}
+			</if>
+			<if test="type=='eq'">
+				and news.id=#{newsID}
+			</if>
+		</where>
+		<include refid="queryNewsActivity_detail"/>
+		limit 0,1
 	</select>
 </mapper>

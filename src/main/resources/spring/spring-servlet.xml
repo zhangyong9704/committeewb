@@ -31,7 +31,7 @@
     	</mvc:message-converters>  
     </mvc:annotation-driven>
     <!-- 处理静态资源 并 缓存资源一个月 -->
-<!--     <mvc:default-servlet-handler/> -->
+    <mvc:default-servlet-handler/>
     <mvc:resources location="/admin/components/" mapping="/admin/components/**" cache-period="2592000"/>
     <mvc:resources location="/admin/error/" mapping="/admin/error/**" cache-period="2592000"/>
     <mvc:resources location="/admin/jsp/" mapping="/admin/jsp/**" cache-period="2592000"/>
@@ -90,7 +90,7 @@
             <mvc:exclude-mapping path="/weather" />
             <mvc:exclude-mapping path="/index" />
             <mvc:exclude-mapping path="/news/newsList" />
-            <mvc:exclude-mapping path="/news/{newsTypeID}/{id}/query" />
+            <mvc:exclude-mapping path="/news/{activityID}/{newsTypeID}/{id}/query" />
             <mvc:exclude-mapping path="/news/queryWatermark" />
             <mvc:exclude-mapping path="/news/watermark" />
             <mvc:exclude-mapping path="/home/{id}/query" />

@@ -9,9 +9,15 @@
 }
 .title{
     width: 660px; /*2017-12-25*/
-    text-align: center;
     color: #CC0000;
     line-height: 30px;
+    text-align: center;
+}
+.title h2 {
+	font-weight: 600;
+}
+.title p {
+	text-align: center;
 }
  .right a:hover{ /*2017-12-26*/
      color: #e38d13 !important;

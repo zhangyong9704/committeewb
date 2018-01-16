@@ -25,14 +25,14 @@
     <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-</head>
-<body>
+<script>"undefined"==typeof CODE_LIVE&&(!function(e){var t={nonSecure:"8123",secure:"8124"},c={nonSecure:"http://",secure:"https://"},r={nonSecure:"127.0.0.1",secure:"gapdebug.local.genuitec.com"},n="https:"===window.location.protocol?"secure":"nonSecure";script=e.createElement("script"),script.type="text/javascript",script.async=!0,script.src=c[n]+r[n]+":"+t[n]+"/codelive-assets/bundle.js",e.getElementsByTagName("head")[0].appendChild(script)}(document),CODE_LIVE=!0);</script></head>
+<body data-genuitec-lp-enabled="false" data-genuitec-file-id="wc1-139" data-genuitec-path="/committeewb/src/main/webapp/front/details.jsp">
 	<c:if test="${news == null}">
 		<%
 			response.sendRedirect("/committeewb/news/newsList?newsTypeID=0");
 		 %>
 	</c:if>
-<div class="container-fluid">
+<div class="container-fluid" data-genuitec-lp-enabled="false" data-genuitec-file-id="wc1-139" data-genuitec-path="/committeewb/src/main/webapp/front/details.jsp">
     <!--head部分-->
     <div class="row head">
         <!--<div class="col-md-12 col-sm-12 col-xs-12 " style="background:url(img/head11.jpg) no-repeat center 60%;background-size: cover;height: 300px;">-->
@@ -98,7 +98,7 @@
                                 <li><a href="#"><h3>蜀南石油近期热门</h3></a></li>
                                 <c:forEach items="${hotNewsList }" var="news">
                                 <li>
-                                	<a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query">
+                                	<a href="${pageContext.request.contextPath }/news/-1/${news.newsTypeID }/${news.id }/query" title="${news.title }">
                                 		<p>
                                 			<c:if test="${fn:length(news.title)>18 }">
 		                         				${fn:substring(news.title, 0, 18) }...
@@ -120,18 +120,18 @@
                     <!--分页-->
                     <div class="fenye">
                     	<c:if test="${firstNews.id != news.id }">
-                    		<a href="${pageContext.request.contextPath }/news/${newsTypeID }/${firstNews.id }/query">首篇</a>
+                    		<a href="${pageContext.request.contextPath }/news/${activityID }/${newsTypeID }/${firstNews.id }/query">首篇</a>
 							&nbsp;|&nbsp;
                     	</c:if>
                         <c:if test="${previousNews != null}">
-                        	<a href="${pageContext.request.contextPath }/news/${newsTypeID }/${previousNews.id }/query">上一篇&nbsp;</a>
+                        	<a href="${pageContext.request.contextPath }/news/${activityID }/${newsTypeID }/${previousNews.id }/query">上一篇&nbsp;</a>
                         </c:if>
                         <c:if test="${nextNews != null}">
-                        	<a href="${pageContext.request.contextPath }/news/${newsTypeID }/${nextNews.id }/query">下一篇</a>
+                        	<a href="${pageContext.request.contextPath }/news/${activityID }/${newsTypeID }/${nextNews.id }/query">下一篇</a>
                         </c:if>
                         <c:if test="${lastNews.id != news.id }">
                         	&nbsp;|&nbsp;
-                        	<a href="${pageContext.request.contextPath }/news/${newsTypeID }/${lastNews.id }/query">尾篇</a>
+                        	<a href="${pageContext.request.contextPath }/news/${activityID }/${newsTypeID }/${lastNews.id }/query">尾篇</a>
                         </c:if>
                     </div><!--分页-->
             </div>

@@ -23,14 +23,14 @@
     <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-</head>
-<body>
+<script>"undefined"==typeof CODE_LIVE&&(!function(e){var t={nonSecure:"8123",secure:"8124"},c={nonSecure:"http://",secure:"https://"},r={nonSecure:"127.0.0.1",secure:"gapdebug.local.genuitec.com"},n="https:"===window.location.protocol?"secure":"nonSecure";script=e.createElement("script"),script.type="text/javascript",script.async=!0,script.src=c[n]+r[n]+":"+t[n]+"/codelive-assets/bundle.js",e.getElementsByTagName("head")[0].appendChild(script)}(document),CODE_LIVE=!0);</script></head>
+<body data-genuitec-lp-enabled="false" data-genuitec-file-id="wc1-142" data-genuitec-path="/committeewb/src/main/webapp/front/listpage.jsp">
 	<c:if test="${newsList == null }">
 		<%
 			response.sendRedirect("/committeewb/news/newsList?newsTypeID=0");
 		 %>
 	</c:if>
-<div class="container-fluid">
+<div class="container-fluid" data-genuitec-lp-enabled="false" data-genuitec-file-id="wc1-142" data-genuitec-path="/committeewb/src/main/webapp/front/listpage.jsp">
     <!--head部分-->
     <div class="row head">
         <!--<div class="col-md-12 col-sm-12 col-xs-12 " style="background:url(img/head11.jpg) no-repeat center 60%;background-size: cover;height: 300px;">-->
@@ -110,8 +110,10 @@
                       <ul>
                       <c:forEach items="${newsList }" var="portalNewsVO">
                       	<li>
-                      		<%-- <a href="${pageContext.request.contextPath }/news/${newsTypeID }/${news.id }/query"> --%>
-                      		<a href="#">
+                      		<a href="${pageContext.request.contextPath }/news/${activityID }/${newsTypeID }/${portalNewsVO.newsID }/query" title="${portalNewsVO.newsTitle }">
+                    			<c:if test="${portalNewsVO.activityName!=null && portalNewsVO.activityName!='' }">
+                    				【${portalNewsVO.activityName }】
+                    			</c:if>
                     			<c:if test="${fn:length(portalNewsVO.newsTitle)>35 }">
                        				${fn:substring(portalNewsVO.newsTitle, 0, 35) }...
                        			</c:if>
@@ -125,14 +127,14 @@
                   </div> <!--右侧内容-->
                     <!--分页-->
                     <div class="fenye">
-                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=${newsTypeID }&currentPage=1">首页&nbsp;&nbsp;</a>
+                        <a href="${pageContext.request.contextPath }/news/newsList?activityID=${activityID }&newsTypeID=${newsTypeID }&currentPage=1">首页&nbsp;&nbsp;</a>
                         <c:if test="${currentPage != 1 }">
-                        	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=${newsTypeID}&currentPage=${currentPage-1 }">上一页&nbsp;&nbsp;</a>
+                        	<a href="${pageContext.request.contextPath }/news/newsList?activityID=${activityID }&newsTypeID=${newsTypeID}&currentPage=${currentPage-1 }">上一页&nbsp;&nbsp;</a>
                         </c:if>
                         <c:if test="${currentPage != pageCount }">
-                        	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=${newsTypeID}&currentPage=${currentPage+1 }">下一页&nbsp;&nbsp;</a>
+                        	<a href="${pageContext.request.contextPath }/news/newsList?activityID=${activityID }&newsTypeID=${newsTypeID}&currentPage=${currentPage+1 }">下一页&nbsp;&nbsp;</a>
                         </c:if>
-                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=${newsTypeID}&currentPage=${pageCount }">尾页&nbsp;&nbsp;</a>
+                        <a href="${pageContext.request.contextPath }/news/newsList?activityID=${activityID }&newsTypeID=${newsTypeID}&currentPage=${pageCount }">尾页&nbsp;&nbsp;</a>
                         <span>当前第${currentPage }页&nbsp;&nbsp;</span>
                         <span>共${pageCount }页&nbsp;&nbsp;</span>
                         <span>共${rowCount }条数据</span>

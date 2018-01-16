@@ -439,6 +439,8 @@ public class NewsController {
 		newsTypeList.add(new NewsType(6, "专题活动"));
 		model.addAttribute("newsTypeList", newsTypeList);
 		
+		model.addAttribute("activityID", activityID);//专题标签ID
+		
 		return "forward:/front/listpage.jsp";
 	}
 	
@@ -451,21 +453,23 @@ public class NewsController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/{newsTypeID}/{id}/query")
-	public String query(@PathVariable("newsTypeID") int newsTypeID,
-			@PathVariable("id") int id,Model model) throws Exception{
-		News news = newsService.queryNews(newsTypeID,id,"eq"); //当前新闻
+	@RequestMapping("/{activityID}/{newsTypeID}/{id}/query")
+	public String query(@PathVariable("activityID") Integer activityID,
+			@PathVariable("newsTypeID") Integer newsTypeID,@PathVariable("id") Integer id,Model model) throws Exception{
+		News news = newsService.queryNews(activityID,newsTypeID,id,"eq"); //当前新闻
 		model.addAttribute("news", news);
 		model.addAttribute("newsTypeID", newsTypeID);
 		
-		News firstNews = newsService.queryNews(newsTypeID, id, "first");//首篇、上一篇、下一篇、尾篇
-		News previousNews = newsService.queryNews(newsTypeID, id, "previous"); 
-		News nextNews = newsService.queryNews(newsTypeID, id, "next");
-		News lastNews = newsService.queryNews(newsTypeID, id, "last");
+		News firstNews = newsService.queryNews(activityID,newsTypeID, id, "first");//首篇、上一篇、下一篇、尾篇
+		News previousNews = newsService.queryNews(activityID,newsTypeID, id, "previous"); 
+		News nextNews = newsService.queryNews(activityID,newsTypeID, id, "next");
+		News lastNews = newsService.queryNews(activityID,newsTypeID, id, "last");
 		model.addAttribute("firstNews", firstNews);
 		model.addAttribute("previousNews", previousNews);
 		model.addAttribute("nextNews", nextNews);
 		model.addAttribute("lastNews", lastNews);
+		
+		model.addAttribute("activityID", activityID);//专题标签ID
 		
 		List<Nav> navList = navService.queryAllNavs(); //导航栏
 		model.addAttribute("navList", navList);

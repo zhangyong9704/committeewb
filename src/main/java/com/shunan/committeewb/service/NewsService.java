@@ -124,7 +124,7 @@ public interface NewsService {
 	 * @return
 	 * @throws Exception
 	 */
-	public News queryNews(Integer newsTypeID, Integer id, String type) throws Exception;
+	public News queryNews(Integer activityID,Integer newsTypeID, Integer id, String type) throws Exception;
 	
 	/**
 	 * 近期热门

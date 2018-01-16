@@ -96,4 +96,15 @@ public interface ActivityMapper {
 	 * @throws Exception
 	 */
 	public Long portalNewsActivityListTotal(@Param("activityID") Integer activityID) throws Exception;
+	
+	/**
+	 * 专题标签 新闻详情
+	 * @param activityID
+	 * @param newsID
+	 * @param type
+	 * @return
+	 * @throws Exception
+	 */
+	public Integer queryNewsActivityDetail(@Param("activityID") Integer activityID,
+			@Param("newsID") Integer newsID,@Param("type") String type) throws Exception;
 }
