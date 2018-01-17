@@ -177,21 +177,16 @@ public class ActivityController {
 	 */
 	@RequestMapping("deleteNewsSpecialActivity")
 	@ResponseBody
-	public Result<String> deleteNewsSpecialActivity(Integer newsID, Integer activityID) throws Exception{
+	public Result<String> deleteNewsSpecialActivity(String newsIDs, Integer activityID) throws Exception{
 		Result<String> result = null;
 		List<String> list = new ArrayList<String>();
 		
-		if(newsID==null || activityID==null){
+		if(newsIDs==null || activityID==null){
 			return new Result<String>(100, "参数不合法！请传递新闻id和专题标签id！", list);
 		}
 		
-		int count = activityService.selectNewsSpecialActivity(newsID, activityID);
-		if(count<1){
-			return new Result<String>(100, "数据不存在或已被删除！", list);
-		}
-		
 		try {
-			activityService.deleteNewsSpecialActivity(newsID, activityID);
+			activityService.deleteNewsSpecialActivity(newsIDs, activityID);
 			result = new Result<String>(200, "删除成功！", list);
 		} catch (Exception e) {
 			result = new Result<String>(100, "删除失败！", list);

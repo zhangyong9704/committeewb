@@ -203,7 +203,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	<hr/>
    	http://20.14.3.21:8080/committeewb/activity/deleteNewsSpecialActivity<br/>
    	删除新闻的特定标签<br/>
-   	参数：newsID(新闻ID)、activityID(专题标签ID)
+   	参数：newsIDs(新闻ID,CheckBox的id值)、activityID(专题标签ID)
    	<hr/>
    	
    	

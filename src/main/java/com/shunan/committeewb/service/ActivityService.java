@@ -86,9 +86,9 @@ public interface ActivityService {
 	
 	/**
 	 * 删除新闻的特定标签
-	 * @param newsID
+	 * @param newsIDs
 	 * @param activityID
 	 * @throws Exception
 	 */
-	public void deleteNewsSpecialActivity(Integer newsID,Integer activityID) throws Exception;
+	public void deleteNewsSpecialActivity(String newsIDs,Integer activityID) throws Exception;
 }

@@ -149,6 +149,6 @@ public interface ActivityMapper {
 	 * @param activityID
 	 * @throws Exception
 	 */
-	public void deleteNewsSpecialActivity(@Param("newsID") Integer newsID,
+	public void deleteNewsSpecialActivity(@Param("newsIDList") List<Integer> newsIDList,
 			@Param("activityID") Integer activityID) throws Exception;
 }

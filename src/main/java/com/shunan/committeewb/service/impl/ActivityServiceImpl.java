@@ -120,8 +120,9 @@ public class ActivityServiceImpl implements ActivityService {
 	 * 删除新闻的特定标签
 	 */
 	@Override
-	public void deleteNewsSpecialActivity(Integer newsID, Integer activityID) throws Exception {
-		activityMapper.deleteNewsSpecialActivity(newsID, activityID);
+	public void deleteNewsSpecialActivity(String newsIDs, Integer activityID) throws Exception {
+		List<Integer> newsIDList = CommonUtils.transferStringToIntList(newsIDs);
+		activityMapper.deleteNewsSpecialActivity(newsIDList, activityID);
 	}
 
 	/**

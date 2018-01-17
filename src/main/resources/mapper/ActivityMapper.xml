@@ -100,7 +100,14 @@
 	<!-- 删除新闻的特定标签 -->
 	<delete id="deleteNewsSpecialActivity">
 		DELETE FROM newsactivity
-		WHERE newsID=#{newsID} AND activityID=#{activityID}
+		<where>
+			<if test="newsIDList!=null and newsIDList.size()>0">
+				<foreach collection="newsIDList" open=" and newsID IN (" close=")" item="newsID" separator=",">
+					#{newsID}
+				</foreach>
+			</if>
+			and activityID=#{activityID}
+		</where>
 	</delete>
 	
 	<!-- 门户网站 -->

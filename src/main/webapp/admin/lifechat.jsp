@@ -61,7 +61,7 @@
     <div class="navbar-inner">
         <div class="container-fluid">
             <a class="brand" href="${pageContext.request.contextPath }/admin/index.jsp">
-                <div style="margin-left: 20px;">蜀南气矿</div>
+                <div style="margin-left: 20px;">蜀南气矿团委</div>
             </a>
             <!-- BEGIN RESPONSIVE MENU TOGGLER -->
             <a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
@@ -134,6 +134,10 @@
                     <li>
                         <a href="${pageContext.request.contextPath }/admin/picturenews.jsp">
                             	图片新闻</a>
+                    </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath }/admin/tagnews.jsp">
+                            	标签新闻</a>
                     </li>
                     <li class="active">
                         <a href="${pageContext.request.contextPath }/admin/lifechat.jsp">
