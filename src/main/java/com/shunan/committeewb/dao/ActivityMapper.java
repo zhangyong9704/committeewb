@@ -107,4 +107,48 @@ public interface ActivityMapper {
 	 */
 	public Integer queryNewsActivityDetail(@Param("activityID") Integer activityID,
 			@Param("newsID") Integer newsID,@Param("type") String type) throws Exception;
+	
+	/**
+	 * 根据newsID查询其拥有的activityID
+	 * @param newsID
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Integer> selectActivityIDByNewsID(Integer newsID) throws Exception;
+	
+	/**
+	 * 查询专题标签下的新闻
+	 * @param activityID
+	 * @return
+	 * @throws Exception
+	 */
+	public List<News> selectNewsByActivityID(@Param("activityID") Integer activityID,
+			@Param("offset") Integer offset,@Param("limit") Integer limit) throws Exception;
+	
+	/**
+	 * 查询专题标签下的新闻条数
+	 * @param activityID
+	 * @return
+	 * @throws Exception
+	 */
+	public Long selectNewsByActivityIDTotal(Integer activityID) throws Exception;
+	
+	/**
+	 * 查找新闻的特定标签
+	 * @param newsID
+	 * @param activityID
+	 * @return
+	 * @throws Exception
+	 */
+	public int selectNewsSpecialActivity(@Param("newsID") Integer newsID,
+			@Param("activityID") Integer activityID) throws Exception;
+	
+	/**
+	 * 删除新闻的特定标签
+	 * @param newsID
+	 * @param activityID
+	 * @throws Exception
+	 */
+	public void deleteNewsSpecialActivity(@Param("newsID") Integer newsID,
+			@Param("activityID") Integer activityID) throws Exception;
 }

@@ -1,23 +1,23 @@
 var WebSetting = function () {
     return {
-    		baseurl: "",
-    		slideDownAlert: function(msg){
-    			var self = this;
-    			$(".alert .alertMsg").html(msg);
-    			$(".alert").slideDown();
-    			setTimeout(function(){
-    				self.slideUpAlert();
-    			}, 1500);
-    		},
-    		slideUpAlert: function(){
-    			$(".alert").slideUp();
-    		},
+		baseurl: "",
+		slideDownAlert: function(msg){
+			var self = this;
+			$(".alert .alertMsg").html(msg);
+			$(".alert").slideDown();
+			setTimeout(function(){
+				self.slideUpAlert();
+			}, 1500);
+		},
+		slideUpAlert: function(){
+			$(".alert").slideUp();
+		},
         init: function () {
             this.baseurl = CommonUtils.baseUrl;
             console.log("WebSetting init");
         },
         initEvent: function(){
-        		var self = this;
+        	var self = this;
        	 	$("#addNav").click(function(){
 	        		if($(this).html() === "添加"){
 	        			$(".addNavInput").fadeIn();
@@ -98,6 +98,24 @@ var WebSetting = function () {
 	        				.addClass("btn-success");
 	        		}
 	        	});
+	        	
+	        	//专题标签添加功能
+	        	$("#addSpecial").click(function(){
+	        		if($(this).html() === "添加"){
+	        			$(".addSpecialInput").fadeIn();
+	        			$(this)
+	        				.html("隐藏")
+	        				.removeClass("btn-success")
+	        				.addClass("btn-primary");
+	        		}else{
+	        			$(".addSpecialInput").fadeOut();
+	        			$(this)
+	        				.html("添加")
+	        				.removeClass("btn-primary")
+	        				.addClass("btn-success");
+	        		}
+	        	});
+	        	// 友情链接保存功能
 	        	$("#saveAddFriendLink").click(function(){
 	        		// 设置保存按钮不可用，防止连续点击
 	        		document.getElementById("saveAddFriendLink").disabled = true;
@@ -152,6 +170,53 @@ var WebSetting = function () {
 					/*xhr.ontimeout = function(e) { ... };
 					xhr.onerror = function(e) { ... };
 					xhr.upload.onprogress = function(e) { ... };*/
+					//发送数据
+					xhr.send(formData);
+	        	});
+	        	// 专题标签保存功能
+	        	$("#saveAddSpecial").click(function(){
+	        		// 设置保存按钮不可用，防止连续点击
+	        		document.getElementById("saveAddSpecial").disabled = true;
+	        		var specialName = $(".SpecialName").val();
+	        		var specialPic = $(".specialPic").val();
+	        		console.log(specialName);
+	        		console.log(specialPic);
+	        		if(specialName === ""){
+	        			alert("名称不能为空");
+	        			document.getElementById("saveAddSpecial").disabled = false;
+	        			return;
+	        		}
+	        		if(specialPic === ""){
+	        			alert("图片不能为空");
+	        			document.getElementById("saveAddSpecial").disabled = false;
+	        			return;
+	        		}
+	        		// 组装FormData对象
+					var form = document.getElementById("specialForm");
+					var formData = new FormData(form);
+					formData.append("sort", 0);
+					
+	        		$(".specialName").attr("value", "");
+	        		$(".specialPic").attr("value", "");
+	        		
+	        		var xhr = new XMLHttpRequest();
+					xhr.open("POST", self.baseurl+"/activity/insertActivity", true);
+					
+					 //注册相关事件回调处理函数
+					xhr.onload = function(e) { 
+					    if(this.status == 200||this.status == 304){
+					        console.log(this.responseText);
+					        var res = window.JSON.parse(this.responseText);
+					        if(res.code === 200){
+	                        	self.slideDownAlert(res.msg);
+					        	
+					        	document.getElementById("saveAddSpecial").disabled = false;
+					        	self.initSpecialtable();
+					        }else{
+					        	self.slideDownAlert(res.msg);
+					        }
+					    }
+					};
 					//发送数据
 					xhr.send(formData);
 	        	});
@@ -514,7 +579,6 @@ var WebSetting = function () {
 							        }
 							    }
 							};
-							
 							//发送数据
 							xhr.send(formData);
 						}
@@ -742,6 +806,174 @@ var WebSetting = function () {
 				data : []
 			});
 			this.initWaterMarkTable();
+			
+			// 专题标签
+			$('#specialtable').bootstrapTable({
+				dataType : "json",	
+				cache : false, // 不缓存
+				striped : true, // 隔行加亮
+				//是否显示分页（*）  
+                pagination: true,   
+                 //是否启用排序  
+                sortable: false, 
+                 //排序方式 
+                sortOrder: "asc",
+                pageSize: 10,  
+                //可供选择的每页的行数（*）    
+                pageList: [10, 25, 50, 100],
+                toolbar: "#toolbar_special",
+				columns : [ {
+					field : 'id',
+					align : 'center',
+					valign : 'middle',
+					title : "id"
+				},{
+					field : 'name',
+					align : 'center',
+					valign : 'middle',
+					title : "名称",
+					editable: {
+	                    type: 'text',
+	                    title: '名称',
+	                    mode: 'popup',
+	                    validate: function (v) {
+	                        if (!v) return '不能为空';
+	                    }
+	                }
+				}, {
+					field : 'url',
+					align : 'center',
+					valign : 'middle',
+					title : "图片(像素287*69)",
+					formatter : function(value, row, index) {
+						return ["<img style='width:100px;' src="+ self.baseurl+"/upload/"+ value + " />"
+							,"&nbsp;&nbsp;<form class='uploadForm' id=Specform"+row.id+" enctype='multipart/form-data'><div class='myinput'><i class='modifybtn'>修改</i><input name='picFile' type='file' id='uploadSpecfileinput'  accept='image/jpeg,image/png,image/gif' /></div></form>"
+						].join("");
+					},
+					events : {
+						'change #uploadSpecfileinput': function(e, value, row){
+							// 组装FormData对象
+							var form = document.getElementById("Specform"+row.id);
+							var formData = new FormData(form);
+							formData.append("id", row.id);
+							formData.append("name", row.name);
+							formData.append("sort", row.sort);
+							
+							var xhr = new XMLHttpRequest();
+							xhr.open("POST", self.baseurl+"/activity/updateActivity", true);
+							
+							 //注册相关事件回调处理函数
+							xhr.onload = function(e) { 
+							    if(this.status == 200||this.status == 304){
+							        console.log(this.responseText);
+							        var res = window.JSON.parse(this.responseText);
+							        if(res.code === 200){
+							        		self.slideDownAlert(res.msg);
+							        		self.initSpecialtable();
+							        }else{
+							        	self.slideDownAlert(res.msg);
+							        }
+							    }
+							};
+							//发送数据
+							xhr.send(formData);
+						}
+					}
+				}, {
+					field : 'sort',
+					align : 'center',
+					valign : 'middle',
+					title : "排序",
+					editable: {
+	                    type: 'text',
+	                    title: '排序',
+	                    mode: 'popup',
+	                    validate: function (v) {
+	                        if (!v) return '排序不能为空';
+	                        if (isNaN(v)) return '排序必须是数字';
+	                    }
+	                }
+				},{
+					field : 'operate',
+					align : 'center',
+					valign : 'middle',
+					title : "操作",
+					width: 100,
+					formatter : function(value, row, index) {
+						return "<button id='removeSpec' class='btn btn-danger btn-mini'><i class='icon-remove'></i>  删除</button>";
+					},
+					events : {
+						'click #removeSpec': function(e, value, row) {
+							if(confirm("确定删除吗?")){
+								$.ajax({
+									type:"post",
+									url: self.baseurl+"/activity/deleteActivity",
+									async:true,
+									data: {
+										ids: row.id
+									},
+									success: function(res){
+										if(res.code === 200){
+											self.slideDownAlert("删除成功！");
+											self.initSpecialtable();
+										}else{
+	                            				self.slideDownAlert(res.msg);
+										}
+										
+									}
+								});
+							}
+						}
+					}
+				}],
+				onEditableSave: function(field, row, oldValue, $el){
+					$.ajax({
+	                    type: "post",
+	                    url: self.baseurl+"/activity/updateActivity",
+	                    data: {
+	                    	id: row.id,
+	                    	name: row.name,
+	                    	sort: row.sort
+	                    },
+	                    dataType: 'JSON',
+	                    success: function (res, status) {
+	                        if (status == "success") {
+	                        	self.initSpecialtable();
+	                            self.slideDownAlert(res.msg);
+	                        }
+	                    },
+	                    error: function () {
+	                       	self.slideDownAlert("修改失败");
+	                    },
+	                    complete: function () {
+	
+	                    }
+	                });
+				},
+				data : []
+			});
+			this.initSpecialtable();
+        },
+        initSpecialtable: function(){
+        	var self = this;
+        	$.ajax({
+        		type: "get",
+        		url: self.baseurl+"/activity/queryAllActivity",
+        		async:true,
+        		success: function(res){
+        			if (res.code == 200) {
+						$('#specialtable').bootstrapTable('load', res.rows);
+						
+						// 加载图片的点击事件
+						//self.initEvent();
+					} else {
+						
+					}
+        		},
+        		error: function(err){
+        			self.slideDownAlert("error");
+        		}
+        	});
         },
         initWaterMarkTable: function(){
         	var self = this;

@@ -32,6 +32,8 @@ import com.shunan.committeewb.po.PageResult;
 import com.shunan.committeewb.po.PortalNewsVO;
 import com.shunan.committeewb.po.Result;
 import com.shunan.committeewb.po.User;
+import com.shunan.committeewb.po.WriteNewsVO;
+import com.shunan.committeewb.service.ActivityService;
 import com.shunan.committeewb.service.BannerService;
 import com.shunan.committeewb.service.NavService;
 import com.shunan.committeewb.service.NewsService;
@@ -56,6 +58,8 @@ public class NewsController {
 	private BannerService bannerService;
 	@Autowired
 	private NewsTypeService newsTypeService;
+	@Autowired
+	private ActivityService activityService;
 	
 	/**
 	 * 分页查询新闻 or 重点专注、公告通知等
@@ -158,8 +162,8 @@ public class NewsController {
 			}
 		}
 		
-		Result<News> result = null;
-		List<News> list = new ArrayList<News>();
+		Result<WriteNewsVO> result = null;
+		List<WriteNewsVO> list = new ArrayList<WriteNewsVO>();
 		
 		//没有请求体时：用户直接copy url并打开一个新的页面，新页面请求数据，返回json数据
 		if(news.getTitle()==null && news.getPicUrl()==null && news.getContent()==null && news.getNewsTypeID()==0 &&
@@ -167,13 +171,15 @@ public class NewsController {
 			try {
 				News returnNews = newsService.queryNewsByID(news.getId());
 				if(returnNews != null){
-					list.add(returnNews);
-					result = new Result<News>(200, "查询新闻信息成功！", list);
+					List<Integer> activityIDList = activityService.selectActivityIDByNewsID(news.getId());
+					WriteNewsVO writeNewsVO = new WriteNewsVO(returnNews,activityIDList);
+					list.add(writeNewsVO);
+					result = new Result<WriteNewsVO>(200, "查询新闻信息成功！", list);
 				}else{
-					result = new Result<News>(100, "新闻不存在！", list);
+					result = new Result<WriteNewsVO>(100, "新闻不存在！", list);
 				}
 			} catch (Exception e) {
-				result = new Result<News>(100, "查询新闻信息失败！", list);
+				result = new Result<WriteNewsVO>(100, "查询新闻信息失败！", list);
 				e.printStackTrace();
 			}
 			return result;
@@ -186,10 +192,12 @@ public class NewsController {
 			try {
 				int newsID = newsService.insertNews(news,picFile,user.getAccount(),activities);
 				News returnNews = newsService.queryNewsByID(newsID);
-				list.add(returnNews);
-				result = new Result<News>(200, "添加新闻成功！", list);
+				List<Integer> activityIDList = new ArrayList<Integer>();
+				WriteNewsVO writeNewsVO = new WriteNewsVO(returnNews,activityIDList);
+				list.add(writeNewsVO);
+				result = new Result<WriteNewsVO>(200, "添加新闻成功！", list);
 			} catch (Exception e) {
-				result = new Result<News>(100, "添加新闻失败！", list);
+				result = new Result<WriteNewsVO>(100, "添加新闻失败！", list);
 				e.printStackTrace();
 			}
 		}else{
@@ -197,10 +205,12 @@ public class NewsController {
 			try {
 				newsService.updateNews(news,picFile,user.getAccount(),activities);
 				News returnNews = newsService.queryNewsByID(news.getId());
-				list.add(returnNews);
-				result = new Result<News>(200, "修改新闻成功！", list);
+				List<Integer> activityIDList = activityService.selectActivityIDByNewsID(news.getId());
+				WriteNewsVO writeNewsVO = new WriteNewsVO(returnNews,activityIDList);
+				list.add(writeNewsVO);
+				result = new Result<WriteNewsVO>(200, "修改新闻成功！", list);
 			} catch (Exception e) {
-				result = new Result<News>(100, "修改新闻失败！", list);
+				result = new Result<WriteNewsVO>(100, "修改新闻失败！", list);
 				e.printStackTrace();
 			}
 		}

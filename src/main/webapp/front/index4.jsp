@@ -100,7 +100,7 @@
                     </div>  <!--　306*31-->
                     <div class="col-md-4 col-sm-4 col-xs-4 a1">
                     	<img src="${pageContext.request.contextPath }/front/img/listbg.png">
-                    	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=1&currentPage=1">重点专注</a>
+                    	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=1&currentPage=1">重点关注</a>
                     	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=1&currentPage=1">更多>>></a>
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-4 a1">
@@ -119,8 +119,8 @@
 	                           			<%--<a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query">--%>
 	                           				<%--<img src="${pageContext.request.contextPath }/upload/${news.picUrl}" alt="${news.title }">--%>
 	                           			<%--</a>--%>
-                                    <a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query" style="background:url('${pageContext.request.contextPath }/upload/${news.picUrl}') no-repeat center center;background-size: cover;" title="${news.title }"> </a>
-	                                   <a title="${news.title }" target="_blank" href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query">
+                                    <a href="${pageContext.request.contextPath }/news/-1/${news.newsTypeID }/${news.id }/query" style="background:url('${pageContext.request.contextPath }/upload/${news.picUrl}') no-repeat center center;background-size: cover;" title="${news.title }"> </a>
+	                                   <a title="${news.title }" target="_blank" href="${pageContext.request.contextPath }/news/-1/${news.newsTypeID }/${news.id }/query">
 		                                   	<c:if test="${fn:length(news.title)>23 }">
 		                         				${fn:substring(news.title, 0, 23) }...
 		                         			</c:if>
@@ -133,25 +133,25 @@
                             </ul>
                         </div>
                        </div> <!--轮播图 -->
-                    <!--重点专注-->
+                    <!--重点关注-->
                     <div class="col-md-4 col-sm-4 col-xs-4 b1">
                         <ul>
 	                         <c:forEach items="${zdzzList }" var="news">
 	                         	<li>
-	                         		<a title="${news.title }" href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query" target="_blank">
+	                         		<a title="${news.title }" href="${pageContext.request.contextPath }/news/-1/${news.newsTypeID }/${news.id }/query" target="_blank">
 	                         				${news.title }
 	                         		</a>
 	                         		<span><fmt:formatDate value="${news.showTime }" pattern="yyyy-MM-dd"/></span>
 	                         	</li>
 	                         </c:forEach>
                         </ul>
-                    </div> <!--重点专注-->
+                    </div> <!--重点关注-->
                     <!--公告栏-->
                     <div class="col-md-4 col-sm-4 col-xs-4 b1">
                         <ul>
                             <c:forEach items="${ggList }" var="news">
 	                         	<li>
-	                         		<a title="${news.title }" href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query" target="_blank">
+	                         		<a title="${news.title }" href="${pageContext.request.contextPath }/news/-1/${news.newsTypeID }/${news.id }/query" target="_blank">
 	                         				${news.title }
 	                         		</a>
 	                         	</li>
@@ -174,7 +174,7 @@
                             <ul>
 	                           <c:forEach items="${wjtzList }" var="news">
 		                         	<li>
-		                         		<a title="${news.title }" href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query" target="_blank">
+		                         		<a title="${news.title }" href="${pageContext.request.contextPath }/news/-1/${news.newsTypeID }/${news.id }/query" target="_blank">
 		                         				${news.title }
 		                         		</a>
 		                         		<span><fmt:formatDate value="${news.showTime }" pattern="yyyy-MM-dd"/></span>
@@ -184,17 +184,17 @@
                         </div>
     </div>
                     </div><!--文件通知-->
-                    <!--团青快讯-->
+                    <!--团情快讯-->
                     <div class="col-md-3  col-sm-3 col-xs-3 a1">
                         <img src="${pageContext.request.contextPath }/front/img/listbg.png">  <!--　306*31-->
-                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=4&currentPage=1">团青快讯</a>
+                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=4&currentPage=1">团情快讯</a>
                         <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=4&currentPage=1">更多>>></a>
        <div class="sol" style="overflow:hidden;width:95%">
     <div class="list">
                             <ul>
                             	<c:forEach items="${tqkxList }" var="news">
 		                         	<li>
-		                         		<a title="${news.title }" href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query" target="_blank">
+		                         		<a title="${news.title }" href="${pageContext.request.contextPath }/news/-1/${news.newsTypeID }/${news.id }/query" target="_blank">
 		                         				${news.title }
 		                         		</a>
 		                         		<span><fmt:formatDate value="${news.showTime }" pattern="yyyy-MM-dd"/></span>
@@ -203,7 +203,7 @@
                             </ul>
                         </div>
     </div>
-                    </div><!--团青快讯-->
+                    </div><!--团情快讯-->
                     <!--蜀南青语-->
                     <div class="col-md-3  col-sm-3 col-xs-3 a1">
                         <img src="${pageContext.request.contextPath }/front/img/listbg.png">  <!--　306*31-->
@@ -214,7 +214,7 @@
                             <ul>
                                 <c:forEach items="${snqyList }" var="news">
 		                         	<li>
-		                         		<a title="${news.title }" href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query" target="_blank">
+		                         		<a title="${news.title }" href="${pageContext.request.contextPath }/news/-1/${news.newsTypeID }/${news.id }/query" target="_blank">
 		                         				${news.title }
 		                         		</a>
 		                         		<span><fmt:formatDate value="${news.showTime }" pattern="yyyy-MM-dd"/></span>
@@ -264,12 +264,12 @@
     <c:forEach items="${qcjyList }" var="news">
         <li>
         <div class="thumbnail">
-        <a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query" target="_blank">
+        <a href="${pageContext.request.contextPath }/news/-1/${news.newsTypeID }/${news.id }/query" target="_blank">
         <img src="${pageContext.request.contextPath }/upload/${news.picUrl}" alt="...">
         </a>
         <div class="caption">
         <p>
-        <a title="${news.title }" href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query" target="_blank">
+        <a title="${news.title }" href="${pageContext.request.contextPath }/news/-1/${news.newsTypeID }/${news.id }/query" target="_blank">
         <c:if test="${fn:length(news.title)>10 }">
             ${fn:substring(news.title, 0, 10) }...
         </c:if>

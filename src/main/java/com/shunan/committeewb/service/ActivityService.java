@@ -1,8 +1,11 @@
 package com.shunan.committeewb.service;
 
 import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
+
 import com.shunan.committeewb.po.Activity;
+import com.shunan.committeewb.po.News;
 
 public interface ActivityService {
 	/**
@@ -46,4 +49,46 @@ public interface ActivityService {
 	 * @throws Exception
 	 */
 	public List<Activity> queryLimitActivity() throws Exception;
+	/**
+	 * 根据newsID查询其拥有的activityID
+	 * @param newsID
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Integer> selectActivityIDByNewsID(Integer newsID) throws Exception;
+	
+	/**
+	 * 查询专题标签下的新闻
+	 * @param activityID
+	 * @param offset
+	 * @param limit
+	 * @return
+	 * @throws Exception
+	 */
+	public List<News> selectNewsByActivityID(Integer activityID,Integer offset,Integer limit) throws Exception;
+	
+	/**
+	 * 查询专题标签下的新闻条数
+	 * @param activityID
+	 * @return
+	 * @throws Exception
+	 */
+	public Long selectNewsByActivityIDTotal(Integer activityID) throws Exception;
+	
+	/**
+	 * 查找新闻的特定标签
+	 * @param newsID
+	 * @param activityID
+	 * @return
+	 * @throws Exception
+	 */
+	public int selectNewsSpecialActivity(Integer newsID,Integer activityID) throws Exception;
+	
+	/**
+	 * 删除新闻的特定标签
+	 * @param newsID
+	 * @param activityID
+	 * @throws Exception
+	 */
+	public void deleteNewsSpecialActivity(Integer newsID,Integer activityID) throws Exception;
 }

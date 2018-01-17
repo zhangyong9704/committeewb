@@ -197,9 +197,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	删除 专题标签<br/>
    	参数：ids(专题标签ID，CheckBox的id值)
    	<hr/>
-    http://20.14.3.21:8080/committeewb/activity/newsActivityList/{activityID}(RESTFUL风格)<br/>
-   	根据activityID查询新闻列表<br/>
-   	参数：activityID(专题标签ID)
+   	http://20.14.3.21:8080/committeewb/activity/selectNewsByActivityID<br/>
+   	查询专题标签下的新闻<br/>
+   	参数：activityID(专题标签ID)、offset(查询起始偏移量)、limit(每页查询记录数)
+   	<hr/>
+   	http://20.14.3.21:8080/committeewb/activity/deleteNewsSpecialActivity<br/>
+   	删除新闻的特定标签<br/>
+   	参数：newsID(新闻ID)、activityID(专题标签ID)
    	<hr/>
    	
    	
@@ -214,9 +218,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	新闻列表<br/>
    	参数：currentPage（当前页，从1开始）、newsTypeID（新闻类型ID）、activityID（专题标签id）
    	<hr/>
-   	http://20.14.3.21:8080/committeewb/news/{newsTypeID}/{id}/query(Restful风格)<br/>
+   	http://20.14.3.21:8080/committeewb/news/{activityID}/{newsTypeID}/{id}/query(Restful风格)<br/>
    	查询新闻，同时新闻访问量+1  <br/>
-   	参数：id(新闻id)
+   	参数：id(新闻id)、newsTypeID(新闻类型ID)、activityID(专题标签ID，不限制标签类型时传-1)
    	<hr/>
    	http://20.14.3.21:8080/committeewb/home/1/query(Restful风格)<br/>
    	查询规章制度、工作标准、通讯录、风采录  （查询规章制度）<br/>

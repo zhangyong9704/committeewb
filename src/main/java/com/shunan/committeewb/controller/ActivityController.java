@@ -6,10 +6,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.shunan.committeewb.po.Activity;
+import com.shunan.committeewb.po.News;
+import com.shunan.committeewb.po.PageResult;
 import com.shunan.committeewb.po.Result;
 import com.shunan.committeewb.service.ActivityService;
 import com.shunan.committeewb.utils.CommonUtils;
@@ -129,6 +132,69 @@ public class ActivityController {
 			result = new Result<String>(200, "删除新闻成功！", list);
 		} catch (Exception e) {
 			result = new Result<String>(100, "删除新闻失败！", list);
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * 查询专题标签下的新闻
+	 * @param activityID
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("selectNewsByActivityID")
+	@ResponseBody
+	public Result<News> selectNewsByActivityID(@RequestParam(value="activityID") Integer activityID,
+			@RequestParam(value="offset",defaultValue="0") Integer offset,@RequestParam(value="limit",defaultValue="10") Integer limit) throws Exception{
+		Result<News> result = null;
+		List<News> list = new ArrayList<News>();
+		long count = 0;
+		
+		if(activityID == null){
+			return new Result<News>(100, "参数不合法！请传递专题标签id！", list);
+		}
+		
+		try {
+			list = activityService.selectNewsByActivityID(activityID,offset,limit);
+			count = activityService.selectNewsByActivityIDTotal(activityID);
+			result = new PageResult<News>(200, "查询成功！", list, count);
+		} catch (Exception e) {
+			result = new PageResult<News>(100, "查询失败！", list, count);
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * 删除新闻的特定标签
+	 * @param newsID
+	 * @param activityID
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("deleteNewsSpecialActivity")
+	@ResponseBody
+	public Result<String> deleteNewsSpecialActivity(Integer newsID, Integer activityID) throws Exception{
+		Result<String> result = null;
+		List<String> list = new ArrayList<String>();
+		
+		if(newsID==null || activityID==null){
+			return new Result<String>(100, "参数不合法！请传递新闻id和专题标签id！", list);
+		}
+		
+		int count = activityService.selectNewsSpecialActivity(newsID, activityID);
+		if(count<1){
+			return new Result<String>(100, "数据不存在或已被删除！", list);
+		}
+		
+		try {
+			activityService.deleteNewsSpecialActivity(newsID, activityID);
+			result = new Result<String>(200, "删除成功！", list);
+		} catch (Exception e) {
+			result = new Result<String>(100, "删除失败！", list);
 			e.printStackTrace();
 		}
 		

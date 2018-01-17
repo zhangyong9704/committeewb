@@ -15,7 +15,7 @@
 	
 	<!-- 修改专题标签 -->
 	<update id="updateActivity" parameterType="activity">
-		update banner
+		update activity
 		set name=#{name},url=#{url},sort=#{sort}
 		where id=#{id}
 	</update>
@@ -64,6 +64,43 @@
 				</foreach>
 			</if>
 		</where>
+	</delete>
+	
+	<!-- 根据newsID查询其拥有的activityID -->
+	<select id="selectActivityIDByNewsID" parameterType="int" resultType="int">
+		SELECT newsactivity.activityID 
+		FROM newsactivity
+		WHERE newsID=#{newsID}
+	</select>
+	
+	<!-- 查询专题标签下的新闻 -->
+	<select id="selectNewsByActivityID" resultType="news">
+		SELECT news.*
+		FROM news,newsactivity
+		WHERE news.id=newsactivity.newsID
+		     AND newsactivity.activityID=#{activityID} 
+		LIMIT #{offset},#{limit}
+	</select>
+	
+	<!-- 查询专题标签下的新闻条数 -->
+	<select id="selectNewsByActivityIDTotal" parameterType="int" resultType="long">
+		SELECT COUNT(1)
+		FROM news,newsactivity
+		WHERE news.id=newsactivity.newsID
+		     AND newsactivity.activityID=#{activityID}
+	</select>
+	
+	<!-- 查找新闻的特定标签 -->
+	<select id="selectNewsSpecialActivity" resultType="int">
+		SELECT COUNT(1)
+		FROM newsactivity
+		WHERE newsID=#{newsID} AND activityID=#{activityID}
+	</select>
+	
+	<!-- 删除新闻的特定标签 -->
+	<delete id="deleteNewsSpecialActivity">
+		DELETE FROM newsactivity
+		WHERE newsID=#{newsID} AND activityID=#{activityID}
 	</delete>
 	
 	<!-- 门户网站 -->

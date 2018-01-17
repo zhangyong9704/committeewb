@@ -131,7 +131,7 @@ var NewsList = (function(){
 						var val="";
 						switch (row.newsTypeID){
 							case 1:
-								val+='[重点专注]';
+								val+='[重点关注]';
 								break;
 							case 2:
 								val+='[公告栏]';
@@ -140,7 +140,7 @@ var NewsList = (function(){
 								val+='[文件通知]';
 								break;
 							case 4:
-								val+='[团青快讯]';
+								val+='[团情快讯]';
 								break;
 							case 5:
 								val+='[蜀南青语]';
@@ -219,7 +219,7 @@ var NewsList = (function(){
 						var text = "编辑";
 						if(row.status===0){
 							text = "更新";
-							return ["<a target='_blank' href="+self.baseurl+"/news/"+row.newsTypeID+"/"+row.id+"/query"+" class='btn btn-inverse btn-mini'>查看</a> ",
+							return ["<a target='_blank' href="+self.baseurl+"/news/-1/"+row.newsTypeID+"/"+row.id+"/query"+" class='btn btn-inverse btn-mini'>查看</a> ",
 							"<a target='_blank' href="+self.baseurl+"/news/edit/"+row.id+" class='btn btn-primary btn-mini'>"+text+"</a>"].join("");
 						}
 						return "<a target='_blank' href="+self.baseurl+"/news/edit/"+row.id+" class='btn btn-primary btn-mini'>"+text+"</a>";

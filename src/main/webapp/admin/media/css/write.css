@@ -160,9 +160,18 @@ body {
 	height: 200px;
 }
 
-.edit-wrapper .newsType-wrapper {
+.edit-wrapper .newsType-wrapper,.special-wrapper {
 	font-size: 13px;
 	padding: 0 0 9px 0;
+}
+
+.label-wrapper {
+	margin-top: 6px;  
+}
+
+.label-wrapper label{
+	white-space: nowrap;    
+	display: inline-block;
 }
 
 .edit-wrapper .writeCover-wrapper {

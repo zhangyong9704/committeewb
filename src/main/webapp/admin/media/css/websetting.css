@@ -14,7 +14,7 @@
 	width: 40px;
 }
 
-.uploadForm .myinput #uploadfileinput{
+.uploadForm .myinput #uploadfileinput,#uploadSpecfileinput{
 	position: absolute;
 	left: 0;
 	top: 0;

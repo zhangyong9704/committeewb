@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import com.shunan.committeewb.dao.ActivityMapper;
 import com.shunan.committeewb.po.Activity;
+import com.shunan.committeewb.po.News;
 import com.shunan.committeewb.service.ActivityService;
 import com.shunan.committeewb.utils.CommonUtils;
 import com.shunan.committeewb.utils.FileUtil;
@@ -98,4 +99,45 @@ public class ActivityServiceImpl implements ActivityService {
 	public List<Activity> queryLimitActivity() throws Exception {
 		return activityMapper.queryLimitActivity();
 	}
+
+	/**
+	 * 根据newsID查询其拥有的activityID
+	 */
+	@Override
+	public List<Integer> selectActivityIDByNewsID(Integer newsID) throws Exception {
+		return activityMapper.selectActivityIDByNewsID(newsID);
+	}
+
+	/**
+	 * 查询专题标签下的所有新闻
+	 */
+	@Override
+	public List<News> selectNewsByActivityID(Integer activityID,Integer offset,Integer limit) throws Exception {
+		return activityMapper.selectNewsByActivityID(activityID,offset,limit);
+	}
+
+	/**
+	 * 删除新闻的特定标签
+	 */
+	@Override
+	public void deleteNewsSpecialActivity(Integer newsID, Integer activityID) throws Exception {
+		activityMapper.deleteNewsSpecialActivity(newsID, activityID);
+	}
+
+	/**
+	 * 查找新闻的特定标签
+	 */
+	@Override
+	public int selectNewsSpecialActivity(Integer newsID, Integer activityID) throws Exception {
+		return activityMapper.selectNewsSpecialActivity(newsID, activityID);
+	}
+
+	/**
+	 * 查询专题标签下的新闻条数
+	 */
+	@Override
+	public Long selectNewsByActivityIDTotal(Integer activityID) throws Exception {
+		return activityMapper.selectNewsByActivityIDTotal(activityID);
+	}
+	
 }

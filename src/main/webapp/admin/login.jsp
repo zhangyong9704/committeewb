@@ -47,7 +47,7 @@
 	<!-- BEGIN LOGO -->
 
 	<div class="logo">
-		<h3 style="color: white;">蜀南气矿</h3>
+		<h3 style="color: white;">蜀南气矿团委</h3>
 	</div>
 
 	<!-- END LOGO -->

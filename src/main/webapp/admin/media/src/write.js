@@ -7,17 +7,62 @@ var Write = (function(){
 		picSize: 5 * 1024 * 1024, // 1M
 		firstgetdata: 1,
 		init: function(){
+			var self = this;
 			// 初始化进度条
 			Progressbar.init();
 			this.baseurl = CommonUtils.baseUrl;
 			this.initTextArea();
 			this.initUE();
 			this.initEvent();
-			this.initData();
+			this.initSpecialData(function(){
+				// 专题标签的change事件
+				$("input[name='special']").change(function(){
+					var newstype = $("input[name='newstype']:checked").val();
+					// 获取专题标签的选中的值
+					var acts = [];
+					$('input[name="special"]:checked').each(function(){ 
+						acts.push($(this).val()); 
+					}); 
+					
+					console.log(acts.join(","));
+					self.ajaxEdit({
+						activities: acts.join(","),
+						newsTypeID: newstype
+					});
+				})
+				self.initData();
+			});
 			//执行一个laydate实例
 			laydate.render({
-			  elem: '#datatimeid'
-			  ,type: 'datetime'
+			  elem: '#datatimeid',
+			  type: 'datetime'
+			});
+		},
+		initSpecialData: function(callback){
+			var self = this;
+			$.ajax({
+				type:"get",
+				url: self.baseurl + "/activity/queryAllActivity",
+				async:true,
+				success: function(res){
+					if(res.code === 200){
+						var text = "";
+						for(var i=0;i < res.rows.length;i++){
+							var checkbox = ['<label for="special'+i+'">',
+											'<input id="special'+i+'" name="special" type="checkbox" value="'+res.rows[i].id+'" />'+res.rows[i].name+' <span style="color: #EEEEEE;">|</span>&nbsp;',
+											'</label>'];
+							text += checkbox.join("");
+						}
+						$(".label-checkbox").html(text);
+						
+						callback();
+					}else{
+						alert(res.msg);
+					}
+				},
+				error: function(error){
+					
+				}
 			});
 		},
 		hideFileInput: function(){
@@ -238,8 +283,8 @@ var Write = (function(){
 			var box = $(".box")[0];
 			$(document).click(function(e){
 				var aim = e.target;
-				console.log(aim);
-				console.log(publishBtn)
+				//console.log(aim);
+				//console.log(publishBtn)
 				if(aim==publishBtn || aim==box){
 					//alert(123)
 				}else{
@@ -337,6 +382,7 @@ var Write = (function(){
 						break;
 				}
 			});
+			
 			// 题图的change事件
 			$("#tiTuFileInput").change(function(){
 				// 获取图片的大小-->上传图片
@@ -512,8 +558,6 @@ var Write = (function(){
 								$(".writeCover-previewWrapper").hide();
 						        	$("#tiTuImg").attr("src", self.baseurl+"/upload/"+res.rows[0].picUrl);
 						        	$(".img-wrapper").show();
-							}else{
-								
 							}
 							// 判断文章发布状态
 							if(res.rows[0].status===0){
@@ -521,7 +565,13 @@ var Write = (function(){
 							}
 							// 类型赋值
 							$("input[name='newstype'][value="+res.rows[0].newsTypeID+"]").attr("checked",true);
-							// 是否是轮播图赋值 todo
+							// 专题标签 todo
+							var activityIDs = res.rows[0].activityIDs;
+							for(var i=0;i<activityIDs.length;i++){
+								$("input[name='special'][value="+activityIDs[i]+"]").attr("checked",true);
+							}
+							
+							// 是否是轮播图赋值
 							self.setIsPicNews(res.rows[0].id, res.rows[0].newsTypeID);
 							// 时间选择框赋值
 							if(res.rows[0].showTime != null){
