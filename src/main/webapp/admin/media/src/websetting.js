@@ -562,6 +562,7 @@ var WebSetting = function () {
 							formData.append("id", row.id);
 							formData.append("name", row.name);
 							formData.append("jumpLink", row.jumpLink);
+							formData.append("type", 1);
 							
 							var xhr = new XMLHttpRequest();
 							xhr.open("POST", self.baseurl+"/banner/updateBanner", true);

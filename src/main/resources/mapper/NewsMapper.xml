@@ -184,7 +184,8 @@
 	<select id="queryNewsDetail" resultType="news">
 		<include refid="queryNews"/>
 		<where>
-			newsTypeID=#{newsTypeID}  
+			newsTypeID=#{newsTypeID} 
+			and status=0 
 			<if test="type=='previous'">
 				and id&lt; #{id}
 			</if>

@@ -304,16 +304,23 @@
     width: 100%;
     text-align: center;
  }
-.secondRow .down{
+.secondRow .cli{
     width: 100%;
     height: 35px;
     text-align: center;
     line-height: 35px;
 
 }
-.secondRow .down .cli{
+.secondRow .cli span{
     font-size: 25px;
+    display: inline-block;
+    /*border:1px solid black;*/
+    width: 49%;
 }
+.secondRow .cli span:last-child{
+    transform: rotate(180deg);
+}
+
 .img{
     /*height: 250px;*/
     overflow: hidden;

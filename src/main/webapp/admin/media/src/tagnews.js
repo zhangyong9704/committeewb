@@ -214,7 +214,7 @@ var TagNews = (function(){
 	        
 	        $remove.click(function () {
 	        	var len = self.selections.length;
-	        	var info = len>1?"这样会删除 "+len+" 条数据,删除后不可恢复,请您谨慎操作!!!":"确定删除这条数据吗?";
+	        	var info = "确定删除这条数据吗?（标签下不会显示对应的新闻，文章管理中新闻仍然存在）";
 	        	if(confirm(info)){
 	        		$.ajax({
 		            	type:"post",

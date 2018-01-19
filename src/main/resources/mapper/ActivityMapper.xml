@@ -130,6 +130,7 @@
 			news.status=0 AND NOW()>news.showTime 
 			AND news.id=newsactivity.newsID 
 			AND activity.id=newsactivity.activityID
+			AND news.status=0 
 			<if test="activityID!=null and activityID!=-1">
 				AND activity.id=#{activityID}
 			</if>
@@ -145,7 +146,8 @@
 		<where>
 			news.status=0 AND NOW()>news.showTime 
 			AND news.id=newsactivity.newsID 
-			AND activity.id=newsactivity.activityID
+			AND activity.id=newsactivity.activityID 
+			AND news.status=0 
 			<if test="activityID!=null and activityID!=-1">
 				AND activity.id=#{activityID}
 			</if>

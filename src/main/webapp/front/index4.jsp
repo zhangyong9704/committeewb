@@ -95,18 +95,18 @@
                 <div class="row items">
                    <div class="col-md-4 col-sm-4 col-xs-4 a1">
                     	<img src="${pageContext.request.contextPath }/front/img/listbg.png">
-                    	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=0&currentPage=1">图片新闻</a>
-                    	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=0&currentPage=1">更多>>></a>
+                    	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=0&currentPage=1&activityID=-1">图片新闻</a>
+                    	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=0&currentPage=1&activityID=-1">更多>>></a>
                     </div>  <!--　306*31-->
                     <div class="col-md-4 col-sm-4 col-xs-4 a1">
                     	<img src="${pageContext.request.contextPath }/front/img/listbg.png">
-                    	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=1&currentPage=1">重点关注</a>
-                    	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=1&currentPage=1">更多>>></a>
+                    	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=1&currentPage=1&activityID=-1">重点关注</a>
+                    	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=1&currentPage=1&activityID=-1">更多>>></a>
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-4 a1">
                     	<img src="${pageContext.request.contextPath }/front/img/listbg.png">
-                    	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=2&currentPage=1">公告栏</a>
-                    	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=2&currentPage=1">更多>>></a>
+                    	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=2&currentPage=1&activityID=-1">公告栏</a>
+                    	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=2&currentPage=1&activityID=-1">更多>>></a>
                     </div>
                 </div>
                 <div class="row itemsCon">
@@ -157,7 +157,7 @@
 	                         	</li>
 	                         </c:forEach>
                         </ul>
-                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=8&currentPage=1">
+                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=8&currentPage=1&activityID=-1">
                         	<img src="${pageContext.request.contextPath }/upload/${lifeChat.picUrl}"> 
                         </a>   <!--　380*122-->
                     </div><!--公告栏-->
@@ -167,8 +167,8 @@
                     <!--文件通知-->
                     <div class="col-md-3  col-sm-3 col-xs-3 a1">
                             <img src="${pageContext.request.contextPath }/front/img/listbg.png"> <!--　306*31-->
-                            <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=3&currentPage=1">文件通知</a>
-                            <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=3&currentPage=1">更多>>></a>
+                            <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=3&currentPage=1&activityID=-1">文件通知</a>
+                            <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=3&currentPage=1&activityID=-1">更多>>></a>
     <div class="sol" style="overflow:hidden;width:95%">
                         <div class="list">
                             <ul>
@@ -187,8 +187,8 @@
                     <!--团情快讯-->
                     <div class="col-md-3  col-sm-3 col-xs-3 a1">
                         <img src="${pageContext.request.contextPath }/front/img/listbg.png">  <!--　306*31-->
-                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=4&currentPage=1">团情快讯</a>
-                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=4&currentPage=1">更多>>></a>
+                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=4&currentPage=1&activityID=-1">团情快讯</a>
+                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=4&currentPage=1&activityID=-1">更多>>></a>
        <div class="sol" style="overflow:hidden;width:95%">
     <div class="list">
                             <ul>
@@ -207,8 +207,8 @@
                     <!--蜀南青语-->
                     <div class="col-md-3  col-sm-3 col-xs-3 a1">
                         <img src="${pageContext.request.contextPath }/front/img/listbg.png">  <!--　306*31-->
-                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=5&currentPage=1">蜀南青语</a>
-                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=5&currentPage=1">更多>>></a>
+                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=5&currentPage=1&activityID=-1">蜀南青语</a>
+                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=5&currentPage=1&activityID=-1">更多>>></a>
     <div class="sol" style="overflow:hidden;width:95%">
                         <div class="list">
                             <ul>
@@ -227,8 +227,8 @@
                     <!--专题活动-->
                     <div class="col-md-3  col-sm-3 col-xs-3 a1 lasta1">
                         <img src="${pageContext.request.contextPath }/front/img/listbg.png">   <!--　306*31-->
-                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=6&currentPage=1&activityID=-1">专题活动</a>
-                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=6&currentPage=1&activityID=-1">更多>>></a>
+                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=6&currentPage=1&activityID=-1&activityID=-1">专题活动</a>
+                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=6&currentPage=1&activityID=-1&activityID=-1">更多>>></a>
                         <div class="list lastlist">
                         <%--<div class="list lastlist" style="position: relative">--%>
                             <div class="img"> <!--287*69-->
@@ -239,9 +239,14 @@
                             	</c:forEach>
                             </div>
                             <!--向下箭头-->
-                            <div class="down" style="position: absolute;bottom: 0">
-                               <span class="cli iconfont icon-down-darrow"></span>
+                            <div class="cli" style="position: absolute;bottom: 0">
+                               <%--下--%>
+                               <span class="down iconfont icon-down-darrow"></span>
+                                <%--上--%>
+                               <span class="up iconfont icon-down-darrow"></span>
                             </div>
+
+
                         </div>
                     </div><!--专题活动-->
 
@@ -250,8 +255,8 @@
                 <div class="row listRow" >
                     <div class="col-md-3 col-sm-3 col-xs-3 a1">
                         <img src="${pageContext.request.contextPath }/front/img/listbg.png">   <!--　306*31-->
-                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=7&currentPage=1">青春剪影</a>
-                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=7&currentPage=1">更多>>></a>
+                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=7&currentPage=1&activityID=-1">青春剪影</a>
+                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=7&currentPage=1&activityID=-1">更多>>></a>
                     </div>
                 </div>
 

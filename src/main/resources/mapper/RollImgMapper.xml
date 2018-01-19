@@ -67,16 +67,16 @@
 	<select id="queryPageRollImg" resultType="portalNewsVO">
 		SELECT news.id newsID,news.title newsTitle
 		FROM news,rollimg
-		WHERE news.id=rollimg.newsID AND isShow=1
+		WHERE news.id=rollimg.newsID AND isShow=1 and news.status=0
 		order by newsID asc
 		LIMIT #{offset},#{pageSize}
 	</select>
 	
 	<!-- 查询轮播图一共有多少条 -->
 	<select id="queryRollImgTotal" resultType="long">
-		SELECT COUNT(*)
-		FROM rollimg 
-		where isShow=1
+		SELECT COUNT(1)
+		FROM news,rollimg
+		WHERE news.id=rollimg.newsID AND isShow=1 and news.status=0
 	</select>
 	
 	<sql id="queryRollImg_detail">

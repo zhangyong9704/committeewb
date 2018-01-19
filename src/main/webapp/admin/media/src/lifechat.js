@@ -37,7 +37,7 @@ var Lifechat = function(){
 					field : 'picUrl',
 					align : 'center',
 					valign : 'middle',
-					title : "图片",
+					title : "图片（380*122）",
 					formatter : function(value, row, index) {
 						return ["<img style='width:100px;' src="+ self.baseurl+"/upload/"+ value + " />"
 							,"&nbsp;&nbsp;<form class='uploadForm' id=friendform"+row.id+" enctype='multipart/form-data'><div class='myinput'><i class='modifybtn'>修改</i><input name='picFile' type='file' id='uploadfileinput' /></div></form>"

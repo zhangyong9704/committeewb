@@ -82,6 +82,7 @@
 				    	</c:forEach>
                     </div>  <!--　1201*289-->
                 </div> <!--banner-->
+                <a name="5D"></href>
                 <div class="breadnav">
                     <span>您的位置：<a href="#">首页</a><span class="iconfont icon-icon-copy"></span><span>${newsTypeName }</span></span>
                 </div>
@@ -94,12 +95,12 @@
                           <c:forEach items="${newsTypeList }" var="newsType">
 	                          <c:if test="${newsType.id == newsTypeID }">
 	                      	  	<li style="background: url(${pageContext.request.contextPath }/front/img/itemsd.png) no-repeat;">
-	                      	  		<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=${newsType.id }&currentPage=1">${newsType.name }</a>
+	                      	  		<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=${newsType.id }&currentPage=1&activityID=-1">${newsType.name }</a>
 	                      	  	</li>
 	                      	  </c:if>
 	                      	  <c:if test="${newsType.id != newsTypeID }">
 	                      	  	<li>
-	                      	  		<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=${newsType.id }&currentPage=1">${newsType.name }</a>
+	                      	  		<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=${newsType.id }&currentPage=1&activityID=-1">${newsType.name }</a>
 	                      	  	</li>
 	                      	  </c:if>
                           </c:forEach>
