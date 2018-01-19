@@ -63,7 +63,7 @@ public class ActivityController {
 	public Result<String> insertActivity(MultipartFile picFile,Activity activity) throws Exception{
 		if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
 			Result<String> picResult = FileUtil.checkFile(picFile, 
-					CommonUtils.ZTHD_WIDTH, CommonUtils.ZTHD_HEIGHT, CommonUtils.FILE_MAXSIZE);
+					CommonUtils.ZTHD_WIDTH, CommonUtils.ZTHD_HEIGHT, CommonUtils.FILE_MAXSIZE,CommonUtils.PX_FIXED);
 			if(picResult.getCode()!=200){
 				return picResult;
 			}
@@ -93,7 +93,7 @@ public class ActivityController {
 	public Result<String> updateActivity(MultipartFile picFile,Activity activity) throws Exception{
 		if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
 			Result<String> picResult = FileUtil.checkFile(picFile, 
-					CommonUtils.ZTHD_WIDTH, CommonUtils.ZTHD_HEIGHT, CommonUtils.FILE_MAXSIZE);
+					CommonUtils.ZTHD_WIDTH, CommonUtils.ZTHD_HEIGHT, CommonUtils.FILE_MAXSIZE,CommonUtils.PX_FIXED);
 			if(picResult.getCode()!=200){
 				return picResult;
 			}

@@ -83,7 +83,7 @@
 }
 
 .sildebar li>a:last-child{/*2017-12-26*/
-    width: 70%;
+    width: 100%;
     display: block
 }
 .sildebar li>a:last-child:hover{/*2017-12-26*/
@@ -162,6 +162,8 @@
 }
 
 
+
+
 /*公告栏*/
 .itemsCon>div:nth-child(3) img{
     width: 100%;
@@ -171,6 +173,7 @@
 }
 .itemsCon>div:nth-child(3)>ul>li{
     list-style: none;
+    position: relative;
     /*line-height: 35px;*/
 }
 .itemsCon>div:nth-child(3)>ul>li a{
@@ -183,14 +186,23 @@
     text-decoration: underline;
     color: #e38d13;
 }
+.itemsCon>div:nth-child(3)>ul>li>span{
+    color: #888888;
+    font-size: small;
+    position: absolute;
+    top:0;
+    right: 17px;
+}
 .itemsCon>div:nth-child(3){
     position: relative;
 }
 .itemsCon>div:nth-child(3)>a{
     position: absolute;
     bottom: 0px;
-    /*border:1px solid black;*/
+    border:1px solid black;
 }
+
+
 @media screen and (max-width:1370px) {
     .itemsCon>div:nth-child(3)>ul>li{
              line-height: 35px;

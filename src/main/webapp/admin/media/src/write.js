@@ -252,7 +252,7 @@ var Write = (function(){
 						Progressbar.hide();
 						// 显示进度条的同时，隐藏file input
 						self.showFileInput();
-						$(".img-wrapper").show();
+						/*$(".img-wrapper").show();*/
 			        }
 			    }
 			};
@@ -346,14 +346,14 @@ var Write = (function(){
 					picUrl: ""
 				});
 				// 隐藏图片展示
-				$("#tiTuImg").attr("src", "");
+				/*$("#tiTuImg").attr("src", "");
 				$(".img-wrapper").hide();
 				// 显示file表单
 				self.showFileInput();
 				$(".writeCover-previewWrapper").show();
-				$("#isPicNews").attr("checked", false);
+				$("#isPicNews").attr("checked", false);*/
 				
-				switch (value){
+				/*switch (value){
 					case '1':
 					case '2':
 					case '3':
@@ -380,7 +380,7 @@ var Write = (function(){
 						break;
 					default:
 						break;
-				}
+				}*/
 			});
 			
 			// 题图的change事件
@@ -481,7 +481,7 @@ var Write = (function(){
 		// 获取新闻是否是图片新闻
 		setIsPicNews: function(id, newsType){
 			var self = this;
-			switch (newsType){
+			/*switch (newsType){
 				case 1:
 				case 2:
 				case 3:
@@ -508,7 +508,7 @@ var Write = (function(){
 					break;
 				default:
 					break;
-			}
+			}*/
 			$.ajax({
 				type:"post",
 				url:self.baseurl+"/rollImg/queryRollImgByNewsID/"+id,
@@ -565,7 +565,7 @@ var Write = (function(){
 							}
 							// 类型赋值
 							$("input[name='newstype'][value="+res.rows[0].newsTypeID+"]").attr("checked",true);
-							// 专题标签 todo
+							// 专题标签
 							var activityIDs = res.rows[0].activityIDs;
 							for(var i=0;i<activityIDs.length;i++){
 								$("input[name='special'][value="+activityIDs[i]+"]").attr("checked",true);

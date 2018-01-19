@@ -92,7 +92,7 @@
 				</div>
 			</div>
 			<div class="writeCover-wrapper">
-				<div class="noticeInfo">图片像素宽高比要求16:9</div>
+				<div class="noticeInfo">图片像素宽高比要求4:3</div>
 				<div class="writeCover-previewWrapper">
 					<i class="writeCover-uploadIcon icon-picture"></i>
 					<form id="tiTuFileInput" enctype='multipart/form-data'>
@@ -136,7 +136,7 @@
 	    <script type="text/javascript" charset="UTF-8" src="${pageContext.request.contextPath }/admin/media/laydate.js"></script>
    		<script src="${pageContext.request.contextPath }/admin/media/src/commonUtils.js"></script>
    		<script src="${pageContext.request.contextPath }/admin/media/src/progress.js"></script>
-   		<script src="${pageContext.request.contextPath }/admin/media/src/write.js"></script>
+   		<script src="${pageContext.request.contextPath }/admin/media/src/write.js?version=1.0"></script>
     	<!-- 实例化编辑器 -->
     	<script type="text/javascript">
     		Write.init();

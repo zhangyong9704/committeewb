@@ -148,7 +148,7 @@ public class FileUtil<T> {
 	 * @return
 	 * @throws Exception
 	 */
-	public static Result<String> checkFile(MultipartFile picFile,int imgWidth,int imgHeight,long fileSize) throws Exception{
+	public static Result<String> checkFile(MultipartFile picFile,int imgWidth,int imgHeight,long fileSize,String type) throws Exception{
 		List<String> list = new ArrayList<String>();
 		BufferedImage image = ImageIO.read(picFile.getInputStream());
 		if(image == null){
@@ -157,10 +157,17 @@ public class FileUtil<T> {
 		}else{
 			int width = image.getWidth();
 			int height = image.getHeight();
-			if(imgHeight==0 && width!=imgWidth){
-				return new Result<String>(CommonUtils.CODE_IMG_PX, "图片像素不符合要求！", list);
-			}else if(width!=imgWidth || height!=imgHeight && imgHeight!=0){
-				return new Result<String>(CommonUtils.CODE_IMG_PX,"图片像素不符合要求！",list);
+			if(CommonUtils.PX_RATIO.equals(type)){
+				double ratio = width/height;
+				if(ratio != CommonUtils.RATIO){
+					return new Result<String>(CommonUtils.CODE_IMG_PX, "图片像素不符合要求！", list);
+				}
+			}else if(CommonUtils.PX_FIXED.equals(type)){
+				if(imgHeight==0 && width!=imgWidth){
+					return new Result<String>(CommonUtils.CODE_IMG_PX, "图片像素不符合要求！", list);
+				}else if(width!=imgWidth || height!=imgHeight && imgHeight!=0){
+					return new Result<String>(CommonUtils.CODE_IMG_PX,"图片像素不符合要求！",list);
+				}
 			}
 		}
 		if(picFile.getSize()>fileSize){

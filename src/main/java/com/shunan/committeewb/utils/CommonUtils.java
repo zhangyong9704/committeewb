@@ -56,6 +56,13 @@ public class CommonUtils {
 	public static final int CODE_IMG_SIZE = 102; //图片太大时的状态码
 	public static final int CODE_IMG_PX = 103; //图片分辨率不符合规范时的状态码
 	
+	//新闻上传图片像素要求的比例
+	public static final double RATIO = 4/3; 
+	
+	//上传图片像素要求的类型
+	public static final String PX_RATIO = "px_ratio"; 
+	public static final String PX_FIXED = "px_fixed"; 
+	
 	//各个模块上传图片时要求的像素比 （宽/高）
 	public static final int HOME_LOGO_WIDTH = 1200; //首页logo
 	public static final int HOME_LOGO_HEIGHT = 375;

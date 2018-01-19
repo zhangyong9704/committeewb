@@ -121,12 +121,13 @@
 	                           			<%--</a>--%>
                                     <a href="${pageContext.request.contextPath }/news/-1/${news.newsTypeID }/${news.id }/query" style="background:url('${pageContext.request.contextPath }/upload/${news.picUrl}') no-repeat center center;background-size: cover;" title="${news.title }"> </a>
 	                                   <a title="${news.title }" target="_blank" href="${pageContext.request.contextPath }/news/-1/${news.newsTypeID }/${news.id }/query">
-		                                   	<c:if test="${fn:length(news.title)>23 }">
-		                         				${fn:substring(news.title, 0, 23) }...
+		                                   ${news.title }
+		                                   <%--<c:if test="${fn:length(news.title)>30 }">
+		                         				${fn:substring(news.title, 0, 30) }...
 		                         			</c:if>
-		                         			<c:if test="${fn:length(news.title)<23 }">
+		                         			<c:if test="${fn:length(news.title)<30 }">
 		                         				${news.title }
-		                         			</c:if>
+		                         			</c:if>--%>
 	                                   </a>
 	                               	</li> <!--380*201 -->
                             	</c:forEach>
@@ -154,6 +155,7 @@
 	                         		<a title="${news.title }" href="${pageContext.request.contextPath }/news/-1/${news.newsTypeID }/${news.id }/query" target="_blank">
 	                         				${news.title }
 	                         		</a>
+	                         		<span><fmt:formatDate value="${news.showTime }" pattern="yyyy-MM-dd"/></span>
 	                         	</li>
 	                         </c:forEach>
                         </ul>

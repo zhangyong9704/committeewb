@@ -181,7 +181,7 @@ public class NewsServiceImpl implements NewsService {
 		newsMapper.updateNews(news);
 		
 		//修改新闻时，若将新闻类型修改为了"生活大家谈"、"青春剪影"，且该新闻存在轮播图表中，则删除之
-		int newsTypeID = news.getNewsTypeID();
+		/*int newsTypeID = news.getNewsTypeID();
 		if(newsTypeID==8 || newsTypeID==7){
 			RollImg rollImg = rollImgMapper.queryRollImgByNewsID(news.getId());
 			if(rollImg!=null){
@@ -189,7 +189,7 @@ public class NewsServiceImpl implements NewsService {
 				newsIDList.add(news.getId());
 				rollImgMapper.deleteRollImg(newsIDList);
 			}
-		}
+		}*/
 		
 		//修改新闻的专题标签
 		if(activities!=null && !("".equals(activities))){

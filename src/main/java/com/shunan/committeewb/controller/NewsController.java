@@ -133,32 +133,10 @@ public class NewsController {
 			MultipartFile picFile,HttpServletRequest request) throws Exception{
 		
 		if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
-			News news2 = newsService.queryNewsByID(news.getId());
-			Result<String> picResult = null;
-			switch (news2.getNewsTypeID()) {
-			case 1:
-			case 2:
-			case 3:
-			case 4:
-			case 5:
-				picResult = FileUtil.checkFile(picFile, 
-						CommonUtils.ROLLIMG_WIDTH, CommonUtils.ROLLIMG_HEIGHT, CommonUtils.FILE_MAXSIZE);
-				if(picResult.getCode()!=200){
-					return picResult;
-				}
-				break;
-			case 8:
-				break;
-			case 7:
-				picResult = FileUtil.checkFile(picFile, 
-						CommonUtils.QCJY_WIDTH, CommonUtils.QCJY_HEIGHT, CommonUtils.FILE_MAXSIZE);
-				if(picResult.getCode()!=200){
-					return picResult;
-				}
-				break;
-
-			default:
-				break;
+			Result<String> picResult = FileUtil.checkFile(picFile, 
+					CommonUtils.ROLLIMG_WIDTH, CommonUtils.ROLLIMG_HEIGHT, CommonUtils.FILE_MAXSIZE,CommonUtils.PX_RATIO);
+			if(picResult.getCode()!=200){
+				return picResult;
 			}
 		}
 		
@@ -331,7 +309,7 @@ public class NewsController {
 		
 		if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
 			Result<String> picResult = FileUtil.checkFile(picFile,
-					CommonUtils.WATERMARK_WIDTH, CommonUtils.WATERMARK_HEIGHT, CommonUtils.FILE_MAXSIZE);
+					CommonUtils.WATERMARK_WIDTH, CommonUtils.WATERMARK_HEIGHT, CommonUtils.FILE_MAXSIZE,CommonUtils.PX_FIXED);
 			if(picResult.getCode()!=200){
 				return picResult;
 			}

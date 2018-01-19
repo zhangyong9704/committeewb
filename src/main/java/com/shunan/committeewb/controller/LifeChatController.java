@@ -67,7 +67,7 @@ public class LifeChatController {
 		
 		if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
 			Result<String> picResult = FileUtil.checkFile(picFile, 
-					CommonUtils.SHDJT_WIDTH, CommonUtils.SHDJT_HEIGHT, CommonUtils.FILE_MAXSIZE);
+					CommonUtils.SHDJT_WIDTH, CommonUtils.SHDJT_HEIGHT, CommonUtils.FILE_MAXSIZE,CommonUtils.PX_FIXED);
 			if(picResult.getCode()!=200){
 				return picResult;
 			}

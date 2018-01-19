@@ -66,7 +66,7 @@ public class BannerController {
 			//上传banner图
 			if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
 				Result<String> picResult = FileUtil.checkFile(picFile, 
-						CommonUtils.HOME_BANNER_WIDTH, CommonUtils.HOME_BANNER_HEIGHT, CommonUtils.FILE_MAXSIZE);
+						CommonUtils.HOME_BANNER_WIDTH, CommonUtils.HOME_BANNER_HEIGHT, CommonUtils.FILE_MAXSIZE,CommonUtils.PX_FIXED);
 				if(picResult.getCode()!=200){
 					return picResult;
 				}
@@ -75,7 +75,7 @@ public class BannerController {
 			//上传友情链接
 			if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
 				Result<String> picResult = FileUtil.checkFile(picFile, 
-						CommonUtils.LINK_WIDTH, CommonUtils.LINK_HEIGHT, CommonUtils.FILE_MAXSIZE);
+						CommonUtils.LINK_WIDTH, CommonUtils.LINK_HEIGHT, CommonUtils.FILE_MAXSIZE,CommonUtils.PX_FIXED);
 				if(picResult.getCode()!=200){
 					return picResult;
 				}
@@ -110,7 +110,7 @@ public class BannerController {
 			//上传banner图
 			if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
 				Result<String> picResult = FileUtil.checkFile(picFile, 
-						CommonUtils.HOME_BANNER_WIDTH, CommonUtils.HOME_BANNER_HEIGHT, CommonUtils.FILE_MAXSIZE);
+						CommonUtils.HOME_BANNER_WIDTH, CommonUtils.HOME_BANNER_HEIGHT, CommonUtils.FILE_MAXSIZE,CommonUtils.PX_FIXED);
 				if(picResult.getCode()!=200){
 					return picResult;
 				}
@@ -119,7 +119,7 @@ public class BannerController {
 			//上传友情链接
 			if(picFile!=null && picFile.getOriginalFilename()!=null && (!picFile.getOriginalFilename().equals(""))){
 				Result<String> picResult = FileUtil.checkFile(picFile, 
-						CommonUtils.LINK_WIDTH, CommonUtils.LINK_HEIGHT, CommonUtils.FILE_MAXSIZE);
+						CommonUtils.LINK_WIDTH, CommonUtils.LINK_HEIGHT, CommonUtils.FILE_MAXSIZE,CommonUtils.PX_FIXED);
 				if(picResult.getCode()!=200){
 					return picResult;
 				}
