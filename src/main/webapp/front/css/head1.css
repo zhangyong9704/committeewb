@@ -40,7 +40,7 @@ body{
 .nav >div> ul>li{
     list-style: none;
     float: left;
-    width:11.1% ;
+    width:10.5% ;
     padding:0;
     }
 
@@ -58,10 +58,10 @@ body{
 }
 .nav >div> ul>.date1{/*2017-12-26*/
     color: white;
-    width: 16.3%;
+    width: 18.3%;
     line-height: 38px;
     height: 50px;
-    text-align: right;
+    text-align: center;
 }
 .nav >div> ul>.weather{ /*2017-12-26*/
     line-height: 50px;

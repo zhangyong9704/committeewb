@@ -57,7 +57,7 @@ var Lifechat = function(){
 							 //注册相关事件回调处理函数
 							xhr.onload = function(e) { 
 							    if(this.status == 200||this.status == 304){
-							        console.log(this.responseText);
+							        //console.log(this.responseText);
 							        var res = window.JSON.parse(this.responseText);
 							        if(res.code === 200){
 							        	self.$table.bootstrapTable("refresh");

@@ -14,7 +14,7 @@ var WebSetting = function () {
 		},
         init: function () {
             this.baseurl = CommonUtils.baseUrl;
-            console.log("WebSetting init");
+            //console.log("WebSetting init");
         },
         initEvent: function(){
         	var self = this;
@@ -40,9 +40,9 @@ var WebSetting = function () {
 	        		var navName = $(".navName").val();
 	        		var navLink = $(".navLink").val();
 	        		var navPos = $(".navPos").val();
-	        		console.log(navName);
-	        		console.log(navLink);
-	        		console.log(navPos);
+	        		//console.log(navName);
+	        		//console.log(navLink);
+	        		//console.log(navPos);
 	        		if(navName === ""){
 	        			alert("名称不能为空");
 	        			document.getElementById("saveAddNav").disabled = false;
@@ -122,9 +122,9 @@ var WebSetting = function () {
 	        		var friendLinkName = $(".friendLinkName").val();
 	        		var friendLinkUrl = $(".friendLinkUrl").val();
 	        		var friendLinkPic = $(".friendLinkPic").val();
-	        		console.log(friendLinkName);
-	        		console.log(friendLinkUrl);
-	        		console.log(friendLinkPic);
+	        		//console.log(friendLinkName);
+	        		//console.log(friendLinkUrl);
+	        		//console.log(friendLinkPic);
 	        		if(friendLinkName === ""){
 	        			alert("名称不能为空");
 	        			document.getElementById("saveAddFriendLink").disabled = false;
@@ -155,7 +155,7 @@ var WebSetting = function () {
 					 //注册相关事件回调处理函数
 					xhr.onload = function(e) { 
 					    if(this.status == 200||this.status == 304){
-					        console.log(this.responseText);
+					       // console.log(this.responseText);
 					        var res = window.JSON.parse(this.responseText);
 					        if(res.code === 200){
 	                        	self.slideDownAlert(res.msg);
@@ -179,8 +179,8 @@ var WebSetting = function () {
 	        		document.getElementById("saveAddSpecial").disabled = true;
 	        		var specialName = $(".SpecialName").val();
 	        		var specialPic = $(".specialPic").val();
-	        		console.log(specialName);
-	        		console.log(specialPic);
+	        		//console.log(specialName);
+	        		//console.log(specialPic);
 	        		if(specialName === ""){
 	        			alert("名称不能为空");
 	        			document.getElementById("saveAddSpecial").disabled = false;
@@ -205,7 +205,7 @@ var WebSetting = function () {
 					 //注册相关事件回调处理函数
 					xhr.onload = function(e) { 
 					    if(this.status == 200||this.status == 304){
-					        console.log(this.responseText);
+					       // console.log(this.responseText);
 					        var res = window.JSON.parse(this.responseText);
 					        if(res.code === 200){
 	                        	self.slideDownAlert(res.msg);
@@ -439,8 +439,6 @@ var WebSetting = function () {
 					},
 					events : {
 						'change #bannnerinput': function(e, value, row){
-							// todo
-							
 							// 组装FormData对象
 							var form = document.getElementById("bannerform");
 							var formData = new FormData(form);
@@ -455,7 +453,7 @@ var WebSetting = function () {
 							 //注册相关事件回调处理函数
 							xhr.onload = function(e) { 
 							    if(this.status == 200||this.status == 304){
-							        console.log(this.responseText);
+							        //console.log(this.responseText);
 							        var res = window.JSON.parse(this.responseText);
 							        if(res.code === 200){
 							        		self.slideDownAlert(res.msg);
@@ -570,7 +568,7 @@ var WebSetting = function () {
 							 //注册相关事件回调处理函数
 							xhr.onload = function(e) { 
 							    if(this.status == 200||this.status == 304){
-							        console.log(this.responseText);
+							       // console.log(this.responseText);
 							        var res = window.JSON.parse(this.responseText);
 							        if(res.code === 200){
 							        		self.slideDownAlert(res.msg);
@@ -765,7 +763,7 @@ var WebSetting = function () {
 							 //注册相关事件回调处理函数
 							xhr.onload = function(e) { 
 							    if(this.status == 200||this.status == 304){
-							        console.log(this.responseText);
+							        //console.log(this.responseText);
 							        var res = window.JSON.parse(this.responseText);
 							        if(res.code === 200){
 							        		self.slideDownAlert(res.msg);
@@ -866,7 +864,7 @@ var WebSetting = function () {
 							 //注册相关事件回调处理函数
 							xhr.onload = function(e) { 
 							    if(this.status == 200||this.status == 304){
-							        console.log(this.responseText);
+							        //console.log(this.responseText);
 							        var res = window.JSON.parse(this.responseText);
 							        if(res.code === 200){
 							        		self.slideDownAlert(res.msg);

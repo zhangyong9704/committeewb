@@ -109,17 +109,18 @@
                     <!--右侧内容-->
                   <div class="right">
                       <ul>
-                      <c:forEach items="${newsList }" var="portalNewsVO">
+                      <c:set var="startIndex" value="${fn:length(newsList)-1 }"></c:set>  
+                      <c:forEach items="${newsList }" var="portalNewsVO"  varStatus="status">
                       	<li>
-                      		<a href="${pageContext.request.contextPath }/news/${activityID }/${newsTypeID }/${portalNewsVO.newsID }/query" title="${portalNewsVO.newsTitle }">
-                    			<c:if test="${portalNewsVO.activityName!=null && portalNewsVO.activityName!='' }">
-                    				【${portalNewsVO.activityName }】
+                      		<a href="${pageContext.request.contextPath }/news/${activityID }/${newsTypeID }/${newsList[startIndex - status.index].newsID }/query" title="${newsList[startIndex - status.index].newsTitle }">
+                    			<c:if test="${newsList[startIndex - status.index].activityName!=null && newsList[startIndex - status.index].activityName!='' }">
+                    				【${newsList[startIndex - status.index].activityName }】
                     			</c:if>
-                    			<c:if test="${fn:length(portalNewsVO.newsTitle)>35 }">
-                       				${fn:substring(portalNewsVO.newsTitle, 0, 35) }...
+                    			<c:if test="${fn:length(newsList[startIndex - status.index].newsTitle)>35 }">
+                       				${fn:substring(newsList[startIndex - status.index].newsTitle, 0, 35) }...
                        			</c:if>
-                       			<c:if test="${fn:length(portalNewsVO.newsTitle)<35 }">
-                       				${portalNewsVO.newsTitle }
+                       			<c:if test="${fn:length(newsList[startIndex - status.index].newsTitle)<35 }">
+                       				${newsList[startIndex - status.index].newsTitle }
                        			</c:if>
                       		</a>
                       	</li>

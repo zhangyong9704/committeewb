@@ -15,7 +15,7 @@ var NewsList = (function(){
 			$(".alert").slideUp();
 		},
         init: function () {
-        	console.log("NewsList init");
+        	//console.log("NewsList init");
             this.baseurl = CommonUtils.baseUrl;
             // 初始化文章类型
             this.initCheckBox();
@@ -54,7 +54,7 @@ var NewsList = (function(){
         	});
         },
         initEvent: function(){
-        		console.log("NewsList initEvent");
+        		//console.log("NewsList initEvent");
         		$('input:radio[name="optionsRadios"]').change(function(){
 				  $('#newslisttable').bootstrapTable("refresh", {query: {offset: 0,limit: self.limit}});
         		});
@@ -63,7 +63,7 @@ var NewsList = (function(){
         		});
         },
         initTable: function(){
-        		console.log("NewsList initTable");
+        		////console.log("NewsList initTable");
         		//self.baseurl+"/news/queryPageNews"
         		//"/shuweb/media/json/news.json",
         		var self = this;
@@ -85,7 +85,7 @@ var NewsList = (function(){
                 search: true,
                 responseHandler: responseHandler,
                 queryParams: function(params) {
-                	console.log(params);
+                	//console.log(params);
                 	// offset: 偏移量 limit: 每页的数目 order: asc desc
                 	// 获取类型和状态的值
                 	var radioval=$('input:radio[name="optionsRadios"]:checked').val();
@@ -166,6 +166,56 @@ var NewsList = (function(){
 						
 					}
 				},{
+					field : 'isHotNews',
+					align : 'center',
+					valign : 'middle',
+					title : "热门",
+					width: 80,
+					formatter: function(value, row, e){
+						var status = "√";
+						if(value===0){
+							status = "√";
+							return "<span title='显示' class='hot-btn badge badge-success'>"+status+"</span>";
+						}else{
+							status = "×";
+							return "<span title='不显示' class='hot-btn badge badge-primary'>"+status+"</span>"
+						}
+					},
+					events : {
+						'click .hot-btn': function(e, value, row) {
+							var that = this;
+							
+							var text = $(that).text();
+							var isHot = text === "×" ? 0 : 1;
+							
+							var hotUrl = self.baseurl+"/news/isHotNews/"+row.id+"/"+isHot;
+							$.ajax({
+								url: hotUrl,
+								type: "get",
+								success: function(res){
+									////console.log(res);
+									//var text = $(that).text();
+									if(text === "×"){
+										$(that).text("√")
+											.attr("title", "显示")
+											.removeClass("badge-primary")
+											.addClass("badge-success");
+									}else{
+										$(that).text("×")
+											.attr("title", "不显示")
+											.removeClass("badge-success")
+											.addClass("badge-primary");
+									}
+								},
+								error: function(err){
+									//console.log(err);
+								}
+							})
+							
+							
+						}
+					}
+				},{
 					field : 'count',
 					align : 'center',
 					valign : 'middle',
@@ -207,7 +257,6 @@ var NewsList = (function(){
 						}else{
 							return "<span class='label label-inverse'>草稿</span>";
 						}
-						
 					}
 				},{
 					field : 'operate',
@@ -237,7 +286,7 @@ var NewsList = (function(){
                 func = $.inArray(e.type, ['check', 'check-all']) > -1 ? 'union' : 'difference';
             	self.selections = _[func](self.selections, ids);
             	$remove.prop('disabled', !self.selections.length);
-	            console.log(self.selections);
+	            //console.log(self.selections);
 	        });
 	        
 	        $remove.click(function () {
@@ -252,7 +301,7 @@ var NewsList = (function(){
 		            		ids: self.selections.join(",")
 		            	},
 		            	success: function(res){
-		            		console.log(res);
+		            		//console.log(res);
 		            		if(res.code === 200){
 		            			alert(res.msg);
 		            			/*$table.bootstrapTable('remove', {

@@ -73,7 +73,7 @@ var TagNews = (function(){
                 toolbar: "#toolbar",
                 responseHandler: responseHandler,
                 queryParams: function(params) {
-                	console.log(params);
+                	//console.log(params);
                 	// offset: 偏移量 limit: 每页的数目 order: asc desc
                 	// 获取专题id
                 	var tagid = $(".tag_select").val();
@@ -209,7 +209,7 @@ var TagNews = (function(){
                 func = $.inArray(e.type, ['check', 'check-all']) > -1 ? 'union' : 'difference';
             	self.selections = _[func](self.selections, ids);
             	$remove.prop('disabled', !self.selections.length);
-	            console.log(self.selections);
+	            //console.log(self.selections);
 	        });
 	        
 	        $remove.click(function () {
@@ -225,7 +225,7 @@ var TagNews = (function(){
 		            		activityID: self.activityID
 		            	},
 		            	success: function(res){
-		            		console.log(res);
+		            		//console.log(res);
 		            		if(res.code === 200){
 		            			alert(res.msg);
 					           $table.bootstrapTable('refresh');

@@ -132,4 +132,12 @@ public interface NewsService {
 	 * @throws Exception
 	 */
 	public List<News> queryHotNews() throws Exception;
+	
+	/**
+	 * 改变新闻 是否是 热门新闻 这一状态
+	 * @param id
+	 * @param isHotNews
+	 * @throws Exception
+	 */
+	public void changeHotNewsStatus(Integer id,Integer isHotNews) throws Exception;
 }

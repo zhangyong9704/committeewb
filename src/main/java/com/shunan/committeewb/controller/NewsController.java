@@ -373,6 +373,39 @@ public class NewsController {
 		return result;
 	}
 	
+	/**
+	 * 改变新闻 是否是 热门新闻 这一状态
+	 * @param id
+	 * @param isHotNews
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/isHotNews/{id}/{isHotNews}")
+	@ResponseBody
+	public Result<String> isHotNews(@PathVariable("id") Integer id,
+			@PathVariable("isHotNews") Integer isHotNews) throws Exception{
+		Result<String> result = null;
+		List<String> list = new ArrayList<String>();
+		
+		if(id==null || isHotNews==null){
+			return new Result<String>(100, "参数不合法！", list);
+		}
+		
+		News news = newsService.queryNewsByID(id);
+		if(news==null){
+			return new Result<String>(100,"新闻不存在！",list);
+		}
+		
+		try {
+			newsService.changeHotNewsStatus(id, isHotNews);
+			result = new Result<String>(200, "修改成功！", list);
+		} catch (Exception e) {
+			result = new Result<String>(100, "修改失败！", list);
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 	/****************
 	 * 网站前端页面
 	 ****************

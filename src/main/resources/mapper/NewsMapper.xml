@@ -204,10 +204,17 @@
 	<select id="queryHotNews" resultType="news">
 		SELECT * 
 		FROM news
-		WHERE STATUS=0 AND NOW()&gt;showTime AND MONTH(NOW())-MONTH(showTime)&lt;1
+		WHERE STATUS=0 AND NOW()&gt;showTime AND MONTH(NOW())-MONTH(showTime)&lt;1 and isHotNews=0 AND isHotNews=0
 		ORDER BY COUNT DESC
 		LIMIT 0,10
 	</select>
+	
+	<!-- 改变新闻 是否是 热门新闻 这一状态 -->
+	<update id="changeHotNewsStatus">
+		UPDATE news
+		SET isHotNews = #{isHotNews}
+		WHERE id=#{id}
+	</update>
 	
 	<!-- 门户网站 分页查询所有的新闻 or 重点专注、文件通知等-->
 	<select id="portalPageNews" resultType="portalNewsVO">

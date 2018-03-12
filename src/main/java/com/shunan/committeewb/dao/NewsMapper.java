@@ -1,7 +1,9 @@
 package com.shunan.committeewb.dao;
 
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
+
 import com.shunan.committeewb.po.News;
 import com.shunan.committeewb.po.PortalNewsVO;
 
@@ -94,6 +96,15 @@ public interface NewsMapper {
 	 * @throws Exception
 	 */
 	public List<News> queryHotNews() throws Exception;
+	
+	/**
+	 * 改变新闻 是否是 热门新闻 这一状态
+	 * @param id
+	 * @param isHotNews
+	 * @throws Exception
+	 */
+	public void changeHotNewsStatus(@Param("id") Integer id,
+			@Param("isHotNews") Integer isHotNews) throws Exception;
 	
 	/**
 	 * 门户网站 分页查询重点关注、文件通知等

@@ -19,6 +19,7 @@ public class News {
 	private Date showTime;//显示时间
 	private long count;//浏览量
 	private int isHavePic;//是否是图文新闻:0纯文字,1图文
+	private int isHotNews;//是否是热门新闻:0是,1否
 	public News() {
 		super();
 	}
@@ -88,10 +89,18 @@ public class News {
 	public void setIsHavePic(int isHavePic) {
 		this.isHavePic = isHavePic;
 	}
+	
+	public int getIsHotNews() {
+		return isHotNews;
+	}
+	public void setIsHotNews(int isHotNews) {
+		this.isHotNews = isHotNews;
+	}
 	@Override
 	public String toString() {
 		return "News [id=" + id + ", title=" + title + ", newsTypeID=" + newsTypeID + ", picUrl=" + picUrl
 				+ ", content=" + content + ", createTime=" + createTime + ", author=" + author + ", status=" + status
-				+ ", showTime=" + showTime + ", count=" + count + ", isHavePic=" + isHavePic + "]";
+				+ ", showTime=" + showTime + ", count=" + count + ", isHavePic=" + isHavePic + ", isHotNews="
+				+ isHotNews + "]";
 	}
 }

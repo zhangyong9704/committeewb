@@ -53,3 +53,7 @@
 	margin-right: 15px;
 	vertical-align: bottom;
 }
+/*newlist.jsp的样式*/
+.hot-btn:hover {
+	border: 1px solid black;
+}

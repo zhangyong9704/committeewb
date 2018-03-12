@@ -46,8 +46,8 @@
 	    <!--<script type="text/javascript" charset="utf-8" src="ueditor.parse.js"> </script>-->
 	    <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath }/admin/media/js/lang/zh-cn/zh-cn.js"></script>
 	    <script type="text/javascript" charset="UTF-8" src="${pageContext.request.contextPath }/admin/media/laydate.js"></script>
-   		<script src="${pageContext.request.contextPath }/admin/media/src/commonUtils.js"></script>
-   		<script src="${pageContext.request.contextPath }/admin/media/src/homeWrite.js"></script>
+   		<script src="${pageContext.request.contextPath }/admin/media/src/commonUtils.js?v=1.1"></script>
+   		<script src="${pageContext.request.contextPath }/admin/media/src/homeWrite.js?v=1.1"></script>
   		<!-- 实例化编辑器 -->
     	<script type="text/javascript">
     		HomeWrite.init();

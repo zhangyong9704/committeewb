@@ -95,17 +95,42 @@
                     <div class="right">
                         <div class="r1">
                             <ul>
-                                <li><a href="#"><h3>蜀南石油近期热门</h3></a></li>
+                                <li><h3>蜀南石油近期热门</h3></li>
                                 <c:forEach items="${hotNewsList }" var="news">
                                 <li>
                                 	<a href="${pageContext.request.contextPath }/news/-1/${news.newsTypeID }/${news.id }/query" title="${news.title }">
                                 		<p>
-                                			<c:if test="${fn:length(news.title)>18 }">
+                                			<c:if test="${news.newsTypeID==1}">
+                                				[重点关注]
+                                			</c:if>
+                                			<c:if test="${news.newsTypeID==2}">
+                                				[公告栏]
+                                			</c:if>
+                                			<c:if test="${news.newsTypeID==3}">
+                                				[文件通知]
+                                			</c:if>
+                                			<c:if test="${news.newsTypeID==4}">
+                                				[团情快讯]
+                                			</c:if>
+                                			<c:if test="${news.newsTypeID==5}">
+                                				[蜀南青语]
+                                			</c:if>
+                                			<c:if test="${news.newsTypeID==6}">
+                                				[专题活动]
+                                			</c:if>
+                                			<c:if test="${news.newsTypeID==7}">
+                                				[青春剪影]
+                                			</c:if>
+                                			<c:if test="${news.newsTypeID==8}">
+                                				[生活大家谈]
+                                			</c:if>
+                                			${news.title }
+                                			<%--<c:if test="${fn:length(news.title)>=18 }">
 		                         				${fn:substring(news.title, 0, 18) }...
 		                         			</c:if>
 		                         			<c:if test="${fn:length(news.title)<18 }">
 		                         				${news.title }
-		                         			</c:if>
+		                         			</c:if>--%>
                                 		</p>
                                 	</a>
                                 </li>

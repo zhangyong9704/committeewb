@@ -24,7 +24,7 @@ var Write = (function(){
 						acts.push($(this).val()); 
 					}); 
 					
-					console.log(acts.join(","));
+					//console.log(acts.join(","));
 					self.ajaxEdit({
 						activities: acts.join(","),
 						newsTypeID: newstype
@@ -234,7 +234,7 @@ var Write = (function(){
 			 //注册相关事件回调处理函数
 			xhr.onload = function(e) {
 			    if(this.status == 200||this.status == 304){
-			        console.log(this.responseText);
+			        //console.log(this.responseText);
 			        var res = window.JSON.parse(this.responseText);
 			        if(res.code === 200){
 			        	if(articleId==-1){
@@ -266,7 +266,7 @@ var Write = (function(){
 			 * */
 			xhr.upload.onprogress = function(e) {
 				var percent =  ~~((e.loaded/e.total)*100)+"%";
-				console.log(percent);
+				//console.log(percent);
 				Progressbar.updateProgress(percent);
 				if(percent == '100%'){
 					// 隐藏进度条
@@ -300,7 +300,7 @@ var Write = (function(){
 				// 如果是选中状态，必须上传题图
 				if($(this).is(':checked')){
 					var imgsrc = $("#tiTuImg").attr("src");
-					console.log(imgsrc);
+					//console.log(imgsrc);
 					if(imgsrc != "" && imgsrc != undefined){
 						//$(".nextbtn").attr("disabled", false);
 					}else{
@@ -514,7 +514,7 @@ var Write = (function(){
 				url:self.baseurl+"/rollImg/queryRollImgByNewsID/"+id,
 				async:true,
 				success: function(res){
-					console.log(res);
+					//console.log(res);
 					if(res.rows.length>0){
 						// 是图片新闻
 						$("#isPicNews").attr("checked", true);
@@ -547,7 +547,7 @@ var Write = (function(){
 							$("#articleId").html(res.rows[0].id);
 							window.history.replaceState({}, '', "edit/"+res.rows[0].id);
 						}else if(objPropertyCount==0){
-							console.log("初始化数据");
+							//console.log("初始化数据");
 							// 发布按钮状态,title and content都不为空值，设置发布按钮为可用状态
 							if(res.rows[0].title!="" && res.rows[0].content!=""){
 								$(".publish-btn").removeClass("publish-no").addClass("publish-yes");
@@ -582,16 +582,14 @@ var Write = (function(){
 							self.textarea.val(res.rows[0].title);
 							self.initTextArea();
 							self.ue.setContent(res.rows[0].content);
-							/*if(res.rows[0].content == ""){
-								self.firstgetdata = 2;
-							}else{
-								console.log("-----------");
-								console.log(res.rows[0].content);
-					            self.ue.setContent(res.rows[0].content);
-							}*/
 						}
 					}else{
-						alert(res.msg);
+						if(res.msg){
+							alert(res.msg);
+						}else{
+							window.location.href = self.baseurl+"/admin/login.jsp";
+						}
+						
 					}
 				},
 				error: function(){

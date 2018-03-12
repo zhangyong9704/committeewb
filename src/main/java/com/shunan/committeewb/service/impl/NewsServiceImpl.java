@@ -235,6 +235,16 @@ public class NewsServiceImpl implements NewsService {
 			rollImgMapper.insertRollImg(new RollImg(news.getId()));
 		}
 	}
+	
+	/**
+	 * 改变新闻 是否是 热门新闻 这一状态
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public void changeHotNewsStatus(Integer id,Integer isHotNews) throws Exception{
+		newsMapper.changeHotNewsStatus(id, isHotNews);
+	}
 
 	/************
 	 * 网站前端

@@ -131,7 +131,7 @@
 }
 .itemsCon>div:nth-child(2)>ul>li:last-child{
     position: absolute;
-    bottom: 0;
+    /*bottom: 0;*/
 }
 .itemsCon>div:nth-child(2)>ul>li:last-child a{
     line-height: 14px;
