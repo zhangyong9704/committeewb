@@ -92,7 +92,7 @@
 				<div class="controls">
 					<div class="input-icon left">
 						<i class="icon-file-text"></i>
-						<input style="width: 185px;" class="m-wrap placeholder-no-fix" type="text" placeholder="验证码" name="randomCode" id="randomCode"/>
+						<input style="width: 182px;" class="m-wrap placeholder-no-fix" type="text" placeholder="验证码" name="randomCode" id="randomCode"/>
 <!-- 						<img style="width: 60px; height: 34px;" src="media/image/7.jpg" /> -->
 				    	<img id="randomcode_img" src="${pageContext.request.contextPath }/code" alt=""
 						style="width: 60px; height: 34px;" align='absMiddle' /> 

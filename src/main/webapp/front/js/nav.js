@@ -23,10 +23,10 @@ $(".nav div").css("bottom",navh);
 // $(".nav >div> ul>.weather").css("lineHeight",navh1);
 
 $('.nav>div a').mouseover(function () {
-    $('.nav>div a').css("background","#C90102");
-    $(this).css("background","#A00314")
+    	$('.nav>div a').css("background","#C90102");
+    	$(this).css("background","#A00314");
+	})
 })
-    })
 
 //2017-12-25
 setwidth()

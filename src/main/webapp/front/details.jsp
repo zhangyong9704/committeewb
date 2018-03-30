@@ -95,7 +95,7 @@
                     <div class="right">
                         <div class="r1">
                             <ul>
-                                <li><h3>蜀南石油近期热门</h3></li>
+                                <li><h3>近期热门</h3></li>
                                 <c:forEach items="${hotNewsList }" var="news">
                                 <li>
                                 	<a href="${pageContext.request.contextPath }/news/-1/${news.newsTypeID }/${news.id }/query" title="${news.title }">

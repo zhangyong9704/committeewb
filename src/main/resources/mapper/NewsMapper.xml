@@ -6,6 +6,12 @@
 		SELECT * FROM news
 	</sql>
 	
+	<!-- 查询新闻，最近三天的新闻isLatestNews标识为1，超过三天的新闻isLatestNews标识为0 -->
+	<sql id="idnex_queryNews">
+		SELECT news.*,showTime>DATE_SUB(NOW(),INTERVAL 3 DAY) AS isLatestNews 
+		FROM news
+	</sql>
+	
 	<sql id="queryTotal">
 		SELECT COUNT(*) 
 		FROM news
@@ -59,11 +65,11 @@
 	
 	<!-- 查询首页需要展示的重点专注、文件通知、团青快讯等 -->
 	<select id="queryHomeNews" resultType="com.shunan.committeewb.po.News">
-		<include refid="queryNews"/>
+		<include refid="idnex_queryNews"/>
 		<where>
 			newsTypeID=#{newsTypeID} AND STATUS=0 AND NOW()>showTime 
 		</where>
-		ORDER BY createTime DESC 
+		ORDER BY showTime DESC 
 		LIMIT #{limit}
 	</select>
 	
@@ -218,11 +224,11 @@
 	
 	<!-- 门户网站 分页查询所有的新闻 or 重点专注、文件通知等-->
 	<select id="portalPageNews" resultType="portalNewsVO">
-		SELECT news.id newsID,news.title newsTitle
+		SELECT news.id newsID,news.title newsTitle,news.showTime showTime,news.showTime>DATE_SUB(now(),INTERVAL 3 DAY) as isLatestNews
 		FROM news
 		WHERE news.newsTypeID=#{newsTypeID} 
 		    AND news.status=0 AND NOW()>news.showTime
-		 ORDER BY createTime ASC
+		 ORDER BY news.showTime desc
 		 <include refid="pageLimit"/>
 	</select>
 </mapper>

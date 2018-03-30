@@ -65,10 +65,10 @@
 	
 	<!-- 分页查询轮播图 -->
 	<select id="queryPageRollImg" resultType="portalNewsVO">
-		SELECT news.id newsID,news.title newsTitle
+		SELECT news.id newsID,news.title newsTitle,news.showTime showTime,news.showTime>DATE_SUB(now(),INTERVAL 3 DAY) as isLatestNews
 		FROM news,rollimg
 		WHERE news.id=rollimg.newsID AND isShow=1 and news.status=0
-		order by newsID asc
+		order by news.showTime desc
 		LIMIT #{offset},#{pageSize}
 	</select>
 	

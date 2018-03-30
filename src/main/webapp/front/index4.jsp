@@ -17,7 +17,7 @@
     <link href="${pageContext.request.contextPath }/front/css/head1.css" rel="stylesheet" >
     <link href="${pageContext.request.contextPath }/front/css/index1.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/front/css/iconfont.css" rel="stylesheet">
-       <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script> >
@@ -41,21 +41,20 @@
    <!--主体部分 -->
     <div class="row main" style="background:url(${pageContext.request.contextPath }/front/img/main1.jpg) no-repeat;background-size:100% ">  <!--1920*1245-->
         <!--导航部分-->
-    <%--<div class='container-fluid'>--%>
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="row" style="position: relative;top:-5px;z-index: 100">
                 <div class="col-md-12 col-sm-12 col-xs-12 nav"><!--1920*73-->
                     <img src="${pageContext.request.contextPath }/front/img/navbg.png" style="width: 100%">
                     <div>
                     <ul>
-                        <c:forEach items="${navList }" var="nav">
+                        <c:forEach items="${navList}" var="nav">
 					    	<li>
 					    		<c:if test="${nav.id!=6 }">
 					    			<a href="${pageContext.request.contextPath }/${nav.jumpLink }">${nav.name }</a>
 					    		</c:if>
 					    		<c:if test="${nav.id==6 }">
 					    			<c:if test="${nav.jumpLink==null ||  nav.jumpLink==''}">
-					    				${nav.name }
+					    				${nav.name}
 					    			</c:if>
 					    			<c:if test="${nav.jumpLink!=null &&  nav.jumpLink!=''}">
 					    				<a href="${nav.jumpLink }">${nav.name }</a>
@@ -70,7 +69,6 @@
                     </div>
                 </div>
             </div>
-        <%--</div>--%>
     </div><!--导航部分-->
         <!--　主体内容部分-->
         <div class="row mbody" style="position: relative;top:-5px;z-index: 0">
@@ -90,23 +88,23 @@
 	                	</c:if>
 				    </c:forEach>
                 </div>  <!--　1201*289-->
-                </div> <!--banner-->
+                </div> <!-- end banner-->
                 <!--第一行-->
                 <div class="row items">
                    <div class="col-md-4 col-sm-4 col-xs-4 a1">
                     	<img src="${pageContext.request.contextPath }/front/img/listbg.png">
                     	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=0&currentPage=1&activityID=-1">图片新闻</a>
-                    	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=0&currentPage=1&activityID=-1">更多>>></a>
+                    	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=0&currentPage=1&activityID=-1">更多<span style="font-weight: bold;" class="iconfont icon-icon-copy"></span></a>
                     </div>  <!--　306*31-->
                     <div class="col-md-4 col-sm-4 col-xs-4 a1">
                     	<img src="${pageContext.request.contextPath }/front/img/listbg.png">
                     	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=1&currentPage=1&activityID=-1">重点关注</a>
-                    	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=1&currentPage=1&activityID=-1">更多>>></a>
+                    	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=1&currentPage=1&activityID=-1">更多<span style="font-weight: bold;" class="iconfont icon-icon-copy"></span></a>
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-4 a1">
                     	<img src="${pageContext.request.contextPath }/front/img/listbg.png">
                     	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=2&currentPage=1&activityID=-1">公告栏</a>
-                    	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=2&currentPage=1&activityID=-1">更多>>></a>
+                    	<a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=2&currentPage=1&activityID=-1">更多<span style="font-weight: bold;" class="iconfont icon-icon-copy"></span></a>
                     </div>
                 </div>
                 <div class="row itemsCon">
@@ -116,9 +114,6 @@
                             <ul id="slideName1" class="sildebar clearfix">
                             	<c:forEach items="${rollImgList }" var="news">
 	                           		<li>
-	                           			<%--<a href="${pageContext.request.contextPath }/news/${news.newsTypeID }/${news.id }/query">--%>
-	                           				<%--<img src="${pageContext.request.contextPath }/upload/${news.picUrl}" alt="${news.title }">--%>
-	                           			<%--</a>--%>
                                     <a href="${pageContext.request.contextPath }/news/-1/${news.newsTypeID }/${news.id }/query" style="background:url('${pageContext.request.contextPath }/upload/${news.picUrl}') no-repeat center center;background-size: cover;" title="${news.title }"> </a>
 	                                   <a title="${news.title }" target="_blank" href="${pageContext.request.contextPath }/news/-1/${news.newsTypeID }/${news.id }/query">
 		                                   ${news.title }
@@ -140,9 +135,20 @@
 	                         <c:forEach items="${zdzzList }" var="news">
 	                         	<li>
 	                         		<a title="${news.title }" href="${pageContext.request.contextPath }/news/-1/${news.newsTypeID }/${news.id }/query" target="_blank">
-	                         				${news.title }
+                         				<c:if test="${news.isLatestNews == 1}">
+                         					<span style="color: red;font-weight: bold;font-size: 12px;" class="iconfont icon-icon-copy"></span>
+                         				</c:if>
+                         				<c:if test="${news.isLatestNews == 0}">
+                         					<span style="font-size: 12px;" class="iconfont icon-icon-copy"></span>
+                         				</c:if>
+                         				${news.title}
 	                         		</a>
-	                         		<span><fmt:formatDate value="${news.showTime }" pattern="yyyy-MM-dd"/></span>
+	                         		<c:if test="${news.isLatestNews == 1}">
+	                         			<span style="color: red;font-weight: bold;"><fmt:formatDate value="${news.showTime }" pattern="MM-dd"/></span>
+	                         		</c:if>
+	                         		<c:if test="${news.isLatestNews == 0}">
+	                         			<span><fmt:formatDate value="${news.showTime }" pattern="MM-dd"/></span>
+	                         		</c:if>
 	                         	</li>
 	                         </c:forEach>
                         </ul>
@@ -153,14 +159,25 @@
                             <c:forEach items="${ggList }" var="news">
 	                         	<li>
 	                         		<a title="${news.title }" href="${pageContext.request.contextPath }/news/-1/${news.newsTypeID }/${news.id }/query" target="_blank">
+	                         				<c:if test="${news.isLatestNews == 1}">
+	                         					<span style="color: red;font-weight: bold;font-size: 12px;" class="iconfont icon-icon-copy"></span>
+	                         				</c:if>
+	                         				<c:if test="${news.isLatestNews == 0}">
+	                         					<span style="font-size: 12px;" class="iconfont icon-icon-copy"></span>
+	                         				</c:if>
 	                         				${news.title }
 	                         		</a>
-	                         		<span><fmt:formatDate value="${news.showTime }" pattern="yyyy-MM-dd"/></span>
+	                         		<c:if test="${news.isLatestNews == 1}">
+	                         			<span style="color: red;font-weight: bold;"><fmt:formatDate value="${news.showTime }" pattern="MM-dd"/></span>
+	                         		</c:if>
+	                         		<c:if test="${news.isLatestNews == 0}">
+	                         			<span><fmt:formatDate value="${news.showTime }" pattern="MM-dd"/></span>
+	                         		</c:if>
 	                         	</li>
 	                         </c:forEach>
                         </ul>
                         <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=8&currentPage=1&activityID=-1">
-                        	<img src="${pageContext.request.contextPath }/upload/${lifeChat.picUrl}"> 
+                        	<img class="gglimg" src="${pageContext.request.contextPath }/upload/${lifeChat.picUrl}"> 
                         </a>   <!--　380*122-->
                     </div><!--公告栏-->
                 </div><!--第一行-->
@@ -168,18 +185,29 @@
                 <div class="row secondRow">
                     <!--文件通知-->
                     <div class="col-md-3  col-sm-3 col-xs-3 a1">
-                            <img src="${pageContext.request.contextPath }/front/img/listbg.png"> <!--　306*31-->
+                            <img class="title-img" src="${pageContext.request.contextPath }/front/img/listbg.png"> <!--　306*31-->
                             <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=3&currentPage=1&activityID=-1">文件通知</a>
-                            <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=3&currentPage=1&activityID=-1">更多>>></a>
+                            <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=3&currentPage=1&activityID=-1">更多<span style="font-weight: bold;" class="iconfont icon-icon-copy"></span></a>
     <div class="sol" style="overflow:hidden;width:95%">
                         <div class="list">
                             <ul>
 	                           <c:forEach items="${wjtzList }" var="news">
 		                         	<li>
 		                         		<a title="${news.title }" href="${pageContext.request.contextPath }/news/-1/${news.newsTypeID }/${news.id }/query" target="_blank">
-		                         				${news.title }
+		                         			<c:if test="${news.isLatestNews == 1}">
+	                         					<span style="color: red;font-weight: bold;font-size: 12px;" class="iconfont icon-icon-copy"></span>
+	                         				</c:if>
+	                         				<c:if test="${news.isLatestNews == 0}">
+	                         					<span style="font-size: 12px;" class="iconfont icon-icon-copy"></span>
+	                         				</c:if>
+	                         				${news.title }
 		                         		</a>
-		                         		<span><fmt:formatDate value="${news.showTime }" pattern="yyyy-MM-dd"/></span>
+		                         		<c:if test="${news.isLatestNews == 1}">
+		                         			<span style="color: red;font-weight: bold;"><fmt:formatDate value="${news.showTime }" pattern="MM-dd"/></span>
+		                         		</c:if>
+		                         		<c:if test="${news.isLatestNews == 0}">
+		                         			<span><fmt:formatDate value="${news.showTime }" pattern="MM-dd"/></span>
+		                         		</c:if>
 		                         	</li>
 		                        </c:forEach>
                             </ul>
@@ -188,18 +216,29 @@
                     </div><!--文件通知-->
                     <!--团情快讯-->
                     <div class="col-md-3  col-sm-3 col-xs-3 a1">
-                        <img src="${pageContext.request.contextPath }/front/img/listbg.png">  <!--　306*31-->
+                        <img class="title-img" src="${pageContext.request.contextPath }/front/img/listbg.png">  <!--　306*31-->
                         <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=4&currentPage=1&activityID=-1">团情快讯</a>
-                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=4&currentPage=1&activityID=-1">更多>>></a>
+                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=4&currentPage=1&activityID=-1">更多<span style="font-weight: bold;" class="iconfont icon-icon-copy"></span></a>
        <div class="sol" style="overflow:hidden;width:95%">
     <div class="list">
                             <ul>
                             	<c:forEach items="${tqkxList }" var="news">
 		                         	<li>
 		                         		<a title="${news.title }" href="${pageContext.request.contextPath }/news/-1/${news.newsTypeID }/${news.id }/query" target="_blank">
-		                         				${news.title }
+		                         			<c:if test="${news.isLatestNews == 1}">
+	                         					<span style="color: red;font-weight: bold;font-size: 12px;" class="iconfont icon-icon-copy"></span>
+	                         				</c:if>
+	                         				<c:if test="${news.isLatestNews == 0}">
+	                         					<span style="font-size: 12px;" class="iconfont icon-icon-copy"></span>
+	                         				</c:if>
+		                         			${news.title }
 		                         		</a>
-		                         		<span><fmt:formatDate value="${news.showTime }" pattern="yyyy-MM-dd"/></span>
+		                         		<c:if test="${news.isLatestNews == 1}">
+		                         			<span style="color: red;font-weight: bold;"><fmt:formatDate value="${news.showTime }" pattern="MM-dd"/></span>
+		                         		</c:if>
+		                         		<c:if test="${news.isLatestNews == 0}">
+		                         			<span><fmt:formatDate value="${news.showTime }" pattern="MM-dd"/></span>
+		                         		</c:if>
 		                         	</li>
 		                        </c:forEach>
                             </ul>
@@ -208,18 +247,29 @@
                     </div><!--团情快讯-->
                     <!--蜀南青语-->
                     <div class="col-md-3  col-sm-3 col-xs-3 a1">
-                        <img src="${pageContext.request.contextPath }/front/img/listbg.png">  <!--　306*31-->
+                        <img class="title-img" src="${pageContext.request.contextPath }/front/img/listbg.png">  <!--　306*31-->
                         <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=5&currentPage=1&activityID=-1">蜀南青语</a>
-                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=5&currentPage=1&activityID=-1">更多>>></a>
+                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=5&currentPage=1&activityID=-1">更多<span style="font-weight: bold;" class="iconfont icon-icon-copy"></span></a>
     <div class="sol" style="overflow:hidden;width:95%">
                         <div class="list">
                             <ul>
                                 <c:forEach items="${snqyList }" var="news">
 		                         	<li>
 		                         		<a title="${news.title }" href="${pageContext.request.contextPath }/news/-1/${news.newsTypeID }/${news.id }/query" target="_blank">
-		                         				${news.title }
+		                         			<c:if test="${news.isLatestNews == 1}">
+	                         					<span style="color: red;font-weight: bold;font-size: 12px;" class="iconfont icon-icon-copy"></span>
+	                         				</c:if>
+	                         				<c:if test="${news.isLatestNews == 0}">
+	                         					<span style="font-size: 12px;" class="iconfont icon-icon-copy"></span>
+	                         				</c:if>
+		                         			${news.title }
 		                         		</a>
-		                         		<span><fmt:formatDate value="${news.showTime }" pattern="yyyy-MM-dd"/></span>
+		                         		<c:if test="${news.isLatestNews == 1}">
+		                         			<span style="color: red;font-weight: bold;"><fmt:formatDate value="${news.showTime }" pattern="MM-dd"/></span>
+		                         		</c:if>
+		                         		<c:if test="${news.isLatestNews == 0}">
+		                         			<span><fmt:formatDate value="${news.showTime }" pattern="MM-dd"/></span>
+		                         		</c:if>
 		                         	</li>
 		                        </c:forEach>
                             </ul>
@@ -228,9 +278,9 @@
                     </div><!--蜀南青语-->
                     <!--专题活动-->
                     <div class="col-md-3  col-sm-3 col-xs-3 a1 lasta1">
-                        <img src="${pageContext.request.contextPath }/front/img/listbg.png">   <!--　306*31-->
+                        <img class="title-img" src="${pageContext.request.contextPath }/front/img/listbg.png">   <!--　306*31-->
                         <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=6&currentPage=1&activityID=-1&activityID=-1">专题活动</a>
-                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=6&currentPage=1&activityID=-1&activityID=-1">更多>>></a>
+                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=6&currentPage=1&activityID=-1&activityID=-1">更多<span style="font-weight: bold;" class="iconfont icon-icon-copy"></span></a>
                         <div class="list lastlist">
                         <%--<div class="list lastlist" style="position: relative">--%>
                             <div class="img"> <!--287*69-->
@@ -256,9 +306,9 @@
                 <!--青春剪影-->
                 <div class="row listRow" >
                     <div class="col-md-3 col-sm-3 col-xs-3 a1">
-                        <img src="${pageContext.request.contextPath }/front/img/listbg.png">   <!--　306*31-->
+                        <img class="title-img" src="${pageContext.request.contextPath }/front/img/listbg.png">   <!--　306*31-->
                         <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=7&currentPage=1&activityID=-1">青春剪影</a>
-                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=7&currentPage=1&activityID=-1">更多>>></a>
+                        <a href="${pageContext.request.contextPath }/news/newsList?newsTypeID=7&currentPage=1&activityID=-1">更多<span style="font-weight: bold;" class="iconfont icon-icon-copy"></span></a>
                     </div>
                 </div>
 

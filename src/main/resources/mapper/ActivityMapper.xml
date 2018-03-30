@@ -120,10 +120,12 @@
 	<!-- 分页查询专题活动列表 -->
 	<select id="portalNewsActivityList" resultType="portalNewsVO">
 		<if test="activityID!=null and activityID!=-1">
-			SELECT news.id newsID,news.title newsTitle,activity.id activityID,activity.name activityName
+			SELECT news.id newsID,news.title newsTitle,activity.id activityID,activity.name activityName,
+				news.showTime showTime,news.showTime>DATE_SUB(now(),INTERVAL 3 DAY) as isLatestNews
 		</if>
 		<if test="activityID!=null and activityID==-1">
-			SELECT DISTINCT(news.id) newsID,news.title newsTitle
+			SELECT DISTINCT(news.id) newsID,news.title newsTitle,
+				news.showTime showTime,news.showTime>DATE_SUB(now(),INTERVAL 3 DAY) as isLatestNews
 		</if>
 		FROM news,activity,newsactivity
 		<where>
@@ -135,7 +137,7 @@
 				AND activity.id=#{activityID}
 			</if>
 		</where>
-		 ORDER BY news.id ASC
+		 ORDER BY news.showTime desc
 		 LIMIT #{offset},#{limit}
 	</select>
 	

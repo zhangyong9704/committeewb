@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -77,14 +77,29 @@
                 <!--banner-->
                 <div class="row banner">
                     <div class="col-md-12 ">
-                        <c:forEach items="${bannerList }" var="banner">
-                        	<img src="${pageContext.request.contextPath }/upload/${banner.picUrl}"/>
+                    	<c:forEach items="${bannerList }" var="banner">
+		                	<c:if test="${banner.jumpLink!=null && banner.jumpLink!=''}">
+		                		<c:if test="${banner.jumpLink.indexOf('http')!=-1}">
+		                			<a href="${banner.jumpLink}">
+			                			<img src="${pageContext.request.contextPath }/upload/${banner.picUrl}"/>
+			                		</a>
+		                		</c:if>
+		                		<c:if test="${banner.jumpLink.indexOf('http')==-1}">
+		                			<a href="../${banner.jumpLink}">
+			                			<img src="${pageContext.request.contextPath }/upload/${banner.picUrl}"/>
+			                		</a>
+		                		</c:if>
+		                		
+		                	</c:if>
+		                	<c:if test="${banner.jumpLink==null || banner.jumpLink==''}">
+		                		<img src="${pageContext.request.contextPath }/upload/${banner.picUrl}"/>
+		                	</c:if>
 				    	</c:forEach>
                     </div>  <!--　1201*289-->
                 </div> <!--banner-->
-                <a name="5D"></href>
+                <a name="5D"></a>
                 <div class="breadnav">
-                    <span>您的位置：<a href="#">首页</a><span class="iconfont icon-icon-copy"></span><span>${newsTypeName }</span></span>
+                    <span>您的位置：<a href="${pageContext.request.contextPath}/index">首页</a><span class="iconfont icon-icon-copy"></span><span>${newsTypeName }</span></span>
                 </div>
                <!--主要内容 -->
                 <div class="col-md-12 concent">
@@ -109,34 +124,40 @@
                     <!--右侧内容-->
                   <div class="right">
                       <ul>
-                      <c:set var="startIndex" value="${fn:length(newsList)-1 }"></c:set>  
                       <c:forEach items="${newsList }" var="portalNewsVO"  varStatus="status">
                       	<li>
-                      		<a href="${pageContext.request.contextPath }/news/${activityID }/${newsTypeID }/${newsList[startIndex - status.index].newsID }/query" title="${newsList[startIndex - status.index].newsTitle }">
-                    			<c:if test="${newsList[startIndex - status.index].activityName!=null && newsList[startIndex - status.index].activityName!='' }">
-                    				【${newsList[startIndex - status.index].activityName }】
-                    			</c:if>
-                    			<c:if test="${fn:length(newsList[startIndex - status.index].newsTitle)>35 }">
-                       				${fn:substring(newsList[startIndex - status.index].newsTitle, 0, 35) }...
-                       			</c:if>
-                       			<c:if test="${fn:length(newsList[startIndex - status.index].newsTitle)<35 }">
-                       				${newsList[startIndex - status.index].newsTitle }
-                       			</c:if>
+                      		<a class="title-left" href="${pageContext.request.contextPath }/news/${activityID }/${newsTypeID }/${portalNewsVO.newsID }/query" title="${portalNewsVO.newsTitle }">
+                				<c:if test="${portalNewsVO.isLatestNews == 1}">
+                 					<span style="color: red;font-weight: bold;font-size: 12px;" class="iconfont icon-icon-copy"></span>
+                 				</c:if>
+                 				<c:if test="${portalNewsVO.isLatestNews == 0}">
+                 					<span style="font-size: 12px;" class="iconfont icon-icon-copy"></span>
+                 				</c:if>
+                				<c:if test="${portalNewsVO.activityName!=null && portalNewsVO.activityName!='' }">
+                					【${portalNewsVO.activityName }】
+                				</c:if>
+                    			${portalNewsVO.newsTitle}
                       		</a>
+                      		<c:if test="${portalNewsVO.isLatestNews == 1}">
+                     			<span class="time-right" style="color: red;"><fmt:formatDate value="${portalNewsVO.showTime }" pattern="yyyy-MM-dd"/></span>
+                     		</c:if>
+                     		<c:if test="${portalNewsVO.isLatestNews == 0}">
+                     			<span class="time-right"><fmt:formatDate value="${portalNewsVO.showTime }" pattern="yyyy-MM-dd"/></span>
+                     		</c:if>
                       	</li>
                       </c:forEach>
                       </ul>
                   </div> <!--右侧内容-->
                     <!--分页-->
                     <div class="fenye">
-                        <a href="${pageContext.request.contextPath }/news/newsList?activityID=${activityID }&newsTypeID=${newsTypeID }&currentPage=1">首页&nbsp;&nbsp;</a>
+                        <a href="${pageContext.request.contextPath }/news/newsList?activityID=${activityID }&newsTypeID=${newsTypeID }&currentPage=1#5D">首页&nbsp;&nbsp;</a>
                         <c:if test="${currentPage != 1 }">
-                        	<a href="${pageContext.request.contextPath }/news/newsList?activityID=${activityID }&newsTypeID=${newsTypeID}&currentPage=${currentPage-1 }">上一页&nbsp;&nbsp;</a>
+                        	<a href="${pageContext.request.contextPath }/news/newsList?activityID=${activityID }&newsTypeID=${newsTypeID}&currentPage=${currentPage-1}#5D">上一页&nbsp;&nbsp;</a>
                         </c:if>
                         <c:if test="${currentPage != pageCount }">
-                        	<a href="${pageContext.request.contextPath }/news/newsList?activityID=${activityID }&newsTypeID=${newsTypeID}&currentPage=${currentPage+1 }">下一页&nbsp;&nbsp;</a>
+                        	<a href="${pageContext.request.contextPath }/news/newsList?activityID=${activityID }&newsTypeID=${newsTypeID}&currentPage=${currentPage+1}#5D">下一页&nbsp;&nbsp;</a>
                         </c:if>
-                        <a href="${pageContext.request.contextPath }/news/newsList?activityID=${activityID }&newsTypeID=${newsTypeID}&currentPage=${pageCount }">尾页&nbsp;&nbsp;</a>
+                        <a href="${pageContext.request.contextPath }/news/newsList?activityID=${activityID }&newsTypeID=${newsTypeID}&currentPage=${pageCount}#5D">尾页&nbsp;&nbsp;</a>
                         <span>当前第${currentPage }页&nbsp;&nbsp;</span>
                         <span>共${pageCount }页&nbsp;&nbsp;</span>
                         <span>共${rowCount }条数据</span>

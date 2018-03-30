@@ -22,9 +22,9 @@
 		%>
 		<div class="header">
 			<span id="articleId" style="display: none;"><c:if test="${id!=null }">${id }</c:if><c:if test="${id==null }">-1</c:if></span>
-			<div class="logo">
+			<a style="text-decoration: none;" class="logo" href="${pageContext.request.contextPath }/index" target="_blank">
 				蜀南气矿团委
-			</div>
+			</a>
 			<div class="title-wrapper">
 				<span class="title">写文章</span>
 				<span class="titleinfo titlegray">草稿自动保存</span>

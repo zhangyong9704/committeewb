@@ -19,6 +19,9 @@
     color: #CC0000;
     text-decoration: none;
 }
+.breadnav >span a:hover {
+	color: #007AFF;
+}
 .concent{
     padding: 0;
     margin-top: 5px;
@@ -61,10 +64,12 @@
     color: white;
     font-weight: bold;
     margin-left: 30px;
+}
 
+.concent .left>ul>li a:hover {
+	color: #007AFF;
 }
 .concent .left>ul>li:hover{
-    /* background: url(../img/itemsd.png) no-repeat; */
     cursor: pointer;
 }
 .concent .right{
@@ -74,8 +79,6 @@
 .concent .right{
     background-color: white;
     box-shadow:5px 5px 8px #FEFDBD;
-    padding:0px 100px ;
-
 }
 .concent .right h3{
     text-align: center;
@@ -87,16 +90,22 @@
     overflow: hidden;
     text-overflow:ellipsis;
     white-space: nowrap;
+    list-style: none;
     /*border:1px solid black;*/
 }
 .concent .right ul li{
-    line-height: 35px;
+    line-height: 15px;
 }
 .concent .right ul li a{
-    color: #888888;
+    color: black;
     text-decoration: none;
-    display: block;
-    width: 100%;
+    display: inline-block;
+    width: 80%;
+    font-size: 15px;
+    margin-top: 20px;
+    overflow: hidden !important;
+    text-overflow:ellipsis !important;
+    white-space: nowrap !important;
 }
 .concent .right ul li a:hover{
     text-decoration: underline;
@@ -114,5 +123,17 @@
     color: black;
 }
 .fenye a:hover{
-    text-decoration: underline;
+	color: #007AFF;
+}
+
+/*新闻列表页标题和时间样式d*/
+
+.title-left {
+	width: 75%;
+}
+
+.time-right {
+	width: 20%;
+	font-size: 12px;
+	color: #888888;
 }

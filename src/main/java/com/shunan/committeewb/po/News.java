@@ -20,6 +20,7 @@ public class News {
 	private long count;//浏览量
 	private int isHavePic;//是否是图文新闻:0纯文字,1图文
 	private int isHotNews;//是否是热门新闻:0是,1否
+	private int isLatestNews;//是否是最新的新闻:0是,1否
 	public News() {
 		super();
 	}
@@ -95,6 +96,12 @@ public class News {
 	}
 	public void setIsHotNews(int isHotNews) {
 		this.isHotNews = isHotNews;
+	}
+	public int getIsLatestNews() {
+		return isLatestNews;
+	}
+	public void setIsLatestNews(int isLatestNews) {
+		this.isLatestNews = isLatestNews;
 	}
 	@Override
 	public String toString() {

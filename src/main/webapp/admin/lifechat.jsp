@@ -60,7 +60,7 @@
     <!-- BEGIN TOP NAVIGATION BAR -->
     <div class="navbar-inner">
         <div class="container-fluid">
-            <a class="brand" href="${pageContext.request.contextPath }/admin/index.jsp">
+            <a class="brand" href="${pageContext.request.contextPath }/index" target="_blank">
                 <div style="margin-left: 20px;">蜀南气矿团委</div>
             </a>
             <!-- BEGIN RESPONSIVE MENU TOGGLER -->

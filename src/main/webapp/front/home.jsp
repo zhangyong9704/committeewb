@@ -111,7 +111,7 @@
                             </ul>
                         </div>
                         <div class="r2">
-                            <span><a href="#"> 更多>>></a></span>
+                            <span style="display: none;"><a href="#"> 更多>>></a></span>
                         </div>
                     </div> <!--右侧内容-->
                     </div>
